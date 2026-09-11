@@ -1,55 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 import { MaskReveal } from '../components/MaskReveal'
-import {
-  DecodeVisual,
-  BuildVisual,
-  PartnerVisual,
-} from '../components/svg/HowWeWorkVisuals'
 
 /**
  * "How we work" - HOT CORAL landing screen 2.
  *
- * Whole section sits on a saturated coral ground - "very clearly
- * different" from the navy hero above and the cream products section
- * below.
+ * Layout (Chris, Sept 2026 - reverts the screens-2-3 vertical sequence):
+ * a FULL-SCREEN LOCKED two-column panel. The section pins to the viewport
+ * (below the nav) so it "locks into full screen" like the "Where it
+ * starts" section, then releases as you scroll past.
  *
- * Layout (screens-2-3 brief, Sept 2026): a FULL-WIDTH VERTICAL
- * SEQUENCE, not a two-column grid. The screen 2 phases are SEQUENTIAL
- * (Decode -> Build -> Partner, one path in order), so they read as a
- * stack, not a triptych.
+ *   LEFT   the specialist statement, large white display type.
+ *   RIGHT  three phases - Decode / Build / Partner - as a compact list.
+ *          Each is just its number + name + an animated "+" at rest; the
+ *          paragraph REVEALS on hover (desktop), tap (touch, via the
+ *          is-open click state), or keyboard focus. The "+" idly wiggles
+ *          to signal "hover me", and rotates into an "x" once open.
  *
- *   OPENING  one held sentence occupying the first viewport of the
- *            coral panel, vertically centred, left-aligned to the
- *            1280/48 nav frame. White display type on coral.
+ * The parallax entry is unchanged: the hero is position: sticky inside
+ * .hero-coral-stack (WebsitePage) and this coral panel rises UP over it.
  *
- *   SEQUENCE three full-width phase rows scroll below the opening
- *            line. Each row is text left (heading + body, capped at a
- *            680px measure) and its SVG visual right (110px desktop).
- *            A hairline separator draws left-to-right above each row.
- *
- * Curved top edge (Impilo-style transition): the section keeps its
- * 32px top-corner radius. The parallax entry is unchanged - the hero
- * is position: sticky inside .hero-coral-stack (WebsitePage) so the
- * coral panel rises UP over it. The only change here is that the coral
- * panel is now taller than one viewport, because the sequence scrolls
- * below the held opening line.
- *
- * Reveal: the opening line uses MaskReveal (its own IntersectionObserver).
- * Each phase row reveals when IT scrolls into view - a per-block
- * IntersectionObserver adds .is-revealed, which fires that row's
- * separator draw, content rise, and SVG animation. This gives the
- * SEQUENTIAL "one animation at a time, as you reach it" reveal the
- * vertical layout needs (the previous timed cascade played all three
- * while everything was pinned in one view).
- *
- * Mobile (<600) stacks each row: visual above the heading, then body.
+ * (The old per-phase SVG visuals - DecodeVisual etc. in HowWeWorkVisuals
+ * - are not rendered in this layout. Kept in the codebase in case the
+ * little graphics come back inside the reveal.)
  */
-
-const VISUALS = {
-  decode: <DecodeVisual />,
-  build: <BuildVisual />,
-  partner: <PartnerVisual />,
-} as const
 
 type PhaseId = 'decode' | 'build' | 'partner'
 
@@ -83,94 +56,92 @@ const PHASES: Array<{
 ]
 
 export function HowWeWorkSection() {
-  /* Per-block scroll reveal. Each phase row flips to .is-revealed when
-     it scrolls into view, firing that row's separator draw + content
-     rise + SVG animation. Because the rows are stacked full-width and
-     scrolled through, this gives a natural SEQUENTIAL reveal - one
-     animation at a time, as the user reaches each row - replacing the
-     old section-level timed cascade that played all three at once while
-     the two-column grid was pinned. */
-  const blockRefs = useRef<Array<HTMLElement | null>>([null, null, null])
-  const [blocksRevealed, setBlocksRevealed] = useState<boolean[]>([
-    false,
-    false,
-    false,
-  ])
+  const sectionRef = useRef<HTMLElement | null>(null)
+  /* Section-level reveal drives a light staggered entrance on the phase
+     list (CSS keys off .is-revealed + each block's --phase-index). */
+  const [revealed, setRevealed] = useState(false)
+  /* Click-open state for touch + keyboard - hover handles desktop
+     pointers in CSS. Null = all collapsed; only one open at a time. */
+  const [openId, setOpenId] = useState<PhaseId | null>(null)
 
   useEffect(() => {
-    const els = blockRefs.current.filter(
-      (el): el is HTMLElement => el !== null,
-    )
-    if (els.length === 0) return
+    const el = sectionRef.current
+    if (!el) return
     const obs = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          const idx = blockRefs.current.indexOf(entry.target as HTMLElement)
-          if (idx < 0) continue
-          setBlocksRevealed((curr) => {
-            if (curr[idx]) return curr
-            const next = curr.slice()
-            next[idx] = true
-            return next
-          })
-          obs.unobserve(entry.target)
+          if (entry.isIntersecting) {
+            setRevealed(true)
+            obs.disconnect()
+            break
+          }
         }
       },
-      /* 0.35 - the row is about a third on screen before its animation
-         fires, so the user is looking at it as it plays. */
-      { threshold: 0.35 },
+      { threshold: 0.25 },
     )
-    els.forEach((el) => obs.observe(el))
+    obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
   return (
     <section
-      className="how-we-work-page"
+      ref={sectionRef}
+      className={'how-we-work-page' + (revealed ? ' is-revealed' : '')}
       id="how-we-work"
       data-screen-label="How we work"
     >
-      {/* OPENING - one held sentence, first viewport of the coral panel. */}
-      <div className="how-we-work-page-opening">
-        {/* Opening line carries the whole "who + how" per the
-            screens-2-3 brief. Plain white display type, left-aligned to
-            the 1280/48 nav frame, vertically centred in the viewport
-            (brief decision 2). */}
-        <MaskReveal as="p" className="how-we-work-page-para" delay={0}>
-          Specialists in buildings, energy and climate, with one way of
-          working: alongside your team, in tools you own.
-        </MaskReveal>
-      </div>
+      {/* PIN - locks the two-column panel to the viewport (below the nav)
+          for the section's scroll runway, then releases. */}
+      <div className="how-we-work-page-pin">
+        <div className="how-we-work-page-grid">
+          {/* LEFT - the specialist statement. */}
+          <div className="how-we-work-page-left">
+            <MaskReveal as="p" className="how-we-work-page-para" delay={0}>
+              We are specialists in buildings, energy, and climate, with one
+              way of working alongside your team in the tools you own.
+            </MaskReveal>
+          </div>
 
-      {/* SEQUENCE - three full-width phase rows scroll below the opening
-          line. Text left, visual right; sequential, never a triptych. */}
-      <div className="how-we-work-page-sequence">
-        {PHASES.map((phase, i) => (
-          <article
-            key={phase.id}
-            ref={(el) => {
-              blockRefs.current[i] = el
-            }}
-            className={
-              'how-we-work-phase-block' +
-              (blocksRevealed[i] ? ' is-revealed' : '')
-            }
-          >
-            <div className="how-we-work-phase-text">
-              <h3 className="how-we-work-phase-heading">
-                <span className="how-we-work-phase-number">
-                  {phase.number}
-                </span>{' '}
-                <span className="how-we-work-phase-name">{phase.name}</span>
-              </h3>
-              <p className="how-we-work-phase-body">{phase.body}</p>
-            </div>
-            <div className="how-we-work-phase-visual" aria-hidden="true">
-              {VISUALS[phase.id]}
-            </div>
-          </article>
-        ))}
+          {/* RIGHT - Decode / Build / Partner, paragraphs reveal on hover. */}
+          <div className="how-we-work-page-right">
+            {PHASES.map((phase, i) => {
+              const isOpen = openId === phase.id
+              return (
+                <article
+                  key={phase.id}
+                  className={
+                    'how-we-work-phase-block' + (isOpen ? ' is-open' : '')
+                  }
+                  style={
+                    { '--phase-index': i } as React.CSSProperties
+                  }
+                >
+                  <button
+                    type="button"
+                    className="how-we-work-phase-head"
+                    aria-expanded={isOpen}
+                    onClick={() =>
+                      setOpenId((curr) => (curr === phase.id ? null : phase.id))
+                    }
+                  >
+                    <span className="how-we-work-phase-number">
+                      {phase.number}
+                    </span>
+                    <span className="how-we-work-phase-name">{phase.name}</span>
+                    <span className="how-we-work-phase-plus" aria-hidden="true" />
+                  </button>
+                  {/* Reveal - grid-rows 0fr -> 1fr for a smooth height
+                      animation; inner clips so the body slides open. */}
+                  <div className="how-we-work-phase-reveal">
+                    <div className="how-we-work-phase-reveal-inner">
+                      <p className="how-we-work-phase-body">{phase.body}</p>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )

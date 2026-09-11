@@ -781,13 +781,14 @@
    ========================================================================= */
 .how-we-work-page {
   position: relative;
-  /* Content-tall (screens-2-3 brief): the panel is now a full-width
-     vertical sequence - a 100vh opening line held at the top, then
-     three phase rows scrolling below - so its height comes from its
-     content and is naturally taller than one viewport. (Was a fixed
-     300vh runway for the old sticky two-column pin, which is gone.)
+  /* 200vh runway (Chris, Sept 2026): the inner .how-we-work-page-pin is
+     sticky and ~one viewport tall, so the two-column panel LOCKS to the
+     screen for ~100vh of scroll before releasing - the "locked into full
+     screen" feel, matching the "Where it starts" section. Mobile drops
+     the runway (height:auto) below.
      The parallax ENTRY is unchanged: the hero is position: sticky in
      .hero-coral-stack (below) and this coral panel rises UP over it. */
+  height: 200vh;
   background: var(--coral);
   color: #fff;
   /* Curved top edge - the Impilo "curve pops up" detail. As the user
@@ -825,206 +826,231 @@
      as it rises. */
   z-index: 0;
 }
-/* OPENING - one held sentence occupying the first viewport of the
-   coral panel. Vertically centred; left-aligned inside the 1280/48
-   nav frame so the sentence's left edge lines up with the NZA logo
-   in the nav above (the same alignment the phase rows below use). */
-.how-we-work-page-opening {
-  min-height: 100vh;
+/* PIN - the two-column panel locks to the viewport (below the 68px nav)
+   for the section's runway, then releases: the "locked into full screen"
+   feel Chris wants, consistent with the "Where it starts" pin. */
+.how-we-work-page-pin {
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
+  padding: clamp(24px, 5vh, 56px) 0;
+}
+
+/* Two-column grid in the 1280/48 nav frame so the left statement's edge
+   lines up with the NZA logo above. */
+.how-we-work-page-grid {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(48px, 7vw, 112px);
+  align-items: center;
+}
+
+/* LEFT - the specialist statement, large white display type. */
+.how-we-work-page-left {
+  min-width: 0;
 }
 .how-we-work-page-para {
   margin: 0;
-  /* Held measure - keeps the sentence to a few confident lines
-     rather than one long ribbon at wide viewports. */
-  max-width: 640px;
+  max-width: 560px;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 2.8vw, 36px);
-  line-height: 1.28;
-  letter-spacing: -0.01em;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
   color: #fff;
 }
 
-/* SEQUENCE - three full-width phase rows below the opening line, in
-   the SAME 1280/48 frame so each row's body text left-aligns exactly
-   with the NZA logo in the nav. */
-.how-we-work-page-sequence {
-  box-sizing: border-box;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px clamp(72px, 12vh, 160px);
+/* RIGHT - the three phases. */
+.how-we-work-page-right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1023px) {
   .how-we-work-page {
+    height: auto;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
   }
-  .how-we-work-page-opening {
-    min-height: 82vh;
+  .how-we-work-page-pin {
+    position: static;
+    height: auto;
+    padding: clamp(72px, 12vh, 120px) 0;
   }
-  .how-we-work-page-sequence {
-    padding-bottom: clamp(72px, 10vh, 120px);
+  .how-we-work-page-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(40px, 8vh, 72px);
+    align-items: start;
   }
 }
-/* Horizontal frame padding tracks the nav's own frame breakpoint
-   (.site-nav-inner: 48px, dropping to 20px at <=767) so the opening
-   line and every phase-row body stay aligned to the NZA logo at ALL
-   widths - not just desktop. The component's 1023 boundary above still
-   governs layout (radius, visual size, min-height); this 767 rule only
-   matches the gutter, mirroring the site frame rather than inventing a
-   new boundary. */
 @media (max-width: 767px) {
-  .how-we-work-page-opening,
-  .how-we-work-page-sequence {
+  .how-we-work-page-grid {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
-@media (max-width: 599px) {
-  .how-we-work-page-opening {
-    min-height: 100svh;
-  }
-}
 
-/* Each block opens with TWO staged moments per Chris's "nice way to
-   reveal them" ask:
-     1) The hairline separator draws L->R like a stage curtain
-        (~420ms, scaleX 0 -> 1). Same gesture as the highlight
-        underlines on the left so the motion language is consistent.
-     2) The content (text + small icon) rises up from below with a
-        soft fade (~560ms, opacity 0->1 + translateY 14->0), starting
-        ~320ms after the separator begins.
-   The hairline is now a pseudo-element so it can be animated
-   independently of the block; was previously a border-top which can't
-   transform. */
+/* ---------- PHASE (Decode / Build / Partner) ----------
+   Each phase is a header row (number + name + animated "+") with a
+   paragraph that REVEALS on hover / focus / tap. Hairline separators
+   between rows. A light staggered entrance keys off the section's
+   .is-revealed (set by the IO in HowWeWorkSection.tsx). */
 .how-we-work-phase-block {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 56px;
-  align-items: center;
-  /* Full-width row rhythm: the hairline separator sits just above the
-     content (padding-top), and the padding-bottom opens space to the
-     next row so each phase gets its own moment as it scrolls in. */
-  padding-top: 44px;
-  padding-bottom: clamp(72px, 16vh, 200px);
   position: relative;
-}
-.how-we-work-phase-block:last-child {
-  padding-bottom: 0;
-}
-.how-we-work-phase-block::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-/* Content (text + icon) starts hidden + pushed down 14px; reveal
-   slides up & fades in together as one block, just after the
-   separator finishes drawing. */
-.how-we-work-phase-text,
-.how-we-work-phase-visual {
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
   opacity: 0;
   transform: translateY(14px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--phase-index, 0) * 110ms);
+}
+.how-we-work-phase-block:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+.how-we-work-page.is-revealed .how-we-work-phase-block {
+  opacity: 1;
+  transform: none;
 }
 
-/* Each row's reveal is SCROLL-DRIVEN: a per-block IntersectionObserver
-   in HowWeWorkSection.tsx flips it to .is-revealed when the row scrolls
-   ~35% into view. Animations run immediately on that class landing, so
-   the "delay between rows" is not a timer - it's the user's scroll
-   position reaching each row in turn (the sequential reveal the
-   full-width vertical layout needs). */
-.how-we-work-phase-block.is-revealed::before {
-  animation: phase-separator-draw 420ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-.how-we-work-phase-block.is-revealed .how-we-work-phase-text,
-.how-we-work-phase-block.is-revealed .how-we-work-phase-visual {
-  animation: phase-content-rise 560ms cubic-bezier(0.16, 1, 0.3, 1) 320ms forwards;
-}
-
-@keyframes phase-separator-draw {
-  to { transform: scaleX(1); }
-}
-@keyframes phase-content-rise {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.how-we-work-phase-text {
+/* Header row - the always-visible hover / tap target. Button reset. */
+.how-we-work-phase-head {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-  /* Cap the measure so a ~38-word phase body doesn't run to an
-     uncomfortable line length at wide viewports (screens-2-3 brief). */
-  max-width: 680px;
-}
-
-/* Heading: "01 Decode" / "02 Build" / "03 Partner" in Stolzl Light.
-   Number folded in at lower opacity so the eye reads the name first. */
-.how-we-work-phase-heading {
-  margin: 0;
+  align-items: baseline;
+  gap: 16px;
+  padding: clamp(18px, 2.4vh, 30px) 0;
   font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(26px, 2.4vw, 32px);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
   color: #fff;
+  text-align: left;
+  cursor: pointer;
 }
 .how-we-work-phase-number {
-  opacity: 0.55;
-  margin-right: 4px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  transform: translateY(-0.2em);
 }
 .how-we-work-phase-name {
-  color: #fff;
+  font-weight: 400;
+  font-size: clamp(28px, 2.8vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: opacity 240ms ease;
+}
+.how-we-work-phase-block:hover .how-we-work-phase-name,
+.how-we-work-phase-block:focus-within .how-we-work-phase-name {
+  opacity: 0.85;
 }
 
-/* Body explainer - Inter at 13px stays per Chris's "small font for
-   the explainers" rule. White at 80% on coral reads clearly. */
+/* Animated "+" pinned to the right edge. Idle wiggle signals "hover
+   me"; on open/hover it stops and spins into an "x". */
+.how-we-work-phase-plus {
+  position: relative;
+  margin-left: auto;
+  align-self: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #fff;
+  transition: transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: hww-plus-wiggle 2.6s ease-in-out infinite;
+}
+.how-we-work-phase-plus::before,
+.how-we-work-phase-plus::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 2px;
+}
+.how-we-work-phase-plus::before {
+  left: 50%;
+  top: 3px;
+  bottom: 3px;
+  width: 2px;
+  transform: translateX(-50%);
+}
+.how-we-work-phase-plus::after {
+  top: 50%;
+  left: 3px;
+  right: 3px;
+  height: 2px;
+  transform: translateY(-50%);
+}
+@keyframes hww-plus-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(11deg);
+  }
+  70% {
+    transform: rotate(-11deg);
+  }
+}
+.how-we-work-phase-block:hover .how-we-work-phase-plus,
+.how-we-work-phase-block:focus-within .how-we-work-phase-plus,
+.how-we-work-phase-block.is-open .how-we-work-phase-plus {
+  animation: none;
+  transform: rotate(135deg);
+}
+
+/* Reveal - grid-template-rows 0fr -> 1fr for a smooth height open;
+   the inner clips so the paragraph slides in. */
+.how-we-work-phase-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 460ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 300ms ease;
+}
+.how-we-work-phase-reveal-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.how-we-work-phase-block:hover .how-we-work-phase-reveal,
+.how-we-work-phase-block:focus-within .how-we-work-phase-reveal,
+.how-we-work-phase-block.is-open .how-we-work-phase-reveal {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
 .how-we-work-phase-body {
   margin: 0;
+  padding-bottom: clamp(20px, 2.6vh, 30px);
+  max-width: 520px;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 13.5px;
-  line-height: 1.55;
-  /* Was rgba(255,255,255,0.8) - bumped to full white per Chris's
-     site-wide rule "make it white if it's on a coloured background." */
+  font-size: 14px;
+  line-height: 1.6;
   color: #fff;
 }
 
-/* SVG visual to the right of each row's text. Scaled up to 110px at
-   desktop for the full-width sequence (was 60px in the old cramped
-   two-column layout); 72px below 1023px, 64px on phone. The SVG shapes
-   use currentColor so they render white on the coral page. */
-.how-we-work-phase-visual {
-  width: 110px;
-  height: 110px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-@media (max-width: 1023px) {
-  .how-we-work-phase-visual { width: 72px; height: 72px; }
-}
-.how-we-work-phase-visual svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  .how-we-work-phase-block {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .how-we-work-phase-plus {
+    animation: none;
+  }
+  .how-we-work-phase-reveal {
+    transition: opacity 200ms ease;
+  }
 }
 
 /* Phone (<600): single column, VISUAL ABOVE the heading, everything
