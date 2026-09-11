@@ -781,15 +781,13 @@
    ========================================================================= */
 .how-we-work-page {
   position: relative;
-  /* 300vh runway - the sticky inner is 100vh, so the user gets
-     ~200vh of held-pin scroll while the timed reveals play out.
-     Per Chris: "Don't let you scroll past until the text on the
-     left is fully appeared, and then don't let them scroll past
-     until [the right side animation is] fully appeared." A long
-     sticky pin gives the held-in-place feel while the timed
-     cascade (sentence 1 -> sentence 2 -> tagline -> three phases)
-     fires over ~5.5 seconds. */
-  height: 300vh;
+  /* Content-tall (screens-2-3 brief): the panel is now a full-width
+     vertical sequence - a 100vh opening line held at the top, then
+     three phase rows scrolling below - so its height comes from its
+     content and is naturally taller than one viewport. (Was a fixed
+     300vh runway for the old sticky two-column pin, which is gone.)
+     The parallax ENTRY is unchanged: the hero is position: sticky in
+     .hero-coral-stack (below) and this coral panel rises UP over it. */
   background: var(--coral);
   color: #fff;
   /* Curved top edge - the Impilo "curve pops up" detail. As the user
@@ -827,66 +825,26 @@
      as it rises. */
   z-index: 0;
 }
-.how-we-work-page-pin {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (max-width: 1023px) {
-  .how-we-work-page {
-    height: auto;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
-  }
-  .how-we-work-page-pin {
-    position: static;
-    top: auto;
-    height: auto;
-    display: block;
-    padding: 96px 0 112px;
-  }
-}
-
-/* 2-column grid: left text, right phase blocks stacked. */
-.how-we-work-page-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 96px;
-  /* Matched to .site-nav-inner (max-width 1280, padding 0 48) so the
-     left edge of the body text lines up exactly with the NZA logo's
-     left edge in the nav above. */
-  max-width: 1280px;
-  width: 100%;
-  padding: 0 48px;
+/* OPENING - one held sentence occupying the first viewport of the
+   coral panel. Vertically centred; left-aligned inside the 1280/48
+   nav frame so the sentence's left edge lines up with the NZA logo
+   in the nav above (the same alignment the phase rows below use). */
+.how-we-work-page-opening {
+  min-height: 100vh;
   box-sizing: border-box;
-  align-items: center;
-}
-@media (max-width: 1023px) {
-  .how-we-work-page-grid {
-    grid-template-columns: 1fr;
-    gap: 64px;
-    padding: 0 24px;
-    align-items: start;
-  }
-}
-
-/* LEFT column - paragraphs. Stolzl Book at a confident size, plenty
-   of breathing room. Aligned to the start so the heading reads
-   editorially, not centred. */
-.how-we-work-page-left {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 580px;
-}
-@media (max-width: 1023px) {
-  .how-we-work-page-left { gap: 24px; max-width: none; }
+  justify-content: center;
+  align-items: flex-start;
 }
 .how-we-work-page-para {
   margin: 0;
+  /* Held measure - keeps the sentence to a few confident lines
+     rather than one long ribbon at wide viewports. */
+  max-width: 640px;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(26px, 2.8vw, 36px);
@@ -894,49 +852,34 @@
   letter-spacing: -0.01em;
   color: #fff;
 }
-/* Tagline kept at the same size as paragraph 1 per Chris - "can we
-   make that the same size as the one above it." Modifier class
-   stays on the element for semantic purposes but no overrides; both
-   paragraphs share the .how-we-work-page-para treatment. */
 
-/* ---------- HIGHLIGHT-CORAL: per-word coral underline ----------
-   The three words "buildings", "energy", "climate" inside paragraph 1
-   stay in the same Stolzl Book navy as the rest of the line - only a
-   thin coral underline distinguishes them. The underline draws L->R
-   on a per-word stagger driven by the inline --highlight-delay so the
-   three lines arrive one at a time.
-
-   Per Chris: "just have a pink underline and then don't make the
-   font Medium, and then just the three things underline nice and
-   clean." Replaces the earlier marker-pen slab treatment - same
-   timing/trigger, much lighter visual hit. */
-/* Keeps a highlight word + its trailing punctuation together so the
-   punctuation never falls onto a new line by itself. The two children
-   - the .highlight-coral word and the comma / period - inherit the
-   parent's inline flow; only the line-break behaviour is constrained. */
-.highlight-nobr {
-  white-space: nowrap;
-}
-/* Underline removed per Chris's June 2026 ask - the three highlight
-   words now read as Stolzl Medium/bold to stand out from the
-   surrounding Book weight, no decoration needed. */
-.highlight-coral {
-  position: relative;
-  display: inline-block;
-  font-weight: 600;
+/* SEQUENCE - three full-width phase rows below the opening line, in
+   the SAME 1280/48 frame so each row's body text left-aligns exactly
+   with the NZA logo in the nav. */
+.how-we-work-page-sequence {
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px clamp(72px, 12vh, 160px);
 }
 
-/* RIGHT column - small intro line + three phase blocks STACKED
-   VERTICALLY. Each block is a horizontal row: heading + body text on
-   the left, small (60px) SVG visual on the right. */
-.how-we-work-page-right {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-  max-width: 460px;
-}
 @media (max-width: 1023px) {
-  .how-we-work-page-right { gap: 56px; max-width: none; }
+  .how-we-work-page {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+  .how-we-work-page-opening {
+    padding: 0 24px;
+    min-height: 82vh;
+  }
+  .how-we-work-page-sequence {
+    padding: 0 24px clamp(72px, 10vh, 120px);
+  }
+}
+@media (max-width: 599px) {
+  .how-we-work-page-opening {
+    min-height: 100svh;
+  }
 }
 
 /* Each block opens with TWO staged moments per Chris's "nice way to
@@ -953,13 +896,17 @@
 .how-we-work-phase-block {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 24px;
+  gap: 56px;
   align-items: center;
-  padding-top: 28px;
+  /* Full-width row rhythm: the hairline separator sits just above the
+     content (padding-top), and the padding-bottom opens space to the
+     next row so each phase gets its own moment as it scrolls in. */
+  padding-top: 44px;
+  padding-bottom: clamp(72px, 16vh, 200px);
   position: relative;
 }
-.how-we-work-phase-block:first-child {
-  padding-top: 0;
+.how-we-work-phase-block:last-child {
+  padding-bottom: 0;
 }
 .how-we-work-phase-block::before {
   content: '';
@@ -972,7 +919,6 @@
   transform: scaleX(0);
   transform-origin: left center;
 }
-.how-we-work-phase-block:first-child::before { display: none; }
 
 /* Content (text + icon) starts hidden + pushed down 14px; reveal
    slides up & fades in together as one block, just after the
@@ -983,12 +929,12 @@
   transform: translateY(14px);
 }
 
-/* Each block's reveal is now SCROLL-DRIVEN - it flips to .is-revealed
-   in HowWeWorkSection.tsx when the user scrolls past its threshold
-   inside the pinned section. Animations run immediately on that
-   class landing (no --reveal-delay var any more) - the "delay
-   between blocks" is no longer a timer, it's the user's scroll
-   position passing each threshold. */
+/* Each row's reveal is SCROLL-DRIVEN: a per-block IntersectionObserver
+   in HowWeWorkSection.tsx flips it to .is-revealed when the row scrolls
+   ~35% into view. Animations run immediately on that class landing, so
+   the "delay between rows" is not a timer - it's the user's scroll
+   position reaching each row in turn (the sequential reveal the
+   full-width vertical layout needs). */
 .how-we-work-phase-block.is-revealed::before {
   animation: phase-separator-draw 420ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
@@ -1007,8 +953,11 @@
 .how-we-work-phase-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   min-width: 0;
+  /* Cap the measure so a ~38-word phase body doesn't run to an
+     uncomfortable line length at wide viewports (screens-2-3 brief). */
+  max-width: 680px;
 }
 
 /* Heading: "01 Decode" / "02 Build" / "03 Partner" in Stolzl Light.
@@ -1043,11 +992,13 @@
   color: #fff;
 }
 
-/* Small SVG visual sat to the right of each block's text. The SVG
-   shapes use currentColor so they render white on the coral page. */
+/* SVG visual to the right of each row's text. Scaled up to 110px at
+   desktop for the full-width sequence (was 60px in the old cramped
+   two-column layout); 72px below 1023px, 64px on phone. The SVG shapes
+   use currentColor so they render white on the coral page. */
 .how-we-work-phase-visual {
-  width: 60px;
-  height: 60px;
+  width: 110px;
+  height: 110px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1055,12 +1006,35 @@
   color: #fff;
 }
 @media (max-width: 1023px) {
-  .how-we-work-phase-visual { width: 56px; height: 56px; }
+  .how-we-work-phase-visual { width: 72px; height: 72px; }
 }
 .how-we-work-phase-visual svg {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+/* Phone (<600): single column, VISUAL ABOVE the heading, everything
+   left-aligned. order: -1 lifts the visual above the text block so the
+   row reads visual -> "01 Decode" -> body (screens-2-3 brief). */
+@media (max-width: 599px) {
+  .how-we-work-phase-block {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: start;
+    align-items: start;
+    padding-top: 36px;
+    padding-bottom: clamp(56px, 12vh, 112px);
+  }
+  .how-we-work-phase-visual {
+    order: -1;
+    width: 64px;
+    height: 64px;
+    justify-content: flex-start;
+  }
+  .how-we-work-phase-text {
+    max-width: none;
+  }
 }
 
 /* ============================================================

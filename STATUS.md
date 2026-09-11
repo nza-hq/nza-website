@@ -11,7 +11,13 @@ Working through Parts 1–5.
 - [x] **Part 2** — screen 2 copy: single opening line replaces the two "We
   are specialists…"/"We cut through…" paragraphs + the deleted "three phases"
   tagline; three new phase bodies. `phases-intro` fully removed (JSX + CSS).
-- [ ] Part 3 — screen 2 layout → full-width vertical sequence.
+- [x] **Part 3** — screen 2 is now a full-width vertical sequence: 100vh held
+  opening line, three full-width phase rows below (text left / visual right).
+  Two-column grid + sticky pin removed; reveal switched to per-block
+  IntersectionObserver (sequential, seen). Measured @1440: opening = full
+  viewport, text left 123px == nav logo 123px, visuals 110px, text cap 680px;
+  @414: single column, visual 64px above heading, no h-scroll. Parallax entry
+  (`.hero-coral-stack`) untouched; landing uses native scroll (no snap-paging).
 - [ ] Part 4 — screen 3 copy + reorder to NZ:AI / PABLO / decodED.
 - [ ] Part 5 — responsive verification + close.
 
