@@ -1,5 +1,22 @@
 # STATUS.md
 
+## In progress — NZ:AI showcase: from process to proof (R01)
+
+Brief: `docs/briefs/active/nzai-showcase.md` (Claude Chat, 11 Sep 2026).
+Replaces /nz-ai's three process stages with four video-backed showcase items.
+
+- [x] **Part 1** — brief landed; `current.md` repointed; `public/videos/nzai/`
+  scaffolded with 8 placeholder videos (4× MP4 h264 + 4× WebM vp9, 1080²,
+  8s, silent, 24–36KB each) + 4 poster JPEGs (grey label cards, <40KB), all
+  at the exact brief filenames. `docs/videos-nzai-README.md` carries the spec
+  + shot list + regen command. NOTE: ffmpeg was installed (Gyan.FFmpeg 9.0.1,
+  winget) to encode these — placeholders are real, drop-in-replaceable files.
+- [ ] Part 2 — `video` visual type in `ProductStepsSection` (+ `ProductStepVideo`).
+- [ ] Part 3 — NZ:AI hero/manifesto/transition copy.
+- [ ] Part 4 — replace 3 stages with 4 showcase items.
+- [ ] Part 5 — closer copy.
+- [ ] Part 6 — verification (incl. PABLO/decodED regression) + close.
+
 ## Last completed chunk
 
 **Landing screens 2 & 3 restructure (R01) — COMPLETE (Sept 2026, Co-Work).**

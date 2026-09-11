@@ -1,10 +1,14 @@
 # Current brief
 
-**Active:** none.
+**Active:** [`active/nzai-showcase.md`](active/nzai-showcase.md)
+— NZ:AI page restructure: from process to proof (R01, Claude Chat, 11 Sep 2026).
 
-**Last completed:** [`archive/landing-screens-2-3_COMPLETED.md`](archive/landing-screens-2-3_COMPLETED.md)
-— Landing page: screens 2 and 3 restructure (R01, Claude Chat, 11 Sep 2026).
-Screen 2 (`HowWeWorkSection`) is now a full-width vertical sequence; screen 3
-(`ProductsScreen`) reordered to NZ:AI → PABLO → decodED with new copy.
+Replaces the /nz-ai three process stages (Decode/Build/Partner — now the
+landing page's screen 2) with four video-backed showcase items (Living reports
+→ Live carbon inventory → Estate intelligence → Performance tracking), adds a
+`video` visual type to the shared `ProductStepsSection`, and refreshes the
+hero / manifesto / transition / closer copy.
 
-**Queued next:** NZ:AI showcase brief (handed to Co-Work in the same session).
+Status: in progress.
+
+**Last completed:** [`archive/landing-screens-2-3_COMPLETED.md`](archive/landing-screens-2-3_COMPLETED.md).
