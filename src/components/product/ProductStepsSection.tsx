@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ProductIcon } from './ProductIcons'
 import { ProductIllustration } from './ProductIllustrations'
 import { ProductStepVideo, type StepVideo } from './ProductStepVideo'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 
 /**
  * The four-step "how it works" section, using Impilo's shared-frame
@@ -82,6 +83,13 @@ export function ProductStepsSection({
 }: Props) {
   const [activeIndex, setActiveIndex] = useState(0)
   const textRefs = useRef<(HTMLDivElement | null)[]>([])
+  /* Only ONE of the two visual slots is on screen at a time - the
+     desktop shared frame (>=1024) or the mobile inline block (<=1023),
+     mutually exclusive via CSS. Gate each slot's `isActive` by which is
+     visible so only the on-screen video plays; the hidden (display:none)
+     one never fires play() (wasteful, and hidden video is throttled).
+     1023px matches the .product-steps-frame-col / inline CSS switch. */
+  const isMobile = useMediaQuery('(max-width: 1023px)')
 
   // IntersectionObserver with a narrow active-band in the middle of
   // the viewport. rootMargin -45% top + -45% bottom shrinks the IO
@@ -175,7 +183,11 @@ export function ProductStepsSection({
                   the step; active when this is the active step so the
                   mobile inline video plays as the user reaches it. */}
               <div className="product-step-inline-illustration">
-                <StepVisual step={step} index={i} isActive={i === activeIndex} />
+                <StepVisual
+                  step={step}
+                  index={i}
+                  isActive={i === activeIndex && isMobile}
+                />
               </div>
             </div>
           </div>
@@ -207,7 +219,11 @@ export function ProductStepsSection({
               }
               aria-hidden="true"
             >
-              <StepVisual step={step} index={i} isActive={i === activeIndex} />
+              <StepVisual
+                step={step}
+                index={i}
+                isActive={i === activeIndex && !isMobile}
+              />
             </div>
           ))}
         </div>
