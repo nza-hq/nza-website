@@ -1,5 +1,18 @@
 # STATUS.md
 
+## In progress — Landing screens 2 & 3 restructure (R01)
+
+Brief: `docs/briefs/active/landing-screens-2-3.md` (Claude Chat, 11 Sep 2026).
+Working through Parts 1–5.
+
+- [x] **Part 1** — brief landed in `active/`, `current.md` points at it, CLAUDE.md
+  stale facts corrected (repo URL → `nza-hq/nza-website`; five-screen → four-screen
+  description).
+- [ ] Part 2 — screen 2 copy (opening line + three phase bodies).
+- [ ] Part 3 — screen 2 layout → full-width vertical sequence.
+- [ ] Part 4 — screen 3 copy + reorder to NZ:AI / PABLO / decodED.
+- [ ] Part 5 — responsive verification + close.
+
 ## Last completed chunk
 
 **decodED + landing polish (July 2026, Co-Work session).** Five requests

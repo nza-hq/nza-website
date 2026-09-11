@@ -1,11 +1,11 @@
 # NZA Website — CLAUDE.md
 
-The NZA marketing site. Five-screen editorial single-page site (Home, Expertise, Approach, Products, Clients) plus a PABLO product page. Ported from a Claude Design HTML/CSS/JS prototype into a Vite + React 19 + TypeScript + Tailwind 4 stack so PABLO React components can be embedded later.
+The NZA marketing site. Four-screen editorial landing page (Home, How we work, Our solutions, Get in touch) plus product pages at /pablo, /nz-ai and /decoded. Expertise and Approach are off-flow routes reached from the nav. Ported from a Claude Design HTML/CSS/JS prototype into a Vite + React 19 + TypeScript + Tailwind 4 stack so PABLO React components can be embedded later.
 
 ## Environment
 
 - **Project folder (Chris's Windows machine):** `C:\Users\ChrisScott\Dev\nza-website`
-- **GitHub:** `https://github.com/chrisscott06/nza-website` (`origin/main`)
+- **GitHub:** `https://github.com/nza-hq/nza-website` (`origin/main`)
 - **Stack:** Vite 8 + React 19 + TypeScript 5 + Tailwind 4 + react-router-dom 6
 - **Dev server:** `npm run dev` → http://localhost:5173 (5174 if 5173 is busy)
 - **Build:** `npm run build` (output: `dist/`)
