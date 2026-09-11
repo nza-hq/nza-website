@@ -1,9 +1,10 @@
 # STATUS.md
 
-## In progress — NZ:AI showcase: from process to proof (R01)
+## Last completed chunk
 
-Brief: `docs/briefs/active/nzai-showcase.md` (Claude Chat, 11 Sep 2026).
-Replaces /nz-ai's three process stages with four video-backed showcase items.
+**NZ:AI showcase: from process to proof (R01) — COMPLETE (Sept 2026, Co-Work).**
+Brief archived at `docs/briefs/archive/nzai-showcase_COMPLETED.md`.
+Replaced /nz-ai's three process stages with four video-backed showcase items.
 
 - [x] **Part 1** — brief landed; `current.md` repointed; `public/videos/nzai/`
   scaffolded with 8 placeholder videos (4× MP4 h264 + 4× WebM vp9, 1080²,
@@ -35,9 +36,34 @@ Replaces /nz-ai's three process stages with four video-backed showcase items.
   (were already, pre-brief); left in place + reported (not brief-named).
 - [x] **Part 5** — closer: "Start with a conversation." + new body. Three case
   studies (EOC, Royal Wimbledon, Molson) unchanged; no summary band added.
-- [ ] Part 6 — verification (incl. PABLO/decodED regression) + close.
+- [x] **Part 6** — verified @1440/1280/1024/768/600/414/375: pinned frame sticky
+  + video fits (485px, no overflow) on desktop; frame hidden + inline 1:1 video
+  (335² slot) at <1024; no horizontal scroll anywhere. Videos load (readyState
+  4, 1080²). PABLO/decodED regression: 5 SVG steps each, 0 videos, no new
+  console errors. Prod build clean; 12 assets ship to dist.
 
-## Last completed chunk
+**Known issues / notes:**
+- **Placeholder videos are in place** — grey label cards, not real footage.
+  Chris records the real 8 files (spec + shot list in `docs/videos-nzai-README.md`)
+  and drops them at the same paths; no code change needed.
+- **ffmpeg installed** (Gyan.FFmpeg 9.0.1, winget, user scope) this session to
+  encode the placeholders — approved by Chris. New shell needed for it on PATH.
+- **Runtime playback not exercised in-harness**: the headless browser pane runs
+  backgrounded, so Chromium pauses video-only media to save power (play() starts
+  then aborts) and IntersectionObserver/animation don't composite. Playback
+  logic is code-verified + files load (readyState 4); **Chris should eyeball the
+  scroll→play→pause→restart behaviour via launch.bat**.
+- **prefers-reduced-motion** renders the poster as a static `<img>` (code path
+  verified; OS toggle not exercisable via the harness).
+- Four orphaned NZ:AI illustration defs remain in `ProductIllustrations.tsx`
+  (world-map-emission-dots, trajectory-chart-milestones, waterfall-cascade-chart,
+  multi-year-tracking-chart) — dead before this brief, not brief-named, left for
+  a future cleanup.
+- **Independent review is MANDATORY** for this brief (shared `ProductStepsSection`)
+  — Claude Chat to read the diff on GitHub before merge, focusing on the SVG↔video
+  branch.
+
+## Previous chunk
 
 **Landing screens 2 & 3 restructure (R01) — COMPLETE (Sept 2026, Co-Work).**
 Brief archived at `docs/briefs/archive/landing-screens-2-3_COMPLETED.md`.
