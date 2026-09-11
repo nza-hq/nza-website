@@ -1,41 +1,36 @@
 import type { ProductPageConfig } from '../../components/product/ProductPage'
 
 const CLIENT_LOGO_BASE = '/assets/clients'
+const VIDEO_BASE = '/videos/nzai'
 
 /**
- * NZ:AI product page config - v9 copy reframe.
+ * NZ:AI product page config - "from process to proof" restructure
+ * (nzai-showcase brief, Sept 2026).
  *
- * The shared product page TEMPLATE is unchanged - same hero with
- * cycling browser frame, same transition, same Let's-show, same
- * numbered steps, same closer. Only the copy and the step count
- * have changed.
+ * The page used to explain a three-stage process (Decode -> Build ->
+ * Partner). That arc now lives on the landing page's screen 2, told
+ * more briefly. This page's job is to PROVE NZA can build things, so
+ * the steps slot now carries FOUR showcase items - each backed by a
+ * short square video of a real tool. The page stops explaining and
+ * starts showing.
  *
- * v9 reframes NZ:AI as a partnership rather than a product:
- *   - Tagline:    "Net zero, built as a partnership."
- *   - Stages:     Decode -> Build -> Partner (three, not four), so the
- *                 NZ:AI page mirrors the home page's three-phase voice
- *   - Voice:      First-person "we" is sanctioned on /nz-ai ONLY (v9
- *                 sign-off). Every other page on the site continues to
- *                 obey the no-we rule from CLAUDE.md.
+ *   - Hero:      "Intelligence you own." + a 17-word one-liner that
+ *                sets up the showcase.
+ *   - Manifesto: headline "Climate action is an *inside* job."
+ *                unchanged; body now hands into the four tools.
+ *   - Steps:     four video showcase items, ordered to widen the frame
+ *                (one document -> one dataset -> one estate -> many
+ *                years). Verbs render in NZ:AI teal via `.step-verb`.
+ *   - Voice:     first-person "we" stays sanctioned on /nz-ai.
+ *   - AI:        the copy now carries zero substantive AI mentions
+ *                (brand name NZ:AI aside) - the tools demonstrate the
+ *                capability rather than claiming it.
  *
- * AI mention budget - v9 holds this to exactly three across the page:
- *   1. The brand name "NZ:AI" (microLabel + hero name)
- *   2. The hero one-liner ("AI accelerates the build...")
- *   3. The Build step body ("...built fast because AI accelerates...")
- * Future revisions must hold the budget. If a fourth mention appears,
- * the page is drifting back toward AI-as-headline rather than the
- * partnership AI enables.
- *
- * Spec: /Users/chrisscott/Downloads/NZ_AI_Web_Page_Copy_v9.md
- * (supersedes the v8 brief docs/briefs/nz-ai-copy-v8.md in full).
- *
- * Italic-emphasis fingerprint: the shared template only exposes the
- * step `highlightedVerb` slot for coral italic emphasis. v9's three
- * stage verbs (inside / actually / alongside) sit there. v9's other
- * italic moments (partnership / One / fit) render as part of the
- * template's existing italic tagline / serif headline treatment,
- * which is the closest the current template allows without
- * extending it.
+ * The shared product-page TEMPLATE is unchanged. Video support is a new
+ * visual type in ProductStepsSection (ProductStepVideo); PABLO/decodED
+ * keep their SVG illustrations. Placeholder footage lives in
+ * public/videos/nzai/ - see docs/videos-nzai-README.md for the real
+ * recording spec.
  */
 export const nzaiConfig: ProductPageConfig = {
   slug: 'nzai',
@@ -127,38 +122,70 @@ export const nzaiConfig: ProductPageConfig = {
     trailingText: "we've built",
   },
 
+  /* FOUR SHOWCASE ITEMS - each backed by a short square video of a real
+     tool (nzai-showcase brief Part 4). Replaces the old Decode/Build/
+     Partner process stages (that arc now lives on the landing page's
+     screen 2). Ordered to widen the frame at each step - one document ->
+     one dataset -> one estate -> many years. Verbs sit in the
+     highlightedVerb slot and render in NZ:AI teal via `.step-verb`.
+     Videos are placeholders until real footage lands at the same paths;
+     see docs/videos-nzai-README.md. */
   steps: [
     {
       number: '01',
-      /* ti-affiliate stays - the connection-forming network metaphor
-         still fits "decode your data". Real illustration TBD. */
-      iconName: 'ti-affiliate',
-      headlinePrefix: 'First, we ',
-      highlightedVerb: 'decode',
-      headlineSuffix: ' your data.',
+      headlinePrefix: 'Your report, ',
+      highlightedVerb: 'alive',
+      headlineSuffix: '.',
       body:
-        "Working sessions with your team. Time inside your data, your operations, the sites or supply chain or estate that shape your carbon decisions. No tools yet - just the work of finding the signal in what you've already got, and what's missing. AI accelerates everything downstream, but this human work is what makes the rest of it stick.",
-      illustrationConcept: 'decode-connection-forming-network',
+        'Most carbon reports are read once and filed. This one runs on live data, responds to the questions you ask it, and updates as the year goes on. When the board needs a document, it still prints to one.',
+      video: {
+        mp4: `${VIDEO_BASE}/01-living-reports.mp4`,
+        webm: `${VIDEO_BASE}/01-living-reports.webm`,
+        poster: `${VIDEO_BASE}/01-living-reports-poster.jpg`,
+        alt: 'An interactive carbon report responding to input changes and exporting to PDF',
+      },
     },
     {
       number: '02',
-      iconName: 'ti-stack-2',
-      headlinePrefix: 'Then we ',
-      highlightedVerb: 'build',
-      headlineSuffix: ' what your team needs.',
+      headlinePrefix: 'Every tonne, ',
+      highlightedVerb: 'traced',
+      headlineSuffix: '.',
       body:
-        'A carbon inventory. A net zero strategy. A climate risk assessment. A digital twin. The form depends on what Decode revealed. We prototype first, then build out what works - fast because AI accelerates it, deep because the foundation makes it possible. Yours from day one: code, data, methodology.',
-      illustrationConcept: 'build-morphing-platform-outputs',
+        'A full Scope 1, 2 and 3 inventory you can interrogate rather than read. Follow an emission from a headline figure down to the individual supplier behind it, and watch the picture change as your data improves.',
+      video: {
+        mp4: `${VIDEO_BASE}/02-carbon-inventory.mp4`,
+        webm: `${VIDEO_BASE}/02-carbon-inventory.webm`,
+        poster: `${VIDEO_BASE}/02-carbon-inventory-poster.jpg`,
+        alt: 'A carbon inventory morphing from bar chart to Sankey diagram and drilling to supplier level',
+      },
     },
     {
       number: '03',
-      iconName: 'ti-infinity',
-      headlinePrefix: 'And then we ',
-      highlightedVerb: 'partner',
-      headlineSuffix: ', year on year.',
+      headlinePrefix: 'Your whole estate, ',
+      highlightedVerb: 'in one place',
+      headlineSuffix: '.',
       body:
-        "Net zero isn't a project that finishes. Standards tighten, data improves, your organisation evolves. The partnership keeps the platform sharp and the strategy alive - methodology updates, new modules, advisory whenever you need it. The rhythm is set by you. The platform and the partnership compound year on year.",
-      illustrationConcept: 'partner-compounding-rings',
+        'Energy, water, waste, carbon and climate risk for every site you run, in a single view. Start with the portfolio, end up inside a single room - and everything your team knows about that room sits alongside it.',
+      video: {
+        mp4: `${VIDEO_BASE}/03-estate-intelligence.mp4`,
+        webm: `${VIDEO_BASE}/03-estate-intelligence.webm`,
+        poster: `${VIDEO_BASE}/03-estate-intelligence-poster.jpg`,
+        alt: "A map zooming from a national portfolio view into a single building's interior spaces",
+      },
+    },
+    {
+      number: '04',
+      headlinePrefix: 'Progress you ',
+      highlightedVerb: 'can see',
+      headlineSuffix: '.',
+      body:
+        'Year-on-year performance against the frameworks you report into, with the actions that drive it assigned to the people responsible. The tool holds the record, so improvement is something you manage rather than reconstruct.',
+      video: {
+        mp4: `${VIDEO_BASE}/04-performance-tracking.mp4`,
+        webm: `${VIDEO_BASE}/04-performance-tracking.webm`,
+        poster: `${VIDEO_BASE}/04-performance-tracking-poster.jpg`,
+        alt: 'Performance scores climbing year on year with actions assigned to team members',
+      },
     },
   ],
 

@@ -1122,6 +1122,11 @@
   justify-content: space-between;
   gap: 16px;
 }
+/* No-icon variant (NZ:AI showcase items): the number stands alone, so
+   left-align it instead of pushing it to the right edge. */
+.product-step-meta--no-icon {
+  justify-content: flex-start;
+}
 .product-step-icon {
   /* Boxed icon - accent-tinted background + soft border, sized to
      match the Impilo example Chris referenced. */

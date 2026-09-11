@@ -26,7 +26,9 @@ import { ProductStepVideo, type StepVideo } from './ProductStepVideo'
 
 export type StepData = {
   number: string
-  iconName: string
+  /** Optional line icon in the step meta row. PABLO/decodED set it;
+   *  NZ:AI's showcase items omit it (the number stands alone). */
+  iconName?: string
   /** New simple single-string headline (PABLO June 2026 redesign).
    *  When provided, renders directly without the prefix/verb/suffix
    *  highlight pattern. Other products still use the three-part split. */
@@ -134,10 +136,17 @@ export function ProductStepsSection({
                   a hairline rule below the meta row, then the headline.
                   Replaces the inline-stacked icon+number row the steps
                   used before. */}
-              <div className="product-step-meta">
-                <span className="product-step-icon" aria-hidden="true">
-                  <ProductIcon name={step.iconName} />
-                </span>
+              <div
+                className={
+                  'product-step-meta' +
+                  (step.iconName ? '' : ' product-step-meta--no-icon')
+                }
+              >
+                {step.iconName && (
+                  <span className="product-step-icon" aria-hidden="true">
+                    <ProductIcon name={step.iconName} />
+                  </span>
+                )}
                 <span className="product-step-number">{step.number}.</span>
               </div>
               <div

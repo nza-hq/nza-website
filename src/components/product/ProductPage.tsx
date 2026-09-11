@@ -96,7 +96,9 @@ export type ProductPageConfig = {
   /** SECTION 4 - Four numbered steps */
   steps: Array<{
     number: string
-    iconName: string
+    /** Optional line icon in the step meta row (PABLO/decodED). NZ:AI's
+     *  showcase items omit it. */
+    iconName?: string
     /** Optional single-string headline (PABLO June 2026 redesign).
      *  When provided, the renderer uses this directly and skips the
      *  prefix/verb/suffix highlight pattern below. Other products

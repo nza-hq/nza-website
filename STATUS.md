@@ -23,7 +23,16 @@ Replaces /nz-ai's three process stages with four video-backed showcase items.
   transition "Let's show you what … we've built". AI-budget comment removed.
   Net substantive AI mentions now zero (brand NZ:AI aside) — the brief's open
   question resolves to "no AI mention" by the new copy.
-- [ ] Part 4 — replace 3 stages with 4 showcase items.
+- [x] **Part 4** — three stages replaced with four video showcase items (Living
+  reports / Live carbon inventory / Estate intelligence / Performance tracking),
+  each with a `video` set + alt. Verbs render teal `#0F9888`, not italic; no
+  icons (iconName now optional, number left-aligns via `--no-icon`). Videos load
+  (readyState 4, 1080²) with webm-then-mp4 + poster. NOTE: the 3 concept names
+  the brief listed (decode-connection-forming-network etc.) were referenced only
+  by nzai and were never defined in ProductIllustrations — nothing to delete
+  there. The actual NZ:AI illos (world-map-emission-dots, trajectory-chart-
+  milestones, waterfall-cascade-chart, multi-year-tracking-chart) are orphaned
+  (were already, pre-brief); left in place + reported (not brief-named).
 - [ ] Part 5 — closer copy.
 - [ ] Part 6 — verification (incl. PABLO/decodED regression) + close.
 
