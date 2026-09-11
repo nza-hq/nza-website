@@ -1,30 +1,43 @@
 # STATUS.md
 
-## In progress — Landing screens 2 & 3 restructure (R01)
-
-Brief: `docs/briefs/active/landing-screens-2-3.md` (Claude Chat, 11 Sep 2026).
-Working through Parts 1–5.
-
-- [x] **Part 1** — brief landed in `active/`, `current.md` points at it, CLAUDE.md
-  stale facts corrected (repo URL → `nza-hq/nza-website`; five-screen → four-screen
-  description).
-- [x] **Part 2** — screen 2 copy: single opening line replaces the two "We
-  are specialists…"/"We cut through…" paragraphs + the deleted "three phases"
-  tagline; three new phase bodies. `phases-intro` fully removed (JSX + CSS).
-- [x] **Part 3** — screen 2 is now a full-width vertical sequence: 100vh held
-  opening line, three full-width phase rows below (text left / visual right).
-  Two-column grid + sticky pin removed; reveal switched to per-block
-  IntersectionObserver (sequential, seen). Measured @1440: opening = full
-  viewport, text left 123px == nav logo 123px, visuals 110px, text cap 680px;
-  @414: single column, visual 64px above heading, no h-scroll. Parallax entry
-  (`.hero-coral-stack`) untouched; landing uses native scroll (no snap-paging).
-- [x] **Part 4** — screen 3: heading "Where it starts", intro "Three ways in,
-  depending on what you need first."; cards reordered NZ:AI / PABLO / decodED
-  with new promises + NZ:AI question. Verified accents stay mapped (NZ:AI teal,
-  PABLO orange, decodED green), each Explore routes to the right path.
-- [ ] Part 5 — responsive verification + close.
-
 ## Last completed chunk
+
+**Landing screens 2 & 3 restructure (R01) — COMPLETE (Sept 2026, Co-Work).**
+Brief archived at `docs/briefs/archive/landing-screens-2-3_COMPLETED.md`.
+
+- **Part 1** — brief landed, `current.md` created, CLAUDE.md stale facts fixed
+  (repo URL → `nza-hq/nza-website`; five-screen → four-screen description).
+- **Part 2** — screen 2 copy: single opening line replaces the two paragraphs +
+  the deleted "three phases" tagline; three new phase bodies. `phases-intro`
+  removed (JSX + CSS).
+- **Part 3** — screen 2 is now a full-width vertical sequence: 100vh held
+  opening line + three full-width phase rows (text left / visual right).
+  Two-column grid + sticky pin removed; reveal switched to per-block
+  IntersectionObserver (sequential, seen). `.hero-coral-stack` parallax entry
+  untouched; landing is native scroll (no snap-paging in the live flow).
+- **Part 4** — screen 3: heading "Where it starts", intro "Three ways in,
+  depending on what you need first."; cards reordered NZ:AI / PABLO / decodED
+  with new promises + NZ:AI question.
+- **Part 5** — verified @1440/1280/1024/768/600/414/375: phase visuals
+  110/110/110/72/72/64/64px; body left edge aligns pixel-exact to the nav logo
+  at every width (frame padding mirrors the nav's 48→20px @767 breakpoint);
+  row→stack at <600 (visual above heading); zero horizontal scroll; console
+  clean; prod build clean. Reduced-motion holds final states (CSS-verified).
+
+Divergences from the brief (all deliberate, flagged to Chris):
+1. Phase bodies use first-person "we" (verbatim per brief) — contradicts the
+   CLAUDE.md no-"we" rule, but matches copy already shipped in this section.
+2. Reveal is a per-block IntersectionObserver, not the brief's stale
+   `--reveal-delay` reference (that mechanism no longer existed).
+3. Opening line renders plain white (brief decision 2) — dropped the old
+   per-word coral highlight on buildings/energy/climate.
+4. Frame padding tracks the nav's 767px breakpoint (48→20px) so logo alignment
+   survives on tablet/phone; the component's 1023 boundary still governs layout.
+5. CLAUDE.md Environment "Project folder" path is also stale
+   (`Dev\nza-website` vs actual `Dev\nza-hq\nza-website`) — left as-is; the
+   brief authorised only the two named corrections. Worth a follow-up.
+
+## Previous chunk
 
 **decodED + landing polish (July 2026, Co-Work session).** Five requests
 from Chris:

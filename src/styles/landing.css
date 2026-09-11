@@ -869,11 +869,24 @@
     border-top-right-radius: 24px;
   }
   .how-we-work-page-opening {
-    padding: 0 24px;
     min-height: 82vh;
   }
   .how-we-work-page-sequence {
-    padding: 0 24px clamp(72px, 10vh, 120px);
+    padding-bottom: clamp(72px, 10vh, 120px);
+  }
+}
+/* Horizontal frame padding tracks the nav's own frame breakpoint
+   (.site-nav-inner: 48px, dropping to 20px at <=767) so the opening
+   line and every phase-row body stay aligned to the NZA logo at ALL
+   widths - not just desktop. The component's 1023 boundary above still
+   governs layout (radius, visual size, min-height); this 767 rule only
+   matches the gutter, mirroring the site frame rather than inventing a
+   new boundary. */
+@media (max-width: 767px) {
+  .how-we-work-page-opening,
+  .how-we-work-page-sequence {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 @media (max-width: 599px) {
