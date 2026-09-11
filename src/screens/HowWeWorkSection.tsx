@@ -62,21 +62,21 @@ const PHASES: Array<{
     number: '01',
     name: 'Decode',
     body:
-      'Embed with your team. Uncover the data, the workflows, the truth of how your organisation runs.',
+      'We begin with what your organisation already holds — knowledge and data alike, much of it undocumented. We work alongside your team to uncover it, structure it, and establish what is solid enough to act on.',
   },
   {
     id: 'build',
     number: '02',
     name: 'Build',
     body:
-      'Use that data to create bespoke tools that help your people act.',
+      'What we build follows from what we find. The form varies; the principle does not. One place your information lives, open to everyone who needs it, and built to be added to rather than just read.',
   },
   {
     id: 'partner',
     number: '03',
     name: 'Partner',
     body:
-      'Stay alongside you as the work evolves.',
+      'The tool is yours, along with the data and the method behind it. We stay to keep it valuable — refining it as your information improves, widening it as more of your organisation comes to rely on it.',
   },
 ]
 
@@ -163,48 +163,20 @@ export function HowWeWorkSection() {
               with its three underline animations, then sentence 2
               follows with its own MaskReveal a beat later. */}
           <div className="how-we-work-page-left">
+            {/* Opening line - one sentence carrying the whole "who + how"
+                per the screens-2-3 brief (Part 2). Replaces the former
+                two "We are specialists..." / "We cut through..."
+                paragraphs and the deleted "three phases" tagline. Plain
+                white at the display scale; no per-word coral highlight
+                (brief decision 2: held full-screen, white). */}
             <MaskReveal as="p" className="how-we-work-page-para" delay={0}>
-              We are specialists in{' '}
-              {/* Each highlight word + its trailing punctuation sit in
-                  a white-space: nowrap group so the comma after
-                  "buildings" and the period after "climate" can never
-                  fall to a new line on their own. The highlight-coral
-                  words render in Stolzl 600 (bold) per Chris's June
-                  2026 ask - the per-word underline draw animation that
-                  used to live on these spans is gone. */}
-              <span className="highlight-nobr">
-                <span className="highlight-coral">buildings</span>,
-              </span>{' '}
-              <span className="highlight-coral">energy</span>
-              {' '}and{' '}
-              <span className="highlight-nobr">
-                <span className="highlight-coral">climate</span>.
-              </span>
-            </MaskReveal>
-            <MaskReveal
-              as="p"
-              className="how-we-work-page-para how-we-work-page-para--two"
-              delay={1300}
-            >
-              We cut through the complexity of decarbonisation - and build
-              the tools your people need to act on it.
+              Specialists in buildings, energy and climate, with one way of
+              working: alongside your team, in tools you own.
             </MaskReveal>
           </div>
 
-          {/* ===== RIGHT - small intro line + three phase blocks ===== */}
+          {/* ===== RIGHT - three phase blocks ===== */}
           <div className="how-we-work-page-right">
-            {/* Tagline moved out of the left column per Chris - small
-                body-sized line above the three blocks so it just frames
-                the infographic. Trimmed from "Every engagement follows
-                three phases - decode, build, partner." to the shorter
-                "Every engagement follows three phases." */}
-            <MaskReveal
-              as="p"
-              className="how-we-work-page-phases-intro"
-              delay={2500}
-            >
-              Every engagement follows three phases.
-            </MaskReveal>
             {PHASES.map((phase, i) => (
               <article
                 key={phase.id}

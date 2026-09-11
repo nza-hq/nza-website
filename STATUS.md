@@ -8,7 +8,9 @@ Working through Parts 1–5.
 - [x] **Part 1** — brief landed in `active/`, `current.md` points at it, CLAUDE.md
   stale facts corrected (repo URL → `nza-hq/nza-website`; five-screen → four-screen
   description).
-- [ ] Part 2 — screen 2 copy (opening line + three phase bodies).
+- [x] **Part 2** — screen 2 copy: single opening line replaces the two "We
+  are specialists…"/"We cut through…" paragraphs + the deleted "three phases"
+  tagline; three new phase bodies. `phases-intro` fully removed (JSX + CSS).
 - [ ] Part 3 — screen 2 layout → full-width vertical sequence.
 - [ ] Part 4 — screen 3 copy + reorder to NZ:AI / PABLO / decodED.
 - [ ] Part 5 — responsive verification + close.
