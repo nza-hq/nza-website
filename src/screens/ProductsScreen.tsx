@@ -41,20 +41,9 @@ type Product = {
   promise: string
 }
 
-/* Order per Chris (July 2026): PABLO / NZ:AI / decodED - lead with the
-   flagship software, then the partnership model, then the emerging
-   platform (was PABLO / decodED / NZ:AI). */
+/* Order per Chris (September 2026): NZ:AI / PABLO / decodED — NZ:AI is
+   the general case, the other two are specialisations of it. */
 const PRODUCTS: Product[] = [
-  {
-    id: 'pablo',
-    name: 'PABLO',
-    href: '/pablo',
-    logoSrc: '/assets/logos/pablo-logo.svg',
-    alt: 'PABLO',
-    question: 'Want to cut your electricity costs?',
-    promise:
-      'PV, battery and load optimisation modelling for sites that want to spend less on energy.',
-  },
   {
     id: 'nzai',
     name: 'NZ:AI',
@@ -65,9 +54,19 @@ const PRODUCTS: Product[] = [
        actual /nz-ai product page where the canvas is dark navy. */
     logoSrc: '/assets/logos/nzai-logo-dark.svg',
     alt: 'NZ:AI',
-    question: 'Want to make sense of complex carbon data?',
+    question: 'Want net zero tools built around your organisation?',
     promise:
-      'An AI advisory partnership for teams who have client relationships but need net zero depth.',
+      'Built around your organisation, whatever shape the problem takes.',
+  },
+  {
+    id: 'pablo',
+    name: 'PABLO',
+    href: '/pablo',
+    logoSrc: '/assets/logos/pablo-logo.svg',
+    alt: 'PABLO',
+    question: 'Want to cut your electricity costs?',
+    promise:
+      'When the problem is energy: what it costs, and what to do about it.',
   },
   {
     id: 'decoded',
@@ -76,8 +75,7 @@ const PRODUCTS: Product[] = [
     logoSrc: '/assets/logos/decoded-logo.svg',
     alt: 'decodED',
     question: 'Running climate action in education?',
-    promise:
-      'A hosted platform helping schools, universities and trusts move from carbon data to climate strategy.',
+    promise: 'Built for education, and free for every institution.',
   },
 ]
 
@@ -195,11 +193,10 @@ export function ProductsScreen() {
       <div className="frame">
         <div className="products-intro-block">
           <MaskReveal as="h2" className="products-heading" delay={0}>
-            Our solutions
+            Where it starts
           </MaskReveal>
           <MaskReveal as="p" className="products-intro" delay={200}>
-            Different challenges call for different answers. Each of these moves
-            organisations forward on net zero - explore where you fit.
+            Three ways in, depending on what you need first.
           </MaskReveal>
         </div>
 

@@ -18,7 +18,10 @@ Working through Parts 1–5.
   viewport, text left 123px == nav logo 123px, visuals 110px, text cap 680px;
   @414: single column, visual 64px above heading, no h-scroll. Parallax entry
   (`.hero-coral-stack`) untouched; landing uses native scroll (no snap-paging).
-- [ ] Part 4 — screen 3 copy + reorder to NZ:AI / PABLO / decodED.
+- [x] **Part 4** — screen 3: heading "Where it starts", intro "Three ways in,
+  depending on what you need first."; cards reordered NZ:AI / PABLO / decodED
+  with new promises + NZ:AI question. Verified accents stay mapped (NZ:AI teal,
+  PABLO orange, decodED green), each Explore routes to the right path.
 - [ ] Part 5 — responsive verification + close.
 
 ## Last completed chunk
