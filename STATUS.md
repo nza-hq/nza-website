@@ -18,7 +18,11 @@ Replaces /nz-ai's three process stages with four video-backed showcase items.
   type gains optional `video`, `illustrationConcept` now optional. Regression
   verified: /pablo + /decoded still render 5 SVG steps, 0 video elements, no
   new console errors.
-- [ ] Part 3 — NZ:AI hero/manifesto/transition copy.
+- [x] **Part 3** — NZ:AI copy: hero tagline "Intelligence you own.", one-liner
+  (17 words), manifesto body replaced (headline "inside" still italic coral),
+  transition "Let's show you what … we've built". AI-budget comment removed.
+  Net substantive AI mentions now zero (brand NZ:AI aside) — the brief's open
+  question resolves to "no AI mention" by the new copy.
 - [ ] Part 4 — replace 3 stages with 4 showcase items.
 - [ ] Part 5 — closer copy.
 - [ ] Part 6 — verification (incl. PABLO/decodED regression) + close.

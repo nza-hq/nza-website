@@ -62,16 +62,14 @@ export const nzaiConfig: ProductPageConfig = {
     microLabel: 'NET ZERO ADVISORY + INTELLIGENCE',
     name: 'NZ:AI',
     logoSrc: '/assets/logos/nzai-logo.svg',
-    /* v9 hero headline. Whole line renders in DM Serif Display italic
-       per the template's tagline treatment - so "partnership" reads
-       italic by inclusion. v9's note on selective emphasis on
-       "partnership" alone would require extending the template. */
-    tagline: 'Net zero, built as a partnership.',
-    /* v9 hero supporting paragraph. Contains the first AI mention
-       beyond the brand name: "AI accelerates the build. The
-       partnership is what makes it stick." */
+    /* Hero tagline (nzai-showcase brief Part 3). Renders in the
+       template's DM Serif italic tagline treatment. */
+    tagline: 'Intelligence you own.',
+    /* Hero one-liner (nzai-showcase brief Part 3) - 17 words, replacing
+       the v9 58-word paragraph. Sets up the showcase ("Here's what that
+       looks like.") that the four items below deliver. */
     oneLiner:
-      'The way Net Zero Advisory works with you to build the carbon intelligence your organisation actually needs. AI accelerates the build. The partnership is what makes it stick. Tools and strategy shaped around your data, your operations, and the way decisions actually get made - developed alongside you as your ambition grows.',
+      "Carbon and climate intelligence, built for your organisation and owned by it. Here's what that looks like.",
     ctaLabel: 'Get in touch',
     ctaHref: 'mailto:chrisscott@thenza.co.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
     /* Existing screens retained - v9 notes the existing platform
@@ -115,37 +113,20 @@ export const nzaiConfig: ProductPageConfig = {
       </>
     ),
     body:
-      "Real progress on net zero doesn't come from outside reports. It comes from the people inside your organisation - the ones with the relationships, the knowledge, and the context to act. NZ:AI puts NZA's expertise, AI-accelerated tools, and the data you need to act on into your hands. Decode. Build. Partner - three stages, one partnership, kept alive over time.",
+      "Real progress on net zero comes from the people inside your organisation — the ones with the relationships, the knowledge, and the context to act. They need the data in front of them, in a form they can use. NZ:AI puts it there. These are four of the tools we've built.",
     accentColor: 'nzai',
   },
 
   letsShow: {
-    leadingText: "Let's show you how",
+    /* nzai-showcase brief Part 3: "Let's show you what [Request Demo]
+       we've built" - the page now SHOWS built tools rather than
+       explaining how the process works. */
+    leadingText: "Let's show you what",
     pillLabel: 'Request Demo',
     pillHref: '/contact?product=nzai',
-    trailingText: 'NZ:AI works',
+    trailingText: "we've built",
   },
 
-  /* THREE STAGES - Decode, Build, Partner. Full copy replacement
-     per manifestos brief Movement 4 (supersedes v9's earlier copy
-     in this slot). Each stage's verb sits in the highlightedVerb
-     slot and renders in NZ:AI teal (palette.stepVerbColour above)
-     via the template's `.step-verb` class - colour-only, no italic
-     per Chris's earlier direction.
-
-     AI mention budget per Movement 4:
-       - Card 01 body: "AI accelerates everything downstream"
-       - Card 02 body: "AI accelerates it"
-       - Manifesto body: "AI-accelerated tools"
-     Total: 3 substantive mentions.
-
-     FLAG: the hero one-liner above also contains "AI accelerates
-     the build" (v9 copy, unchanged by this brief because Movement 4
-     explicitly carves out NZ:AI's hero from changes). That puts the
-     page over budget by one. The brief itself asks: "If existing
-     copy elsewhere on the page also names AI, flag it." Flagging
-     for Chris to decide whether to trim the hero or accept the
-     fourth mention. */
   steps: [
     {
       number: '01',
