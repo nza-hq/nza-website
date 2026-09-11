@@ -11,7 +11,13 @@ Replaces /nz-ai's three process stages with four video-backed showcase items.
   at the exact brief filenames. `docs/videos-nzai-README.md` carries the spec
   + shot list + regen command. NOTE: ffmpeg was installed (Gyan.FFmpeg 9.0.1,
   winget) to encode these — placeholders are real, drop-in-replaceable files.
-- [ ] Part 2 — `video` visual type in `ProductStepsSection` (+ `ProductStepVideo`).
+- [x] **Part 2** — `ProductStepVideo` added (muted/playsInline/preload=metadata,
+  webm+mp4 sources, no loop; plays from 0 on active, pauses on inactive, holds
+  final frame; reduced-motion renders the poster as a static `<img>`).
+  `ProductStepsSection` branches via a `StepVisual` helper (video vs SVG); step
+  type gains optional `video`, `illustrationConcept` now optional. Regression
+  verified: /pablo + /decoded still render 5 SVG steps, 0 video elements, no
+  new console errors.
 - [ ] Part 3 — NZ:AI hero/manifesto/transition copy.
 - [ ] Part 4 — replace 3 stages with 4 showcase items.
 - [ ] Part 5 — closer copy.

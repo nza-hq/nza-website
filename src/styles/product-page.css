@@ -1054,6 +1054,20 @@
   fill: initial;
 }
 
+/* VIDEO visual (NZ:AI showcase items). Fills the same slot the SVG
+   illustration uses - both the desktop shared frame and the mobile
+   inline block - so the scrollytelling frame is unchanged. Square
+   source; object-fit: contain so it never crops. Letterbox (minimal
+   against the near-square frame) stays transparent and shows the
+   frame's cream. Radius matches the inline illustration treatment. */
+.product-step-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
 /* INLINE ILLUSTRATION - mobile only (shared frame is hidden).
    Sits beneath each step's body paragraph so the user sees the
    illustration alongside its text in the stacked layout. */

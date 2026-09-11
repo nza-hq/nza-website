@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { MaskReveal } from '../MaskReveal'
 import { BrowserFrame, type BrowserFrameScreen } from './BrowserFrame'
 import { ProductStepsSection } from './ProductStepsSection'
+import { type StepVideo } from './ProductStepVideo'
 import { ManifestoBlock, type ManifestoAccent } from './ManifestoBlock'
 import {
   GoingFurtherSection,
@@ -106,7 +107,13 @@ export type ProductPageConfig = {
     highlightedVerb: string
     headlineSuffix: string
     body: string
-    illustrationConcept: string
+    /** SVG illustration concept (PABLO / decodED). A step declares
+     *  EITHER this OR `video`. */
+    illustrationConcept?: string
+    /** Video visual (NZ:AI showcase items) - MP4 + WebM sources, a
+     *  poster, and alt text. Rendered by ProductStepVideo in the same
+     *  slot the SVG illustration uses. */
+    video?: StepVideo
     /** Opt this step into scrollytelling - text-block becomes 300vh
      *  tall and the animation's phases advance based on scroll
      *  progress through the block (per Chris's June 2026 direction). */

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductIcon } from './ProductIcons'
 import { ProductIllustration } from './ProductIllustrations'
+import { ProductStepVideo, type StepVideo } from './ProductStepVideo'
 
 /**
  * The four-step "how it works" section, using Impilo's shared-frame
@@ -34,7 +35,35 @@ export type StepData = {
   highlightedVerb: string
   headlineSuffix: string
   body: string
-  illustrationConcept: string
+  /** SVG illustration concept (PABLO / decodED). A step declares EITHER
+   *  this OR `video` - the visual slot renders whichever is present. */
+  illustrationConcept?: string
+  /** Video visual (NZ:AI showcase items). Takes precedence over
+   *  illustrationConcept when both somehow exist. */
+  video?: StepVideo
+}
+
+/* Shared renderer for a step's visual - video if the step declares one,
+   otherwise its SVG illustration. Used in both the mobile inline slot
+   and the desktop shared frame so the two stay in lockstep. */
+function StepVisual({
+  step,
+  index,
+  isActive,
+}: {
+  step: StepData
+  index: number
+  isActive: boolean
+}) {
+  if (step.video) {
+    return <ProductStepVideo video={step.video} isActive={isActive} />
+  }
+  if (step.illustrationConcept) {
+    return (
+      <ProductIllustration concept={step.illustrationConcept} stepIndex={index} />
+    )
+  }
+  return null
 }
 
 type Props = {
@@ -132,13 +161,12 @@ export function ProductStepsSection({
               </h3>
               <p className="product-step-body">{step.body}</p>
 
-              {/* Inline illustration shown ONLY on mobile via CSS -
-                  the shared sticky frame on desktop replaces this. */}
+              {/* Inline visual shown ONLY on mobile via CSS - the shared
+                  sticky frame on desktop replaces this. Video or SVG per
+                  the step; active when this is the active step so the
+                  mobile inline video plays as the user reaches it. */}
               <div className="product-step-inline-illustration">
-                <ProductIllustration
-                  concept={step.illustrationConcept}
-                  stepIndex={i}
-                />
+                <StepVisual step={step} index={i} isActive={i === activeIndex} />
               </div>
             </div>
           </div>
@@ -170,10 +198,7 @@ export function ProductStepsSection({
               }
               aria-hidden="true"
             >
-              <ProductIllustration
-                concept={step.illustrationConcept}
-                stepIndex={i}
-              />
+              <StepVisual step={step} index={i} isActive={i === activeIndex} />
             </div>
           ))}
         </div>
