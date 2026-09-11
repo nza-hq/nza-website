@@ -33,7 +33,8 @@ Replaces /nz-ai's three process stages with four video-backed showcase items.
   there. The actual NZ:AI illos (world-map-emission-dots, trajectory-chart-
   milestones, waterfall-cascade-chart, multi-year-tracking-chart) are orphaned
   (were already, pre-brief); left in place + reported (not brief-named).
-- [ ] Part 5 — closer copy.
+- [x] **Part 5** — closer: "Start with a conversation." + new body. Three case
+  studies (EOC, Royal Wimbledon, Molson) unchanged; no summary band added.
 - [ ] Part 6 — verification (incl. PABLO/decodED regression) + close.
 
 ## Last completed chunk

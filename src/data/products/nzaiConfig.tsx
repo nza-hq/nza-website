@@ -203,9 +203,11 @@ export const nzaiConfig: ProductPageConfig = {
      open at a time (the template's single-expand state handles
      that automatically). */
   closer: {
-    headline: "Let's work out if it's the right fit.",
+    /* Closer refreshed per nzai-showcase brief Part 5. Case studies
+       below (EOC, Royal Wimbledon, Molson) unchanged. */
+    headline: 'Start with a conversation.',
     subhead:
-      "Half an hour. We'll understand where you are, what you have, and what you are trying to achieve. From there, we'll work out together whether a Decode sprint is the right next step - or whether something else suits your situation better.",
+      'Most organisations are sitting on better data than they realise. We decode it, build the tools that make it usable, and stay alongside your team as both improve.',
     caseStudies: [
       {
         id: 'eckersley-ocallaghan',
