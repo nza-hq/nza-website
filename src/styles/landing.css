@@ -891,7 +891,16 @@
   .how-we-work-page-grid {
     grid-template-columns: 1fr;
     gap: clamp(40px, 8vh, 72px);
-    align-items: start;
+    align-items: center;
+  }
+  /* Single-column (stacked): the statement sits ABOVE the centred phase
+     module, so centre it too - left-aligned reads wrong there (Chris). */
+  .how-we-work-page-left {
+    text-align: center;
+  }
+  .how-we-work-page-para {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (max-width: 767px) {
@@ -908,6 +917,10 @@
    (hover/tap/focus) crossfades the graphic + text. The whole column gets
    a light entrance on the section's .is-revealed. */
 .how-we-work-page-right {
+  /* --hww-interval must match AUTO_ADVANCE_MS in HowWeWorkSection.tsx -
+     it drives the active-tab progress bar that counts down to the next
+     auto-advance. */
+  --hww-interval: 7000ms;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -994,7 +1007,10 @@
   line-height: 1;
   letter-spacing: -0.02em;
 }
-/* Active tab underline marker, grows from the centre. */
+/* Active tab underline. It doubles as a PROGRESS BAR: while auto-running
+   it fills left->right over --hww-interval, counting down to the next
+   advance. When paused (hover/focus) it holds full as a plain active
+   marker. */
 .how-we-work-phase-tab::after {
   content: '';
   position: absolute;
@@ -1004,11 +1020,22 @@
   height: 2px;
   background: #fff;
   transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left center;
 }
 .how-we-work-phase-tab.is-active::after {
   transform: scaleX(1);
+}
+.how-we-work-page-right:not(.is-paused)
+  .how-we-work-phase-tab.is-active::after {
+  animation: hww-tab-progress var(--hww-interval) linear;
+}
+@keyframes hww-tab-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* COPY - active phase's text below the tabs. Texts share ONE grid cell
@@ -1041,8 +1068,12 @@
     transform: none;
     transition: none;
   }
-  .how-we-work-phase-tab::after {
-    transition: none;
+  /* No progress-bar animation - the phase doesn't auto-advance under
+     reduced motion (JS disables it); the active underline just sits full. */
+  .how-we-work-page-right:not(.is-paused)
+    .how-we-work-phase-tab.is-active::after {
+    animation: none;
+    transform: scaleX(1);
   }
   .how-we-work-phase-panel,
   .how-we-work-phase-body {
@@ -1056,6 +1087,31 @@
   }
   .how-we-work-phase-name {
     font-size: clamp(20px, 6vw, 26px);
+  }
+}
+
+/* ============================================================
+   MOBILE "FILL & LOCK" (Chris, Sept 2026)
+   On desktop the landing sections lock via sticky pins; those are
+   dropped on mobile. CSS scroll-snap gives the phone the same
+   "fills the screen and stops" feel. PROXIMITY (not mandatory) so it
+   only settles when you ease off near a boundary and never traps
+   scroll on a section taller than the viewport. Only the sections with
+   scroll-snap-align become snap points, so product pages (no align)
+   scroll normally even though the type is set on <html>.
+   ============================================================ */
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: y proximity;
+    /* Land snapped sections below the sticky nav, not under it. */
+    scroll-padding-top: 68px;
+  }
+  #how-we-work,
+  #solutions,
+  #get-in-touch {
+    scroll-snap-align: start;
+    /* Each key section fills the screen so the lock reads as a full page. */
+    min-height: 100svh;
   }
 }
 

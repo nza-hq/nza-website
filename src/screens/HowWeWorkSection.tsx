@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { MaskReveal } from '../components/MaskReveal'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import {
   DecodeVisual,
   BuildVisual,
@@ -12,22 +13,21 @@ import {
  * Layout (Chris, Sept 2026): a FULL-SCREEN LOCKED two-column panel.
  *
  *   LEFT   the specialist statement, large white display type.
- *   RIGHT  Decode / Build / Partner as HORIZONTAL TABS. Selecting one
- *          (hover, tap, or keyboard focus) reveals that phase's little
- *          graphic + paragraph in the shared panel BELOW the tabs, using
- *          the vertical space rather than pushing the layout down - so
- *          the whole thing stays on one locked screen (Chris: "I don't
- *          want to have to scroll that far"). Decode is selected by
- *          default. The panels share one grid cell, so switching is a
- *          crossfade with no reflow/jump.
+ *   RIGHT  a centred vertical stack - the LARGE active-phase graphic
+ *          front-and-centre at the top, the Decode/Build/Partner tabs in
+ *          the middle, and the active phase's text below.
  *
- * The per-phase graphic animates (e.g. Decode's dots assemble into a
- * grid) when its tab is active AND the section has been revealed.
+ * The phases AUTO-ADVANCE (Decode -> Build -> Partner, cycling) on a
+ * timer so the graphic + text are seen without any hover - important on
+ * mobile. The auto-advance pauses while the user hovers or keyboard-
+ * focuses the module, and a tap / hover / focus on a tab jumps straight
+ * to it (and resets the timer). The active tab's underline doubles as a
+ * progress bar counting down to the next advance. prefers-reduced-motion
+ * disables the auto-advance (static; user taps to change).
  *
- * The section pins to the viewport (below the nav) so it "locks into
- * full screen", then releases. The parallax entry is unchanged - the
- * hero is position: sticky in .hero-coral-stack (WebsitePage) and this
- * coral panel rises UP over it.
+ * The section pins to the viewport (below the nav) so it "locks into full
+ * screen", then releases. Parallax entry unchanged - the hero is sticky
+ * in .hero-coral-stack (WebsitePage) and this coral panel rises over it.
  */
 
 const VISUALS = {
@@ -67,14 +67,20 @@ const PHASES: Array<{
   },
 ]
 
+/* Time each phase holds before auto-advancing. ~38 words + the graphic's
+   own ~2s animation - 7s lets the graphic land and the text be skimmed,
+   and the user can hover/focus to pause for a full read. Kept in sync
+   with the CSS --hww-interval that drives the tab progress bar. */
+const AUTO_ADVANCE_MS = 7000
+
 export function HowWeWorkSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
-  /* Drives the entrance + gates the graphic animations so they play when
-     the section is scrolled into view (not on mount). */
   const [revealed, setRevealed] = useState(false)
-  /* Which phase tab is selected. Defaults to Decode (leftmost) so the
-     panel always shows something. Hover / tap / focus switches it. */
-  const [activeId, setActiveId] = useState<PhaseId>('decode')
+  const [activeIndex, setActiveIndex] = useState(0)
+  /* Paused while the user hovers / keyboard-focuses the module, so the
+     phase never advances out from under them mid-read. */
+  const [paused, setPaused] = useState(false)
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 
   useEffect(() => {
     const el = sectionRef.current
@@ -95,6 +101,17 @@ export function HowWeWorkSection() {
     return () => obs.disconnect()
   }, [])
 
+  /* Auto-advance the phases while the section is in view, not paused, and
+     motion is allowed. Keyed on activeIndex so a manual select resets the
+     hold (setTimeout restarts), giving the chosen phase a full interval. */
+  useEffect(() => {
+    if (!revealed || paused || reducedMotion) return
+    const id = window.setTimeout(() => {
+      setActiveIndex((i) => (i + 1) % PHASES.length)
+    }, AUTO_ADVANCE_MS)
+    return () => window.clearTimeout(id)
+  }, [revealed, paused, reducedMotion, activeIndex])
+
   return (
     <section
       ref={sectionRef}
@@ -114,29 +131,37 @@ export function HowWeWorkSection() {
             </MaskReveal>
           </div>
 
-          {/* RIGHT - centred vertical stack: the LARGE active-phase graphic
-              front-and-centre at the top, the Decode/Build/Partner tabs in
-              the middle, and the active phase's text below. Selecting a tab
-              crossfades both the graphic and the text. */}
-          <div className="how-we-work-page-right">
+          {/* RIGHT - centred stack: big graphic (top), tabs (middle), text
+              (below). Hovering / focusing pauses the auto-advance. */}
+          <div
+            className={
+              'how-we-work-page-right' + (paused ? ' is-paused' : '')
+            }
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                setPaused(false)
+              }
+            }}
+          >
             {/* FIGURE - big graphic of the active phase (decorative). */}
             <div className="how-we-work-phase-figure">
-              {PHASES.map((phase) => {
-                const isActive = activeId === phase.id
-                return (
-                  <div
-                    key={phase.id}
-                    aria-hidden="true"
-                    className={
-                      'how-we-work-phase-panel' + (isActive ? ' is-active' : '')
-                    }
-                  >
-                    <div className="how-we-work-phase-visual">
-                      {VISUALS[phase.id]}
-                    </div>
+              {PHASES.map((phase, i) => (
+                <div
+                  key={phase.id}
+                  aria-hidden="true"
+                  className={
+                    'how-we-work-phase-panel' +
+                    (i === activeIndex ? ' is-active' : '')
+                  }
+                >
+                  <div className="how-we-work-phase-visual">
+                    {VISUALS[phase.id]}
                   </div>
-                )
-              })}
+                </div>
+              ))}
             </div>
 
             {/* TABS - Decode | Build | Partner, centred. */}
@@ -145,8 +170,8 @@ export function HowWeWorkSection() {
               role="tablist"
               aria-label="Our three phases"
             >
-              {PHASES.map((phase) => {
-                const isActive = activeId === phase.id
+              {PHASES.map((phase, i) => {
+                const isActive = i === activeIndex
                 return (
                   <button
                     key={phase.id}
@@ -158,9 +183,9 @@ export function HowWeWorkSection() {
                     className={
                       'how-we-work-phase-tab' + (isActive ? ' is-active' : '')
                     }
-                    onClick={() => setActiveId(phase.id)}
-                    onMouseEnter={() => setActiveId(phase.id)}
-                    onFocus={() => setActiveId(phase.id)}
+                    onClick={() => setActiveIndex(i)}
+                    onMouseEnter={() => setActiveIndex(i)}
+                    onFocus={() => setActiveIndex(i)}
                   >
                     <span className="how-we-work-phase-number">
                       {phase.number}
@@ -173,8 +198,8 @@ export function HowWeWorkSection() {
 
             {/* COPY - active phase's text below the tabs. */}
             <div className="how-we-work-phase-copy">
-              {PHASES.map((phase) => {
-                const isActive = activeId === phase.id
+              {PHASES.map((phase, i) => {
+                const isActive = i === activeIndex
                 return (
                   <p
                     key={phase.id}
