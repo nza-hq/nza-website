@@ -67,11 +67,11 @@ const PHASES: Array<{
   },
 ]
 
-/* Time each phase holds before auto-advancing. ~38 words + the graphic's
-   own ~2s animation - 7s lets the graphic land and the text be skimmed,
+/* Time each phase holds before auto-advancing (Chris: 4.5s - snappier
+   than the first 7s pass). The graphic's own animation lands within this,
    and the user can hover/focus to pause for a full read. Kept in sync
    with the CSS --hww-interval that drives the tab progress bar. */
-const AUTO_ADVANCE_MS = 7000
+const AUTO_ADVANCE_MS = 4500
 
 export function HowWeWorkSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
