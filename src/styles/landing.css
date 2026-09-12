@@ -953,11 +953,16 @@
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 380ms ease, visibility 380ms;
+  /* Soft dissolve: the outgoing graphic (now holding its finished form)
+     fades + eases down a touch as the incoming fades + settles up. */
+  transform: scale(0.94);
+  transition: opacity 440ms ease, transform 560ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 560ms;
 }
 .how-we-work-phase-panel.is-active {
   opacity: 1;
   visibility: visible;
+  transform: scale(1);
 }
 .how-we-work-phase-visual {
   width: clamp(150px, 15vw, 200px);
@@ -1139,18 +1144,18 @@
    the animation eases that offset back to (0,0) so the dot settles
    onto its grid cell. Staggered by --dot-index so the grid pieces
    itself together in a flowing cascade. ----------------------------- */
+/* RESTING STATE = FINISHED (assembled grid, visible). So when this panel
+   stops being active, the dots HOLD their finished grid and just fade out
+   with the panel - no snap back to the scatter. The assemble animation
+   uses fill-mode: both, so the incoming panel shows the scattered start
+   during its lead-in delay (not the finished base) and then assembles. */
 .decode-dot {
-  opacity: 0;
-  transform: translate(var(--from-x, 0), var(--from-y, 0));
+  opacity: 1;
+  transform: none;
 }
-/* Visual animations now key off the per-block .is-revealed (set by
-   the scroll-driven reveal in HowWeWorkSection.tsx) rather than the
-   parent page's class plus a --reveal-delay var. The 600ms base
-   offset is the wait for the block's separator + content-rise to
-   land before the SVG starts animating inside it. */
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .decode-dot {
-  animation: decode-dot-assemble 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(600ms + var(--dot-index, 0) * 32ms);
+  animation: decode-dot-assemble 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(140ms + var(--dot-index, 0) * 28ms);
 }
 @keyframes decode-dot-assemble {
   from {
@@ -1166,25 +1171,32 @@
   }
 }
 
-/* ---------- BUILD: outlined dots > perimeter fills > square draws. */
+/* ---------- BUILD: outlined dots > perimeter fills > square draws.
+   Resting state = finished (all visible, square fully drawn) so the
+   outgoing panel holds its finished form and fades; fill-mode: both
+   keeps the incoming hidden until its animation runs. */
 .build-dot-outline,
 .build-dot-fill,
 .build-line {
-  opacity: 0;
+  opacity: 1;
+}
+/* Square fully drawn at rest (dasharray in place so the draw keyframe's
+   stroke-dashoffset has something to reveal). */
+.build-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 0;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-outline {
-  animation: build-outline-appear 280ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+  animation: build-outline-appear 280ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-fill {
-  animation: build-fill-appear 400ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards;
+  animation: build-fill-appear 400ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-line {
   /* Perimeter = 4 sides x 150 SVG units = 600. Start with the full
      dash gap exposed (offset = 600) and animate down to 0 so the
      stroke "draws" clockwise from the top-left corner. */
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: build-line-draw 1000ms cubic-bezier(0.4, 0, 0.2, 1) 1250ms forwards;
+  animation: build-line-draw 1000ms cubic-bezier(0.4, 0, 0.2, 1) 620ms both;
 }
 @keyframes build-outline-appear {
   from { opacity: 0; }
@@ -1201,24 +1213,26 @@
 
 /* ---------- PARTNER: squares fly in, overshoot, settle. Coral
               overlap fades in last. ---------- */
+/* Resting state = finished (squares settled + overlap visible) so the
+   outgoing panel holds and fades; fill-mode: both keeps the incoming
+   off-position/hidden through its lead-in. */
 .partner-square {
-  opacity: 0;
-  /* Translation is animated via per-direction keyframes below;
-     transform-box keeps the origin sane on SVG groups. */
+  opacity: 1;
+  transform: none;
   transform-box: fill-box;
   transform-origin: center;
 }
 .partner-overlap {
-  opacity: 0;
+  opacity: 1;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-square--tl {
-  animation: partner-fly-tl 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 600ms forwards;
+  animation: partner-fly-tl 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 140ms both;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-square--br {
-  animation: partner-fly-br 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 680ms forwards;
+  animation: partner-fly-br 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 220ms both;
 }
 .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-overlap {
-  animation: partner-overlap-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 1500ms forwards;
+  animation: partner-overlap-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both;
 }
 /* The two keyframes are direction-specific. The 70% bump pushes the
    square slightly past its final position (overshoot - "almost
