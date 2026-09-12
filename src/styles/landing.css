@@ -902,11 +902,17 @@
 }
 
 /* ---------- PHASES (Decode / Build / Partner) ----------
-   Horizontal tabs; selecting one (hover / tap / focus) reveals its
-   graphic + text in the shared panel below. The whole right column gets
-   a light entrance on the section's .is-revealed (set by the IO in
-   HowWeWorkSection.tsx). */
+   The right column is a CENTRED vertical stack: the large active-phase
+   graphic front-and-centre at the top, the Decode/Build/Partner tabs in
+   the middle, and the active phase's text below. Selecting a tab
+   (hover/tap/focus) crossfades the graphic + text. The whole column gets
+   a light entrance on the section's .is-revealed. */
 .how-we-work-page-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(22px, 3vh, 40px);
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -918,12 +924,40 @@
   transform: none;
 }
 
-/* Tab row. */
+/* FIGURE - the big graphic, front and centre at the top. The three
+   graphics share ONE grid cell (all the same size) so switching is a
+   pure crossfade with no jump. */
+.how-we-work-phase-figure {
+  display: grid;
+}
+.how-we-work-phase-panel {
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 380ms ease, visibility 380ms;
+}
+.how-we-work-phase-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.how-we-work-phase-visual {
+  width: clamp(150px, 15vw, 200px);
+  height: clamp(150px, 15vw, 200px);
+  color: #fff;
+}
+.how-we-work-phase-visual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* TABS - Decode | Build | Partner, centred beneath the graphic. */
 .how-we-work-phase-tabs {
   display: flex;
-  gap: clamp(20px, 3vw, 48px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
-  padding-bottom: clamp(12px, 1.6vh, 18px);
+  justify-content: center;
+  gap: clamp(20px, 3vw, 44px);
 }
 .how-we-work-phase-tab {
   appearance: none;
@@ -956,67 +990,49 @@
 }
 .how-we-work-phase-name {
   font-weight: 400;
-  font-size: clamp(24px, 2.4vw, 34px);
+  font-size: clamp(22px, 2.2vw, 30px);
   line-height: 1;
   letter-spacing: -0.02em;
 }
-/* Active tab underline marker - sits on the tab row's bottom rule. */
+/* Active tab underline marker, grows from the centre. */
 .how-we-work-phase-tab::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  bottom: calc(-1 * clamp(12px, 1.6vh, 18px) - 1px);
+  bottom: -8px;
   height: 2px;
   background: #fff;
   transform: scaleX(0);
-  transform-origin: left center;
+  transform-origin: center;
   transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .how-we-work-phase-tab.is-active::after {
   transform: scaleX(1);
 }
 
-/* Panel area - all panels share ONE grid cell, so the area is always as
-   tall as the tallest panel and switching is a crossfade with no reflow.
-   Inactive panels keep their layout box (visibility:hidden) so the cell
-   stays the tallest-panel height. */
-.how-we-work-phase-panels {
+/* COPY - active phase's text below the tabs. Texts share ONE grid cell
+   so the area is always the tallest text's height (no jump) and
+   switching crossfades. */
+.how-we-work-phase-copy {
   display: grid;
-  margin-top: clamp(24px, 3.5vh, 48px);
-}
-.how-we-work-phase-panel {
-  grid-area: 1 / 1;
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(20px, 2.4vw, 36px);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 380ms ease, visibility 380ms;
-}
-.how-we-work-phase-panel.is-active {
-  opacity: 1;
-  visibility: visible;
-}
-.how-we-work-phase-visual {
-  width: clamp(84px, 8vw, 116px);
-  height: clamp(84px, 8vw, 116px);
-  flex-shrink: 0;
-  color: #fff;
-}
-.how-we-work-phase-visual svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+  max-width: 460px;
 }
 .how-we-work-phase-body {
+  grid-area: 1 / 1;
   margin: 0;
-  max-width: 440px;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
   color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 380ms ease, visibility 380ms;
+}
+.how-we-work-phase-body.is-active {
+  opacity: 1;
+  visibility: visible;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1028,23 +1044,18 @@
   .how-we-work-phase-tab::after {
     transition: none;
   }
-  .how-we-work-phase-panel {
+  .how-we-work-phase-panel,
+  .how-we-work-phase-body {
     transition: opacity 200ms ease;
   }
 }
 
-/* Phone (<600): stack the panel (graphic above the text) so the row
-   never crowds at narrow widths. */
 @media (max-width: 599px) {
   .how-we-work-phase-tabs {
     gap: clamp(14px, 4vw, 28px);
   }
   .how-we-work-phase-name {
     font-size: clamp(20px, 6vw, 26px);
-  }
-  .how-we-work-phase-panel {
-    flex-direction: column;
-    gap: 18px;
   }
 }
 

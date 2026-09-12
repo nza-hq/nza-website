@@ -114,9 +114,32 @@ export function HowWeWorkSection() {
             </MaskReveal>
           </div>
 
-          {/* RIGHT - horizontal Decode / Build / Partner tabs + a shared
-              panel below that reveals the selected phase. */}
+          {/* RIGHT - centred vertical stack: the LARGE active-phase graphic
+              front-and-centre at the top, the Decode/Build/Partner tabs in
+              the middle, and the active phase's text below. Selecting a tab
+              crossfades both the graphic and the text. */}
           <div className="how-we-work-page-right">
+            {/* FIGURE - big graphic of the active phase (decorative). */}
+            <div className="how-we-work-phase-figure">
+              {PHASES.map((phase) => {
+                const isActive = activeId === phase.id
+                return (
+                  <div
+                    key={phase.id}
+                    aria-hidden="true"
+                    className={
+                      'how-we-work-phase-panel' + (isActive ? ' is-active' : '')
+                    }
+                  >
+                    <div className="how-we-work-phase-visual">
+                      {VISUALS[phase.id]}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* TABS - Decode | Build | Partner, centred. */}
             <div
               className="how-we-work-phase-tabs"
               role="tablist"
@@ -131,7 +154,7 @@ export function HowWeWorkSection() {
                     role="tab"
                     id={`hww-tab-${phase.id}`}
                     aria-selected={isActive}
-                    aria-controls={`hww-panel-${phase.id}`}
+                    aria-controls={`hww-copy-${phase.id}`}
                     className={
                       'how-we-work-phase-tab' + (isActive ? ' is-active' : '')
                     }
@@ -148,25 +171,23 @@ export function HowWeWorkSection() {
               })}
             </div>
 
-            <div className="how-we-work-phase-panels">
+            {/* COPY - active phase's text below the tabs. */}
+            <div className="how-we-work-phase-copy">
               {PHASES.map((phase) => {
                 const isActive = activeId === phase.id
                 return (
-                  <div
+                  <p
                     key={phase.id}
-                    id={`hww-panel-${phase.id}`}
+                    id={`hww-copy-${phase.id}`}
                     role="tabpanel"
                     aria-labelledby={`hww-tab-${phase.id}`}
                     aria-hidden={!isActive}
                     className={
-                      'how-we-work-phase-panel' + (isActive ? ' is-active' : '')
+                      'how-we-work-phase-body' + (isActive ? ' is-active' : '')
                     }
                   >
-                    <div className="how-we-work-phase-visual" aria-hidden="true">
-                      {VISUALS[phase.id]}
-                    </div>
-                    <p className="how-we-work-phase-body">{phase.body}</p>
-                  </div>
+                    {phase.body}
+                  </p>
                 )
               })}
             </div>
