@@ -1,28 +1,40 @@
 import { useEffect, useRef, useState } from 'react'
 import { MaskReveal } from '../components/MaskReveal'
+import {
+  DecodeVisual,
+  BuildVisual,
+  PartnerVisual,
+} from '../components/svg/HowWeWorkVisuals'
 
 /**
  * "How we work" - HOT CORAL landing screen 2.
  *
- * Layout (Chris, Sept 2026 - reverts the screens-2-3 vertical sequence):
- * a FULL-SCREEN LOCKED two-column panel. The section pins to the viewport
- * (below the nav) so it "locks into full screen" like the "Where it
- * starts" section, then releases as you scroll past.
+ * Layout (Chris, Sept 2026): a FULL-SCREEN LOCKED two-column panel.
  *
  *   LEFT   the specialist statement, large white display type.
- *   RIGHT  three phases - Decode / Build / Partner - as a compact list.
- *          Each is just its number + name + an animated "+" at rest; the
- *          paragraph REVEALS on hover (desktop), tap (touch, via the
- *          is-open click state), or keyboard focus. The "+" idly wiggles
- *          to signal "hover me", and rotates into an "x" once open.
+ *   RIGHT  Decode / Build / Partner as HORIZONTAL TABS. Selecting one
+ *          (hover, tap, or keyboard focus) reveals that phase's little
+ *          graphic + paragraph in the shared panel BELOW the tabs, using
+ *          the vertical space rather than pushing the layout down - so
+ *          the whole thing stays on one locked screen (Chris: "I don't
+ *          want to have to scroll that far"). Decode is selected by
+ *          default. The panels share one grid cell, so switching is a
+ *          crossfade with no reflow/jump.
  *
- * The parallax entry is unchanged: the hero is position: sticky inside
- * .hero-coral-stack (WebsitePage) and this coral panel rises UP over it.
+ * The per-phase graphic animates (e.g. Decode's dots assemble into a
+ * grid) when its tab is active AND the section has been revealed.
  *
- * (The old per-phase SVG visuals - DecodeVisual etc. in HowWeWorkVisuals
- * - are not rendered in this layout. Kept in the codebase in case the
- * little graphics come back inside the reveal.)
+ * The section pins to the viewport (below the nav) so it "locks into
+ * full screen", then releases. The parallax entry is unchanged - the
+ * hero is position: sticky in .hero-coral-stack (WebsitePage) and this
+ * coral panel rises UP over it.
  */
+
+const VISUALS = {
+  decode: <DecodeVisual />,
+  build: <BuildVisual />,
+  partner: <PartnerVisual />,
+} as const
 
 type PhaseId = 'decode' | 'build' | 'partner'
 
@@ -57,12 +69,12 @@ const PHASES: Array<{
 
 export function HowWeWorkSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
-  /* Section-level reveal drives a light staggered entrance on the phase
-     list (CSS keys off .is-revealed + each block's --phase-index). */
+  /* Drives the entrance + gates the graphic animations so they play when
+     the section is scrolled into view (not on mount). */
   const [revealed, setRevealed] = useState(false)
-  /* Click-open state for touch + keyboard - hover handles desktop
-     pointers in CSS. Null = all collapsed; only one open at a time. */
-  const [openId, setOpenId] = useState<PhaseId | null>(null)
+  /* Which phase tab is selected. Defaults to Decode (leftmost) so the
+     panel always shows something. Hover / tap / focus switches it. */
+  const [activeId, setActiveId] = useState<PhaseId>('decode')
 
   useEffect(() => {
     const el = sectionRef.current
@@ -91,55 +103,73 @@ export function HowWeWorkSection() {
       data-screen-label="How we work"
     >
       {/* PIN - locks the two-column panel to the viewport (below the nav)
-          for the section's scroll runway, then releases. */}
+          for the section's runway, then releases. */}
       <div className="how-we-work-page-pin">
         <div className="how-we-work-page-grid">
           {/* LEFT - the specialist statement. */}
           <div className="how-we-work-page-left">
             <MaskReveal as="p" className="how-we-work-page-para" delay={0}>
               We are specialists in buildings, energy, and climate, with one
-              way of working alongside your team in the tools you own.
+              way of working alongside your team and the tools you own.
             </MaskReveal>
           </div>
 
-          {/* RIGHT - Decode / Build / Partner, paragraphs reveal on hover. */}
+          {/* RIGHT - horizontal Decode / Build / Partner tabs + a shared
+              panel below that reveals the selected phase. */}
           <div className="how-we-work-page-right">
-            {PHASES.map((phase, i) => {
-              const isOpen = openId === phase.id
-              return (
-                <article
-                  key={phase.id}
-                  className={
-                    'how-we-work-phase-block' + (isOpen ? ' is-open' : '')
-                  }
-                  style={
-                    { '--phase-index': i } as React.CSSProperties
-                  }
-                >
+            <div
+              className="how-we-work-phase-tabs"
+              role="tablist"
+              aria-label="Our three phases"
+            >
+              {PHASES.map((phase) => {
+                const isActive = activeId === phase.id
+                return (
                   <button
+                    key={phase.id}
                     type="button"
-                    className="how-we-work-phase-head"
-                    aria-expanded={isOpen}
-                    onClick={() =>
-                      setOpenId((curr) => (curr === phase.id ? null : phase.id))
+                    role="tab"
+                    id={`hww-tab-${phase.id}`}
+                    aria-selected={isActive}
+                    aria-controls={`hww-panel-${phase.id}`}
+                    className={
+                      'how-we-work-phase-tab' + (isActive ? ' is-active' : '')
                     }
+                    onClick={() => setActiveId(phase.id)}
+                    onMouseEnter={() => setActiveId(phase.id)}
+                    onFocus={() => setActiveId(phase.id)}
                   >
                     <span className="how-we-work-phase-number">
                       {phase.number}
                     </span>
                     <span className="how-we-work-phase-name">{phase.name}</span>
-                    <span className="how-we-work-phase-plus" aria-hidden="true" />
                   </button>
-                  {/* Reveal - grid-rows 0fr -> 1fr for a smooth height
-                      animation; inner clips so the body slides open. */}
-                  <div className="how-we-work-phase-reveal">
-                    <div className="how-we-work-phase-reveal-inner">
-                      <p className="how-we-work-phase-body">{phase.body}</p>
+                )
+              })}
+            </div>
+
+            <div className="how-we-work-phase-panels">
+              {PHASES.map((phase) => {
+                const isActive = activeId === phase.id
+                return (
+                  <div
+                    key={phase.id}
+                    id={`hww-panel-${phase.id}`}
+                    role="tabpanel"
+                    aria-labelledby={`hww-tab-${phase.id}`}
+                    aria-hidden={!isActive}
+                    className={
+                      'how-we-work-phase-panel' + (isActive ? ' is-active' : '')
+                    }
+                  >
+                    <div className="how-we-work-phase-visual" aria-hidden="true">
+                      {VISUALS[phase.id]}
                     </div>
+                    <p className="how-we-work-phase-body">{phase.body}</p>
                   </div>
-                </article>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
