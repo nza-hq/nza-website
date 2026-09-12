@@ -947,22 +947,19 @@
 .how-we-work-phase-figure {
   display: grid;
 }
+/* The panel is just the container. Its graphic runs its own enter/hold/
+   exit lifecycle (below), so the panel only needs to be visible while its
+   phase is active (which includes the exit - the exiting phase is still
+   the active index). Visible/hidden is instant; the graphic does the
+   fading, so there's no double-fade. */
 .how-we-work-phase-panel {
   grid-area: 1 / 1;
   display: flex;
   justify-content: center;
-  opacity: 0;
   visibility: hidden;
-  /* Soft dissolve: the outgoing graphic (now holding its finished form)
-     fades + eases down a touch as the incoming fades + settles up. */
-  transform: scale(0.94);
-  transition: opacity 440ms ease, transform 560ms cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 560ms;
 }
 .how-we-work-phase-panel.is-active {
-  opacity: 1;
   visibility: visible;
-  transform: scale(1);
 }
 .how-we-work-phase-visual {
   width: clamp(150px, 15vw, 200px);
@@ -1138,24 +1135,37 @@
    The 600ms buffer is the "vis-start" offset used in calc() below.
    ============================================================ */
 
-/* ---------- DECODE: 25 dots drift in from scattered positions and
-   assemble into the 5x5 grid. Each .decode-dot is a <g> wrapper
-   translated by its per-dot scatter offset (--from-x / --from-y);
-   the animation eases that offset back to (0,0) so the dot settles
-   onto its grid cell. Staggered by --dot-index so the grid pieces
-   itself together in a flowing cascade. ----------------------------- */
-/* RESTING STATE = FINISHED (assembled grid, visible). So when this panel
-   stops being active, the dots HOLD their finished grid and just fade out
-   with the panel - no snap back to the scatter. The assemble animation
-   uses fill-mode: both, so the incoming panel shows the scattered start
-   during its lead-in delay (not the finished base) and then assembles. */
+/* Each graphic RESTS HIDDEN. Its ENTER animation plays on the active
+   panel (:not(.is-exiting)); it holds its finished form for the middle of
+   the window; then an EXIT animation plays on the exiting panel
+   (.is-exiting), leaving the graphic hidden - which matches the hidden
+   base, so nothing snaps when the panel finally deactivates. The exit
+   echoes the entrance but isn't its mirror. A shared fade helper: */
+@keyframes hww-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ---------- DECODE: dots assemble into a 5x5 grid, then LIFT away.
+   Enter: drift in from the per-dot scatter (--from-x/--from-y) -> grid.
+   Exit: rise up and fade, drifting a little back toward where they came
+   from (a "lift-off" rather than the horizontal gather-in). --------- */
 .decode-dot {
-  opacity: 1;
+  opacity: 0;
   transform: none;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .decode-dot {
-  animation: decode-dot-assemble 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(140ms + var(--dot-index, 0) * 28ms);
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .decode-dot {
+  /* Slightly slower assemble (Chris). */
+  animation: decode-dot-assemble 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(120ms + var(--dot-index, 0) * 30ms);
+}
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .decode-dot {
+  animation: decode-dot-lift 900ms cubic-bezier(0.5, 0, 0.75, 0) both;
+  animation-delay: calc(var(--dot-index, 0) * 20ms);
 }
 @keyframes decode-dot-assemble {
   from {
@@ -1170,33 +1180,59 @@
     transform: translate(0, 0);
   }
 }
+@keyframes decode-dot-lift {
+  from {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(
+      calc(var(--from-x, 0) * 0.3),
+      calc(var(--from-y, 0) * 0.3 - 54px)
+    );
+  }
+}
 
-/* ---------- BUILD: outlined dots > perimeter fills > square draws.
-   Resting state = finished (all visible, square fully drawn) so the
-   outgoing panel holds its finished form and fades; fill-mode: both
-   keeps the incoming hidden until its animation runs. */
+/* ---------- BUILD: outlines > fills > square draws clockwise; then the
+   square UN-DRAWS (erases) and the dots fade - a disassemble. --------- */
 .build-dot-outline,
 .build-dot-fill,
 .build-line {
-  opacity: 1;
+  opacity: 0;
 }
-/* Square fully drawn at rest (dasharray in place so the draw keyframe's
-   stroke-dashoffset has something to reveal). */
 .build-line {
   stroke-dasharray: 600;
   stroke-dashoffset: 0;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-outline {
-  animation: build-outline-appear 280ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .build-dot-outline {
+  animation: build-outline-appear 300ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-fill {
-  animation: build-fill-appear 400ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .build-dot-fill {
+  animation: build-fill-appear 420ms cubic-bezier(0.16, 1, 0.3, 1) 400ms both;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-line {
-  /* Perimeter = 4 sides x 150 SVG units = 600. Start with the full
-     dash gap exposed (offset = 600) and animate down to 0 so the
-     stroke "draws" clockwise from the top-left corner. */
-  animation: build-line-draw 1000ms cubic-bezier(0.4, 0, 0.2, 1) 620ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .build-line {
+  animation: build-line-draw 1000ms cubic-bezier(0.4, 0, 0.2, 1) 640ms both;
+}
+/* Exit: line retracts (offset 0 -> 600, un-draws) then dots fade. */
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .build-line {
+  animation: build-line-erase 760ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .build-dot-outline,
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .build-dot-fill {
+  animation: hww-fade-out 520ms ease 240ms both;
 }
 @keyframes build-outline-appear {
   from { opacity: 0; }
@@ -1210,33 +1246,55 @@
   0%   { opacity: 1; stroke-dashoffset: 600; }
   100% { opacity: 1; stroke-dashoffset: 0; }
 }
+@keyframes build-line-erase {
+  0%   { opacity: 1; stroke-dashoffset: 0; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; stroke-dashoffset: 600; }
+}
 
-/* ---------- PARTNER: squares fly in, overshoot, settle. Coral
-              overlap fades in last. ---------- */
-/* Resting state = finished (squares settled + overlap visible) so the
-   outgoing panel holds and fades; fill-mode: both keeps the incoming
-   off-position/hidden through its lead-in. */
+/* ---------- PARTNER: squares fly in from opposite corners, overshoot,
+   settle; overlap fades in. Exit: overlap fades, then the squares drift
+   back APART and fade (they part ways - no overshoot). ------------- */
 .partner-square {
-  opacity: 1;
+  opacity: 0;
   transform: none;
   transform-box: fill-box;
   transform-origin: center;
 }
 .partner-overlap {
-  opacity: 1;
+  opacity: 0;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-square--tl {
-  animation: partner-fly-tl 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 140ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .partner-square--tl {
+  animation: partner-fly-tl 1000ms cubic-bezier(0.34, 1.4, 0.64, 1) 160ms both;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-square--br {
-  animation: partner-fly-br 1000ms cubic-bezier(0.34, 1.40, 0.64, 1) 220ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .partner-square--br {
+  animation: partner-fly-br 1000ms cubic-bezier(0.34, 1.4, 0.64, 1) 240ms both;
 }
-.how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-overlap {
-  animation: partner-overlap-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both;
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .partner-overlap {
+  animation: partner-overlap-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 940ms both;
 }
-/* The two keyframes are direction-specific. The 70% bump pushes the
-   square slightly past its final position (overshoot - "almost
-   bouncing back from one another") before settling at 100%. */
+/* Exit. */
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .partner-overlap {
+  animation: hww-fade-out 320ms ease both;
+}
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .partner-square--tl {
+  animation: partner-part-tl 820ms cubic-bezier(0.4, 0, 0.2, 1) 200ms both;
+}
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .partner-square--br {
+  animation: partner-part-br 820ms cubic-bezier(0.4, 0, 0.2, 1) 200ms both;
+}
 @keyframes partner-fly-tl {
   0%   { opacity: 0; transform: translate(-55px, -55px); }
   20%  { opacity: 1; }
@@ -1252,6 +1310,14 @@
 @keyframes partner-overlap-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+@keyframes partner-part-tl {
+  from { opacity: 1; transform: translate(0, 0); }
+  to   { opacity: 0; transform: translate(-46px, -46px); }
+}
+@keyframes partner-part-br {
+  from { opacity: 1; transform: translate(0, 0); }
+  to   { opacity: 0; transform: translate(46px, 46px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

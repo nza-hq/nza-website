@@ -67,16 +67,21 @@ const PHASES: Array<{
   },
 ]
 
-/* Time each phase holds before auto-advancing (Chris: 4.5s - snappier
-   than the first 7s pass). The graphic's own animation lands within this,
-   and the user can hover/focus to pause for a full read. Kept in sync
-   with the CSS --hww-interval that drives the tab progress bar. */
+/* Time each phase holds before auto-advancing (Chris: 4.5s). Kept in sync
+   with the CSS --hww-interval that drives the tab progress bar. Within
+   this window each graphic runs a lifecycle: it enters, holds, then plays
+   an EXIT animation (EXIT_MS before the advance) so it's never just sat
+   there static - the graphic leaves the way it came, roughly. */
 const AUTO_ADVANCE_MS = 4500
+const EXIT_MS = 1400
 
 export function HowWeWorkSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const [revealed, setRevealed] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
+  /* The active phase that has entered its EXIT animation (the last
+     EXIT_MS of its window). -1 = nobody exiting. */
+  const [exitingIndex, setExitingIndex] = useState(-1)
   /* Paused while the user hovers / keyboard-focuses the module, so the
      phase never advances out from under them mid-read. */
   const [paused, setPaused] = useState(false)
@@ -101,15 +106,29 @@ export function HowWeWorkSection() {
     return () => obs.disconnect()
   }, [])
 
-  /* Auto-advance the phases while the section is in view, not paused, and
-     motion is allowed. Keyed on activeIndex so a manual select resets the
-     hold (setTimeout restarts), giving the chosen phase a full interval. */
+  /* Auto-advance while the section is in view, not paused, motion allowed.
+     Keyed on activeIndex so a manual select / advance restarts the cycle.
+     Two timers per phase:
+       - EXIT timer  fires EXIT_MS before the advance and flips this phase
+                     into its exit animation (setExitingIndex).
+       - ADVANCE timer moves to the next phase (which enters fresh). */
   useEffect(() => {
+    // Reset the exit state on any (re)start - a new active phase, a
+    // resume from pause, or a manual select all begin fresh (enter -> hold).
+    setExitingIndex(-1)
     if (!revealed || paused || reducedMotion) return
-    const id = window.setTimeout(() => {
-      setActiveIndex((i) => (i + 1) % PHASES.length)
-    }, AUTO_ADVANCE_MS)
-    return () => window.clearTimeout(id)
+    const exitTimer = window.setTimeout(
+      () => setExitingIndex(activeIndex),
+      AUTO_ADVANCE_MS - EXIT_MS,
+    )
+    const advanceTimer = window.setTimeout(
+      () => setActiveIndex((i) => (i + 1) % PHASES.length),
+      AUTO_ADVANCE_MS,
+    )
+    return () => {
+      window.clearTimeout(exitTimer)
+      window.clearTimeout(advanceTimer)
+    }
   }, [revealed, paused, reducedMotion, activeIndex])
 
   return (
@@ -154,7 +173,8 @@ export function HowWeWorkSection() {
                   aria-hidden="true"
                   className={
                     'how-we-work-phase-panel' +
-                    (i === activeIndex ? ' is-active' : '')
+                    (i === activeIndex ? ' is-active' : '') +
+                    (i === exitingIndex ? ' is-exiting' : '')
                   }
                 >
                   <div className="how-we-work-phase-visual">
