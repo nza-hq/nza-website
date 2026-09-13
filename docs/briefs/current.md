@@ -1,17 +1,11 @@
 # Current brief
 
-**Active:** none.
+**Active:** [`active/screen3-signoff-copy.md`](active/screen3-signoff-copy.md)
+— Landing: screen 3 + sign-off copy (R01, Claude Chat, 13 Sep 2026).
+Copy-only: screen 3 heading → "What we've built", intro deleted, three card
+promises + NZ:AI question rewritten; sign-off headline/body rewritten. Screen 2
+(HowWeWorkSection) out of scope.
 
-**Last completed:** [`archive/nzai-showcase_COMPLETED.md`](archive/nzai-showcase_COMPLETED.md)
-— NZ:AI page restructure: from process to proof (R01, Claude Chat, 11 Sep 2026).
-/nz-ai's three process stages replaced with four video-backed showcase items;
-a `video` visual type added to the shared `ProductStepsSection`.
+Status: in progress.
 
-**Open follow-ups:**
-- Real NZ:AI showcase footage (placeholders in `public/videos/nzai/`; spec in
-  `docs/videos-nzai-README.md`).
-- MANDATORY independent review of the nzai-showcase diff (shared
-  `ProductStepsSection`) before merge.
-
-**Also recently completed:**
-[`archive/landing-screens-2-3_COMPLETED.md`](archive/landing-screens-2-3_COMPLETED.md).
+**Last completed:** [`archive/nzai-showcase_COMPLETED.md`](archive/nzai-showcase_COMPLETED.md).
