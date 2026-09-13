@@ -1062,8 +1062,13 @@
 .how-we-work-phase-body {
   grid-area: 1 / 1;
   margin: 0;
-  font-family: var(--font-body);
-  font-weight: 400;
+  /* Stolzl Light, not Inter - matches the homepage's supporting body
+     voice (get-in-touch body, product promises, this section's own
+     statement) per Chris's "Stolzl throughout the homepage" rule.
+     Weight 300 (not the 100 used on light surfaces) holds up as white
+     on the coral panel. */
+  font-family: var(--font-display);
+  font-weight: 300;
   font-size: 14px;
   line-height: 1.6;
   color: #fff;

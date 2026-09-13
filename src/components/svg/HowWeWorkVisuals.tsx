@@ -198,20 +198,29 @@ export function PartnerVisual() {
         strokeWidth="1.5"
         className="partner-overlap"
       />
-      {/* NZ:AI mark - pops into the centre of the navy overlap once the
-          square has formed ("NZ:AI as your partner"). Placeholder asset:
-          the NZ:AI wordmark (no circular icon exists yet); swap the href
-          for a circular icon when there is one. 56x28 = the wordmark's 2:1
-          ratio, centred on (100,100). */}
-      <image
+      {/* Round NZA mark - pops into the centre of the navy overlap once the
+          square has formed ("NZA as your partner"). The circle+triangles
+          mark (from nza-mark-thick-layered.svg) reads cleaner here than the
+          wordmark did. Inlined as a nested <svg> so it can render cream on
+          the navy square (an <image href> would show the black source), and
+          so preserveAspectRatio handles the scale from the mark's own
+          267-unit space. 46x46 centred on (100,100). */}
+      <svg
         className="partner-logo"
-        href="/assets/logos/nzai-logo.svg"
-        x="72"
-        y="86"
-        width="56"
-        height="28"
+        x="77"
+        y="77"
+        width="46"
+        height="46"
+        viewBox="0 0 266.99 267"
+        fill="#F7F4EF"
         preserveAspectRatio="xMidYMid meet"
-      />
+        aria-hidden="true"
+      >
+        <path d="M133.49,267C59.88,267,0,207.11,0,133.5S59.88,0,133.49,0s133.5,59.89,133.5,133.5-59.89,133.5-133.5,133.5ZM133.49,9.98c-68.11,0-123.52,55.41-123.52,123.52s55.41,123.52,123.52,123.52,123.52-55.41,123.52-123.52S201.6,9.98,133.5,9.98h0Z" />
+        <path d="M196.16,151.02l-8.05-10-54.23-67.41c-.2-.25-.58-.25-.78,0l-54.23,67.41-8.05,10-36.7,45.61c-.26.33-.03.81.39.81h197.95c.42,0,.65-.49.39-.81l-36.7-45.61ZM55.39,187.44c-.42,0-.65-.49-.39-.81l28.65-35.61,8.05-10,41.4-51.46c.2-.25.58-.25.78,0l41.4,51.46,8.05,10,28.65,35.61c.26.33.03.81-.39.81H55.39Z" />
+        <path d="M155.91,143.02h-12.84l-9.19-11.43c-.2-.25-.58-.25-.78,0l-9.19,11.43h-12.84l22.03-27.38c.2-.25.58-.25.78,0l22.03,27.38Z" />
+        <path d="M133.1,29.19l-98.98,123.01c-.26.33-.03.81.39.81h197.95c.42,0,.65-.49.39-.81L133.88,29.19c-.2-.25-.58-.25-.78,0ZM55,142.21l78.1-97.06c.2-.25.58-.25.78,0l78.1,97.06c.26.33.03.81-.39.81H55.39c-.42,0-.65-.49-.39-.81Z" />
+      </svg>
     </svg>
   )
 }
