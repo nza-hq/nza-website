@@ -86,6 +86,17 @@ function perimeterClockwiseIndex(xi: number, yi: number): number {
   return 16 - yi // left edge (xi === 0, yi 1-3): 13-15
 }
 
+/* Order (0-8) the 9 inner cells (xi,yi in 1..3) appear in: a clockwise
+   spiral from the inner top-left, ending at the centre - echoing the
+   clockwise perimeter, then filling inward. */
+function innerSpiralIndex(xi: number, yi: number): number {
+  if (yi === 1) return xi - 1 // top: (1,1)=0 (2,1)=1 (3,1)=2
+  if (xi === 3) return yi + 1 // right: (3,2)=3 (3,3)=4
+  if (yi === 3) return 5 + (2 - xi) // bottom R->L: (2,3)=5 (1,3)=6
+  if (xi === 1) return 7 // left: (1,2)=7
+  return 8 // centre (2,2)
+}
+
 export function BuildVisual() {
   return (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -102,8 +113,16 @@ export function BuildVisual() {
               stroke="currentColor"
               strokeWidth="1.5"
               /* Perimeter outlines lead the sequence; the 9 inner dots
-                 appear LAST (after the line), so they get their own class. */
+                 appear LAST (after the line), spiralling in clockwise via
+                 --inner-order. */
               className={isPerimeter ? 'build-dot-outline' : 'build-dot-inner'}
+              style={
+                isPerimeter
+                  ? undefined
+                  : ({
+                      '--inner-order': innerSpiralIndex(xi, yi),
+                    } as CSSProperties)
+              }
             />
           )
         }),
@@ -178,6 +197,20 @@ export function PartnerVisual() {
         stroke="#0E1120"
         strokeWidth="1.5"
         className="partner-overlap"
+      />
+      {/* NZ:AI mark - pops into the centre of the navy overlap once the
+          square has formed ("NZ:AI as your partner"). Placeholder asset:
+          the NZ:AI wordmark (no circular icon exists yet); swap the href
+          for a circular icon when there is one. 56x28 = the wordmark's 2:1
+          ratio, centred on (100,100). */}
+      <image
+        className="partner-logo"
+        href="/assets/logos/nzai-logo.svg"
+        x="72"
+        y="86"
+        width="56"
+        height="28"
+        preserveAspectRatio="xMidYMid meet"
       />
     </svg>
   )

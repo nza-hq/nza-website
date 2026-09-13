@@ -159,11 +159,22 @@ export function HowWeWorkSection() {
           for the section's runway, then releases. */}
       <div className="how-we-work-page-pin">
         <div className="how-we-work-page-grid">
-          {/* LEFT - the specialist statement. */}
+          {/* LEFT - the specialist statement, two sentences with a small
+              vertical break between them. (Spans, not <p>, because
+              MaskReveal wraps its children in a <span>.) */}
           <div className="how-we-work-page-left">
-            <MaskReveal as="p" className="how-we-work-page-para" delay={0}>
-              We are specialists in buildings, energy, and climate, with one
-              way of working alongside your team and the tools you own.
+            <MaskReveal
+              as="div"
+              className="how-we-work-page-statement"
+              delay={0}
+            >
+              <span className="how-we-work-page-para">
+                We are specialists in buildings, energy and climate.
+              </span>
+              <span className="how-we-work-page-para">
+                We work alongside your team to build tools that are tailored,
+                intuitive, and yours to own.
+              </span>
             </MaskReveal>
           </div>
 
