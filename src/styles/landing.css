@@ -1204,10 +1204,12 @@
   }
 }
 
-/* ---------- BUILD: outlines > fills > square draws clockwise; then the
-   square UN-DRAWS (erases) and the dots fade - a disassemble. --------- */
+/* ---------- BUILD (Chris's order): outer dots appear + go solid
+   (clockwise) -> the line follows them -> the inner dots appear last.
+   Exit: the square un-draws and everything fades. --------- */
 .build-dot-outline,
 .build-dot-fill,
+.build-dot-inner,
 .build-line {
   opacity: 0;
 }
@@ -1215,25 +1217,30 @@
   stroke-dasharray: 600;
   stroke-dashoffset: 0;
 }
+/* 1. Outer dots appear (as rings). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-outline {
-  animation: build-outline-appear 300ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
+  animation: build-outline-appear 260ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
 }
+/* 2. ...and go solid, clockwise from the top-left, BEFORE the line. */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-fill {
-  /* Each perimeter circle fills as the line reaches it, clockwise from the
-     top-left, rather than all at once. The line starts at 640ms and draws
-     the 16-position perimeter over ~1000ms, so ~62ms per position keeps the
-     fill riding just behind the line. */
-  animation: build-fill-appear 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(640ms + var(--fill-order, 0) * 62ms);
+  animation: build-fill-appear 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(360ms + var(--fill-order, 0) * 32ms);
 }
+/* 3. The line follows the now-solid perimeter (fills finish ~1040ms). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-line {
-  animation: build-line-draw 1000ms cubic-bezier(0.4, 0, 0.2, 1) 640ms both;
+  animation: build-line-draw 780ms cubic-bezier(0.4, 0, 0.2, 1) 1080ms both;
+}
+/* 4. The inner dots appear last, after the line has drawn (~1860ms). */
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-active:not(.is-exiting)
+  .build-dot-inner {
+  animation: build-outline-appear 340ms cubic-bezier(0.16, 1, 0.3, 1) 1900ms both;
 }
 /* Exit: line retracts (offset 0 -> 600, un-draws) then dots fade. */
 .how-we-work-page.is-revealed
@@ -1246,7 +1253,10 @@
   .build-dot-outline,
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-exiting
-  .build-dot-fill {
+  .build-dot-fill,
+.how-we-work-page.is-revealed
+  .how-we-work-phase-panel.is-exiting
+  .build-dot-inner {
   animation: hww-fade-out 520ms ease 240ms both;
 }
 @keyframes build-outline-appear {
@@ -1340,6 +1350,7 @@
   .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .decode-dot,
   .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-outline,
   .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-fill,
+  .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .build-dot-inner,
   .how-we-work-page.is-revealed .how-we-work-phase-panel.is-active .partner-overlap {
     animation: none;
     opacity: 1;

@@ -90,18 +90,23 @@ export function BuildVisual() {
   return (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       {GRID_Y.map((cy, yi) =>
-        GRID_X.map((cx, xi) => (
-          <circle
-            key={`outline-${xi}-${yi}`}
-            cx={cx}
-            cy={cy}
-            r="7"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="build-dot-outline"
-          />
-        )),
+        GRID_X.map((cx, xi) => {
+          const isPerimeter = yi === 0 || yi === 4 || xi === 0 || xi === 4
+          return (
+            <circle
+              key={`outline-${xi}-${yi}`}
+              cx={cx}
+              cy={cy}
+              r="7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              /* Perimeter outlines lead the sequence; the 9 inner dots
+                 appear LAST (after the line), so they get their own class. */
+              className={isPerimeter ? 'build-dot-outline' : 'build-dot-inner'}
+            />
+          )
+        }),
       )}
       {GRID_Y.map((cy, yi) =>
         GRID_X.map((cx, xi) => {
