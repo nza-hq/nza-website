@@ -1974,22 +1974,6 @@
   color: var(--coral);
 }
 
-/* Body intro - Stolzl Thin on cream. */
-.products-intro {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 100;
-  font-size: clamp(18px, 1.8vw, 24px);
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  /* Was --ink-navy at 0.85 opacity (dark blue cast). Switched to
-     --ink per Chris's site-wide rule "make it dark grey if it's
-     on a cream background." --ink is #1A1D20 - reads as neutral
-     dark grey rather than navy. Opacity dropped so the colour
-     resolves to its full dark-grey value. */
-  color: var(--ink);
-}
-
 /* TRIPTYCH - three equal cells side by side using the full frame width. */
 .products-triptych {
   display: grid;

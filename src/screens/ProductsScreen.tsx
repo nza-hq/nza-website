@@ -54,9 +54,9 @@ const PRODUCTS: Product[] = [
        actual /nz-ai product page where the canvas is dark navy. */
     logoSrc: '/assets/logos/nzai-logo-dark.svg',
     alt: 'NZ:AI',
-    question: 'Want net zero tools built around your organisation?',
+    question: 'Want to do more with your data?',
     promise:
-      'Built around your organisation, whatever shape the problem takes.',
+      'Our partnership approach: we build the tools your organisation needs, and work alongside your team to act on what matters.',
   },
   {
     id: 'pablo',
@@ -66,7 +66,7 @@ const PRODUCTS: Product[] = [
     alt: 'PABLO',
     question: 'Want to cut your electricity costs?',
     promise:
-      'When the problem is energy: what it costs, and what to do about it.',
+      'Break down what you actually pay for, then model solar, storage and demand against it.',
   },
   {
     id: 'decoded',
@@ -75,7 +75,8 @@ const PRODUCTS: Product[] = [
     logoSrc: '/assets/logos/decoded-logo.svg',
     alt: 'decodED',
     question: 'Running climate action in education?',
-    promise: 'Built for education, and free for every institution.',
+    promise:
+      'Build a climate action plan for your site. Free for every nursery, school, college and university.',
   },
 ]
 
@@ -193,10 +194,7 @@ export function ProductsScreen() {
       <div className="frame">
         <div className="products-intro-block">
           <MaskReveal as="h2" className="products-heading" delay={0}>
-            Where it starts
-          </MaskReveal>
-          <MaskReveal as="p" className="products-intro" delay={200}>
-            Three ways in, depending on what you need first.
+            What we've built
           </MaskReveal>
         </div>
 
