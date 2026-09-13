@@ -49,11 +49,13 @@ export function GetInTouchScreen() {
       <div className="frame">
         <div className="get-in-touch-inner">
           <MaskReveal as="h2" className="get-in-touch-headline" delay={0}>
-            Let's <em>talk</em>.
+            Tell us what you'd <em>build</em>.
           </MaskReveal>
           <MaskReveal as="p" className="get-in-touch-body" delay={120}>
-            We'd be delighted to hear from you. Whether you want a quick demo,
-            a longer conversation, or just to ask questions.
+            The tools that used to take a year and a budget most organisations
+            could never justify now take weeks. That changes what is worth
+            attempting. If you have an idea, or a problem you have been working
+            around for years, we would like to hear it.
           </MaskReveal>
           <MaskReveal as="div" className="get-in-touch-cta-wrap" delay={240}>
             <a className="get-in-touch-cta" href={CONTACT_HREF}>
