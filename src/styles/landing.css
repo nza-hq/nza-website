@@ -1223,7 +1223,12 @@
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-fill {
-  animation: build-fill-appear 420ms cubic-bezier(0.16, 1, 0.3, 1) 400ms both;
+  /* Each perimeter circle fills as the line reaches it, clockwise from the
+     top-left, rather than all at once. The line starts at 640ms and draws
+     the 16-position perimeter over ~1000ms, so ~62ms per position keeps the
+     fill riding just behind the line. */
+  animation: build-fill-appear 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(640ms + var(--fill-order, 0) * 62ms);
 }
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)

@@ -74,6 +74,18 @@ export function DecodeVisual() {
   )
 }
 
+/* Clockwise position (0-15) of a perimeter cell, starting at the top-left
+   corner and following the same path the build square's line draws:
+   top edge L->R, right edge T->B, bottom edge R->L, left edge B->T. Used
+   to stagger each perimeter circle's fill so it lights up as the line
+   reaches it, rather than all at once. */
+function perimeterClockwiseIndex(xi: number, yi: number): number {
+  if (yi === 0) return xi // top edge: 0-4
+  if (xi === 4) return 4 + yi // right edge: 5-8
+  if (yi === 4) return 8 + (4 - xi) // bottom edge: 9-12
+  return 16 - yi // left edge (xi === 0, yi 1-3): 13-15
+}
+
 export function BuildVisual() {
   return (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -103,6 +115,11 @@ export function BuildVisual() {
               r="7"
               fill="currentColor"
               className="build-dot-fill"
+              style={
+                {
+                  '--fill-order': perimeterClockwiseIndex(xi, yi),
+                } as CSSProperties
+              }
             />
           )
         }),
