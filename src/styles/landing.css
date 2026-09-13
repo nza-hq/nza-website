@@ -925,18 +925,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* More breathing room between the graphic, the tabs and the text
-     (Chris). */
+  /* More breathing room between the graphic, the tabs and the text. */
   gap: clamp(32px, 5vh, 64px);
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-  /* Arrive AFTER the left statement - ~1s stagger so the copy lands
-     first, then the phase module (Chris). */
-  transition-delay: 1000ms;
 }
-.how-we-work-page.is-revealed .how-we-work-page-right {
+/* The whole right side is held back RIGHT_REVEAL_DELAY_MS in JS so it
+   arrives after the left statement. The FIGURE is NOT opacity-faded - it
+   reveals by its graphic assembling (fading the figure would mask the
+   assemble, which is what made Decode look like it just faded in). The
+   tabs + text DO fade up on reveal. */
+.how-we-work-phase-tabs,
+.how-we-work-phase-copy {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.how-we-work-page.is-revealed .how-we-work-phase-tabs,
+.how-we-work-page.is-revealed .how-we-work-phase-copy {
   opacity: 1;
   transform: none;
 }
@@ -1164,8 +1169,8 @@
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-exiting
   .decode-dot {
-  animation: decode-dot-lift 900ms cubic-bezier(0.5, 0, 0.75, 0) both;
-  animation-delay: calc(var(--dot-index, 0) * 20ms);
+  animation: decode-dot-lift 900ms cubic-bezier(0.4, 0, 0.6, 1) both;
+  animation-delay: calc(var(--dot-index, 0) * 14ms);
 }
 @keyframes decode-dot-assemble {
   from {
@@ -1181,15 +1186,20 @@
   }
 }
 @keyframes decode-dot-lift {
-  from {
+  0% {
     opacity: 1;
     transform: translate(0, 0);
   }
-  to {
+  /* Hold opacity while they start lifting so the MOVEMENT is seen first;
+     the fade comes in the back half (Chris). */
+  50% {
+    opacity: 1;
+  }
+  100% {
     opacity: 0;
     transform: translate(
       calc(var(--from-x, 0) * 0.3),
-      calc(var(--from-y, 0) * 0.3 - 54px)
+      calc(var(--from-y, 0) * 0.3 - 64px)
     );
   }
 }

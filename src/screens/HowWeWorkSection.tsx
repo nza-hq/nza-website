@@ -73,7 +73,15 @@ const PHASES: Array<{
    an EXIT animation (EXIT_MS before the advance) so it's never just sat
    there static - the graphic leaves the way it came, roughly. */
 const AUTO_ADVANCE_MS = 4500
-const EXIT_MS = 1400
+/* Exit begins EXIT_MS before the advance. 1.7s gives each graphic's exit
+   room to finish MOVING away before the phase switches (Chris: the exit
+   was fading before it finished). */
+const EXIT_MS = 1700
+/* The right side (graphic + tabs + text) reveals this long after the
+   section enters, so the left statement lands first AND the Decode
+   assemble is actually seen - it plays into a visible figure rather than
+   under an entrance fade. */
+const RIGHT_REVEAL_DELAY_MS = 850
 
 export function HowWeWorkSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
@@ -90,11 +98,17 @@ export function HowWeWorkSection() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
+    let revealTimer = 0
     const obs = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setRevealed(true)
+            /* Hold the right side back briefly so the left arrives first
+               and the graphic assembles into a visible figure. */
+            revealTimer = window.setTimeout(
+              () => setRevealed(true),
+              RIGHT_REVEAL_DELAY_MS,
+            )
             obs.disconnect()
             break
           }
@@ -103,7 +117,10 @@ export function HowWeWorkSection() {
       { threshold: 0.25 },
     )
     obs.observe(el)
-    return () => obs.disconnect()
+    return () => {
+      obs.disconnect()
+      window.clearTimeout(revealTimer)
+    }
   }, [])
 
   /* Auto-advance while the section is in view, not paused, motion allowed.
