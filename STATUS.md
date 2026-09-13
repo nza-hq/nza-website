@@ -28,9 +28,12 @@ Screen 2 (HowWeWorkSection) untouched, per brief.
   clean; `npm run build` clean. Also updated two `.products-*` CSS comments that
   still named "Where it starts" → "What we've built" so grep stays clean.
 
-**Known issues / notes:**
-- Screen 2's Partner graphic still uses the NZ:AI wordmark as a placeholder for a
-  circular NZ:AI icon (no circular-icon asset exists yet) — awaiting Chris.
+**Follow-up tweaks (13 Sep 2026, Co-Work) — pushed:**
+- Screen 2 Decode/Build/Partner body copy now Stolzl Light (was Inter), matching
+  the homepage supporting-body voice.
+- Screen 2 Partner graphic now uses the round NZA mark (circle + triangles) inlined
+  with a cream fill, replacing the NZ:AI wordmark placeholder. Circular-icon note
+  resolved.
 
 ## Previous chunk (was Last completed)
 
