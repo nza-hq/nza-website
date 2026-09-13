@@ -784,7 +784,7 @@
   /* 200vh runway (Chris, Sept 2026): the inner .how-we-work-page-pin is
      sticky and ~one viewport tall, so the two-column panel LOCKS to the
      screen for ~100vh of scroll before releasing - the "locked into full
-     screen" feel, matching the "Where it starts" section. Mobile drops
+     screen" feel, matching the "What we've built" section. Mobile drops
      the runway (height:auto) below.
      The parallax ENTRY is unchanged: the hero is position: sticky in
      .hero-coral-stack (below) and this coral panel rises UP over it. */
@@ -828,7 +828,7 @@
 }
 /* PIN - the two-column panel locks to the viewport (below the 68px nav)
    for the section's runway, then releases: the "locked into full screen"
-   feel Chris wants, consistent with the "Where it starts" pin. */
+   feel Chris wants, consistent with the "What we've built" pin. */
 .how-we-work-page-pin {
   position: sticky;
   top: 68px;
@@ -1919,7 +1919,7 @@
      actually visible, not across the whole viewport (which straddles the
      nav). Previously top:0 + justify-content:center centred across the
      full 100vh, so at short (laptop) viewport heights the taller content
-     pushed the "Where it starts" heading up UNDER the nav - the "locking
+     pushed the "What we've built" heading up UNDER the nav - the "locking
      at the wrong point / cut off" Chris flagged.
      `safe center` centres when the content fits and top-aligns (still
      below the nav) when it doesn't, so the heading is never clipped. */

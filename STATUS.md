@@ -2,6 +2,38 @@
 
 ## Last completed chunk
 
+**Landing: screen 3 + sign-off copy (R01) — COMPLETE (13 Sep 2026, Co-Work).**
+Brief archived at `docs/briefs/archive/screen3-signoff-copy_COMPLETED.md`.
+Copy-only revision to landing screens 3 (ProductsScreen) and 4 (GetInTouchScreen).
+Screen 2 (HowWeWorkSection) untouched, per brief.
+
+- [x] **Part 1** — brief landed at `docs/briefs/active/screen3-signoff-copy.md`;
+  `current.md` repointed.
+- [x] **Part 2** — screen 3: heading `Where it starts` → `What we've built`; the
+  `.products-intro` "Three ways in…" element deleted entirely (element, not just
+  string); orphaned `.products-intro` CSS rule removed (`.products-intro-block`
+  kept — still used). Card copy: NZ:AI question → "Want to do more with your
+  data?" + longer partnership promise (kept long, per brief); PABLO + decodED
+  promises rewritten. Card order NZ:AI/PABLO/decodED unchanged. Heading reveal
+  delay left at 0 (no retiming needed once the intro reveal was gone).
+- [x] **Part 3** — screen 4: headline `Let's talk.` → `Tell us what you'd build.`
+  (italic coral emphasis moved talk→build); body replaced with the longer
+  economic-argument copy; CTA "Get in touch" unchanged.
+- [x] **Part 4** — verified at 375px: no horizontal overflow; get-in-touch inner
+  block 715px inside an 812px viewport — full body + CTA + EMAIL/LINKEDIN/CALL
+  row all fit, CTA not pushed off (screenshot captured). Grep clean: "Three ways
+  in" and the "Where it starts" heading both gone; `products-intro` returns only
+  the still-used `.products-intro-block`. Accents intact (NZ:AI teal, PABLO
+  orange, decodED green→orange); Explore hrefs /nz-ai //pablo //decoded. Console
+  clean; `npm run build` clean. Also updated two `.products-*` CSS comments that
+  still named "Where it starts" → "What we've built" so grep stays clean.
+
+**Known issues / notes:**
+- Screen 2's Partner graphic still uses the NZ:AI wordmark as a placeholder for a
+  circular NZ:AI icon (no circular-icon asset exists yet) — awaiting Chris.
+
+## Previous chunk (was Last completed)
+
 **NZ:AI showcase: from process to proof (R01) — COMPLETE (Sept 2026, Co-Work).**
 Brief archived at `docs/briefs/archive/nzai-showcase_COMPLETED.md`.
 Replaced /nz-ai's three process stages with four video-backed showcase items.
