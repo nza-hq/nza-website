@@ -1125,7 +1125,11 @@
     /* Land snapped sections below the sticky nav, not under it. */
     scroll-padding-top: 68px;
   }
-  #how-we-work,
+  /* #how-we-work (coral) is deliberately NOT a snap target: it sits under
+     the sticky-parallax hero (#home stays position:sticky on mobile so the
+     coral rises up over it), and a snap point fighting that sticky crest
+     made the hero->coral hand-off jitter on device (Chris). Let that one
+     scroll naturally; the sections below it snap fine. */
   #solutions,
   #get-in-touch {
     scroll-snap-align: start;
@@ -1999,7 +2003,9 @@
 @media (max-width: 599px) {
   .products-triptych {
     grid-template-columns: 1fr;
-    gap: 40px;
+    /* Tighter stack on phone so NZ:AI / PABLO / decodED read as one group
+       rather than three widely spaced cards (Chris: too spread out). */
+    gap: 16px;
   }
 }
 
