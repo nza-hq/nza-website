@@ -735,7 +735,8 @@ body.context-decoded .nza-logo-mark-only-svg #nza-logo-mark-mobile {
 .contact-page-blurb {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 100;
+  /* Stolzl 100 (Thin) dropped in the Adobe move; remapped to 300 (Light). */
+  font-weight: 300;
   font-size: clamp(16px, 1.6vw, 20px);
   line-height: 1.55;
   color: var(--ink-navy);

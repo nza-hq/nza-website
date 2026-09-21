@@ -2345,7 +2345,9 @@
 .product-card-promise {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 100;
+  /* Stolzl 100 (Thin) is dropped in the Adobe move; remapped to 300 (Light),
+     the lightest licensed weight. Was var(--font-display) at 100. */
+  font-weight: 300;
   font-size: 14px;
   line-height: 1.45;
   /* Navy ~85% on cream (was cream 65% on navy in v2 chunk C). */
