@@ -169,11 +169,16 @@ export function HowWeWorkSection() {
               delay={0}
             >
               <span className="how-we-work-page-para">
-                We are specialists in buildings, energy and climate.
+                Net zero decisions require a complete picture of an
+                organisation's energy, carbon and climate risk, shared by
+                everyone who acts on it.
               </span>
               <span className="how-we-work-page-para">
-                We work alongside your team to build tools that are tailored,
-                intuitive, and yours to own.
+                We establish that picture with your team, build the tools to
+                act on it, and remain alongside as the work develops.
+              </span>
+              <span className="how-we-work-page-cadence">
+                Decode. Build. Partner.
               </span>
             </MaskReveal>
           </div>

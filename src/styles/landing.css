@@ -878,6 +878,18 @@
 .how-we-work-page-para + .how-we-work-page-para {
   margin-top: clamp(14px, 1.8vh, 24px);
 }
+/* "Decode. Build. Partner." - the method signature under the statement,
+   echoing the three phase tabs. Coral moment, display face, a step down in
+   size so it reads as a beat rather than a third sentence. */
+.how-we-work-page-cadence {
+  display: block;
+  margin-top: clamp(20px, 3vh, 34px);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.9vw, 24px);
+  letter-spacing: -0.005em;
+  color: var(--coral);
+}
 
 /* RIGHT - the three phases. */
 .how-we-work-page-right {
