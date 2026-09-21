@@ -49,21 +49,23 @@ const PHASES: Array<{
     number: '01',
     name: 'Decode',
     body:
-      'We begin with what your organisation already holds — knowledge and data alike, much of it undocumented. We work alongside your team to uncover it, structure it, and establish what is solid enough to act on.',
+      'We start by learning how your organisation works and where its data comes from. Some of it exists, some we gather. What matters is how it connects.',
   },
   {
     id: 'build',
     number: '02',
     name: 'Build',
     body:
-      'What we build follows from what we find. The form varies; the principle does not. One place your information lives, open to everyone who needs it, and built to be added to rather than just read.',
+      'Then we build the tool for the job — a digital twin, a dashboard, a way to test scenarios. Whatever the form, the whole organisation works from the same information.',
   },
   {
+    /* id stays 'partner' - it wires the PartnerVisual graphic and all the
+       .partner-* animation CSS. Only the display name changed to "Embed". */
     id: 'partner',
     number: '03',
-    name: 'Partner',
+    name: 'Embed',
     body:
-      'The tool is yours, along with the data and the method behind it. We stay to keep it valuable — refining it as your information improves, widening it as more of your organisation comes to rely on it.',
+      'From there we hand over what is built, but we stay part of your team — continually building together and advising as the sector changes.',
   },
 ]
 
@@ -169,16 +171,14 @@ export function HowWeWorkSection() {
               delay={0}
             >
               <span className="how-we-work-page-para">
-                Net zero decisions require a complete picture of an
-                organisation's energy, carbon and climate risk, shared by
-                everyone who acts on it.
+                We are specialists in buildings, energy and climate — and we
+                work in partnership.
               </span>
               <span className="how-we-work-page-para">
-                We establish that picture with your team, build the tools to
-                act on it, and remain alongside as the work develops.
+                Every project is founded on the same three stages.
               </span>
               <span className="how-we-work-page-cadence">
-                Decode. Build. Partner.
+                Decode. Build. Embed.
               </span>
             </MaskReveal>
           </div>
