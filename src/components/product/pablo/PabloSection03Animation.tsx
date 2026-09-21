@@ -177,7 +177,7 @@ export function PabloSection03Animation({
       >
         <span className="pablo-s03-state-dot" />
         <span className="pablo-s03-state-text">
-          PROJECTED · 2026 — 2040
+          PROJECTED · 2026 - 2040
         </span>
       </div>
 

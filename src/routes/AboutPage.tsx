@@ -13,7 +13,7 @@ export function AboutPage() {
       <div className="stub-page-inner">
         <p className="stub-page-micro">/ABOUT</p>
         <h1 className="stub-page-headline">
-          Who we are — coming soon.
+          Who we are - coming soon.
         </h1>
       </div>
     </main>

@@ -14,7 +14,7 @@ export function ClientsPage() {
       <div className="stub-page-inner">
         <p className="stub-page-micro">/CLIENTS</p>
         <h1 className="stub-page-headline">
-          Who we work with — coming soon.
+          Who we work with - coming soon.
         </h1>
       </div>
     </main>

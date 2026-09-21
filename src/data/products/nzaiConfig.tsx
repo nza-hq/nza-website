@@ -108,7 +108,7 @@ export const nzaiConfig: ProductPageConfig = {
       </>
     ),
     body:
-      "Real progress on net zero comes from the people inside your organisation — the ones with the relationships, the knowledge, and the context to act. They need the data in front of them, in a form they can use. NZ:AI puts it there. These are four of the tools we've built.",
+      "Real progress on net zero comes from the people inside your organisation - the ones with the relationships, the knowledge, and the context to act. They need the data in front of them, in a form they can use. NZ:AI puts it there. These are four of the tools we've built.",
     accentColor: 'nzai',
   },
 

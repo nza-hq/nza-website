@@ -56,7 +56,7 @@ const PHASES: Array<{
     number: '02',
     name: 'Build',
     body:
-      'Then we build the tool for the job — a digital twin, a dashboard, a way to test scenarios. Whatever the form, the whole organisation works from the same information.',
+      'Then we build the tool for the job - a digital twin, a dashboard, a way to test scenarios. Whatever the form, the whole organisation works from the same information.',
   },
   {
     /* id stays 'partner' - it wires the PartnerVisual graphic and all the
@@ -65,7 +65,7 @@ const PHASES: Array<{
     number: '03',
     name: 'Embed',
     body:
-      'From there we hand over what is built, but we stay part of your team — continually building together and advising as the sector changes.',
+      'From there we hand over what is built, but we stay part of your team - continually building together and advising as the sector changes.',
   },
 ]
 
@@ -171,7 +171,7 @@ export function HowWeWorkSection() {
               delay={0}
             >
               <span className="how-we-work-page-para">
-                We are specialists in buildings, energy and climate — and we
+                We are specialists in buildings, energy and climate - and we
                 work in partnership.
               </span>
               <span className="how-we-work-page-para">

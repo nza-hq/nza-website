@@ -8,21 +8,21 @@ import { useEffect, useRef, useState } from 'react'
  * (IntersectionObserver-triggered), then holds in its final state.
  * Not a loop.
  *
- *   Beat 1 — DECODE   (0.0s – 1.3s)
+ *   Beat 1 - DECODE   (0.0s – 1.3s)
  *     24 dots scattered at deterministic-pseudo-random positions
  *     drift for ~0.6s, then converge into a single clean horizontal
- *     line at the SVG centre. "Decode — the unknown, made clear."
+ *     line at the SVG centre. "Decode - the unknown, made clear."
  *
- *   Beat 2 — BUILD    (1.3s – 2.6s)
+ *   Beat 2 - BUILD    (1.3s – 2.6s)
  *     6 anchor points appear along the line in sequence (~80ms apart,
  *     left to right). The line is still there; it now has structure.
- *     "Build — the tool, made yours."
+ *     "Build - the tool, made yours."
  *
- *   Beat 3 — PARTNER  (2.6s – 4.0s)
+ *   Beat 3 - PARTNER  (2.6s – 4.0s)
  *     From each anchor, a thin branch grows outward at a varied angle,
  *     ending in a small coral node. Edges draw first, nodes appear at
  *     the terminus. The original line stays visible as the spine.
- *     "Partner — acting on it, together."
+ *     "Partner - acting on it, together."
  *
  *   Held state (4.0s+)  - all three labels visible together, network
  *   frozen. Optional subtle idle pulse on a random node every few
@@ -109,7 +109,7 @@ export function ThreeBeatInfographic() {
     <div
       ref={containerRef}
       className={'three-beat' + (playing ? ' is-playing' : '')}
-      aria-label="Decode, Build, Partner — three-beat brand infographic"
+      aria-label="Decode, Build, Partner - three-beat brand infographic"
     >
       <svg
         className="three-beat-svg"
@@ -209,17 +209,17 @@ export function ThreeBeatInfographic() {
         <div className="three-beat-label" style={{ animationDelay: '900ms' }}>
           <span className="three-beat-label-dot" aria-hidden="true" />
           <span className="three-beat-label-name">Decode</span>
-          <span className="three-beat-label-body"> — the unknown, made clear.</span>
+          <span className="three-beat-label-body"> - the unknown, made clear.</span>
         </div>
         <div className="three-beat-label" style={{ animationDelay: '2100ms' }}>
           <span className="three-beat-label-dot" aria-hidden="true" />
           <span className="three-beat-label-name">Build</span>
-          <span className="three-beat-label-body"> — the tool, made yours.</span>
+          <span className="three-beat-label-body"> - the tool, made yours.</span>
         </div>
         <div className="three-beat-label" style={{ animationDelay: '3400ms' }}>
           <span className="three-beat-label-dot" aria-hidden="true" />
           <span className="three-beat-label-name">Partner</span>
-          <span className="three-beat-label-body"> — acting on it, together.</span>
+          <span className="three-beat-label-body"> - acting on it, together.</span>
         </div>
       </div>
     </div>
