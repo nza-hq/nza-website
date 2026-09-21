@@ -11,6 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0E1120" />
 
+    <!-- Adobe Fonts (Stolzl) - Web Project "NZA Website", kit tpk0png, family
+         "stolzl". A render-blocking <link> (not @import) so the primary display
+         face loads as early as possible; preconnect warms the handshake. This
+         replaces the six self-hosted Stolzl OTFs, removed for licence + payload
+         reasons. See docs/briefs/active/fonts-adobe.md. -->
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="stylesheet" href="https://use.typekit.net/tpk0png.css" />
+
     <!-- Google Fonts (Inter, DM Serif Display, JetBrains Mono). Loaded here
          rather than via an @import in the bundled CSS so they are discovered
          at HTML parse and fetched in parallel with the app CSS, with the
