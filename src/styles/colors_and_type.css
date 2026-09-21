@@ -26,43 +26,16 @@
    Paper / cream / navy as the canvas system. No gradients.
    ========================================================================= */
 
-/* ---------- Stolzl (display) ---------- */
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_thin.otf") format("opentype");
-  font-weight: 100;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_light.otf") format("opentype");
-  font-weight: 300;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_book.otf") format("opentype");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_regular.otf") format("opentype");
-  font-weight: 450;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_medium.otf") format("opentype");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Stolzl";
-  src: url("/fonts/stolzl_bold.otf") format("opentype");
-  font-weight: 700;
-  font-display: swap;
-}
+/* ---------- Stolzl (display) ----------
+   Stolzl now loads from an Adobe Fonts Web Project (kit tpk0png), embedded via
+   <link> in index.html - the licensed route for a subscription font. The six
+   self-hosted @font-face blocks (thin/light/book/regular/medium/bold OTFs)
+   were removed and the files deleted: Adobe's terms forbid hosting the
+   fonts locally, and it dropped ~220 KB of OTF from the site. Adobe's family
+   name is "stolzl", which matches every `font-family: "Stolzl"` in this file
+   case-insensitively - the casing is deliberate, not a bug. Only three weights
+   are used (300/400/500); off-spec Stolzl weights are remapped to those (see
+   docs/briefs/active/fonts-adobe.md). */
 
 /* ---------- Body + italic emphasis ----------
    Imported above (PostCSS requires @import to precede all other statements).
