@@ -2,6 +2,26 @@
 
 ## Last completed chunk
 
+**Fonts: Stolzl → Adobe Fonts (R02) — IMPLEMENTATION COMPLETE, pending review (21 Sep 2026, Co-Work).**
+Brief `docs/briefs/active/fonts-adobe.md`; results `docs/audit/fonts-adobe-results.md`.
+Stolzl now serves from an Adobe Web Project (kit `tpk0png`, family `stolzl`) via a
+preconnected `<link>` in `index.html`; six self-hosted OTFs + `@font-face` blocks deleted;
+two Stolzl `font-weight: 100` rules remapped to 300 (family-first sweep — the brief's
+"remap all four 600s" was wrong, three of four are Inter/mono). Font bytes ~220 KB → ~73 KB.
+Both blocks were cleared first: mobile-load-fix landed + verified on device; embed supplied.
+**Not archived — awaiting Claude Chat review** (Rendered-Fonts screenshots + PSI on the
+deployed site, per Part 5). Known note: the 6-weight kit makes Adobe prefetch the unused Thin
+(100) face (16.9 KB); trimming the kit to 300/400/500 in Adobe would remove it (Chris's call).
+
+**Also this session (mobile, shipped):** load fix (CSS code-split 182→117 KB; Google Fonts
+`@import` → async `<link>`) — Chris confirmed the ~15s mobile load is resolved; iOS immersive
+chrome + hero sized to `svh` so the client carousel clears Safari's bar; coral-page snap
+removed (jittered against the sticky parallax) while `#solutions`/`#get-in-touch` still snap;
+product cards tightened on phone; 7s per Decode/Build/Partner phase; Partner mark grows from
+centre on desktop; new "How we work" statement + "Decode. Build. Partner." cadence line.
+
+---
+
 **Landing: screen 3 + sign-off copy (R01) — COMPLETE (13 Sep 2026, Co-Work).**
 Brief archived at `docs/briefs/archive/screen3-signoff-copy_COMPLETED.md`.
 Copy-only revision to landing screens 3 (ProductsScreen) and 4 (GetInTouchScreen).

@@ -6,6 +6,7 @@ Project embed (kit `tpk0png`, family `stolzl`), delete the six self-hosted OTFs,
 remap off-spec Stolzl weights to 300/400/500. Both blocks cleared (load fix
 verified; embed supplied). Proceeding with the 6-weight kit per Chris.
 
-Status: in progress.
+Status: implementation complete (Parts 1–5), pending independent review (Claude
+Chat) before archive. Results: [`../audit/fonts-adobe-results.md`](../audit/fonts-adobe-results.md).
 
 **Last completed:** [`archive/screen3-signoff-copy_COMPLETED.md`](archive/screen3-signoff-copy_COMPLETED.md).
