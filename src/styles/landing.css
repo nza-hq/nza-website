@@ -1080,13 +1080,11 @@
 .how-we-work-phase-body {
   grid-area: 1 / 1;
   margin: 0;
-  /* Stolzl Light, not Inter - matches the homepage's supporting body
-     voice (get-in-touch body, product promises, this section's own
-     statement) per Chris's "Stolzl throughout the homepage" rule.
-     Weight 300 (not the 100 used on light surfaces) holds up as white
-     on the coral panel. */
-  font-family: var(--font-display);
-  font-weight: 300;
+  /* Inter (body face), matching the running body text on the product
+     pages (.product-step-body / .nz-ai-body). Chris: body copy is Inter,
+     not Stolzl - Stolzl is display only. 400 holds up as white on coral. */
+  font-family: var(--font-body);
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
   color: #fff;
@@ -2344,12 +2342,13 @@
 }
 .product-card-promise {
   margin: 0;
-  font-family: var(--font-display);
-  /* Stolzl 100 (Thin) is dropped in the Adobe move; remapped to 300 (Light),
-     the lightest licensed weight. Was var(--font-display) at 100. */
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.45;
+  /* Inter (body face), smaller - matches the product-page body voice.
+     Chris: body copy is Inter, not Stolzl (which is display only), and a
+     step smaller under each product card. Was Stolzl at 14px. */
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
   /* Navy ~85% on cream (was cream 65% on navy in v2 chunk C). */
   color: var(--ink-navy);
   opacity: 0.85;
@@ -2463,15 +2462,13 @@
 }
 .canvas-navy .get-in-touch-body,
 .get-in-touch-body {
-  /* Stolzl Light per Chris's "let's just go with Stolzl throughout"
-     rule for the homepage - was Inter at 400. The display face at
-     light weight reads as the same supporting voice the homepage
-     uses everywhere else (hero sub, products intro, how-we-work
-     tagline). */
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(18px, 1.7vw, 21px);
-  line-height: 1.5;
+  /* Inter (body face), smaller - matches the product-page body voice.
+     Chris: the sign-off body should be Inter (not Stolzl - display only)
+     and smaller. Was Stolzl 300 at clamp(18px, 1.7vw, 21px). */
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.55;
   letter-spacing: 0;
   /* Was cream at 0.78 opacity. Switched to solid white per Chris's
      site-wide rule "make it white if it's on a coloured background"
