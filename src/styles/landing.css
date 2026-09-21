@@ -1129,6 +1129,10 @@
   #solutions,
   #get-in-touch {
     scroll-snap-align: start;
+    /* always = a single swipe can't fly past a section; the scroll must
+       settle on each one before the next. Addresses Chris's "it's letting
+       me scroll past" - the section stops rather than drifting through. */
+    scroll-snap-stop: always;
     /* Each key section fills the screen so the lock reads as a full page. */
     min-height: 100svh;
   }
@@ -1743,8 +1747,11 @@
      didn't have the intended effect (the carousel still sat flush);
      a margin-bottom directly on the strip is unambiguous - the
      flex column treats it as part of the strip's outer box so the
-     bottom edge of the .landing-screen is 32px BELOW the carousel. */
-  margin-bottom: 32px;
+     bottom edge of the .landing-screen is 32px BELOW the carousel.
+     env(safe-area-inset-bottom) adds the iOS home-indicator / bottom-bar
+     inset on top, so the carousel is never hidden behind Safari's bar
+     (Chris: the bottom bar was overlapping the client carousel). */
+  margin-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
 }
 .clients-slider--thin .clients-slider-cell {
   width: 130px;
