@@ -1,5 +1,6 @@
 import { ProductPage } from '../components/product/ProductPage'
 import { nzaiConfig } from '../data/products/nzaiConfig'
+import '../styles/nz-ai.css'
 
 /**
  * /nz-ai - NZ:AI product page. Renders the shared product page template

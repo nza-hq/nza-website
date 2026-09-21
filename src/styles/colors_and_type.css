@@ -1,8 +1,15 @@
-/* @import statements must precede all other CSS statements (PostCSS strict).
-   Inter Tight, DM Serif Display, JetBrains Mono - Google Fonts.
+/* Inter Tight, DM Serif Display, JetBrains Mono - Google Fonts.
    Söhne is the spec'd body face (Adobe Fonts, licensed by Chris); until then,
-   Inter Tight is the working substitute. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=DM+Serif+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+   Inter Tight is the working substitute.
+
+   These used to load via an @import at the top of this file. An @import
+   inside the bundled CSS is only discovered AFTER the ~180 KB app CSS has
+   downloaded and parsed, and it is render-blocking - so on mobile first
+   paint waited on a cold third-party round-trip (see
+   docs/audit/mobile-load-diagnosis.md). The families now load via a
+   preconnected, non-render-blocking <link> in index.html instead. No visual
+   change - the faces and weights are identical; only how they are fetched
+   changed. */
 
 /* =========================================================================
    NZA Design System - colors_and_type.css

@@ -9,6 +9,7 @@ import {
   type GoingFurtherCard,
 } from './GoingFurtherSection'
 import { useContextClass } from '../../hooks/useContextClass'
+import '../../styles/product-page.css'
 import '../../styles/manifesto-block.css'
 import '../../styles/going-further-section.css'
 

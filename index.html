@@ -10,6 +10,28 @@
          that need to clear the bar pad with env(safe-area-inset-*). -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0E1120" />
+
+    <!-- Google Fonts (Inter, DM Serif Display, JetBrains Mono). Loaded here
+         rather than via an @import in the bundled CSS so they are discovered
+         at HTML parse and fetched in parallel with the app CSS, with the
+         handshake warmed by preconnect. media=print + onload flips it to a
+         real stylesheet once fetched, so it never blocks first paint - the
+         faces are display=swap anyway, so text paints in the fallback and
+         swaps in when ready. See docs/audit/mobile-load-diagnosis.md. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=DM+Serif+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=DM+Serif+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      />
+    </noscript>
     <title>NZA - Net Zero Advisory</title>
     <!--
       STATIC SPLASH - rendered the moment the HTML is parsed, BEFORE

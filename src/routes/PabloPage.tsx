@@ -1,5 +1,6 @@
 import { ProductPage } from '../components/product/ProductPage'
 import { pabloConfig } from '../data/products/pabloConfig'
+import '../styles/pablo.css'
 
 /**
  * /pablo - PABLO product page. Renders the shared product page template
