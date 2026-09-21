@@ -923,7 +923,7 @@
   /* --hww-interval must match AUTO_ADVANCE_MS in HowWeWorkSection.tsx -
      it drives the active-tab progress bar that counts down to the next
      auto-advance. */
-  --hww-interval: 4500ms;
+  --hww-interval: 7000ms;
   display: flex;
   flex-direction: column;
   align-items: center;

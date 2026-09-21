@@ -72,7 +72,7 @@ const PHASES: Array<{
    this window each graphic runs a lifecycle: it enters, holds, then plays
    an EXIT animation (EXIT_MS before the advance) so it's never just sat
    there static - the graphic leaves the way it came, roughly. */
-const AUTO_ADVANCE_MS = 4500
+const AUTO_ADVANCE_MS = 7000
 /* Exit begins EXIT_MS before the advance. 1.7s gives each graphic's exit
    room to finish MOVING away before the phase switches (Chris: the exit
    was fading before it finished). */
