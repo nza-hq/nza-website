@@ -1,8 +1,11 @@
 # Current brief
 
-**Active:** none. No brief in `docs/briefs/active/`.
+**Active:** [`active/fonts-adobe.md`](active/fonts-adobe.md) — Fonts: move Stolzl
+to Adobe Fonts (R02, Claude Chat, 21 Sep 2026). Serve Stolzl from an Adobe Web
+Project embed (kit `tpk0png`, family `stolzl`), delete the six self-hosted OTFs,
+remap off-spec Stolzl weights to 300/400/500. Both blocks cleared (load fix
+verified; embed supplied). Proceeding with the 6-weight kit per Chris.
 
-**Last completed:** [`archive/screen3-signoff-copy_COMPLETED.md`](archive/screen3-signoff-copy_COMPLETED.md)
-— Landing: screen 3 + sign-off copy (R01, Claude Chat, 13 Sep 2026). Copy-only:
-screen 3 heading → "What we've built", intro deleted, three card promises + NZ:AI
-question rewritten; sign-off headline → "Tell us what you'd *build*." + new body.
+Status: in progress.
+
+**Last completed:** [`archive/screen3-signoff-copy_COMPLETED.md`](archive/screen3-signoff-copy_COMPLETED.md).
