@@ -10,7 +10,9 @@ Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three 
   founded..." removed. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
   the brief's em dash in Build ("possible—a") is rendered as the site's spaced hyphen per his standing
   "replace all em dashes with hyphens" rule.
-- Section 3 cards: hierarchy logo → descriptor (always visible, Stolzl 15px / 13px phone) → explanation
+- Section 3 cards: hierarchy logo → descriptor (always visible; Chris then asked for the old question
+  line's face back: `--font-italic` serif upright, clamp(18-22px) / 16px phone, navy at rest, product
+  accent when open) → explanation
   (Inter 13px, left aligned, revealed) → status. Question layer deleted (`.product-card-question` gone).
   `Product.ready` flag: false for all three (pages still ProductComingSoon) → non-interactive "Coming
   soon"; flip to true to get `Explore {name} →` as a `Link` (tabIndex -1 while collapsed). Desktop card
