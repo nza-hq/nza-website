@@ -2,6 +2,27 @@
 
 ## In progress
 
+**Homepage approved copy + card hierarchy (copy brief, 22 Sep 2026, Co-Work / Fable) - SHIPPED.**
+Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three rotating phrases verified).
+- Section 2: new intro "We’re specialists in buildings, energy and climate. We help you make sense of
+  complex data and build the tools to decide what comes next." (subject words keep the Stolzl Medium
+  lift) + "Our approach: Decode. Build. Embed." (lead-in Light white, cadence coral). "Every project is
+  founded..." removed. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
+  the brief's em dash in Build ("possible—a") is rendered as the site's spaced hyphen per his standing
+  "replace all em dashes with hyphens" rule.
+- Section 3 cards: hierarchy logo → descriptor (always visible, Stolzl 15px / 13px phone) → explanation
+  (Inter 13px, left aligned, revealed) → status. Question layer deleted (`.product-card-question` gone).
+  `Product.ready` flag: false for all three (pages still ProductComingSoon) → non-interactive "Coming
+  soon"; flip to true to get `Explore {name} →` as a `Link` (tabIndex -1 while collapsed). Desktop card
+  min-height 420 → 480 (PABLO paragraph is the longest; 45px slack). Phone: logo slot 64, card padding
+  24/12, compact (non-open) cards 40px logo + 12px descriptor; measured 553 closed / 573 open in a 613
+  budget at 393x705.
+- Section 4: two approved paragraphs (`.get-in-touch-body--lead` for the first), CTA "Get in touch →"
+  and contacts untouched. Phone closer rhythm tightened (was 740px vs 705 viewport).
+- Verified (pane, 1280x800 + 393x705): copy verbatim in DOM, descriptors visible at rest, reveal hidden
+  at rest and shown on click/keyboard (`aria-expanded`), descriptor position identical open/closed, no
+  horizontal overflow, tsc + build clean. Hover not exercisable in the backgrounded pane; handler unchanged.
+
 **Landing scroll UX + card affordance (22 Sep 2026, Co-Work / Fable) - shipped, awaiting Chris's phone verdict.**
 - **Phone swipe-to-next-page:** `html { scroll-snap-type: y mandatory }` at <=1023px (was proximity),
   all four landing screens are snap pages with `scroll-snap-stop: always`; hero parallax dropped on

@@ -50,14 +50,22 @@ export function GetInTouchScreen() {
           <MaskReveal as="h2" className="get-in-touch-headline" delay={0}>
             Where would you <em>start</em>?
           </MaskReveal>
-          <MaskReveal as="p" className="get-in-touch-body" delay={120}>
-            Almost anything you need from your energy, carbon and climate data
-            can now be built as software, shaped around you. What makes it
-            deliver is well structured data, and people making decisions they
-            could not before. If you are ambitious on climate but short of
-            capacity in-house, we would love to hear from you.
+          {/* Approved closing copy (homepage copy brief, Sept 2026) - two
+              paragraphs, verbatim. */}
+          <MaskReveal
+            as="p"
+            className="get-in-touch-body get-in-touch-body--lead"
+            delay={120}
+          >
+            Whether you’re shaping a sustainability strategy, planning
+            investment, understanding climate risk or working towards net zero,
+            we bring the expertise and practical support to move things forward.
           </MaskReveal>
-          <MaskReveal as="div" className="get-in-touch-cta-wrap" delay={240}>
+          <MaskReveal as="p" className="get-in-touch-body" delay={200}>
+            We work as an extension of your team, building the tools and
+            confidence for more people in your organisation to get involved.
+          </MaskReveal>
+          <MaskReveal as="div" className="get-in-touch-cta-wrap" delay={280}>
             <a className="get-in-touch-cta" href={CONTACT_HREF}>
               Get in touch
               <span aria-hidden="true"> →</span>

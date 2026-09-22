@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 import { MaskReveal } from '../components/MaskReveal'
 
 /**
@@ -22,10 +23,16 @@ import { MaskReveal } from '../components/MaskReveal'
  *   - Border colour is product-specific (PABLO orange, NZ:AI teal,
  *     decodED green) via the --accent CSS var.
  *   - The logo silhouette fades to its original full-colour version.
- *   - Reveal content fades in - question (italic in accent-text
- *     colour), promise (Stolzl Thin), Explore link.
+ *   - Reveal content fades in - the explanation paragraph (Inter, left
+ *     aligned) and the Explore link / "Coming soon" status.
  *   - Clicking the LOGO does NOT navigate. Only the Explore link
  *     routes through.
+ *
+ * Card hierarchy (homepage copy brief, Sept 2026): logo -> descriptor
+ * -> explanation -> link/status. The DESCRIPTOR sits under the logo and
+ * is always visible, so a visitor understands each offer before opening
+ * the card; only the explanation and the link/status are revealed. The
+ * former question line is gone.
  */
 
 type ProductId = 'pablo' | 'nzai' | 'decoded'
@@ -34,48 +41,56 @@ type Product = {
   id: ProductId
   name: string
   href: string
+  /** True once the product's detail page is finished and meant to be
+      public - swaps the non-interactive "Coming soon" status for the
+      Explore link. All three pages are still held (ProductComingSoon). */
+  ready: boolean
   logoSrc: string
   alt: string
-  question: string
-  promise: string
+  descriptor: string
+  body: string
 }
 
-/* Order per Chris (September 2026): NZ:AI / PABLO / decodED — NZ:AI is
-   the general case, the other two are specialisations of it. */
+/* Order per Chris (September 2026): NZ:AI / PABLO / decodED - NZ:AI is
+   the general case, the other two are specialisations of it. Copy is
+   the approved homepage brief, verbatim. */
 const PRODUCTS: Product[] = [
   {
     id: 'nzai',
     name: 'NZ:AI',
     href: '/nz-ai',
+    ready: false,
     /* Homepage products section is back on cream (Chris reverted v2
        chunk C). Use the dark-text variant so the wordmark reads on
        the cream surface. White-text variant stays in use on the
        actual /nz-ai product page where the canvas is dark navy. */
     logoSrc: '/assets/logos/nzai-logo-dark.svg',
     alt: 'NZ:AI',
-    question: 'Want to do more with your data?',
-    promise:
-      'Our partnership approach: we build the tools your organisation needs, and work alongside your team to act on what matters.',
+    descriptor: 'Specialist support. Tools built around you.',
+    body:
+      'Bring buildings, energy and climate expertise into your team. We work alongside you to shape strategy, make sense of your data and build software that helps more people take part in delivering it.',
   },
   {
     id: 'pablo',
     name: 'PABLO',
     href: '/pablo',
+    ready: false,
     logoSrc: '/assets/logos/pablo-logo.svg',
     alt: 'PABLO',
-    question: 'Want to cut your electricity costs?',
-    promise:
-      'Break down what you actually pay for, then model solar, storage and demand against it.',
+    descriptor: 'Understand your energy. Plan your investment.',
+    body:
+      'Understand how you use and buy energy, where you could save and how your costs might change. Test different strategies, from energy procurement to solar and batteries, and see what makes sense for your organisation before you commit.',
   },
   {
     id: 'decoded',
     name: 'decodED',
     href: '/decoded',
+    ready: false,
     logoSrc: '/assets/logos/decoded-logo.svg',
     alt: 'decodED',
-    question: 'Running climate action in education?',
-    promise:
-      'Build a climate action plan for your site. Free for every nursery, school, college and university.',
+    descriptor: 'Climate action for education.',
+    body:
+      'Build a meaningful climate action plan for your nursery, school, college or university. A free tool to help you understand where to start and plan what comes next.',
   },
 ]
 
@@ -267,6 +282,9 @@ export function ProductsScreen() {
                     </span>
                   </button>
 
+                  {/* DESCRIPTOR - always visible, stays put on expansion. */}
+                  <p className="product-card-descriptor">{p.descriptor}</p>
+
                   {/* Reveal panel - takes layout space always (so the
                       card height is fixed), but opacity:0 at rest so
                       it's invisible until activation. The inner
@@ -281,14 +299,25 @@ export function ProductsScreen() {
                     aria-hidden={!isActive}
                   >
                     <div className="product-card-reveal-inner">
-                    <p className="product-card-question">{p.question}</p>
-                    <p className="product-card-promise">{p.promise}</p>
-                    {/* Coming soon (Chris) - the product pages are held back,
-                        so the card no longer links out. Was an Explore Link
-                        to p.href. */}
-                    <span className="product-card-explore product-card-explore--soon">
-                      Coming soon
-                    </span>
+                    <p className="product-card-body">{p.body}</p>
+                    {p.ready ? (
+                      /* tabIndex -1 while collapsed: the desktop reveal is
+                         hidden by opacity only, so the link must not be
+                         reachable by keyboard until the card is open. */
+                      <Link
+                        to={p.href}
+                        className="product-card-explore"
+                        tabIndex={isActive ? 0 : -1}
+                      >
+                        Explore {p.name}
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    ) : (
+                      /* Non-interactive status while the detail page is held. */
+                      <span className="product-card-explore product-card-explore--soon">
+                        Coming soon
+                      </span>
+                    )}
                     </div>{/* end .product-card-reveal-inner */}
                   </div>
                 </div>

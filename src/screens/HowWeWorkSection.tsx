@@ -44,19 +44,23 @@ const PHASES: Array<{
   name: string
   body: string
 }> = [
+  /* Approved copy (homepage copy brief, Sept 2026) - verbatim. The one
+     deliberate deviation: the brief's em dash in Build ("possible—a") is
+     rendered as the site's spaced hyphen, per Chris's standing "replace
+     all em dashes with hyphens" rule. Flip it back if he prefers. */
   {
     id: 'decode',
     number: '01',
     name: 'Decode',
     body:
-      'We start by learning how your organisation works and what its data holds. We help to organise, close gaps and set out how your data connects, until you have something solid to build on.',
+      'We start by getting to know your organisation and making sense of the data you have. Then we organise your data, identify gaps and turn disconnected information into a foundation you can trust.',
   },
   {
     id: 'build',
     number: '02',
     name: 'Build',
     body:
-      'Then we build the tool for the job - a digital twin, a dashboard, a way to test scenarios or manage projects. Whatever the form, we enable you to work collaboratively from the same information.',
+      'We build the tools to explore what’s possible - a digital twin of your estate, an interactive route to net zero, or a way to test investment decisions before committing. Built around your organisation, and yours to own.',
   },
   {
     /* id stays 'partner' - it wires the PartnerVisual graphic and all the
@@ -65,7 +69,7 @@ const PHASES: Array<{
     number: '03',
     name: 'Embed',
     body:
-      'From there we hand over what is built, but continue working with your team. We improve, upgrade and advise as new data and capabilities become available.',
+      'We help your team put the tools to work, with training, specialist advice and ongoing development. We stay involved as your priorities evolve, helping you turn insight into action.',
   },
 ]
 
@@ -170,20 +174,21 @@ export function HowWeWorkSection() {
               className="how-we-work-page-statement"
               delay={0}
             >
-              {/* Only the four subject words carry Stolzl Medium (Chris);
-                  everything else, including "and", stays Light. */}
+              {/* Approved introduction (homepage copy brief, Sept 2026),
+                  verbatim. The subject words keep the established Stolzl
+                  Medium lift; everything else stays Light. */}
               <span className="how-we-work-page-para">
-                We are specialists in the{' '}
-                <span className="how-we-work-stat-strong">built environment</span>,{' '}
+                We’re specialists in{' '}
+                <span className="how-we-work-stat-strong">buildings</span>,{' '}
                 <span className="how-we-work-stat-strong">energy</span> and{' '}
-                <span className="how-we-work-stat-strong">climate</span> - and our
-                work is focused around{' '}
-                <span className="how-we-work-stat-strong">partnership</span>.
+                <span className="how-we-work-stat-strong">climate</span>. We help
+                you make sense of complex data and build the tools to decide what
+                comes next.
               </span>
-              <span className="how-we-work-page-para">
-                Every project is founded on the same three stages.
-              </span>
+              {/* "Our approach: Decode. Build. Embed." - visually separated
+                  from the paragraph (the cadence line's own margin). */}
               <span className="how-we-work-page-cadence">
+                <span className="how-we-work-page-cadence-lead">Our approach:</span>{' '}
                 Decode. Build. Embed.
               </span>
             </MaskReveal>

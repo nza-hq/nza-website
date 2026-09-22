@@ -1055,6 +1055,12 @@
   letter-spacing: -0.005em;
   color: var(--coral);
 }
+/* "Our approach:" lead-in (homepage copy brief) - Light and white, so the
+   coral "Decode. Build. Embed." stays the beat. */
+.how-we-work-page-cadence-lead {
+  font-weight: 300;
+  color: #fff;
+}
 
 /* RIGHT - the three phases. */
 .how-we-work-page-right {
@@ -2313,7 +2319,10 @@
   padding: 48px 32px 36px;
   width: 100%;
   box-sizing: border-box;
-  min-height: 420px;
+  /* Reserves room for logo + descriptor + the longest explanation (PABLO)
+     + status, so the card never grows on hover (was 420 before the
+     descriptor layer and the longer approved paragraphs). */
+  min-height: 480px;
   border-radius: 16px;
   /* Default accent vars - overridden per data-id below. */
   --accent-text: var(--coral);
@@ -2341,18 +2350,26 @@
   */
   .product-card {
     min-height: 0;
-    /* 28px top keeps the logo clear of the corner toggle. gap 0: the
+    /* 24px top keeps the logo clear of the corner toggle. gap 0: the
        collapsed reveal is 0px tall, so the flex gap was 18px of dead
        space per card; the open reveal brings its own margin-top. */
-    padding: 28px 20px 16px;
+    padding: 24px 20px 12px;
     gap: 0;
     transition: padding 460ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  /* Compact logo slot at rest (72px; the phone override further down
+  /* Compact logo slot at rest (64px; the phone override further down
      the file sets the same so source order can't undo it). */
   .product-card .product-card-logo-stack {
-    height: 72px;
+    height: 64px;
     transition: height 460ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Descriptor: a step smaller on phone, tight under the logo. Always
+     visible, including on the compact (non-open) cards. */
+  .product-card-descriptor {
+    margin-top: 2px;
+    font-size: 13px;
+    line-height: 1.35;
+    transition: font-size 460ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   /* ONE OPEN, TWO COMPACT (Chris: "when you expand one, make sure stuff
      moves up and down so it all stays on the full screen"). While a
@@ -2362,10 +2379,13 @@
      browsers simply skip the compaction and the scrollIntoView safety
      net in ProductsScreen brings the open card into view instead. */
   .products-triptych:has(.product-card.is-active) .product-card:not(.is-active) {
-    padding: 12px 20px 8px;
+    padding: 8px 20px 6px;
   }
   .products-triptych:has(.product-card.is-active) .product-card:not(.is-active) .product-card-logo-stack {
-    height: 44px;
+    height: 40px;
+  }
+  .products-triptych:has(.product-card.is-active) .product-card:not(.is-active) .product-card-descriptor {
+    font-size: 12px;
   }
   /* Reveal panel switches from opacity-only to height-driven on
      mobile. Collapsed at rest (max-height 0, no margin); accordion
@@ -2540,10 +2560,10 @@
   height: 140px;
 }
 @media (max-width: 599px) {
-  /* Matches the accordion block's 72px - this later rule used to say 120px
+  /* Matches the accordion block's 64px - this later rule used to say 120px
      and silently beat the 96px there (same specificity, later source),
      which is why the phone cards ran 206px tall and the page overflowed. */
-  .product-card-logo-stack { height: 72px; }
+  .product-card-logo-stack { height: 64px; }
 }
 .product-card-logo-silhouette {
   position: absolute;
@@ -2588,8 +2608,10 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    /* Left aligned: the explanation paragraph reads as body text under
+       the centred logo + descriptor (brief). */
+    align-items: flex-start;
+    text-align: left;
     gap: 12px;
     width: 100%;
     max-width: 320px;
@@ -2618,30 +2640,34 @@
   }
 }
 
-.product-card-question {
+/* DESCRIPTOR - always visible under the logo (homepage copy brief, Sept
+   2026: "a visitor should understand each offer before opening its
+   card"). Display face, one consistent style across the three cards,
+   centred under the centred logo, wraps naturally. Replaces the former
+   accent-coloured question line that lived inside the reveal. */
+.product-card-descriptor {
+  position: relative;
+  z-index: 1;
   margin: 0;
-  /* Per v2 brief: serif italic-style face, cream on navy. (Per
-     project MEMORY: this face is Times New Roman, kept upright via
-     font-style: normal per Chris's earlier "same font type, just
-     not italic" call.) */
-  font-family: var(--font-italic);
-  font-style: normal;
+  max-width: 300px;
+  font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(18px, 1.8vw, 22px);
-  line-height: 1.25;
-  /* Per-product accent on cream surface (was cream-on-navy in v2
-     chunk C; reverted now that the section is cream again). */
-  color: var(--accent-text);
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  text-align: center;
+  color: var(--ink-navy);
 }
-.product-card-promise {
+/* EXPLANATION - revealed on expansion. Inter (body face), smaller, left
+   aligned per the brief. Chris: body copy is Inter, not Stolzl. */
+.product-card-body {
   margin: 0;
-  /* Inter (body face), smaller - matches the product-page body voice.
-     Chris: body copy is Inter, not Stolzl (which is display only), and a
-     step smaller under each product card. Was Stolzl at 14px. */
+  width: 100%;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 13px;
   line-height: 1.5;
+  text-align: left;
   /* Navy ~85% on cream (was cream 65% on navy in v2 chunk C). */
   color: var(--ink-navy);
   opacity: 0.85;
@@ -2783,6 +2809,13 @@
      arrives as a card over the cream products page. */
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
+  /* The .screen base pads 72/56; with the approved two-paragraph body
+     the closer ran 886px at an 800px-tall window, pushing the contacts
+     row below the fold. Padding scales with viewport height instead
+     (fits from ~720px up; min-height 100vh still centres it on tall
+     screens). */
+  padding-top: clamp(32px, 5vh, 72px);
+  padding-bottom: clamp(24px, 4vh, 56px);
 }
 @media (max-width: 1023px) {
   .screen.get-in-touch-screen {
@@ -2841,7 +2874,9 @@
 .get-in-touch-inner {
   max-width: 720px;
   margin: 0 auto;
-  padding: 100px 24px;
+  /* Was a flat 100px; scales with viewport height so the closer fits a
+     laptop window (see .screen.get-in-touch-screen). */
+  padding: clamp(32px, 5vh, 100px) 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -2849,6 +2884,22 @@
 }
 @media (max-width: 767px) {
   .get-in-touch-inner { padding: 72px 24px; }
+}
+/* Phone: the closer is a snap page and, with the approved two-paragraph
+   body, ran 740px against a ~705px usable viewport - the contacts row
+   sat under Safari's bar. Tighter vertical rhythm brings it to ~660px.
+   Top still clears the 56px nav. */
+@media (max-width: 599px) {
+  /* The .screen base pads the section top and bottom; on the phone snap
+     page that pushed the section past the viewport even with the inner
+     block fitting. The inner padding below is the only vertical rhythm. */
+  .screen.get-in-touch-screen { padding-top: 0; padding-bottom: 0; }
+  .get-in-touch-inner { padding: 56px 24px 36px; }
+  .get-in-touch-headline { margin-bottom: 18px; }
+  .canvas-navy .get-in-touch-body,
+  .get-in-touch-body { margin-bottom: 26px; }
+  .get-in-touch-body--lead { margin-bottom: 12px; }
+  .get-in-touch-cta-wrap { margin-bottom: 32px; }
 }
 /* Section micro label - "READY WHEN YOU ARE" */
 .get-in-touch-micro {
@@ -2891,6 +2942,11 @@
   color: #fff;
   max-width: 580px;
   margin: 0 auto 36px;
+}
+/* Two-paragraph close (homepage copy brief): the first sits closer to the
+   second than the second does to the CTA. */
+.get-in-touch-body--lead {
+  margin-bottom: 14px;
 }
 
 /* PRIMARY CTA - solid coral pill, white text, soft coral glow. */
