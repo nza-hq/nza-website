@@ -21,6 +21,14 @@
          self-hosted OTFs. See docs/briefs/active/fonts-adobe.md and
          docs/audit/mobile-load-diagnosis.md. -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <!-- The kit CSS pulls a second file from p.typekit.net; warm that origin
+         too so Stolzl is not held up by a cold handshake there. -->
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+    <!-- Preload the kit CSS at high priority so Stolzl's faces start
+         downloading immediately (in parallel, NOT render-blocking), then the
+         media=print stylesheet applies them on load. Net: fast first paint
+         AND Stolzl swaps in quickly, minimising the fallback flash. -->
+    <link rel="preload" as="style" href="https://use.typekit.net/tpk0png.css" />
     <link
       rel="stylesheet"
       href="https://use.typekit.net/tpk0png.css"
