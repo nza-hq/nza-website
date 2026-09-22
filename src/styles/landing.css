@@ -988,6 +988,14 @@
     height: auto;
     padding: clamp(72px, 12vh, 120px) 0;
   }
+  /* Phone: the coral page is a snap page (see MOBILE "SWIPE TO THE NEXT
+     PAGE" below), so trim the padding to help the statement + three
+     phases fit one viewport. Top still clears the 56px nav. */
+  @media (max-width: 599px) {
+    .how-we-work-page-pin {
+      padding: 72px 0 40px;
+    }
+  }
   .how-we-work-page-grid {
     grid-template-columns: 1fr;
     gap: clamp(40px, 8vh, 72px);
@@ -1205,35 +1213,60 @@
 }
 
 /* ============================================================
-   MOBILE "FILL & LOCK" (Chris, Sept 2026)
-   On desktop the landing sections lock via sticky pins; those are
-   dropped on mobile. CSS scroll-snap gives the phone the same
-   "fills the screen and stops" feel. PROXIMITY (not mandatory) so it
-   only settles when you ease off near a boundary and never traps
-   scroll on a section taller than the viewport. Only the sections with
-   scroll-snap-align become snap points, so product pages (no align)
+   MOBILE "SWIPE TO THE NEXT PAGE" (Chris, Sept 2026)
+   On desktop the landing sections lock via sticky pins + JS paging
+   (useSnapPaging, mouse-only). Those are dropped on mobile (the pins go
+   static above), and native CSS scroll-snap gives the phone the same
+   feel: every landing screen is a snap page, MANDATORY so a swipe
+   always settles on the next screen filling the viewport. The earlier
+   PROXIMITY version only settled if you happened to ease off near a
+   boundary - "it feels hard to scroll" (Chris). Only sections with a
+   scroll-snap-align are snap points, so product pages (no align)
    scroll normally even though the type is set on <html>.
+
+   Why the hero parallax goes on mobile: #home is position: sticky
+   inside .hero-coral-stack so the coral page rises up over it. A sticky
+   snap target fights the snap engine (the hero -> coral hand-off
+   jittered on device), which is why the coral page could not be a snap
+   point before. It was the only thing in the way of a clean four-page
+   swipe, so on mobile the hero scrolls away normally and the coral page
+   (rounded top corners intact) is a page of its own.
+
+   No scroll-padding-top: the sections are designed to sit under the
+   sticky nav (their own top padding clears it). Padding the snap left
+   every "full" page 68px short of the screen - the pink page "not
+   full-screen" Chris saw.
    ============================================================ */
 @media (max-width: 1023px) {
   html {
-    scroll-snap-type: y proximity;
-    /* Land snapped sections below the sticky nav, not under it. */
-    scroll-padding-top: 68px;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 0;
   }
-  /* #how-we-work (coral) is deliberately NOT a snap target: it sits under
-     the sticky-parallax hero (#home stays position:sticky on mobile so the
-     coral rises up over it), and a snap point fighting that sticky crest
-     made the hero->coral hand-off jitter on device (Chris). Let that one
-     scroll naturally; the sections below it snap fine. */
+  .hero-coral-stack #home.landing-screen {
+    position: relative;
+  }
+  #home,
+  #how-we-work,
   #solutions,
   #get-in-touch {
     scroll-snap-align: start;
-    /* always = a single swipe can't fly past a section; the scroll must
-       settle on each one before the next. Addresses Chris's "it's letting
-       me scroll past" - the section stops rather than drifting through. */
+    /* always = a single swipe can't fly past a page; the scroll must
+       settle on each one before the next. */
     scroll-snap-stop: always;
-    /* Each key section fills the screen so the lock reads as a full page. */
+  }
+  #how-we-work,
+  #solutions,
+  #get-in-touch {
+    /* Each page fills the screen (#home already does). Content taller
+       than the viewport still scrolls within its page - an oversized
+       snap area may rest anywhere it covers the viewport. */
     min-height: 100svh;
+  }
+  /* The legal strip after the last page. With mandatory snapping the end
+     of the document is only reachable if something down there is a snap
+     position, so the footer aligns its bottom edge to the viewport. */
+  .site-footer {
+    scroll-snap-align: end;
   }
 }
 
@@ -2066,7 +2099,9 @@
   }
 }
 @media (max-width: 599px) {
-  .products-section-pin { padding: 80px 0; }
+  /* Snap page on phone - trimmed so heading + three compact cards fit
+     one viewport at rest. Top still clears the 56px nav. */
+  .products-section-pin { padding: 72px 0 40px; }
 }
 
 /* Centred intro block - heading + body. */
@@ -2141,7 +2176,8 @@
   flex-direction: column;
   align-items: center;
   gap: 18px;
-  padding: 40px 32px 36px;
+  /* 48px top (was 40) so the expand toggle in the corner clears the logo. */
+  padding: 48px 32px 36px;
   width: 100%;
   box-sizing: border-box;
   min-height: 420px;
@@ -2172,7 +2208,8 @@
   */
   .product-card {
     min-height: 0;
-    padding: 24px 20px 20px;
+    /* 32px top (was 24) keeps the logo clear of the corner toggle. */
+    padding: 32px 20px 20px;
   }
   /* Compact logo slot at rest. */
   .product-card-logo-stack { height: 96px; }
@@ -2483,13 +2520,87 @@
   cursor: default;
 }
 
+/* EXPAND / CLOSE TOGGLE (Chris: "make it intuitive to click ... a little
+   plus icon ... it's a bit too minimalist"). Top-right of the card: a
+   Lucide-style plus (2px stroke, 12px) inside a 26px hairline ring, with
+   an "Expand" microlabel in the mono voice of the Explore link. Quiet
+   navy-grey at rest so it reads as a cue, not a button; takes the
+   product accent and the plus turns into a cross once the card is open.
+   The whole thing is a real <button> with a 44px-tall hit area. */
+.product-card-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 9px 0 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: ui-monospace, "IBM Plex Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(14, 17, 32, 0.45);
+  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card-toggle-ring {
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.product-card-toggle-ring svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card.is-active .product-card-toggle {
+  color: var(--accent-text);
+}
+.product-card.is-active .product-card-toggle-ring svg {
+  transform: rotate(45deg);
+}
+@media (hover: hover) {
+  .product-card-toggle:hover { color: var(--ink-navy); }
+  .product-card.is-active .product-card-toggle:hover { color: var(--accent-text); }
+}
+.product-card-toggle:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+/* Phone: the compact card (24px top padding, 96px logo slot) has no
+   room for the label beside the logo - ring + plus only, tucked into
+   the corner, still a 44px target. The ring is the recognised cue. */
+@media (max-width: 599px) {
+  .product-card-toggle {
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 44px;
+    justify-content: center;
+  }
+  .product-card-toggle-label { display: none; }
+}
+
 /* prefers-reduced-motion - swap all hover transitions for instant. */
 @media (prefers-reduced-motion: reduce) {
   .product-card-box-half,
   .product-card-logo-silhouette,
   .product-card-logo,
   .product-card-reveal,
-  .product-card-explore {
+  .product-card-explore,
+  .product-card-toggle,
+  .product-card-toggle-ring svg {
     transition: none;
   }
 }
