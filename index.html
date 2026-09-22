@@ -61,8 +61,13 @@
     -->
     <style>
       html, body { margin: 0; padding: 0; background: #FAF7F0; }
+      /* STATIC on purpose. A looping animation + position:fixed here made
+         iOS Safari drop the rendered splash and go blank mid-load (Chris:
+         "tiny logo, then blank"). No animation, absolute positioning, and a
+         larger mark = a stable paint that iOS keeps on screen while the JS
+         downloads. */
       #initial-splash {
-        position: fixed;
+        position: absolute;
         inset: 0;
         z-index: 99999;
         background: #FAF7F0;
@@ -70,38 +75,19 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 18px;
+        gap: 24px;
         font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       }
       #initial-splash svg {
-        width: 84px;
-        height: 84px;
+        width: 116px;
+        height: 116px;
       }
       #initial-splash .splash-label {
-        font-size: 11px;
-        letter-spacing: 0.22em;
+        font-size: 12px;
+        letter-spacing: 0.26em;
         text-transform: uppercase;
-        color: rgba(14, 17, 32, 0.42);
+        color: rgba(14, 17, 32, 0.5);
         font-weight: 500;
-      }
-      #initial-splash .splash-dot {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #0E1120;
-        margin: 0 3px;
-        opacity: 0.32;
-        animation: splash-bob 1.4s ease-in-out infinite;
-      }
-      #initial-splash .splash-dot:nth-child(2) { animation-delay: 0.18s; }
-      #initial-splash .splash-dot:nth-child(3) { animation-delay: 0.36s; }
-      @keyframes splash-bob {
-        0%, 100% { transform: translateY(0); opacity: 0.32; }
-        50%      { transform: translateY(-4px); opacity: 0.72; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        #initial-splash .splash-dot { animation: none; }
       }
     </style>
   </head>
@@ -120,11 +106,6 @@
           <path d="M149.99,279.63c-73.06,0-132.49-59.44-132.49-132.5S76.93,14.63,149.99,14.63s132.5,59.44,132.5,132.5-59.44,132.5-132.5,132.5h0ZM149.99,22.61c-68.66,0-124.52,55.86-124.52,124.52s55.86,124.52,124.52,124.52,124.52-55.86,124.52-124.52S218.66,22.61,150,22.61h0Z"/>
         </g>
       </svg>
-      <div>
-        <span class="splash-dot"></span>
-        <span class="splash-dot"></span>
-        <span class="splash-dot"></span>
-      </div>
       <span class="splash-label">Net Zero Advisory</span>
     </div>
     <div id="root"></div>
