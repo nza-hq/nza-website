@@ -26,13 +26,30 @@ function nonBlockingAppCss(): Plugin {
     transformIndexHtml: {
       order: 'post',
       handler(html) {
-        return html.replace(
+        // 1. App CSS -> non-render-blocking preload (see above).
+        html = html.replace(
           /<link rel="stylesheet"([^>]*href="\/assets\/[^"]+\.css"[^>]*)>/,
           (_m, attrs) =>
             `<link rel="preload" as="style"${attrs} id="app-css" ` +
             `onload="this.onload=null;this.rel='stylesheet'">` +
             `<noscript><link rel="stylesheet"${attrs}></noscript>`,
         )
+
+        // 2. Move the entry module <script> out of <head> to the end of
+        //    <body>. In <head>, iOS Safari can hold the FIRST PAINT for the
+        //    head's module script, so a cold visitor saw a blank screen
+        //    instead of the inline #initial-splash while the JS downloaded.
+        //    At the end of <body> the browser paints the splash first, then
+        //    runs the (still-deferred) script. The modulepreload hint stays
+        //    in <head> so the download still starts early.
+        const entry = html.match(
+          /<script type="module"[^>]*src="\/assets\/[^"]+\.js"[^>]*><\/script>/,
+        )
+        if (entry) {
+          html = html.replace(entry[0], '')
+          html = html.replace('</body>', `  ${entry[0]}\n  </body>`)
+        }
+        return html
       },
     },
   }
