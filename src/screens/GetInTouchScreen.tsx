@@ -49,13 +49,14 @@ export function GetInTouchScreen() {
       <div className="frame">
         <div className="get-in-touch-inner">
           <MaskReveal as="h2" className="get-in-touch-headline" delay={0}>
-            Tell us what you'd <em>build</em>.
+            Where would you <em>start</em>?
           </MaskReveal>
           <MaskReveal as="p" className="get-in-touch-body" delay={120}>
-            The tools that used to take a year and a budget most organisations
-            could never justify now take weeks. That changes what is worth
-            attempting. If you have an idea, or a problem you have been working
-            around for years, we would like to hear it.
+            Almost anything you can picture for your energy, carbon or climate
+            work can now be built. What decides whether it works is the data
+            underneath, and knowing how to bring it together. If you are
+            ambitious on climate but short of the time or capacity in-house, we
+            would love to hear from you.
           </MaskReveal>
           <MaskReveal as="div" className="get-in-touch-cta-wrap" delay={240}>
             <a className="get-in-touch-cta" href={CONTACT_HREF}>
