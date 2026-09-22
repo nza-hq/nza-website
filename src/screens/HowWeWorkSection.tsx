@@ -185,13 +185,6 @@ export function HowWeWorkSection() {
                 you make sense of complex data and build the tools to decide what
                 comes next.
               </span>
-              {/* "Our approach:" on its own line above "Decode. Build. Embed."
-                  (Chris), at the paragraph's size; separated from the
-                  paragraph by the cadence line's own margin. */}
-              <span className="how-we-work-page-cadence">
-                <span className="how-we-work-page-cadence-lead">Our approach:</span>
-                Decode. Build. Embed.
-              </span>
             </MaskReveal>
           </div>
 
@@ -210,6 +203,13 @@ export function HowWeWorkSection() {
               }
             }}
           >
+            {/* "Our approach:" - the brief's "Our approach: Decode. Build.
+                Embed." line, moved here by Chris: the label sits centred
+                above the phase graphic, and the Decode / Build / Embed tabs
+                beneath the graphic ARE the cadence (the coral cadence text
+                was invisible on the coral page anyway). */}
+            <span className="how-we-work-approach-label">Our approach:</span>
+
             {/* FIGURE - big graphic of the active phase (decorative). */}
             <div className="how-we-work-phase-figure">
               {PHASES.map((phase, i) => (

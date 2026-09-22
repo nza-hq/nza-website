@@ -1043,29 +1043,20 @@
 .how-we-work-page-para + .how-we-work-page-para {
   margin-top: clamp(14px, 1.8vh, 24px);
 }
-/* "Decode. Build. Partner." - the method signature under the statement,
-   echoing the three phase tabs. Coral moment, display face, a step down in
-   size so it reads as a beat rather than a third sentence. */
-.how-we-work-page-cadence {
+/* "Our approach:" - label centred above the phase graphic in the right
+   column (Chris), at the statement's size and weight. The Decode / Build
+   / Embed tabs under the graphic carry the cadence. */
+.how-we-work-approach-label {
   display: block;
-  margin-top: clamp(20px, 3vh, 34px);
   font-family: var(--font-display);
-  font-weight: 500;
-  /* Same size and leading as the statement paragraph (Chris: the line
-     had gone "really small"); alignment inherits - left with the
-     statement on desktop, centred on the stacked phone layout. */
+  font-weight: 300;
   font-size: clamp(26px, 2.9vw, 42px);
   line-height: 1.24;
   letter-spacing: -0.015em;
-  color: var(--coral);
-}
-/* "Our approach:" lead-in (homepage copy brief) - Light and white on its
-   own line ABOVE the coral "Decode. Build. Embed." (Chris), so the
-   cadence stays the beat. */
-.how-we-work-page-cadence-lead {
-  display: block;
-  font-weight: 300;
   color: #fff;
+  text-align: center;
+  /* Sit closer to the graphic than the column's stage gap. */
+  margin-bottom: calc(-1 * clamp(32px, 5vh, 64px) + 20px);
 }
 
 /* RIGHT - the three phases. */
@@ -1323,14 +1314,11 @@
      statement steps down from 26px, the gaps between its sentences and
      the cadence line tighten, and the phase graphic drops 150 -> 128px. */
   .how-we-work-page-para,
-  .how-we-work-page-cadence {
+  .how-we-work-approach-label {
     font-size: clamp(20px, 5.6vw, 24px);
   }
   .how-we-work-page-para + .how-we-work-page-para {
     margin-top: 12px;
-  }
-  .how-we-work-page-cadence {
-    margin-top: 16px;
   }
   .how-we-work-phase-visual {
     width: 128px;
