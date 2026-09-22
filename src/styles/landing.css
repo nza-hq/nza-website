@@ -2388,6 +2388,13 @@
   outline-offset: 4px;
   border-radius: 2px;
 }
+/* "Coming soon" (Chris) - the card no longer links out. Muted, no underline,
+   not interactive, keeps the mono label look. */
+.product-card-explore--soon {
+  color: rgba(14, 17, 32, 0.4);
+  border-bottom: none;
+  cursor: default;
+}
 
 /* prefers-reduced-motion - swap all hover transitions for instant. */
 @media (prefers-reduced-motion: reduce) {

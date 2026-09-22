@@ -1,17 +1,10 @@
-import { ProductPage } from '../components/product/ProductPage'
-import { pabloConfig } from '../data/products/pabloConfig'
-import '../styles/pablo.css'
+import { ProductComingSoon } from './ProductComingSoon'
 
 /**
- * /pablo - PABLO product page. Renders the shared product page template
- * with the PABLO config. The previous bespoke editorial PABLO page (with
- * the custom charts engine) has been replaced per the new product page
- * template brief - the new template is the marketing-front-door page for
- * the product.
- *
- * Brief: docs/briefs/nza-product-page-template-brief.md
- * Config: src/data/products/pabloConfig.ts
+ * /pablo - held back as "coming soon" for now (Chris). The full page is
+ * `<ProductPage config={pabloConfig} />` (see git history / the other product
+ * pages) - restore it here when PABLO launches.
  */
 export function PabloPage() {
-  return <ProductPage config={pabloConfig} />
+  return <ProductComingSoon name="PABLO" micro="/PABLO" />
 }

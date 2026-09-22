@@ -1,18 +1,9 @@
-import { ProductPage } from '../components/product/ProductPage'
-import { decodedConfig } from '../data/products/decodedConfig'
+import { ProductComingSoon } from './ProductComingSoon'
 
 /**
- * /decoded - decodED product page. Renders the shared product page
- * template with the decodED config. Previously a stub; now populated
- * per the product page template brief.
- *
- * decodED uses the light-canvas variant of the template (cream-warm
- * throughout, no blob fields, solid-filled CTAs) - Section 7 of the
- * brief.
- *
- * Brief: docs/briefs/nza-product-page-template-brief.md
- * Config: src/data/products/decodedConfig.ts
+ * /decoded - held back as "coming soon" for now (Chris). The full page is
+ * `<ProductPage config={decodedConfig} />` - restore it here when it launches.
  */
 export function DecodedPage() {
-  return <ProductPage config={decodedConfig} />
+  return <ProductComingSoon name="decodED" micro="/DECODED" />
 }
