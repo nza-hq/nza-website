@@ -2132,10 +2132,10 @@
   .products-triptych { gap: 20px; }
 }
 .product-card.is-active {
-  /* Cream wash that lifts slightly above the section's --paper.
-     (Reverted from the v2 chunk C dark-bg treatment now that the
-     section is back on cream per Chris's latest.) */
-  background: #FCF8EF;
+  /* Clean white lift on the cream page. The old #FCF8EF cream wash sat only
+     a hair above --paper and read as muddy/dirty (Chris); pure white gives a
+     crisp card lift instead. */
+  background: #FFFFFF;
 }
 
 /* Per-product accent palettes (Chris's brief):
