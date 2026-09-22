@@ -1,5 +1,23 @@
 # STATUS.md
 
+## In progress
+
+**Launch day (R03) — mostly landed (22 Sep 2026, Co-Work). Analytics install + close pending Chris.**
+Brief `docs/briefs/active/launch-day.md`.
+- Share-card meta (OG + Twitter) in `index.html` — **one shared set, served on every route via the
+  SPA rewrite; NOT per-route. Per-route cards need prerendering (future work). No canonical tag.**
+- Brand assets from the locked tokens: `public/og-default.png` (1200×630, 46 KB; master
+  `docs/assets/og-default.svg`), `public/favicon-32.png`, `public/apple-touch-icon.png` (solid navy,
+  no alpha). Vite purple favicon gone. Title → "Net Zero Advisory - specialists in buildings,
+  energy and climate".
+- Footer: `/terms` + `/cookies` links removed; `/privacy` kept + a minimal `/privacy` placeholder
+  route added (no policy content — drafted separately). `/about` + `/clients` nav links already gone
+  (About us is "coming soon"); routes still live. Contact already `info@netzeroadvisory.uk`.
+- **PENDING (Chris):** `@vercel/analytics` + `<Analytics />` are staged locally but NOT pushed
+  (would break the Vercel build until the lockfile has the package). Chris runs `npm install --force`
+  locally, commits `package-lock.json`, then pushes. Then verify the analytics script serves real JS
+  (not the SPA HTML) and a page view lands in the dashboard, and archive the brief.
+
 ## Last completed chunk
 
 **Fonts: Stolzl → Adobe Fonts (R02) — IMPLEMENTATION COMPLETE, pending review (21 Sep 2026, Co-Work).**
