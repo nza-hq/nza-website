@@ -1051,13 +1051,19 @@
   margin-top: clamp(20px, 3vh, 34px);
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(17px, 1.9vw, 24px);
-  letter-spacing: -0.005em;
+  /* Same size and leading as the statement paragraph (Chris: the line
+     had gone "really small"); alignment inherits - left with the
+     statement on desktop, centred on the stacked phone layout. */
+  font-size: clamp(26px, 2.9vw, 42px);
+  line-height: 1.24;
+  letter-spacing: -0.015em;
   color: var(--coral);
 }
-/* "Our approach:" lead-in (homepage copy brief) - Light and white, so the
-   coral "Decode. Build. Embed." stays the beat. */
+/* "Our approach:" lead-in (homepage copy brief) - Light and white on its
+   own line ABOVE the coral "Decode. Build. Embed." (Chris), so the
+   cadence stays the beat. */
 .how-we-work-page-cadence-lead {
+  display: block;
   font-weight: 300;
   color: #fff;
 }
@@ -1316,7 +1322,8 @@
   /* Fit-one-screen trims (see .how-we-work-page-pin phone rule): the
      statement steps down from 26px, the gaps between its sentences and
      the cadence line tighten, and the phase graphic drops 150 -> 128px. */
-  .how-we-work-page-para {
+  .how-we-work-page-para,
+  .how-we-work-page-cadence {
     font-size: clamp(20px, 5.6vw, 24px);
   }
   .how-we-work-page-para + .how-we-work-page-para {

@@ -185,10 +185,11 @@ export function HowWeWorkSection() {
                 you make sense of complex data and build the tools to decide what
                 comes next.
               </span>
-              {/* "Our approach: Decode. Build. Embed." - visually separated
-                  from the paragraph (the cadence line's own margin). */}
+              {/* "Our approach:" on its own line above "Decode. Build. Embed."
+                  (Chris), at the paragraph's size; separated from the
+                  paragraph by the cadence line's own margin. */}
               <span className="how-we-work-page-cadence">
-                <span className="how-we-work-page-cadence-lead">Our approach:</span>{' '}
+                <span className="how-we-work-page-cadence-lead">Our approach:</span>
                 Decode. Build. Embed.
               </span>
             </MaskReveal>
