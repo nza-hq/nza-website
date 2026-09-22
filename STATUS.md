@@ -19,6 +19,12 @@ Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three 
   min-height 420 → 480 (PABLO paragraph is the longest; 45px slack). Phone: logo slot 64, card padding
   24/12, compact (non-open) cards 40px logo + 12px descriptor; measured 553 closed / 573 open in a 613
   budget at 393x705.
+- Phone accordion jitter (Chris, after the brief): the pin's `safe center` re-centred the whole stack
+  (heading included) while the accordion animated. Phone pin is now `justify-content: flex-start` -
+  heading fixed at 64px in every state; only cards below the opening one flow. Residual: the compact
+  rule still shrinks the cards ABOVE an opening card, so tapping decodED nudges it upward - if Chris
+  still feels a jump, next step is compacting only the cards below the open one and trimming the
+  closed card height so three full cards + one open still fit 613px.
 - Section 4: two approved paragraphs (`.get-in-touch-body--lead` for the first), CTA "Get in touch →"
   and contacts untouched. Phone closer rhythm tightened (was 740px vs 705 viewport).
 - Verified (pane, 1280x800 + 393x705): copy verbatim in DOM, descriptors visible at rest, reveal hidden

@@ -2239,14 +2239,16 @@
   /* Snap page on phone: heading + three compact cards fit one screen at
      rest AND with one card open (the other two compact - see the
      accordion block). Chris's iPhone shows ~705px with Safari's bars;
-     measured budget at 393x705 is ~620px closed / ~690px open. The pin
-     keeps the desktop `safe center`, so when a card opens the whole
-     stack re-centres - things move up and down to stay on screen -
-     and if it ever outgrows the viewport it top-aligns rather than
-     clipping the heading under the nav. */
+     measured at 393x705: 560px closed / 578px open in a 613px budget.
+     TOP-ALIGNED, not centred: with the desktop `safe center` the whole
+     stack (heading included) slid up to re-centre while the accordion
+     was still animating, and the two motions fought - Chris's "little
+     jitter" on NZ:AI and decodED. Anchored to the top, nothing above
+     the opening card moves; only the cards below it flow down. */
   .products-section-pin {
     padding: 64px 0 28px;
     min-height: 100svh;
+    justify-content: flex-start;
   }
 }
 
