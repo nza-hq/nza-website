@@ -51,7 +51,7 @@ export const decodedConfig: ProductPageConfig = {
     ctaHref: '/contact?product=decoded',
     secondaryCtaLabel: 'Join the waitlist',
     secondaryCtaHref:
-      'mailto:chrisscott@thenza.co.uk?subject=decodED%20-%20Join%20the%20waitlist',
+      'mailto:info@netzeroadvisory.uk?subject=decodED%20-%20Join%20the%20waitlist',
     screens: [
       {
         /* Real decodED site-loaded / map screen. */

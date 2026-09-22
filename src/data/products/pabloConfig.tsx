@@ -33,7 +33,7 @@ export const pabloConfig: ProductPageConfig = {
        Touch" -> "Book a demo" on every PABLO-page CTA (hero + closer).
        The site-wide nav CTA stays "GET IN TOUCH". */
     ctaLabel: 'Book a demo',
-    ctaHref: 'mailto:chrisscott@thenza.co.uk?subject=PABLO%20-%20Book%20a%20demo',
+    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=PABLO%20-%20Book%20a%20demo',
     screens: [
       {
         /* Real PABLO home / site workspace screen. */
@@ -196,6 +196,6 @@ export const pabloConfig: ProductPageConfig = {
       },
     ],
     ctaLabel: 'Book a demo',
-    ctaHref: 'mailto:chrisscott@thenza.co.uk?subject=PABLO%20-%20Book%20a%20demo',
+    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=PABLO%20-%20Book%20a%20demo',
   },
 }
