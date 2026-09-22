@@ -874,6 +874,11 @@
   letter-spacing: -0.015em;
   color: #fff;
 }
+/* Stolzl Medium emphasis inside the Book statement (Chris) - a weight
+   lift, not the italic-coral <em> treatment. Inherits the Stolzl family. */
+.how-we-work-stat-strong {
+  font-weight: 500;
+}
 /* Slight vertical break between the two sentences (Chris). */
 .how-we-work-page-para + .how-we-work-page-para {
   margin-top: clamp(14px, 1.8vh, 24px);

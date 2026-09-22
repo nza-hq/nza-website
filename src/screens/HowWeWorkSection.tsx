@@ -171,8 +171,11 @@ export function HowWeWorkSection() {
               delay={0}
             >
               <span className="how-we-work-page-para">
-                We are specialists in buildings, energy and climate - and we
-                work in partnership.
+                We are specialists in{' '}
+                <span className="how-we-work-stat-strong">
+                  the built environment, energy and climate
+                </span>{' '}
+                - and we work in partnership.
               </span>
               <span className="how-we-work-page-para">
                 Every project is founded on the same three stages.
