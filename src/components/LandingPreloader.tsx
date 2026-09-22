@@ -6,9 +6,7 @@ import {
   PRELOADER_DISMISSED_EVENT,
   hasPreloaderRunThisLoad,
   markPreloaderHasRunThisLoad,
-  isTouchDevice,
 } from '../lib/preloaderState'
-import { labHas } from '../lib/lab'
 
 /**
  * Cream preloader screen. Full-viewport overlay that sits on top of the
@@ -37,11 +35,14 @@ import { labHas } from '../lib/lab'
  * Background carries a 4-blob field at heavy blur with co-prime
  * durations so the visible pattern never loops.
  *
- * DESKTOP ONLY. On touch devices (phones, iPads - the same
- * `(hover: none), (pointer: coarse)` rule that hides the blobs in
- * landing.css) the preloader is skipped entirely and the hero shows
- * as soon as React mounts. The cream sheet was the mobile cold-load
- * "blank white screen" - see isTouchDevice() in lib/preloaderState.ts.
+ * Runs on every device. History (September 2026): the mobile cold-load
+ * "blank white screen" was this cream sheet failing to paint under the
+ * 14 blur(110px) blob layers + the nav's backdrop-filter, so for a day
+ * touch devices skipped the preloader entirely. The real fix was making
+ * those layers cheap on touch (static gradient blobs, no nav blur - see
+ * landing.css / site-nav.css). With that in place Chris tested the full
+ * sequence on his iPhone via ?lab=preloader: "works perfectly", so it
+ * is back on by default everywhere. docs/audit/mobile-load-diagnosis.md.
  *
  * Brief: docs/briefs/landing-page-brief.md
  */
@@ -59,11 +60,7 @@ export function LandingPreloader() {
   // transition would never get to run. By capturing skip ONCE via
   // useState's lazy initialiser, the component's render output
   // tracks its own dismiss state rather than the global flag.
-  // Touch devices skip (see isTouchDevice for the why) unless the
-  // ?lab=preloader switch forces it on for on-device testing (lib/lab.ts).
-  const [skip] = useState(
-    () => hasPreloaderRunThisLoad() || (isTouchDevice() && !labHas('preloader')),
-  )
+  const [skip] = useState(() => hasPreloaderRunThisLoad())
   if (skip) {
     preloaderState.dismissed = true
   }

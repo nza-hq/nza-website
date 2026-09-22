@@ -79,10 +79,8 @@
       React takes over the moment main.tsx finishes loading.
 
       The splash is removed by main.tsx the moment React mounts (just
-      before the first render). On desktop that hands off to the
-      React-driven cream preloader animation; on touch devices the
-      preloader is skipped and the navy hero shows straight away (see
-      src/lib/preloaderState.ts isTouchDevice).
+      before the first render) so there's a clean handoff to the
+      React-driven cream preloader animation.
     -->
     <style>
       html, body { margin: 0; padding: 0; background: #FAF7F0; }

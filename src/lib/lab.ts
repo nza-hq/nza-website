@@ -4,27 +4,25 @@
  *
  * Background (22 Sep 2026): the mobile cold-load blank screen was the
  * cream preloader failing to paint under the blurred blob layers + nav
- * backdrop-filter. The fix on touch devices (see isTouchDevice in
- * preloaderState.ts): preloader skipped, blobs reduced to a static
- * gradient (no blur, no motion), nav blur off. Chris wants the full
- * desktop animation back on iPhone if the phone can take it, so each
- * piece can be re-enabled from the URL to find the one that breaks it:
+ * backdrop-filter. The fix on touch devices: blobs reduced to a static
+ * gradient (no blur, no motion), nav blur off. The preloader itself
+ * tested clean on Chris's iPhone once those were cheap, so it runs
+ * everywhere again; the remaining switches re-enable the heavy layers
+ * from the URL to find out what else the phone can take:
  *
- *   https://netzeroadvisory.uk/?lab=preloader
- *       cream preloader sequence on (static gradient blobs, no nav blur)
- *   https://netzeroadvisory.uk/?lab=preloader,blobmotion
- *       + the blobs drift (still no blur filter)
- *   https://netzeroadvisory.uk/?lab=preloader,blobs
- *       + the full desktop blob field (blur filter + motion)
+ *   https://netzeroadvisory.uk/?lab=blobmotion
+ *       the blobs drift (still no blur filter)
+ *   https://netzeroadvisory.uk/?lab=blobs
+ *       the full desktop blob field (blur filter + motion)
  *   https://netzeroadvisory.uk/?lab=all
- *       everything exactly as desktop (preloader + blobs + nav blur)
+ *       everything exactly as desktop (blobs + nav blur)
  *
- * Flags: preloader | blobmotion | blobs | navblur | all
+ * Flags: blobmotion | blobs | navblur | all
  * Each flag also lands as a `lab-<flag>` class on <html> so CSS can key
  * off it (landing.css, site-nav.css). No effect on desktop, where all of
  * this is on anyway. Harmless if left in: no flag, no change.
  */
-const FLAGS = ['preloader', 'blobmotion', 'blobs', 'navblur', 'all'] as const
+const FLAGS = ['blobmotion', 'blobs', 'navblur', 'all'] as const
 export type LabFlag = (typeof FLAGS)[number]
 
 const active: Set<string> = (() => {

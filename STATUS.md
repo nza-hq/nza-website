@@ -20,12 +20,12 @@ touch as a **static gradient** (radial-gradient mask, no blur filter, no animati
 gradient, motion optional), and `src/lib/lab.ts` adds **`?lab=` switches** so Chris can re-enable each
 suspect layer on his phone bit by bit and find the one that breaks it (goal: full desktop preloader
 animation on iPhone if the phone can take it). No effect on desktop.
-**Next (Chris, on the iPhone, private tab, cold each time):**
-1. `https://netzeroadvisory.uk/?lab=preloader` - cream sequence, static blobs
-2. `https://netzeroadvisory.uk/?lab=preloader,blobmotion` - + blobs drift (no blur)
-3. `https://netzeroadvisory.uk/?lab=preloader,blobs` - + the real blur filter
-4. `https://netzeroadvisory.uk/?lab=all` - everything as desktop (+ nav blur)
-Report the first one that goes blank / stalls; whatever passes becomes the new touch default.
+**Preloader is back on for every device** - Chris tested `?lab=preloader` on his iPhone: "works
+perfectly", so the touch skip (and `isTouchDevice()`) is gone. The static-gradient blobs and the
+no-nav-blur rule on touch stay; the blobs were the real cost. Blob mobile look reworked to match the
+PC blur (bell-curve mask + `scale: 2.4`, coral restored). Remaining lab switches, optional:
+`?lab=blobmotion` (blobs drift, no blur), `?lab=blobs` (full blur field), `?lab=all` (+ nav blur).
+If Chris reports one of those clean on the iPhone it can become the touch default too.
 
 **Launch day (R03) — mostly landed (22 Sep 2026, Co-Work). Analytics install + close pending Chris.**
 Brief `docs/briefs/active/launch-day.md`.
