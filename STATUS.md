@@ -19,6 +19,16 @@
 - Pane limitation: scroll events + transitions don't run backgrounded, so the cue's fade-out and the
   toggle's colour/rotation are verified by rule, not by observation. **Chris to judge on device:** the
   swipe paging feel, the 48px crest peek, the cue, the card toggle.
+- **Fit-one-screen pass (Chris's iPhone screenshots, usable viewport ~705px with Safari's bars, NOT the
+  812 the pane's "mobile" preset assumes - test phone layouts at 393x705):** coral page was 791px
+  (statement 26px + 56px grid gap), products page 862px (a later `.product-card-logo-stack { height:
+  120px }` phone rule silently beat the 96px accordion rule; plus an 18px flex gap on collapsed cards).
+  Now: coral statement 22px, gap 24, visual 128, pin `min-height: 100svh` + flex-centred → 705/705 with
+  588px of content centred. Products: logo slot 72, card gap 0, pin `min-height: 100svh` + `safe
+  center` → 496px content closed. **One open, two compact:** `.products-triptych:has(.is-active)
+  .product-card:not(.is-active)` shrinks the other cards to 80px (44px logo) so the open card's reveal
+  fits the same screen (506-525px content) and the centring re-flows the stack; `scrollIntoView
+  (nearest)` safety net in ProductsScreen for short phones / no `:has()`. Desktop verified unchanged.
 
 **Mobile cold-load blank screen — diagnosis + fix shipped, AWAITING PHONE TEST (22 Sep 2026, Co-Work / Fable).**
 Symptom (Chris, his partner, Ben — iPhone Safari, iPhone private tab, Android Chrome; laptops fine;

@@ -1075,11 +1075,22 @@
     padding: clamp(72px, 12vh, 120px) 0;
   }
   /* Phone: the coral page is a snap page (see MOBILE "SWIPE TO THE NEXT
-     PAGE" below), so trim the padding to help the statement + three
-     phases fit one viewport. Top still clears the 56px nav. */
+     PAGE" below) and must FIT one screen - on Chris's iPhone the usable
+     viewport with Safari's bars is ~705px and the page ran 791px, so the
+     phase body was cut off under the bottom bar. Measured budget at
+     393x705 after these rules: ~660px. The pin keeps its desktop flex
+     centring, so the content sits centred in the page rather than
+     top-heavy with dead space below. Top padding still clears the
+     56px nav. Type + spacing trims live in the phone block further
+     down (.how-we-work-page-para etc.). */
   @media (max-width: 599px) {
     .how-we-work-page-pin {
-      padding: 72px 0 40px;
+      padding: 64px 0 28px;
+      min-height: 100svh;
+      box-sizing: border-box;
+    }
+    .how-we-work-page-grid {
+      gap: 24px;
     }
   }
   .how-we-work-page-grid {
@@ -1295,6 +1306,22 @@
   }
   .how-we-work-phase-name {
     font-size: clamp(20px, 6vw, 26px);
+  }
+  /* Fit-one-screen trims (see .how-we-work-page-pin phone rule): the
+     statement steps down from 26px, the gaps between its sentences and
+     the cadence line tighten, and the phase graphic drops 150 -> 128px. */
+  .how-we-work-page-para {
+    font-size: clamp(20px, 5.6vw, 24px);
+  }
+  .how-we-work-page-para + .how-we-work-page-para {
+    margin-top: 12px;
+  }
+  .how-we-work-page-cadence {
+    margin-top: 16px;
+  }
+  .how-we-work-phase-visual {
+    width: 128px;
+    height: 128px;
   }
 }
 
@@ -2185,9 +2212,18 @@
   }
 }
 @media (max-width: 599px) {
-  /* Snap page on phone - trimmed so heading + three compact cards fit
-     one viewport at rest. Top still clears the 56px nav. */
-  .products-section-pin { padding: 72px 0 40px; }
+  /* Snap page on phone: heading + three compact cards fit one screen at
+     rest AND with one card open (the other two compact - see the
+     accordion block). Chris's iPhone shows ~705px with Safari's bars;
+     measured budget at 393x705 is ~620px closed / ~690px open. The pin
+     keeps the desktop `safe center`, so when a card opens the whole
+     stack re-centres - things move up and down to stay on screen -
+     and if it ever outgrows the viewport it top-aligns rather than
+     clipping the heading under the nav. */
+  .products-section-pin {
+    padding: 64px 0 28px;
+    min-height: 100svh;
+  }
 }
 
 /* Centred intro block - heading + body. */
@@ -2202,7 +2238,7 @@
   gap: 28px;
 }
 @media (max-width: 599px) {
-  .products-intro-block { margin-bottom: 48px; }
+  .products-intro-block { margin-bottom: 24px; }
 }
 
 /* "Our products" - hero-headline tier, coral, on cream. */
@@ -2294,11 +2330,32 @@
   */
   .product-card {
     min-height: 0;
-    /* 32px top (was 24) keeps the logo clear of the corner toggle. */
-    padding: 32px 20px 20px;
+    /* 28px top keeps the logo clear of the corner toggle. gap 0: the
+       collapsed reveal is 0px tall, so the flex gap was 18px of dead
+       space per card; the open reveal brings its own margin-top. */
+    padding: 28px 20px 16px;
+    gap: 0;
+    transition: padding 460ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  /* Compact logo slot at rest. */
-  .product-card-logo-stack { height: 96px; }
+  /* Compact logo slot at rest (72px; the phone override further down
+     the file sets the same so source order can't undo it). */
+  .product-card .product-card-logo-stack {
+    height: 72px;
+    transition: height 460ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* ONE OPEN, TWO COMPACT (Chris: "when you expand one, make sure stuff
+     moves up and down so it all stays on the full screen"). While a
+     card is open the other two shrink to a slim logo row so the open
+     card's reveal fits inside the same screen; the pin's centring then
+     re-centres the whole stack. :has() is iOS 15.4+ / Chrome 105+; older
+     browsers simply skip the compaction and the scrollIntoView safety
+     net in ProductsScreen brings the open card into view instead. */
+  .products-triptych:has(.product-card.is-active) .product-card:not(.is-active) {
+    padding: 12px 20px 8px;
+  }
+  .products-triptych:has(.product-card.is-active) .product-card:not(.is-active) .product-card-logo-stack {
+    height: 44px;
+  }
   /* Reveal panel switches from opacity-only to height-driven on
      mobile. Collapsed at rest (max-height 0, no margin); accordion
      opens downward when .is-active. */
@@ -2344,7 +2401,7 @@
   }
   /* The triptych grid keeps the per-card gap visually tight so all
      three cards land within the first viewport on phones. */
-  .products-triptych { gap: 20px; }
+  .products-triptych { gap: 16px; }
 }
 .product-card.is-active {
   /* No fill (Chris) - an active card is defined by its drawn border, the
@@ -2472,7 +2529,10 @@
   height: 140px;
 }
 @media (max-width: 599px) {
-  .product-card-logo-stack { height: 120px; }
+  /* Matches the accordion block's 72px - this later rule used to say 120px
+     and silently beat the 96px there (same specificity, later source),
+     which is why the phone cards ran 206px tall and the page overflowed. */
+  .product-card-logo-stack { height: 72px; }
 }
 .product-card-logo-silhouette {
   position: absolute;

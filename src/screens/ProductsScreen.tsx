@@ -136,6 +136,24 @@ export function ProductsScreen() {
     return () => document.removeEventListener('click', onDocClick)
   }, [active])
 
+  // Phone safety net: the section is sized to fit one screen with a card
+  // open (the other two compact via CSS), but on a short phone it can
+  // still overflow the viewport. Once the accordion has opened, bring
+  // the open card into view - 'nearest' is a no-op when it already fits,
+  // and the snap engine allows it because the section is then taller
+  // than the viewport (an oversized snap area may rest anywhere).
+  useEffect(() => {
+    if (active === null) return
+    if (!window.matchMedia('(max-width: 599px)').matches) return
+    const timer = window.setTimeout(() => {
+      const el = document.querySelector<HTMLElement>(
+        `.product-card[data-id="${active}"]`,
+      )
+      el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    }, 480)
+    return () => window.clearTimeout(timer)
+  }, [active])
+
   return (
     <section
       className="screen canvas-paper products-section in-view"
