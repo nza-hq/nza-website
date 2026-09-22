@@ -455,6 +455,82 @@ body.context-decoded .site-nav-cta:focus-visible {
   outline: none;
 }
 
+/* "Get in touch" chooser (ContactMenu) - the CTA opens a small popover with
+   Email / LinkedIn / Call instead of jumping straight to email (Chris). */
+.contact-menu {
+  position: relative;
+  display: inline-flex;
+}
+.contact-menu--mobile {
+  display: block;
+}
+.contact-menu-caret {
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  opacity: 0.7;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-menu-trigger[aria-expanded="true"] .contact-menu-caret {
+  transform: rotate(180deg);
+}
+.contact-menu-pop {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 210px;
+  padding: 8px;
+  background: rgba(15, 24, 40, 0.92);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+          backdrop-filter: blur(20px) saturate(140%);
+  border: 0.5px solid rgba(247, 90, 85, 0.22);
+  border-radius: 10px;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.5);
+  z-index: 120;
+}
+/* Mobile CTA sits at the foot of the overlay - open the popover upward and
+   full-width so it stays on screen. */
+.contact-menu--mobile .contact-menu-pop {
+  top: auto;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+}
+.contact-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(245, 241, 232, 0.9);
+  text-decoration: none;
+  transition: background 180ms ease, color 180ms ease;
+}
+.contact-menu-item:hover,
+.contact-menu-item:focus-visible {
+  background: rgba(247, 90, 85, 0.1);
+  color: var(--coral);
+  outline: none;
+}
+.contact-menu-item svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
 /* Product swatches - circle to the left of each product name. PABLO
    gets a gradient, NZ:AI and decodED get flat brand colours. */
 .site-nav-dropdown-swatch {

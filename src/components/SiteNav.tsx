@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { NzaLogoWide, NzaLogoMark } from './svg/NzaLogoWide'
 import { useMediaQuery } from '../hooks/useMediaQuery'
+import { ContactMenu } from './ContactMenu'
 
 /**
  * Site-wide sticky navigation. Renders on every page above the route
@@ -24,7 +25,6 @@ import { useMediaQuery } from '../hooks/useMediaQuery'
  * Brief: docs/briefs/nza-navigation-brief.md
  */
 
-const CONTACT_HREF = 'mailto:info@netzeroadvisory.uk?subject=NZA%20Get%20in%20touch'
 
 type OpenMenu = 'products' | 'about' | null
 
@@ -221,9 +221,7 @@ export function SiteNav() {
               </li>
             </ul>
 
-            <a className="site-nav-cta" href={CONTACT_HREF}>
-              Get in touch
-            </a>
+            <ContactMenu variant="nav" />
           </div>
         </div>
       </nav>
@@ -351,14 +349,9 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
           </div>
         </section>
 
-        {/* CTA pinned at the bottom of the overlay, full-width. */}
-        <a
-          className="site-nav-cta site-nav-mobile-cta"
-          href={CONTACT_HREF}
-          onClick={onClose}
-        >
-          Get in touch
-        </a>
+        {/* CTA pinned at the bottom of the overlay, full-width. Chooser
+            (Email / LinkedIn / Call); closing the overlay follows a pick. */}
+        <ContactMenu variant="mobile" onNavigate={onClose} />
       </div>
     </div>
   )
