@@ -30,12 +30,6 @@ function boot() {
   // on the cream ground reads as "blank". Harmless if onload already did it.
   const css = document.getElementById('app-css') as HTMLLinkElement | null
   if (css && css.rel !== 'stylesheet') css.rel = 'stylesheet'
-  // Remove the static index.html splash and mount React. The splash is
-  // absent in dev / on a warm remount, so guard the removal.
-  const splash = document.getElementById('initial-splash')
-  if (splash && splash.parentNode) {
-    splash.parentNode.removeChild(splash)
-  }
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <BrowserRouter>
@@ -46,13 +40,14 @@ function boot() {
 }
 
 // The built app stylesheet is loaded non-render-blocking (see the
-// non-blocking-app-css plugin in vite.config.ts) so the inline #initial-splash
-// paints immediately on a cold load instead of a blank white screen. But React
-// must NOT mount until that CSS is applied, or the app (including the cream
-// preloader) would flash unstyled for a beat. Gate the mount on the stylesheet
-// being ready - the splash stays up meanwhile - with a timeout as a safety net
-// so a stuck stylesheet can never strand us on the splash. In dev there is no
-// #app-css link, and if the CSS is already applied we boot straight away.
+// non-blocking-app-css plugin in vite.config.ts) so the cream ground set in
+// index.html paints immediately on a cold load instead of a blank white
+// screen. But React must NOT mount until that CSS is applied, or the app
+// (including the cream preloader) would flash unstyled for a beat. Gate the
+// mount on the stylesheet being ready - the cream ground stays up meanwhile -
+// with a timeout as a safety net so a stuck stylesheet can never strand us
+// there. In dev there is no #app-css link, and if the CSS is already applied
+// we boot straight away.
 const appCss = document.getElementById('app-css') as HTMLLinkElement | null
 if (appCss && appCss.rel !== 'stylesheet' && !appCss.sheet) {
   let started = false

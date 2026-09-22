@@ -2179,6 +2179,17 @@
   min-height: auto;
   display: block;
   padding: 0;
+  /* Curved top edge, same as the coral page's (32px / 24px on mobile), so
+     every landing page arrives as a card over the one before it (Chris:
+     "make it feel the same"). The corners show the coral above. */
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+@media (max-width: 1023px) {
+  .products-section {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
 }
 .products-section-pin {
   position: sticky;
@@ -2778,6 +2789,16 @@
   /* Centre the content vertically in the 100vh slot now that it's
      a whole screen again. */
   justify-content: center;
+  /* Curved top edge like the coral and products pages - the navy closer
+     arrives as a card over the cream products page. */
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+@media (max-width: 1023px) {
+  .screen.get-in-touch-screen {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
 }
 @media (max-width: 767px) {
   .screen.get-in-touch-screen { min-height: auto; }

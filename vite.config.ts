@@ -7,12 +7,12 @@ import tailwindcss from '@tailwindcss/vite'
  *
  * Vite injects the main CSS as a render-blocking `<link rel="stylesheet">` in
  * <head>. On a COLD load the browser paints nothing at all - not even the
- * inline #initial-splash - until that ~117 KB file arrives, so a first-time
- * mobile visitor stares at a blank white screen for seconds. (It only "works"
- * on a machine where the CSS is already cached.)
+ * inline cream ground set in index.html - until that ~117 KB file arrives, so
+ * a first-time mobile visitor stares at a blank white screen for seconds. (It
+ * only "works" on a machine where the CSS is already cached.)
  *
  * This rewrites that link into a high-priority preload that swaps to a real
- * stylesheet on load, so the inline splash paints IMMEDIATELY while the CSS
+ * stylesheet on load, so the cream ground paints IMMEDIATELY while the CSS
  * downloads behind it. `main.tsx` gates React's mount on this stylesheet being
  * applied (via the id below), so nothing ever renders unstyled. A <noscript>
  * keeps it working with JS disabled.
@@ -37,9 +37,9 @@ function nonBlockingAppCss(): Plugin {
 
         // 2. Move the entry module <script> out of <head> to the end of
         //    <body>. In <head>, iOS Safari can hold the FIRST PAINT for the
-        //    head's module script, so a cold visitor saw a blank screen
-        //    instead of the inline #initial-splash while the JS downloaded.
-        //    At the end of <body> the browser paints the splash first, then
+        //    head's module script, so a cold visitor saw a blank white
+        //    screen instead of the inline cream ground while the JS
+        //    downloaded. At the end of <body> the browser paints first, then
         //    runs the (still-deferred) script. The modulepreload hint stays
         //    in <head> so the download still starts early.
         const entry = html.match(

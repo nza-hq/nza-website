@@ -19,6 +19,10 @@
 - Pane limitation: scroll events + transitions don't run backgrounded, so the cue's fade-out and the
   toggle's colour/rotation are verified by rule, not by observation. **Chris to judge on device:** the
   swipe paging feel, the 48px crest peek, the cue, the card toggle.
+- **Chris on device: "all working really well, transitions working really well."** Follow-ups shipped:
+  curved 32px/24px top edge on the products and get-in-touch pages to match the coral card; the static
+  index.html splash (mark + "Net Zero Advisory") deleted - the HTML now just sets the cream ground and the
+  React preloader is the single loading page (the mount gate on `#app-css` in `main.tsx` stays).
 - **Fit-one-screen pass (Chris's iPhone screenshots, usable viewport ~705px with Safari's bars, NOT the
   812 the pane's "mobile" preset assumes - test phone layouts at 393x705):** coral page was 791px
   (statement 26px + 56px grid gap), products page 862px (a later `.product-card-logo-stack { height:
