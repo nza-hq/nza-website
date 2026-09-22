@@ -51,10 +51,10 @@ export function GetInTouchScreen() {
             Where would you <em>start</em>?
           </MaskReveal>
           <MaskReveal as="p" className="get-in-touch-body" delay={120}>
-            Almost anything you can picture for your energy, carbon or climate
-            work can now be built. What decides whether it works is the data
-            underneath, and knowing how to bring it together. If you are
-            ambitious on climate but short of the time or capacity in-house, we
+            Software can now be shaped around almost anything you need from your
+            energy, carbon and climate data. What makes it deliver is well
+            structured data, and people making decisions they could not before.
+            If you are ambitious on climate but short of capacity in-house, we
             would love to hear from you.
           </MaskReveal>
           <MaskReveal as="div" className="get-in-touch-cta-wrap" delay={240}>
