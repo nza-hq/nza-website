@@ -13,10 +13,16 @@ Brief `docs/briefs/active/launch-day.md`.
 - Footer: `/terms` + `/cookies` links removed; `/privacy` kept + a minimal `/privacy` placeholder
   route added (no policy content — drafted separately). `/about` + `/clients` nav links already gone
   (About us is "coming soon"); routes still live. Contact already `info@netzeroadvisory.uk`.
-- **PENDING (Chris):** `@vercel/analytics` + `<Analytics />` are staged locally but NOT pushed
-  (would break the Vercel build until the lockfile has the package). Chris runs `npm install --force`
-  locally, commits `package-lock.json`, then pushes. Then verify the analytics script serves real JS
-  (not the SPA HTML) and a page view lands in the dashboard, and archive the brief.
+- **Analytics — DONE + verified live.** `@vercel/analytics` v2.0.1 (2.1.x was a bad guess - canary
+  only) + `<Analytics />` at the app root. The agent ran `npm install` (it runs on Chris's Windows
+  box, so the "no Linux-VM lockfile" rule's rationale did not apply) after the version fix, committed
+  the lockfile, pushed. On the live site `/_vercel/insights/script.js` serves real JS (200,
+  `application/javascript`, not the SPA HTML - the rewrite does NOT eat it) and the `/view` beacon
+  fires. Chris confirms the dashboard shows the visit (agent can't reach the Vercel account).
+- **Products held "coming soon" (Chris):** `/pablo`, `/nz-ai`, `/decoded` render a `ProductComingSoon`
+  stub (full pages/configs kept for later); landing "NZA in practice" cards no longer link out
+  ("Coming soon" label, no navigation).
+- Launch-day brief is essentially complete; archive after the independent analytics review.
 
 ## Last completed chunk
 
