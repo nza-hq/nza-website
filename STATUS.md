@@ -6,8 +6,9 @@
 Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three rotating phrases verified).
 - Section 2: new intro "We’re specialists in buildings, energy and climate. We help you make sense of
   complex data and build the tools to decide what comes next." (subject words keep the Stolzl Medium
-  lift) + "Our approach: Decode. Build. Embed." (lead-in Light white, cadence coral). "Every project is
-  founded..." removed. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
+  lift). "Every project is founded..." removed. The brief's "Our approach: Decode. Build. Embed." line
+  ended up as an **"Our approach:" label centred above the phase graphic** in the right column (Chris);
+  the coral cadence text was coral-on-coral (invisible) and the Decode / Build / Embed tabs carry it. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
   the brief's em dash in Build ("possible—a") is rendered as the site's spaced hyphen per his standing
   "replace all em dashes with hyphens" rule.
 - Section 3 cards: hierarchy logo → descriptor (always visible; Chris then asked for the old question
