@@ -65,7 +65,7 @@ const PHASES: Array<{
     number: '03',
     name: 'Embed',
     body:
-      'From there we hand over what is built, but continue working with your team. We improve and upgrade and continue to advise as the sector changes.',
+      'From there we hand over what is built, but continue working with your team. We improve, upgrade and advise as the sector changes.',
   },
 ]
 
