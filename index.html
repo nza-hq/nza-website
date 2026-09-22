@@ -45,7 +45,29 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=DM+Serif+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
       />
     </noscript>
-    <title>NZA - Net Zero Advisory</title>
+    <title>Net Zero Advisory - specialists in buildings, energy and climate</title>
+
+    <!-- Share cards. Crawlers do not run JS, so these live in the HTML, not in
+         React. One shared set serves every route via the vercel.json rewrite.
+         Deliberately no link-rel-canonical (a single one would flag every route
+         as a duplicate of /). The image URL is absolute - relative paths fail
+         on every crawler. -->
+    <meta name="description" content="Specialists in buildings, energy and climate. We work alongside your team to build tools that are tailored, intuitive, and yours to own." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Net Zero Advisory" />
+    <meta property="og:url" content="https://netzeroadvisory.uk/" />
+    <meta property="og:title" content="Net Zero Advisory" />
+    <meta property="og:description" content="Specialists in buildings, energy and climate. We work alongside your team to build tools that are tailored, intuitive, and yours to own." />
+    <meta property="og:image" content="https://netzeroadvisory.uk/og-default.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Net Zero Advisory" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Net Zero Advisory" />
+    <meta name="twitter:description" content="Specialists in buildings, energy and climate. We work alongside your team to build tools that are tailored, intuitive, and yours to own." />
+    <meta name="twitter:image" content="https://netzeroadvisory.uk/og-default.png" />
+
     <!--
       STATIC SPLASH - rendered the moment the HTML is parsed, BEFORE
       the JS bundle has loaded or React has mounted anything. Without
