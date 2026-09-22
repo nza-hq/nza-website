@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0E1120" />
 
-    <!-- Fonts. Loaded non-render-blocking via the canonical preload -> swap-to
+    <!-- Fonts. Loaded non-render-blocking via the standard preload -> swap-to
          -stylesheet pattern (rel=preload as=style + onload flips rel), so first
          paint (the inline splash) is never held up by a font request. Each is a
          high-priority preload, so the faces start downloading immediately and
@@ -49,7 +49,7 @@
 
     <!-- Share cards. Crawlers do not run JS, so these live in the HTML, not in
          React. One shared set serves every route via the vercel.json rewrite.
-         Deliberately no link-rel-canonical (a single one would flag every route
+         Deliberately no rel=canonical link (one would flag every route
          as a duplicate of /). The image URL is absolute - relative paths fail
          on every crawler. -->
     <meta name="description" content="Specialists in buildings, energy and climate. We work alongside your team to build tools that are tailored, intuitive, and yours to own." />
