@@ -2,6 +2,24 @@
 
 ## In progress
 
+**Landing scroll UX + card affordance (22 Sep 2026, Co-Work / Fable) - shipped, awaiting Chris's phone verdict.**
+- **Phone swipe-to-next-page:** `html { scroll-snap-type: y mandatory }` at <=1023px (was proximity),
+  all four landing screens are snap pages with `scroll-snap-stop: always`; hero parallax dropped on
+  mobile (`#home` relative, not sticky - a sticky snap target fought the snap engine, which is why the
+  coral page couldn't snap before); `scroll-padding-top: 0`; coral + products pins trimmed on phone;
+  footer `scroll-snap-align: end`. Desktop untouched (parallax, pins, JS paging).
+- **False-floor fix (research: NN/g "illusion of completeness"):** `.landing-screen` sits
+  `--hero-peek: 48px` short of the viewport so the coral crest peeks in at rest (desktop also subtracts
+  the 68px nav flow slot via `--hero-nav-slot`; hero-inner padding now `clamp(40px, 7vh, 96px)` so
+  720-high laptops still get the peek). New `ScrollCue` ("Scroll" + running 1px line, hero only, shows
+  after the preloader, retires on first wheel/touch/scroll relative to its rest position - absolute
+  scrollY was wrong because the phone snap parks at 56).
+- **Product cards:** ring-and-plus expand/close toggle button (Lucide-style, 44px target, "Expand" /
+  "Close" microlabel on desktop, ring only on phone). `deactivate()` added to ProductsScreen.
+- Pane limitation: scroll events + transitions don't run backgrounded, so the cue's fade-out and the
+  toggle's colour/rotation are verified by rule, not by observation. **Chris to judge on device:** the
+  swipe paging feel, the 48px crest peek, the cue, the card toggle.
+
 **Mobile cold-load blank screen — diagnosis + fix shipped, AWAITING PHONE TEST (22 Sep 2026, Co-Work / Fable).**
 Symptom (Chris, his partner, Ben — iPhone Safari, iPhone private tab, Android Chrome; laptops fine;
 iPad "blank until I touched it"): tiny NZA splash, then a blank white sheet for 5-15s, then the site.
