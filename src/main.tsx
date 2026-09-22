@@ -17,18 +17,41 @@ import './styles/site-nav.css'
 
 import App from './App.tsx'
 
-// Remove the static index.html splash the moment the bundle has
-// finished loading + we're about to mount React. If the splash is
-// absent (e.g. dev mode or already removed), this is a no-op.
-const splash = document.getElementById('initial-splash')
-if (splash && splash.parentNode) {
-  splash.parentNode.removeChild(splash)
+function boot() {
+  // Remove the static index.html splash and mount React. The splash is
+  // absent in dev / on a warm remount, so guard the removal.
+  const splash = document.getElementById('initial-splash')
+  if (splash && splash.parentNode) {
+    splash.parentNode.removeChild(splash)
+  }
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </StrictMode>,
+  )
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-)
+// The built app stylesheet is loaded non-render-blocking (see the
+// non-blocking-app-css plugin in vite.config.ts) so the inline #initial-splash
+// paints immediately on a cold load instead of a blank white screen. But React
+// must NOT mount until that CSS is applied, or the app (including the cream
+// preloader) would flash unstyled for a beat. Gate the mount on the stylesheet
+// being ready - the splash stays up meanwhile - with a timeout as a safety net
+// so a stuck stylesheet can never strand us on the splash. In dev there is no
+// #app-css link, and if the CSS is already applied we boot straight away.
+const appCss = document.getElementById('app-css') as HTMLLinkElement | null
+if (appCss && appCss.rel !== 'stylesheet' && !appCss.sheet) {
+  let started = false
+  const start = () => {
+    if (started) return
+    started = true
+    // One frame for the just-applied stylesheet to take effect before render.
+    requestAnimationFrame(boot)
+  }
+  appCss.addEventListener('load', start, { once: true })
+  window.setTimeout(start, 4000)
+} else {
+  boot()
+}

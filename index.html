@@ -11,48 +11,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0E1120" />
 
-    <!-- Adobe Fonts (Stolzl) - Web Project "NZA Website", kit tpk0png, family
-         "stolzl". Loaded non-render-blocking (media=print + onload swap, like
-         the Google link below) with the handshake warmed by preconnect. A
-         render-blocking third-party stylesheet here was slowing first paint on
-         mobile (Chris) - the whole point of the mobile-load fix was to keep
-         first paint off the font critical path. Stolzl swaps in via the stack
-         'Stolzl, system-ui, sans-serif' once the kit loads. Replaces the six
-         self-hosted OTFs. See docs/briefs/active/fonts-adobe.md and
-         docs/audit/mobile-load-diagnosis.md. -->
+    <!-- Fonts. Loaded non-render-blocking via the canonical preload -> swap-to
+         -stylesheet pattern (rel=preload as=style + onload flips rel), so first
+         paint (the inline splash) is never held up by a font request. Each is a
+         high-priority preload, so the faces start downloading immediately and
+         swap in fast via their fallback stacks. preconnect warms every origin
+         first, including p.typekit.net which the Stolzl kit quietly pulls from.
+         Stolzl (Adobe kit tpk0png, family "stolzl", Web Project "NZA Website")
+         replaces the six self-hosted OTFs. See docs/briefs/active/fonts-adobe.md
+         and docs/audit/mobile-load-diagnosis.md. -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-    <!-- The kit CSS pulls a second file from p.typekit.net; warm that origin
-         too so Stolzl is not held up by a cold handshake there. -->
     <link rel="preconnect" href="https://p.typekit.net" crossorigin />
-    <!-- Preload the kit CSS at high priority so Stolzl's faces start
-         downloading immediately (in parallel, NOT render-blocking), then the
-         media=print stylesheet applies them on load. Net: fast first paint
-         AND Stolzl swaps in quickly, minimising the fallback flash. -->
-    <link rel="preload" as="style" href="https://use.typekit.net/tpk0png.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://use.typekit.net/tpk0png.css"
-      media="print"
-      onload="this.media='all'"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link rel="stylesheet" href="https://use.typekit.net/tpk0png.css" />
     </noscript>
-
-    <!-- Google Fonts (Inter, DM Serif Display, JetBrains Mono). Loaded here
-         rather than via an @import in the bundled CSS so they are discovered
-         at HTML parse and fetched in parallel with the app CSS, with the
-         handshake warmed by preconnect. media=print + onload flips it to a
-         real stylesheet once fetched, so it never blocks first paint - the
-         faces are display=swap anyway, so text paints in the fallback and
-         swaps in when ready. See docs/audit/mobile-load-diagnosis.md. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=DM+Serif+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      media="print"
-      onload="this.media='all'"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
