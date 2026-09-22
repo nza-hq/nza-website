@@ -1,5 +1,6 @@
 import { MaskReveal } from './MaskReveal'
 import { SlotMachineWord } from './SlotMachineWord'
+import { ScrollCue } from './ScrollCue'
 
 /**
  * Navy hero - the landing payoff that sits underneath the cream preloader.
@@ -85,6 +86,9 @@ export function LandingHero() {
               client strip. The hero is now slot-machine only so the
               rotating word claims the screen. */}
         </div>
+        {/* "Scroll" cue, bottom centre of the hero, just above the client
+            strip. Retires on first scroll. See ScrollCue.tsx. */}
+        <ScrollCue />
       </div>
     </>
   )
