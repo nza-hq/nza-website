@@ -12,12 +12,24 @@
     <meta name="theme-color" content="#0E1120" />
 
     <!-- Adobe Fonts (Stolzl) - Web Project "NZA Website", kit tpk0png, family
-         "stolzl". A render-blocking <link> (not @import) so the primary display
-         face loads as early as possible; preconnect warms the handshake. This
-         replaces the six self-hosted Stolzl OTFs, removed for licence + payload
-         reasons. See docs/briefs/active/fonts-adobe.md. -->
+         "stolzl". Loaded non-render-blocking (media=print + onload swap, like
+         the Google link below) with the handshake warmed by preconnect. A
+         render-blocking third-party stylesheet here was slowing first paint on
+         mobile (Chris) - the whole point of the mobile-load fix was to keep
+         first paint off the font critical path. Stolzl swaps in via the stack
+         'Stolzl, system-ui, sans-serif' once the kit loads. Replaces the six
+         self-hosted OTFs. See docs/briefs/active/fonts-adobe.md and
+         docs/audit/mobile-load-diagnosis.md. -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-    <link rel="stylesheet" href="https://use.typekit.net/tpk0png.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.typekit.net/tpk0png.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://use.typekit.net/tpk0png.css" />
+    </noscript>
 
     <!-- Google Fonts (Inter, DM Serif Display, JetBrains Mono). Loaded here
          rather than via an @import in the bundled CSS so they are discovered
