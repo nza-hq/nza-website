@@ -1,0 +1,20 @@
+<!-- Editable master for public/og-default.png (the launch share card).
+     The shipped PNG is rasterised from this design via a canvas generator so
+     the real web fonts render (Stolzl + DM Serif Display italic) - see
+     scratchpad generator.html / launch-day brief Part 2. Colours are the
+     locked tokens: navy #0E1120, cream #F5F1E8, coral #F75A55. 1200x630. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0E1120"/>
+  <text x="90" y="225" font-family="Stolzl, sans-serif" font-weight="400" font-size="76" fill="#F5F1E8">We&#8201;<tspan font-family="'DM Serif Display', serif" font-style="italic" font-size="90" fill="#F75A55">decode</tspan></text>
+  <text x="90" y="318" font-family="Stolzl, sans-serif" font-weight="400" font-size="76" fill="#F5F1E8">decarbonisation for</text>
+  <text x="90" y="411" font-family="Stolzl, sans-serif" font-weight="400" font-size="76" fill="#F5F1E8">your organisation.</text>
+  <g transform="translate(90,494)">
+    <g transform="scale(0.15333)" fill="#F5F1E8">
+      <path d="M169.48,166.16c-7.13-8.75-13.45-16.73-19.21-24.26-.2-.26-.58-.26-.78,0l-19.61,24.09c-.09.12-.24.18-.39.18h-9.27c-.42,0-.65-.49-.39-.82l29.88-36.38c.21-.25.59-.24.79.02l2.68,3.56c6.43,8.56,17.5,22.43,25.94,32.81.27.33.03.81-.39.81h-9.26.01Z"/>
+      <path d="M250.35,213.07H50.7c-.42,0-.65-.48-.39-.81l99.3-124.12c.2-.25.58-.25.78,0l99.96,124.93h0ZM66.24,205.1h166.47c.42,0,.65-.48.39-.81l-82.72-103.39c-.2-.25-.58-.25-.78,0l-83.36,104.2h0Z"/>
+      <path d="M250.35,167.05H50.7c-.42,0-.65-.48-.39-.81l99.3-124.12c.2-.25.58-.25.78,0l99.96,124.93h0ZM66.24,159.08h166.47c.42,0,.65-.48.39-.81l-82.72-103.39c-.2-.25-.58-.25-.78,0l-83.36,104.2h0Z"/>
+      <path d="M149.99,279.63c-73.06,0-132.49-59.44-132.49-132.5S76.93,14.63,149.99,14.63s132.5,59.44,132.5,132.5-59.44,132.5-132.5,132.5h0ZM149.99,22.61c-68.66,0-124.52,55.86-124.52,124.52s55.86,124.52,124.52,124.52,124.52-55.86,124.52-124.52S218.66,22.61,150,22.61h0Z"/>
+    </g>
+    <text x="62" y="24" font-family="Stolzl, sans-serif" font-weight="500" font-size="22" fill="#F5F1E8" dominant-baseline="middle" letter-spacing="1">NET ZERO ADVISORY</text>
+  </g>
+</svg>
