@@ -240,3 +240,45 @@ profile in this environment, so — as instructed — this reports the code-leve
 rather than inventing a measured number. No fallback timeout near 15000ms exists (checked and
 reported). The remaining unknown (H3 magnitude, and A-vs-B for the animation) needs a real
 handset / throttled run, which is the authorised next step before any fix.
+
+---
+
+## Addendum (22 Sep 2026) — H6: the blank sheet is the cream preloader itself
+
+After fixes 1, 2 (Adobe + Google via preload), 4 (non-blocking app CSS, script at body end,
+static splash) and 6 (CSS code-split) had landed, the fault persisted **only on phones**
+(Chris's iPhone, private tab included; his partner's iPhone; Ben's phone in both Safari and
+Chrome) while laptops were fine, and the iPad went "blank until I touched it". That pattern -
+engine-agnostic, phone-only, cleared by a touch - is not a payload problem.
+
+**H6 — CONFIRMED by code reading, pending on-device confirmation.** Sequence on a phone:
+
+1. Static `#initial-splash` paints (the "tiny logo" Chris sees).
+2. React mounts and removes the splash; `LandingPreloader` renders a **full-viewport cream
+   sheet** (`--paper`, reads as "blank white" on a phone).
+3. The preloader carries 4 `.landing-blob` layers and the hero beneath it up to 9 more: each a
+   480px box with `filter: blur(110px)` + `will-change: transform`, animated forever, plus the
+   sticky nav's full-width `backdrop-filter: blur(12px) saturate(170%)`. On a phone GPU this
+   stalls the compositor, so the mark fill, counter and wordmark never paint. The user sees
+   plain cream.
+4. The sheet leaves only when the 4.5s auto-timer fires (late - the main thread is jammed by
+   the same layers) or a `touchstart` / `touchmove` calls `dismiss()`
+   (`LandingPreloader.tsx:104-105`) - exactly the iPad "until I touched it".
+
+**Fix shipped (touch devices only, `(hover: none), (pointer: coarse)`):**
+- `LandingPreloader` skipped entirely via `isTouchDevice()` (`src/lib/preloaderState.ts`); the
+  hero shows the moment React mounts. Desktop keeps the full sequence.
+- `.landing-blob { display: none }` (`landing.css`).
+- `.site-nav { backdrop-filter: none }` (`site-nav.css`).
+- Belt and braces: `main.tsx boot()` flips `#app-css` to `rel=stylesheet` itself if the preload
+  `onload` never fired.
+
+Verified in the browser pane under touch emulation: no `.landing-preloader` in the DOM, hero
+headline at opacity 1 with all six `MaskReveal`s fired, body scroll not locked, no console
+errors; under desktop: preloader present with scroll lock, blobs and nav blur unchanged.
+Bundle at this point: 87 KB gzip JS, 21 KB gzip CSS, routes lazy - so the "compress / lazy
+load" suggestion from Ben was already in place and not the cause.
+
+**If it still blanks on a phone after this**, the remaining animated layers on the mobile
+first paint are `SlotMachineWord` / `CharacterMorph` in the hero and the client carousel's
+`will-change: transform` track. Gate them with the same touch-device rule.

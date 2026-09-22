@@ -2,6 +2,23 @@
 
 ## In progress
 
+**Mobile cold-load blank screen — diagnosis + fix shipped, AWAITING PHONE TEST (22 Sep 2026, Co-Work / Fable).**
+Symptom (Chris, his partner, Ben — iPhone Safari, iPhone private tab, Android Chrome; laptops fine;
+iPad "blank until I touched it"): tiny NZA splash, then a blank white sheet for 5-15s, then the site.
+Diagnosis: the blank sheet **is the cream React preloader**. On a phone GPU the 14 `filter: blur(110px)`
+blob layers (4 preloader + up to 9 hero) plus the nav's always-on `backdrop-filter` stall the
+compositor, so the mark / counter / wordmark never paint; the sheet only leaves when the 4.5s
+auto-timer fires (late, main thread jammed) or a `touchstart` calls `dismiss()` - hence "until I
+touched it". Engine-agnostic, phone-only, matches every report. Fix (touch devices only, via
+`(hover: none), (pointer: coarse)` in CSS and `isTouchDevice()` in `lib/preloaderState.ts`):
+preloader skipped entirely (splash → hero), `.landing-blob` hidden, nav `backdrop-filter` off;
+`main.tsx boot()` also flips `#app-css` to a real stylesheet itself if the preload `onload` never
+fired. Desktop unchanged (verified: preloader + blobs + blur still there). Bundle is 87 KB gzip JS /
+21 KB CSS with routes already lazy, so Ben's "compress + lazy-load" angle is already covered.
+**Next:** Chris + Ben cold-load `https://netzeroadvisory.uk` on their phones (private tab). If it
+still blanks, the remaining suspects are the hero's `SlotMachineWord` / `CharacterMorph` motion and
+the client carousel `will-change` - same touch-device gating pattern applies.
+
 **Launch day (R03) — mostly landed (22 Sep 2026, Co-Work). Analytics install + close pending Chris.**
 Brief `docs/briefs/active/launch-day.md`.
 - Share-card meta (OG + Twitter) in `index.html` — **one shared set, served on every route via the
