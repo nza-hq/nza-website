@@ -405,9 +405,11 @@ body.context-decoded .site-nav-cta:focus-visible {
   gap: 10px;
   padding: 10px 14px;
   border-radius: 6px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 15px;
+  /* Stolzl Light at the trigger's 14px (Chris) - the dropdown items match the
+     "Our solutions" label they drop from, rather than the Inter body face. */
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 14px;
   color: rgba(245, 241, 232, 0.85);
   text-decoration: none;
   white-space: nowrap;

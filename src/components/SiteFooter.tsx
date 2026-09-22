@@ -19,7 +19,7 @@ export function SiteFooter() {
     <footer className="site-footer" aria-label="Site footer">
       <div className="site-footer-inner">
         <p className="site-footer-legal">
-          <span>© 2026 Net Zero Advisory Ltd.</span>
+          <span>2026 | NZA Consultancy Ltd | company number 14478434</span>
           <span className="site-footer-sep" aria-hidden="true">·</span>
           <Link to="/privacy" className="site-footer-link">Privacy</Link>
           <span className="site-footer-sep" aria-hidden="true">·</span>

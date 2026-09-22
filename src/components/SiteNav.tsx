@@ -136,13 +136,23 @@ export function SiteNav() {
                   Our solutions
                   <span className="site-nav-chevron" aria-hidden="true" />
                 </button>
-                {/* Dropdown order per nza-manifestos-and-solutions-brief.md
-                    Movement 1: PABLO / decodED / NZ:AI (was PABLO / NZ:AI /
-                    decodED). The internal key `openMenu === 'products'`
-                    stays for code clarity - only the visible label and
-                    item order change. */}
+                {/* Dropdown order (Chris): NZ:AI / PABLO / decodED. The
+                    internal key `openMenu === 'products'` stays for code
+                    clarity - only the visible order changes. */}
                 {openMenu === 'products' && (
                   <div className="site-nav-dropdown" role="menu">
+                    <Link
+                      to="/nz-ai"
+                      className="site-nav-dropdown-item"
+                      role="menuitem"
+                      onClick={() => setOpenMenu(null)}
+                    >
+                      <span
+                        className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
+                        aria-hidden="true"
+                      />
+                      NZ:AI
+                    </Link>
                     <Link
                       to="/pablo"
                       className="site-nav-dropdown-item"
@@ -166,18 +176,6 @@ export function SiteNav() {
                         aria-hidden="true"
                       />
                       decodED
-                    </Link>
-                    <Link
-                      to="/nz-ai"
-                      className="site-nav-dropdown-item"
-                      role="menuitem"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <span
-                        className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
-                        aria-hidden="true"
-                      />
-                      NZ:AI
                     </Link>
                   </div>
                 )}
@@ -300,8 +298,20 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
             <span>Our solutions</span>
             <span className="site-nav-mobile-section-chevron" aria-hidden="true" />
           </button>
-          {/* Mobile order matches desktop: PABLO / decodED / NZ:AI. */}
+          {/* Mobile order matches desktop: NZ:AI / PABLO / decodED. */}
           <div className="site-nav-mobile-section-body">
+            <Link
+              to="/nz-ai"
+              className="site-nav-mobile-link"
+              onClick={onClose}
+              tabIndex={expanded === 'products' ? 0 : -1}
+            >
+              <span
+                className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
+                aria-hidden="true"
+              />
+              NZ:AI
+            </Link>
             <Link
               to="/pablo"
               className="site-nav-mobile-link"
@@ -325,18 +335,6 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
                 aria-hidden="true"
               />
               decodED
-            </Link>
-            <Link
-              to="/nz-ai"
-              className="site-nav-mobile-link"
-              onClick={onClose}
-              tabIndex={expanded === 'products' ? 0 : -1}
-            >
-              <span
-                className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
-                aria-hidden="true"
-              />
-              NZ:AI
             </Link>
           </div>
         </section>
