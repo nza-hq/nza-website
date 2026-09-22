@@ -15,9 +15,17 @@ preloader skipped entirely (splash → hero), `.landing-blob` hidden, nav `backd
 `main.tsx boot()` also flips `#app-css` to a real stylesheet itself if the preload `onload` never
 fired. Desktop unchanged (verified: preloader + blobs + blur still there). Bundle is 87 KB gzip JS /
 21 KB CSS with routes already lazy, so Ben's "compress + lazy-load" angle is already covered.
-**Next:** Chris + Ben cold-load `https://netzeroadvisory.uk` on their phones (private tab). If it
-still blanks, the remaining suspects are the hero's `SlotMachineWord` / `CharacterMorph` motion and
-the client carousel `will-change` - same touch-device gating pattern applies.
+**Chris confirmed the fix loads on his iPhone.** Follow-ups shipped the same day: blobs are back on
+touch as a **static gradient** (radial-gradient mask, no blur filter, no animation - Chris wants the
+gradient, motion optional), and `src/lib/lab.ts` adds **`?lab=` switches** so Chris can re-enable each
+suspect layer on his phone bit by bit and find the one that breaks it (goal: full desktop preloader
+animation on iPhone if the phone can take it). No effect on desktop.
+**Next (Chris, on the iPhone, private tab, cold each time):**
+1. `https://netzeroadvisory.uk/?lab=preloader` - cream sequence, static blobs
+2. `https://netzeroadvisory.uk/?lab=preloader,blobmotion` - + blobs drift (no blur)
+3. `https://netzeroadvisory.uk/?lab=preloader,blobs` - + the real blur filter
+4. `https://netzeroadvisory.uk/?lab=all` - everything as desktop (+ nav blur)
+Report the first one that goes blank / stalls; whatever passes becomes the new touch default.
 
 **Launch day (R03) — mostly landed (22 Sep 2026, Co-Work). Analytics install + close pending Chris.**
 Brief `docs/briefs/active/launch-day.md`.

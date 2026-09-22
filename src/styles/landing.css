@@ -326,14 +326,33 @@
    stalls and discards the frame, leaving a blank screen until a touch
    forces a repaint. It is engine-agnostic (WebKit and Blink both choke),
    which is why Chrome-on-mobile showed it too and the download-side fixes
-   never did. Decorative texture only, so on touch we drop it entirely -
-   flat navy / cream reads clean and paints instantly. Desktop (hover +
-   fine pointer) keeps the full effect. Covers preloader, hero and
-   get-in-touch blobs via the shared .landing-blob class.
+   never did. Desktop (hover + fine pointer) keeps the full effect. Covers
+   preloader, hero and get-in-touch blobs via the shared .landing-blob class.
+
+   TOUCH DEFAULT = STATIC GRADIENT (Chris: "I don't care if it moves, I just
+   like the gradient"). Same blobs, same colours, but the soft edge comes
+   from a radial-gradient mask instead of filter: blur(), no animation and
+   no forced layer - a plain painted gradient, near-free for a phone GPU.
+   Sized up so the feathered disc covers roughly what the blurred one did.
+
+   LAB SWITCHES (src/lib/lab.ts) for testing on a real phone:
+     ?lab=blobmotion -> html.lab-blobmotion  static gradient blobs + the
+                                             desktop drift animation
+     ?lab=blobs      -> html.lab-blobs       full desktop field: blur +
+                                             motion + will-change
    ========================================================================= */
 @media (hover: none), (pointer: coarse) {
-  .landing-blob {
-    display: none;
+  html:not(.lab-blobs) .landing-blob {
+    width: 680px;
+    height: 680px;
+    -webkit-filter: none;
+            filter: none;
+    will-change: auto;
+    -webkit-mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+            mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+  }
+  html:not(.lab-blobs):not(.lab-blobmotion) .landing-blob {
+    animation: none;
   }
 }
 

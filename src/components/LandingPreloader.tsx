@@ -8,6 +8,7 @@ import {
   markPreloaderHasRunThisLoad,
   isTouchDevice,
 } from '../lib/preloaderState'
+import { labHas } from '../lib/lab'
 
 /**
  * Cream preloader screen. Full-viewport overlay that sits on top of the
@@ -58,8 +59,11 @@ export function LandingPreloader() {
   // transition would never get to run. By capturing skip ONCE via
   // useState's lazy initialiser, the component's render output
   // tracks its own dismiss state rather than the global flag.
-  // Touch devices always skip (see isTouchDevice for the why).
-  const [skip] = useState(() => hasPreloaderRunThisLoad() || isTouchDevice())
+  // Touch devices skip (see isTouchDevice for the why) unless the
+  // ?lab=preloader switch forces it on for on-device testing (lib/lab.ts).
+  const [skip] = useState(
+    () => hasPreloaderRunThisLoad() || (isTouchDevice() && !labHas('preloader')),
+  )
   if (skip) {
     preloaderState.dismissed = true
   }

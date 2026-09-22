@@ -41,9 +41,11 @@
    compositors and blanks the first paint (Chris). The nav backgrounds are
    already 0.86-0.92 opaque per page context, so they read correctly
    without the blur - we only remove the filter and leave each context's
-   colour untouched. Desktop keeps the blur. */
+   colour untouched. Desktop keeps the blur.
+   ?lab=navblur (html.lab-navblur, src/lib/lab.ts) puts it back for
+   on-device testing. */
 @media (hover: none), (pointer: coarse) {
-  .site-nav {
+  html:not(.lab-navblur) .site-nav {
     -webkit-backdrop-filter: none;
             backdrop-filter: none;
   }

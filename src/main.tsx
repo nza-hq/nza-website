@@ -16,6 +16,11 @@ import './styles/landing.css'
 import './styles/site-nav.css'
 
 import App from './App.tsx'
+import { applyLabClasses } from './lib/lab'
+
+// ?lab=... switches (see lib/lab.ts) - must land on <html> before the
+// first render so the CSS overrides are in force for the first paint.
+applyLabClasses()
 
 function boot() {
   // Belt and braces: if the app stylesheet is still a <link rel="preload">
