@@ -4,6 +4,7 @@ import { WebsitePage } from './routes/WebsitePage'
 import { SiteNav } from './components/SiteNav'
 import { SiteFooter } from './components/SiteFooter'
 import { DevicePreview } from './components/DevicePreview'
+import { Analytics } from '@vercel/analytics/react'
 
 /**
  * Route-level code splitting (perf, Sept 2026).
@@ -69,6 +70,11 @@ export default function App() {
         </Routes>
       </Suspense>
       <SiteFooter />
+      {/* Vercel Web Analytics - cookieless, privacy-friendly. The
+          @vercel/analytics package (Resilient Intake, non-predictable script
+          URL) rather than a hardcoded /_vercel/insights tag the SPA rewrite
+          would swallow. Web Analytics is enabled on the project. */}
+      <Analytics />
       {/* Dev-only floating preview launcher; auto-removed in `npm run build`. */}
       <DevicePreview />
     </>
