@@ -2094,6 +2094,16 @@
   letter-spacing: -0.025em;
   color: var(--coral);
 }
+/* "practice" - same italic treatment as "decode" in the hero headline
+   (.landing-hero-headline em). The heading is already coral, so only the
+   face, size bump and tracking change. */
+.products-heading em {
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15em;
+  letter-spacing: -0.01em;
+}
 
 /* TRIPTYCH - three equal cells side by side using the full frame width. */
 .products-triptych {

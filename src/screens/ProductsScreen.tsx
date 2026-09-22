@@ -150,7 +150,7 @@ export function ProductsScreen() {
       <div className="frame">
         <div className="products-intro-block">
           <MaskReveal as="h2" className="products-heading" delay={0}>
-            NZA in practice
+            NZA in <em>practice</em>
           </MaskReveal>
         </div>
 
