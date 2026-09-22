@@ -49,7 +49,7 @@ const PHASES: Array<{
     number: '01',
     name: 'Decode',
     body:
-      'We start by learning how your organisation works and where its data comes from. Some of it exists, some we gather. What matters is how it connects.',
+      'We start by learning how your organisation works and what its data holds. We help to organise, close gaps and set out how your data connects, until you have something solid to build on.',
   },
   {
     id: 'build',
@@ -65,7 +65,7 @@ const PHASES: Array<{
     number: '03',
     name: 'Embed',
     body:
-      'From there we hand over what is built, but we stay part of your team - continually building together and advising as the sector changes.',
+      'From there we hand over what is built, but continue working with your team. We improve and upgrade and continue to advise as the sector changes.',
   },
 ]
 
