@@ -208,7 +208,7 @@ export function HowWeWorkSection() {
                 above the phase graphic, and the Decode / Build / Embed tabs
                 beneath the graphic ARE the cadence (the coral cadence text
                 was invisible on the coral page anyway). */}
-            <span className="how-we-work-approach-label">Our approach:</span>
+            <span className="how-we-work-approach-label">Our approach</span>
 
             {/* FIGURE - big graphic of the active phase (decorative). */}
             <div className="how-we-work-phase-figure">

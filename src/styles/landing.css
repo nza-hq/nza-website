@@ -1029,7 +1029,9 @@
   /* Stolzl Light for the statement body; the .how-we-work-stat-strong span
      lifts "the built environment, energy and climate" to Medium (Chris). */
   font-weight: 300;
-  font-size: clamp(26px, 2.9vw, 42px);
+  /* Ceiling 42 -> 38px and a gentler slope: balances the left column
+     against the (now larger) phase graphic on wide screens (Chris). */
+  font-size: clamp(26px, 2.7vw, 38px);
   line-height: 1.24;
   letter-spacing: -0.015em;
   color: #fff;
@@ -1043,20 +1045,25 @@
 .how-we-work-page-para + .how-we-work-page-para {
   margin-top: clamp(14px, 1.8vh, 24px);
 }
-/* "Our approach:" - label centred above the phase graphic in the right
-   column (Chris), at the statement's size and weight. The Decode / Build
-   / Embed tabs under the graphic carry the cadence. */
+/* "OUR APPROACH" - eyebrow label centred above the phase graphic in the
+   right column. The site's micro-label idiom (cf. the closer's "READY
+   WHEN YOU ARE"): mono, 11px, wide tracking, uppercase - a caption for
+   the module rather than a second headline, so the statement on the
+   left is unambiguously read first (Chris: at statement size it looked
+   out of place and too big). The Decode / Build / Embed tabs under the
+   graphic carry the cadence. */
 .how-we-work-approach-label {
   display: block;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(26px, 2.9vw, 42px);
-  line-height: 1.24;
-  letter-spacing: -0.015em;
-  color: #fff;
+  font-family: ui-monospace, "IBM Plex Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
   text-align: center;
-  /* Sit closer to the graphic than the column's stage gap. */
-  margin-bottom: calc(-1 * clamp(32px, 5vh, 64px) + 20px);
+  /* Sit a beat above the graphic rather than a full stage gap. */
+  margin-bottom: calc(-1 * clamp(32px, 5vh, 64px) + 18px);
 }
 
 /* RIGHT - the three phases. */
@@ -1175,8 +1182,11 @@
   visibility: visible;
 }
 .how-we-work-phase-visual {
-  width: clamp(150px, 15vw, 200px);
-  height: clamp(150px, 15vw, 200px);
+  /* Up from 15vw / 200px max: the right column read light against the
+     big statement type on a wide screen (Chris). Pairs with the statement's
+     lower ceiling in .how-we-work-page-para. Phone override below: 128px. */
+  width: clamp(150px, 18vw, 240px);
+  height: clamp(150px, 18vw, 240px);
   color: #fff;
 }
 .how-we-work-phase-visual svg {
@@ -1313,8 +1323,7 @@
   /* Fit-one-screen trims (see .how-we-work-page-pin phone rule): the
      statement steps down from 26px, the gaps between its sentences and
      the cadence line tighten, and the phase graphic drops 150 -> 128px. */
-  .how-we-work-page-para,
-  .how-we-work-approach-label {
+  .how-we-work-page-para {
     font-size: clamp(20px, 5.6vw, 24px);
   }
   .how-we-work-page-para + .how-we-work-page-para {

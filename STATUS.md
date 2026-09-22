@@ -7,8 +7,13 @@ Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three 
 - Section 2: new intro "We’re specialists in buildings, energy and climate. We help you make sense of
   complex data and build the tools to decide what comes next." (subject words keep the Stolzl Medium
   lift). "Every project is founded..." removed. The brief's "Our approach: Decode. Build. Embed." line
-  ended up as an **"Our approach:" label centred above the phase graphic** in the right column (Chris);
-  the coral cadence text was coral-on-coral (invisible) and the Decode / Build / Embed tabs carry it. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
+  ended up as an **"OUR APPROACH" eyebrow** (mono 11px micro-label idiom, 72% white) centred 18px above
+  the phase graphic in the right column (Chris: at statement size it looked out of place / too big);
+  the coral cadence text was coral-on-coral (invisible) and the Decode / Build / Embed tabs carry it.
+  Column rebalance: graphic clamp max 200 → 240px (18vw), statement ceiling 42 → 38px (2.7vw).
+- **Nav "Our solutions" = Coming soon** (Chris): NZ:AI / PABLO / decodED shown with swatches but
+  non-clickable (`aria-disabled` spans, same pattern as About us), desktop dropdown + phone menu.
+  Restore the Links to /nz-ai, /pablo, /decoded when the pages go live. New Decode / Build / Embed bodies. **One deliberate deviation flagged to Chris:**
   the brief's em dash in Build ("possible—a") is rendered as the site's spaced hyphen per his standing
   "replace all em dashes with hyphens" rule.
 - Section 3 cards: hierarchy logo → descriptor (always visible; Chris then asked for the old question
