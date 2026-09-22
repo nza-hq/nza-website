@@ -22,10 +22,6 @@ export function SiteFooter() {
           <span>2026 | NZA Consultancy Ltd | company number 14478434</span>
           <span className="site-footer-sep" aria-hidden="true">·</span>
           <Link to="/privacy" className="site-footer-link">Privacy</Link>
-          <span className="site-footer-sep" aria-hidden="true">·</span>
-          <Link to="/terms" className="site-footer-link">Terms</Link>
-          <span className="site-footer-sep" aria-hidden="true">·</span>
-          <Link to="/cookies" className="site-footer-link">Cookies</Link>
         </p>
       </div>
     </footer>

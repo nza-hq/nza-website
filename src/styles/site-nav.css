@@ -747,6 +747,20 @@ body.context-decoded .nza-logo-mark-only-svg #nza-logo-mark-mobile {
 .stub-page--cream .stub-page-headline {
   color: var(--ink-navy);
 }
+/* One-line body under a stub headline (used by /privacy). Inter, muted navy. */
+.stub-page-line {
+  margin: 18px 0 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.5;
+  color: rgba(14, 17, 32, 0.72);
+}
+.stub-page-line .stub-page-link {
+  color: var(--coral);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 /* Contact page (a slightly fleshed-out stub) - same chrome as the
    other stubs but with a blurb + action row beneath the headline. */
