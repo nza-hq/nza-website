@@ -17,10 +17,9 @@ import { MaskReveal } from '../components/MaskReveal'
  * Brief: docs/briefs/nza-landing-page-v2-brief.md (Change 4)
  */
 
-const EMAIL = 'chrisscott@thenza.co.uk'
+const EMAIL = 'info@netzeroadvisory.uk'
 const LINKEDIN = 'https://www.linkedin.com/company/netzero-advisory'
-/* Phone placeholder per brief - Chris to swap in the real number. */
-const PHONE = '+44 7000 000000'
+const PHONE = '07437 889836'
 
 const CONTACT_HREF = `mailto:${EMAIL}?subject=NZA%20-%20Let%27s%20talk`
 

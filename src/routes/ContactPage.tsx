@@ -30,7 +30,7 @@ export function ContactPage() {
     ? `${productLabel} - Demo request`
     : 'NZA - Get in touch'
 
-  const mailto = `mailto:chrisscott@thenza.co.uk?subject=${encodeURIComponent(subject)}`
+  const mailto = `mailto:info@netzeroadvisory.uk?subject=${encodeURIComponent(subject)}`
 
   // Reflect the chosen subject in the page title for a touch of polish.
   useEffect(() => {
@@ -46,7 +46,7 @@ export function ContactPage() {
   const [copied, setCopied] = useState(false)
   function copyEmail() {
     navigator.clipboard
-      .writeText('chrisscott@thenza.co.uk')
+      .writeText('info@netzeroadvisory.uk')
       .then(() => {
         setCopied(true)
         window.setTimeout(() => setCopied(false), 2000)

@@ -24,7 +24,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery'
  * Brief: docs/briefs/nza-navigation-brief.md
  */
 
-const CONTACT_HREF = 'mailto:chrisscott@thenza.co.uk?subject=NZA%20Get%20in%20touch'
+const CONTACT_HREF = 'mailto:info@netzeroadvisory.uk?subject=NZA%20Get%20in%20touch'
 
 type OpenMenu = 'products' | 'about' | null
 

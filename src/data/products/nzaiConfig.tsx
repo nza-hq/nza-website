@@ -66,7 +66,7 @@ export const nzaiConfig: ProductPageConfig = {
     oneLiner:
       "Carbon and climate intelligence, built for your organisation and owned by it. Here's what that looks like.",
     ctaLabel: 'Get in touch',
-    ctaHref: 'mailto:chrisscott@thenza.co.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
+    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
     /* Existing screens retained - v9 notes the existing platform
        screenshots are fine for launch and a morphing-chart hero
        animation is nice-to-have for later. */
@@ -239,6 +239,6 @@ export const nzaiConfig: ProductPageConfig = {
       },
     ],
     ctaLabel: 'Get in touch',
-    ctaHref: 'mailto:chrisscott@thenza.co.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
+    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
   },
 }

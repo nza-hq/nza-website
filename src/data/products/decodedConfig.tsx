@@ -246,7 +246,7 @@ export const decodedConfig: ProductPageConfig = {
     ],
     ctaText: 'Get in touch to find out more',
     ctaHref:
-      'mailto:chrisscott@thenza.co.uk?subject=decodED%20-%20Going%20further%20with%20NZA',
+      'mailto:info@netzeroadvisory.uk?subject=decodED%20-%20Going%20further%20with%20NZA',
   },
 
   /* Closer refreshed per manifestos brief Movement 3.4. The brief
