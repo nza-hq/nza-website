@@ -2132,10 +2132,10 @@
   .products-triptych { gap: 20px; }
 }
 .product-card.is-active {
-  /* Clean white lift on the cream page. The old #FCF8EF cream wash sat only
-     a hair above --paper and read as muddy/dirty (Chris); pure white gives a
-     crisp card lift instead. */
-  background: #FFFFFF;
+  /* No fill (Chris) - an active card is defined by its drawn border, the
+     full-colour logo and the reveal text, with the page showing through.
+     The earlier cream/white washes both read wrong; the border is the star. */
+  background: transparent;
 }
 
 /* Per-product accent palettes (Chris's brief):
