@@ -868,7 +868,9 @@
   margin: 0;
   max-width: 540px;
   font-family: var(--font-display);
-  font-weight: 400;
+  /* Stolzl Light for the statement body; the .how-we-work-stat-strong span
+     lifts "the built environment, energy and climate" to Medium (Chris). */
+  font-weight: 300;
   font-size: clamp(26px, 2.9vw, 42px);
   line-height: 1.24;
   letter-spacing: -0.015em;
