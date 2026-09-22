@@ -330,10 +330,22 @@
    preloader, hero and get-in-touch blobs via the shared .landing-blob class.
 
    TOUCH DEFAULT = STATIC GRADIENT (Chris: "I don't care if it moves, I just
-   like the gradient"). Same blobs, same colours, but the soft edge comes
-   from a radial-gradient mask instead of filter: blur(), no animation and
-   no forced layer - a plain painted gradient, near-free for a phone GPU.
-   Sized up so the feathered disc covers roughly what the blurred one did.
+   like the gradient"). Same blobs, same colours and positions, no
+   animation, no forced layer, no filter - a plain painted gradient,
+   near-free for a phone GPU. The aim is the PC look, frozen:
+
+   - A Gaussian blur(110px) of a disc does two things: it spreads the
+     colour out to roughly the disc radius + 2x the blur (a 320px phone
+     blob bleeds to ~380px from its centre) and it caps the peak at about
+     65-90% of the source alpha. A hard-edged disc with a mask that ran
+     from 100% at the centre did neither - the navies painted at full
+     strength and swamped the coral, the cream read as a white spot
+     ("a funny blue and white" - Chris).
+   - So: the mask is a bell curve that starts at 0.7 (the blur's peak
+     cap) and rolls off like the blurred edge, and `scale` grows the
+     element to the blurred footprint. `scale` (not `transform`) so it
+     composes with the drift keyframes' transform when ?lab=blobmotion
+     re-enables them, and the centre stays where the layout put it.
 
    LAB SWITCHES (src/lib/lab.ts) for testing on a real phone:
      ?lab=blobmotion -> html.lab-blobmotion  static gradient blobs + the
@@ -343,13 +355,28 @@
    ========================================================================= */
 @media (hover: none), (pointer: coarse) {
   html:not(.lab-blobs) .landing-blob {
-    width: 680px;
-    height: 680px;
     -webkit-filter: none;
             filter: none;
     will-change: auto;
-    -webkit-mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
-            mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+    scale: 2.4;
+    -webkit-mask-image: radial-gradient(
+      circle closest-side,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.6) 30%,
+      rgba(0, 0, 0, 0.45) 45%,
+      rgba(0, 0, 0, 0.18) 70%,
+      rgba(0, 0, 0, 0.05) 88%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      circle closest-side,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.6) 30%,
+      rgba(0, 0, 0, 0.45) 45%,
+      rgba(0, 0, 0, 0.18) 70%,
+      rgba(0, 0, 0, 0.05) 88%,
+      transparent 100%
+    );
   }
   html:not(.lab-blobs):not(.lab-blobmotion) .landing-blob {
     animation: none;
@@ -1224,8 +1251,15 @@
    The 600ms buffer is the "vis-start" offset used in calc() below.
    ============================================================ */
 
-/* Each graphic RESTS HIDDEN. Its ENTER animation plays on the active
-   panel (:not(.is-exiting)); it holds its finished form for the middle of
+/* PACE (Chris, with the phase window at 7s): each enter sequence used to
+   be done inside ~2-2.5s and then sat frozen for the remaining ~4.5s,
+   which read as "stuck". Now every sequence starts almost as soon as
+   the panel lands (delays cut) and runs at about half speed with wider
+   staggers, so it is still resolving until ~4.5-5s and only holds its
+   finished form for the last beat before the exit.
+
+   Each graphic RESTS HIDDEN. Its ENTER animation plays on the active
+   panel (:not(.is-exiting)); it holds its finished form for the end of
    the window; then an EXIT animation plays on the exiting panel
    (.is-exiting), leaving the graphic hidden - which matches the hidden
    base, so nothing snaps when the panel finally deactivates. The exit
@@ -1246,9 +1280,9 @@
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .decode-dot {
-  /* Slightly slower assemble (Chris). */
-  animation: decode-dot-assemble 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(120ms + var(--dot-index, 0) * 30ms);
+  /* Slow assemble: the last dot sets off at ~1.9s and lands at ~4.3s. */
+  animation: decode-dot-assemble 2400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(40ms + var(--dot-index, 0) * 78ms);
 }
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-exiting
@@ -1305,28 +1339,30 @@
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-outline {
-  animation: build-outline-appear 260ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+  animation: build-outline-appear 500ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
 }
-/* 2. ...and go solid, clockwise from the top-left, BEFORE the line. */
+/* 2. ...and go solid, clockwise from the top-left, BEFORE the line
+   (last fill lands at ~2.2s). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-fill {
-  animation: build-fill-appear 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(360ms + var(--fill-order, 0) * 32ms);
+  animation: build-fill-appear 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(400ms + var(--fill-order, 0) * 90ms);
 }
-/* 3. The line follows the now-solid perimeter (fills finish ~1040ms). */
+/* 3. The line follows the now-solid perimeter (draws 2.0s -> 3.6s). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-line {
-  animation: build-line-draw 780ms cubic-bezier(0.4, 0, 0.2, 1) 1080ms both;
+  animation: build-line-draw 1600ms cubic-bezier(0.4, 0, 0.2, 1) 2000ms both;
 }
 /* 4. The inner dots appear last, after the line has drawn, spiralling in
-   clockwise (via --inner-order) rather than all at once. */
+   clockwise (via --inner-order) rather than all at once (done ~4.7s;
+   the exit starts at 5.3s = AUTO_ADVANCE_MS - EXIT_MS). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .build-dot-inner {
-  animation: build-outline-appear 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(1860ms + var(--inner-order, 0) * 45ms);
+  animation: build-outline-appear 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(3400ms + var(--inner-order, 0) * 90ms);
 }
 /* Exit: line retracts (offset 0 -> 600, un-draws) then dots fade. */
 .how-we-work-page.is-revealed
@@ -1384,23 +1420,24 @@
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .partner-square--tl {
-  animation: partner-fly-tl 1000ms cubic-bezier(0.34, 1.4, 0.64, 1) 160ms both;
+  animation: partner-fly-tl 2200ms cubic-bezier(0.34, 1.4, 0.64, 1) 40ms both;
 }
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .partner-square--br {
-  animation: partner-fly-br 1000ms cubic-bezier(0.34, 1.4, 0.64, 1) 240ms both;
+  animation: partner-fly-br 2200ms cubic-bezier(0.34, 1.4, 0.64, 1) 160ms both;
 }
+/* Overlap fades in as the squares settle (2.0s -> 3.2s). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .partner-overlap {
-  animation: partner-overlap-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 940ms both;
+  animation: partner-overlap-in 1200ms cubic-bezier(0.16, 1, 0.3, 1) 2000ms both;
 }
-/* NZ:AI mark pops into the overlap once the square has formed (~1540ms). */
+/* NZA mark pops into the overlap once the square has formed (3.3s -> 4.3s). */
 .how-we-work-page.is-revealed
   .how-we-work-phase-panel.is-active:not(.is-exiting)
   .partner-logo {
-  animation: partner-logo-pop 520ms cubic-bezier(0.34, 1.56, 0.64, 1) 1600ms both;
+  animation: partner-logo-pop 1000ms cubic-bezier(0.34, 1.56, 0.64, 1) 3300ms both;
 }
 /* Exit. */
 .how-we-work-page.is-revealed
