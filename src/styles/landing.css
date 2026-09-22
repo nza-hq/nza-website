@@ -36,22 +36,22 @@
      100svh keeps the whole hero - carousel included - inside the visible
      area. vh first as the fallback for browsers without svh.
 
-     48px SHORT of the viewport on purpose (Chris, Sept 2026, after the
-     scroll-cue research): a hero that fills the first screen edge to
-     edge reads as the whole page - NN/g's "illusion of completeness".
-     The strongest fix in the literature is to let the next section
-     peek in, so the coral page's rounded crest shows below the hero at
-     rest. On desktop that also puts the parallax's curve on screen from
-     the start; on phone the hero is still the first snap page and the
-     crest peeks beneath it. --hero-peek is the one knob.
+     --hero-peek: how far short of the viewport the hero sits so the
+     coral page's rounded crest peeks in at rest - the "next section
+     peeks" signifier from the scroll-cue research (NN/g "illusion of
+     completeness"). Tried at 48px (Sept 2026); Chris disliked the thin
+     pink band across the bottom on a wide PC screen ("because of the
+     ratios") and retired it on both: the "Scroll" cue (ScrollCue.tsx)
+     carries the affordance alone. Kept as a knob at 0 in case the peek
+     is wanted back.
 
      --hero-nav-slot: the sticky nav sits in document flow ABOVE the hero
      (68px desktop, 56px phone). On desktop the page rests at scrollY 0
-     with that slot on screen, so the hero must also give up the slot or
-     the crest lands 68px below the fold. At <1024px the CSS snap parks
-     the page at the hero's own top (the slot scrolled away under the
-     sticky nav), so nothing to subtract there. */
-  --hero-peek: 48px;
+     with that slot on screen, so the hero gives up the slot too - hero +
+     nav = exactly one viewport, coral starts right at the fold. At
+     <1024px the CSS snap parks the page at the hero's own top (the slot
+     scrolled away under the sticky nav), so nothing to subtract there. */
+  --hero-peek: 0px;
   --hero-nav-slot: 0px;
   min-height: calc(100vh - var(--hero-nav-slot) - var(--hero-peek));
   min-height: calc(100svh - var(--hero-nav-slot) - var(--hero-peek));
@@ -2679,11 +2679,11 @@
 
 /* EXPAND / CLOSE TOGGLE (Chris: "make it intuitive to click ... a little
    plus icon ... it's a bit too minimalist"). Top-right of the card: a
-   Lucide-style plus (2px stroke, 12px) inside a 26px hairline ring, with
-   an "Expand" microlabel in the mono voice of the Explore link. Quiet
-   navy-grey at rest so it reads as a cue, not a button; takes the
-   product accent and the plus turns into a cross once the card is open.
-   The whole thing is a real <button> with a 44px-tall hit area. */
+   Lucide-style plus (2px stroke, 12px) inside a 26px hairline ring. No
+   text label (Chris: "we just don't need it"). Quiet navy-grey at rest
+   so it reads as a cue, not a button; takes the product accent and the
+   plus turns into a cross once the card is open. A real <button> with a
+   44px square hit area around the ring. */
 .product-card-toggle {
   position: absolute;
   top: 8px;
@@ -2691,17 +2691,13 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  min-width: 44px;
-  padding: 0 9px 0 10px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
-  font-family: ui-monospace, "IBM Plex Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgba(14, 17, 32, 0.45);
   transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -2735,18 +2731,12 @@
   outline-offset: 2px;
   border-radius: 999px;
 }
-/* Phone: the compact card (24px top padding, 96px logo slot) has no
-   room for the label beside the logo - ring + plus only, tucked into
-   the corner, still a 44px target. The ring is the recognised cue. */
+/* Phone: tucked right into the corner of the compact card. */
 @media (max-width: 599px) {
   .product-card-toggle {
     top: 0;
     right: 0;
-    padding: 0;
-    width: 44px;
-    justify-content: center;
   }
-  .product-card-toggle-label { display: none; }
 }
 
 /* prefers-reduced-motion - swap all hover transitions for instant. */

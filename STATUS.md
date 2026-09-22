@@ -19,6 +19,11 @@
 - Pane limitation: scroll events + transitions don't run backgrounded, so the cue's fade-out and the
   toggle's colour/rotation are verified by rule, not by observation. **Chris to judge on device:** the
   swipe paging feel, the 48px crest peek, the cue, the card toggle.
+- **Later the same evening:** curved edges showed a dark notch (body navy behind the corners) → each
+  page now extends a `::after` strip of its own colour under the next page's curve, pages stacked
+  z-index 1/2/3. Chris then retired the 48px crest peek on both PC and phone ("thin pink band ...
+  because of the ratios") - `--hero-peek: 0px`, the Scroll cue carries the affordance alone - and
+  dropped the toggle's "Expand"/"Close" text label (ring + plus only, 44px square target).
 - **Chris on device: "all working really well, transitions working really well."** Follow-ups shipped:
   curved 32px/24px top edge on the products and get-in-touch pages to match the coral card; the static
   index.html splash (mark + "Net Zero Advisory") deleted - the HTML now just sets the cream ground and the

@@ -214,10 +214,9 @@ export function ProductsScreen() {
 
                   {/* EXPAND / CLOSE TOGGLE - the "you can open this" cue
                       Chris asked for (the bare card was too minimalist to
-                      read as interactive). Ring + plus in the top corner
-                      with a microlabel; the plus turns 45deg into a cross
-                      and the label flips to Close while the card is open.
-                      44px tap target on phone. */}
+                      read as interactive). Ring + plus in the top corner;
+                      the plus turns 45deg into a cross while the card is
+                      open. No text label (Chris: not needed). 44px target. */}
                   <button
                     type="button"
                     className="product-card-toggle"
@@ -229,9 +228,6 @@ export function ProductsScreen() {
                         : `Expand ${p.name} details`
                     }
                   >
-                    <span className="product-card-toggle-label" aria-hidden="true">
-                      {isActive ? 'Close' : 'Expand'}
-                    </span>
                     <span className="product-card-toggle-ring" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                         <path d="M12 5v14M5 12h14" />

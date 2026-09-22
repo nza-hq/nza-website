@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { preloaderState, PRELOADER_DISMISSED_EVENT } from '../lib/preloaderState'
 
 /**
- * "Scroll" cue at the foot of the landing hero - the second half of the
- * false-floor fix (the first is the hero sitting 48px short of the
- * viewport so the coral page's crest peeks in; see .landing-screen).
+ * "Scroll" cue at the foot of the landing hero - the false-floor fix.
+ * (A 48px "next page peeks in" crest was tried alongside it and retired
+ * by Chris; --hero-peek in landing.css is the knob, now 0.)
  *
  * A full-viewport hero reads as the whole page (NN/g's "illusion of
  * completeness"), so the hero carries one quiet signifier: a mono
