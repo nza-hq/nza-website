@@ -427,6 +427,34 @@ body.context-decoded .site-nav-cta:focus-visible {
   outline-offset: -1px;
 }
 
+/* "Coming soon" nav items (Chris) - shown so people see what's on the way,
+   but not clickable. Muted, default cursor, no hover/focus affordance. */
+.site-nav-dropdown-soon {
+  display: block;
+  padding: 8px 14px 4px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+.site-nav-dropdown-item--soon,
+.site-nav-dropdown-item--soon:hover,
+.site-nav-dropdown-item--soon:focus-visible {
+  color: rgba(245, 241, 232, 0.45);
+  background: transparent;
+  cursor: default;
+  outline: none;
+}
+.site-nav-mobile-link--soon,
+.site-nav-mobile-link--soon:hover,
+.site-nav-mobile-link--soon:focus-visible {
+  color: rgba(245, 241, 232, 0.45);
+  cursor: default;
+  outline: none;
+}
+
 /* Product swatches - circle to the left of each product name. PABLO
    gets a gradient, NZ:AI and decodED get flat brand colours. */
 .site-nav-dropdown-swatch {

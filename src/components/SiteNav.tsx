@@ -198,40 +198,26 @@ export function SiteNav() {
                   About us
                   <span className="site-nav-chevron" aria-hidden="true" />
                 </button>
+                {/* About us: pages are on the way but not live yet (Chris) -
+                    show them so people see what's coming, but none are
+                    clickable. "Who we work with" folded in here too. */}
                 {openMenu === 'about' && (
-                  <div className="site-nav-dropdown" role="menu">
-                    <Link
-                      to="/approach"
-                      className="site-nav-dropdown-item"
-                      role="menuitem"
-                      onClick={() => setOpenMenu(null)}
-                    >
+                  <div className="site-nav-dropdown site-nav-dropdown--soon" role="menu">
+                    <span className="site-nav-dropdown-soon">Coming soon</span>
+                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       Our approach
-                    </Link>
-                    <Link
-                      to="/expertise"
-                      className="site-nav-dropdown-item"
-                      role="menuitem"
-                      onClick={() => setOpenMenu(null)}
-                    >
+                    </span>
+                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       Our expertise
-                    </Link>
-                    <Link
-                      to="/about"
-                      className="site-nav-dropdown-item"
-                      role="menuitem"
-                      onClick={() => setOpenMenu(null)}
-                    >
+                    </span>
+                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       Who we are
-                    </Link>
+                    </span>
+                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
+                      Who we work with
+                    </span>
                   </div>
                 )}
-              </li>
-
-              <li className="site-nav-item">
-                <Link className="site-nav-link" to="/clients">
-                  Who we work with
-                </Link>
               </li>
             </ul>
 
@@ -355,43 +341,14 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
             <span>About us</span>
             <span className="site-nav-mobile-section-chevron" aria-hidden="true" />
           </button>
+          {/* Coming soon - shown but not clickable (Chris). */}
           <div className="site-nav-mobile-section-body">
-            <Link
-              to="/approach"
-              className="site-nav-mobile-link"
-              onClick={onClose}
-              tabIndex={expanded === 'about' ? 0 : -1}
-            >
-              Our approach
-            </Link>
-            <Link
-              to="/expertise"
-              className="site-nav-mobile-link"
-              onClick={onClose}
-              tabIndex={expanded === 'about' ? 0 : -1}
-            >
-              Our expertise
-            </Link>
-            <Link
-              to="/about"
-              className="site-nav-mobile-link"
-              onClick={onClose}
-              tabIndex={expanded === 'about' ? 0 : -1}
-            >
-              Who we are
-            </Link>
+            <span className="site-nav-dropdown-soon">Coming soon</span>
+            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">Our approach</span>
+            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">Our expertise</span>
+            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">Who we are</span>
+            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">Who we work with</span>
           </div>
-        </section>
-
-        {/* ===== WHO WE WORK WITH (single link, no accordion) ===== */}
-        <section className="site-nav-mobile-section">
-          <Link
-            to="/clients"
-            className="site-nav-mobile-section-header site-nav-mobile-section-header--link"
-            onClick={onClose}
-          >
-            <span>Who we work with</span>
-          </Link>
         </section>
 
         {/* CTA pinned at the bottom of the overlay, full-width. */}
