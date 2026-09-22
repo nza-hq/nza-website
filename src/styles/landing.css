@@ -2800,6 +2800,47 @@
     border-top-right-radius: 24px;
   }
 }
+
+/* =========================================================================
+   PAGE CARDS - what shows BEHIND each curved top edge.
+   A page's rounded corners reveal whatever is painted underneath, and the
+   pages sit end to end, so underneath was the body ground: navy showed
+   through the cream page's corners as a dark notch (Chris's screenshot).
+   Fix: each page extends a strip of its own colour (background: inherit)
+   beneath the next page's curve, and the later pages stack above it
+   (z-index 2 / 3; the coral page already carries z-index 1 for its
+   parallax over the hero). Layout and snap positions are untouched - the
+   strip is a pseudo-element hanging below the page's box. The hero needs
+   no strip: it is navy on a navy ground. --page-curve mirrors the radius
+   values above (32px, 24px at <=1023px).
+   ========================================================================= */
+.how-we-work-page,
+.products-section {
+  --page-curve: 32px;
+}
+@media (max-width: 1023px) {
+  .how-we-work-page,
+  .products-section {
+    --page-curve: 24px;
+  }
+}
+.how-we-work-page::after,
+.products-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--page-curve));
+  height: var(--page-curve);
+  background: inherit;
+  pointer-events: none;
+}
+.products-section {
+  z-index: 2;
+}
+.screen.get-in-touch-screen {
+  z-index: 3;
+}
 @media (max-width: 767px) {
   .screen.get-in-touch-screen { min-height: auto; }
 }
