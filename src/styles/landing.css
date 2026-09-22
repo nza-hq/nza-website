@@ -691,7 +691,11 @@
   position: relative;
   overflow: hidden;
   vertical-align: top;
-  height: 1.2em;
+  /* 1.4em (was 1.2) so Stolzl's descenders (g, y in "energy") clear the
+     overflow:hidden clip instead of being cropped (Chris). Must match the
+     per-word height and the slot-machine-rotate translate below, or the
+     rotation stops landing one word per slot. */
+  height: 1.4em;
   line-height: 1;
   padding: 0 0.32em;
   contain: paint;
@@ -714,8 +718,9 @@
 }
 .slot-word {
   display: block;
-  height: 1.2em;
-  line-height: 1.2;
+  /* 1.4em to match .slot-text-wrapper + the rotate translate (descender room). */
+  height: 1.4em;
+  line-height: 1.4;
   /* Centre the word horizontally within its row so the visible word
      sits at the wrapper's centre = at the page centre. */
   text-align: center;
@@ -729,7 +734,7 @@
 }
 @keyframes slot-machine-rotate {
   from { transform: translateY(0); }
-  to   { transform: translateY(-1.2em); }
+  to   { transform: translateY(-1.4em); }
 }
 
 /* Hidden width measurer. The measured offsetWidth becomes the slot-
