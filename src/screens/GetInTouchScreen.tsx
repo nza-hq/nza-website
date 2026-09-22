@@ -18,7 +18,7 @@ import { MaskReveal } from '../components/MaskReveal'
  */
 
 const EMAIL = 'info@netzeroadvisory.uk'
-const LINKEDIN = 'https://www.linkedin.com/company/the-nza'
+const LINKEDIN = 'https://www.linkedin.com/company/netzeroadvisory/'
 const PHONE = '07437 889836'
 
 const CONTACT_HREF = `mailto:${EMAIL}?subject=NZA%20-%20Let%27s%20talk`
