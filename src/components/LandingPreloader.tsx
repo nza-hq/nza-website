@@ -6,6 +6,7 @@ import {
   PRELOADER_DISMISSED_EVENT,
   hasPreloaderRunThisLoad,
   markPreloaderHasRunThisLoad,
+  isTouchDevice,
 } from '../lib/preloaderState'
 
 /**
@@ -35,6 +36,12 @@ import {
  * Background carries a 4-blob field at heavy blur with co-prime
  * durations so the visible pattern never loops.
  *
+ * DESKTOP ONLY. On touch devices (phones, iPads - the same
+ * `(hover: none), (pointer: coarse)` rule that hides the blobs in
+ * landing.css) the preloader is skipped entirely and the hero shows
+ * as soon as React mounts. The cream sheet was the mobile cold-load
+ * "blank white screen" - see isTouchDevice() in lib/preloaderState.ts.
+ *
  * Brief: docs/briefs/landing-page-brief.md
  */
 const AUTO_DISMISS_MS = 4500
@@ -51,7 +58,8 @@ export function LandingPreloader() {
   // transition would never get to run. By capturing skip ONCE via
   // useState's lazy initialiser, the component's render output
   // tracks its own dismiss state rather than the global flag.
-  const [skip] = useState(() => hasPreloaderRunThisLoad())
+  // Touch devices always skip (see isTouchDevice for the why).
+  const [skip] = useState(() => hasPreloaderRunThisLoad() || isTouchDevice())
   if (skip) {
     preloaderState.dismissed = true
   }

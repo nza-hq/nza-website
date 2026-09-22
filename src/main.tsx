@@ -18,6 +18,13 @@ import './styles/site-nav.css'
 import App from './App.tsx'
 
 function boot() {
+  // Belt and braces: if the app stylesheet is still a <link rel="preload">
+  // here (its onload never fired - a known gap on some mobile browsers, e.g.
+  // older iOS Safari), flip it to a real stylesheet ourselves. Otherwise the
+  // CSS would never apply and React would mount into an unstyled page, which
+  // on the cream ground reads as "blank". Harmless if onload already did it.
+  const css = document.getElementById('app-css') as HTMLLinkElement | null
+  if (css && css.rel !== 'stylesheet') css.rel = 'stylesheet'
   // Remove the static index.html splash and mount React. The splash is
   // absent in dev / on a warm remount, so guard the removal.
   const splash = document.getElementById('initial-splash')

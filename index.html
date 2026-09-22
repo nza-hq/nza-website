@@ -76,12 +76,13 @@
       this the user sees a blank screen for the duration of the JS
       fetch/parse - on mobile networks via Vercel that was ~15s for
       Chris. With this they immediately see the cream NZA splash and
-      the static React preloader takes over the moment main.tsx
-      finishes loading.
+      React takes over the moment main.tsx finishes loading.
 
       The splash is removed by main.tsx the moment React mounts (just
-      before the first render) so there's a clean handoff to the
-      React-driven preloader animation.
+      before the first render). On desktop that hands off to the
+      React-driven cream preloader animation; on touch devices the
+      preloader is skipped and the navy hero shows straight away (see
+      src/lib/preloaderState.ts isTouchDevice).
     -->
     <style>
       html, body { margin: 0; padding: 0; background: #FAF7F0; }

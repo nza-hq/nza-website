@@ -35,6 +35,19 @@
 @media (max-width: 767px) {
   .site-nav { height: 56px; }
 }
+/* TOUCH DEVICES: no always-on backdrop-filter. A full-viewport-width
+   backdrop-filter: blur() on the sticky nav is a per-frame GPU cost that,
+   together with the blurred blob fields (see landing.css), stalls phone
+   compositors and blanks the first paint (Chris). The nav backgrounds are
+   already 0.86-0.92 opaque per page context, so they read correctly
+   without the blur - we only remove the filter and leave each context's
+   colour untouched. Desktop keeps the blur. */
+@media (hover: none), (pointer: coarse) {
+  .site-nav {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+  }
+}
 
 .site-nav-inner {
   width: 100%;
