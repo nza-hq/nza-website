@@ -140,32 +140,40 @@ export function SiteNav() {
                     internal key `openMenu === 'products'` stays for code
                     clarity - only the visible order changes.
                     Coming soon (Chris, Sept 2026): the product pages are
-                    held, so - like About us - the three are shown but not
-                    clickable. They were Links to /nz-ai, /pablo, /decoded;
-                    restore those when the pages go live. */}
+                    held, so - like About us - they are shown but not
+                    clickable. Preview branch (Oct 2026): PABLO is a live
+                    Link again so the page can be reviewed; NZ:AI and decodED
+                    stay held, each carrying its own "Soon" tag because the
+                    dropdown-wide label no longer applies to every row. */}
                 {openMenu === 'products' && (
-                  <div className="site-nav-dropdown site-nav-dropdown--soon" role="menu">
-                    <span className="site-nav-dropdown-soon">Coming soon</span>
+                  <div className="site-nav-dropdown" role="menu">
                     <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       <span
                         className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
                         aria-hidden="true"
                       />
                       NZ:AI
+                      <span className="site-nav-soon-tag">Soon</span>
                     </span>
-                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
+                    <Link
+                      to="/pablo"
+                      className="site-nav-dropdown-item"
+                      role="menuitem"
+                      onClick={() => setOpenMenu(null)}
+                    >
                       <span
                         className="site-nav-dropdown-swatch site-nav-dropdown-swatch--pablo"
                         aria-hidden="true"
                       />
                       PABLO
-                    </span>
+                    </Link>
                     <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       <span
                         className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
                         aria-hidden="true"
                       />
                       decodED
+                      <span className="site-nav-soon-tag">Soon</span>
                     </span>
                   </div>
                 )}
@@ -273,30 +281,37 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
             <span className="site-nav-mobile-section-chevron" aria-hidden="true" />
           </button>
           {/* Mobile order matches desktop: NZ:AI / PABLO / decodED.
-              Coming soon - shown but not clickable, like About us (Chris);
-              were Links to /nz-ai, /pablo, /decoded. */}
+              Coming soon - shown but not clickable, like About us (Chris).
+              Preview branch (Oct 2026): PABLO is a live Link again; NZ:AI and
+              decodED stay held with a per-item "Soon" tag. */}
           <div className="site-nav-mobile-section-body">
-            <span className="site-nav-dropdown-soon">Coming soon</span>
             <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
               <span
                 className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
                 aria-hidden="true"
               />
               NZ:AI
+              <span className="site-nav-soon-tag">Soon</span>
             </span>
-            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
+            <Link
+              to="/pablo"
+              className="site-nav-mobile-link"
+              onClick={onClose}
+              tabIndex={expanded === 'products' ? 0 : -1}
+            >
               <span
                 className="site-nav-dropdown-swatch site-nav-dropdown-swatch--pablo"
                 aria-hidden="true"
               />
               PABLO
-            </span>
+            </Link>
             <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
               <span
                 className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
                 aria-hidden="true"
               />
               decodED
+              <span className="site-nav-soon-tag">Soon</span>
             </span>
           </div>
         </section>

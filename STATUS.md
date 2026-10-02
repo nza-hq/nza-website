@@ -2,6 +2,21 @@
 
 ## In progress
 
+**PABLO preview branch `claude/festive-volta-fctr8f` (2 Oct 2026, Co-Work / Fable) - pushed, not merged.**
+Chris asked for a branch where the held PABLO section is visible again so it can be reviewed and
+edited. `main` is untouched (products still "coming soon"). On the branch:
+- `/pablo` renders the full `<ProductPage config={pabloConfig} />` again (was `ProductComingSoon`).
+- Landing products card: PABLO `ready: true` → `Explore PABLO →` Link. NZ:AI / decodED stay held.
+- Nav (desktop dropdown + phone menu): PABLO is a live Link to /pablo. NZ:AI and decodED stay
+  non-clickable; the dropdown-wide "Coming soon" label is replaced by a per-item "Soon" tag
+  (`.site-nav-soon-tag`, same 10-11px uppercase coral idiom) since it no longer applies to every row.
+  Judgment call - flagged to Chris.
+- Verified headless (1280x800 + 393x705): /pablo paints hero + mockup, dropdown and phone menu expose
+  `a[href="/pablo"]`, card exposes `a.product-card-explore[href="/pablo"]`, tsc + build clean. Only
+  console noise is sandbox network (fonts/analytics blocked), not app errors.
+- Merge only when PABLO is meant to go public; `/nz-ai` and `/decoded` follow the same three-line
+  pattern when their turn comes.
+
 **Homepage approved copy + card hierarchy (copy brief, 22 Sep 2026, Co-Work / Fable) - SHIPPED.**
 Brief supplied inline by Chris (approved copy, verbatim). Hero untouched (three rotating phrases verified).
 - Section 2: new intro "We’re specialists in buildings, energy and climate. We help you make sense of

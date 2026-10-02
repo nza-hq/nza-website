@@ -469,6 +469,19 @@ body.context-decoded .site-nav-cta:focus-visible {
   cursor: default;
   outline: none;
 }
+/* Per-item "Soon" tag for a held product sitting next to a live one in the
+   same menu (preview branch: PABLO live, NZ:AI + decodED held). Same type
+   idiom as .site-nav-dropdown-soon, inline after the product name. */
+.site-nav-soon-tag {
+  margin-left: auto;
+  padding-left: 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
 
 /* "Get in touch" chooser (ContactMenu) - the CTA opens a small popover with
    Email / LinkedIn / Call instead of jumping straight to email (Chris). */

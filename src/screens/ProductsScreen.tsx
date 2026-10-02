@@ -43,7 +43,8 @@ type Product = {
   href: string
   /** True once the product's detail page is finished and meant to be
       public - swaps the non-interactive "Coming soon" status for the
-      Explore link. All three pages are still held (ProductComingSoon). */
+      Explore link. NZ:AI and decodED are still held (ProductComingSoon);
+      PABLO is live on this preview branch. */
   ready: boolean
   logoSrc: string
   alt: string
@@ -74,7 +75,9 @@ const PRODUCTS: Product[] = [
     id: 'pablo',
     name: 'PABLO',
     href: '/pablo',
-    ready: false,
+    /* Preview branch: PABLO's page is restored at /pablo for review, so the
+       card links out again. NZ:AI and decodED stay held. */
+    ready: true,
     logoSrc: '/assets/logos/pablo-logo.svg',
     alt: 'PABLO',
     descriptor: 'Understand your energy. Plan your investment.',
