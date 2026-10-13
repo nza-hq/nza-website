@@ -113,27 +113,19 @@ export const nzaiConfig: ProductPageConfig = {
     trailingText: 'what we build',
   },
 
-  /* FOUR SHOWCASE ITEMS - each backed by a short square video of a real
-     tool (nzai-showcase brief Part 4). Replaces the old Decode/Build/
-     Partner process stages (that arc now lives on the landing page's
-     screen 2). Ordered to widen the frame at each step - one document ->
-     one dataset -> one estate -> many years. Verbs sit in the
-     highlightedVerb slot and render in NZ:AI teal via `.step-verb`.
-     Videos are placeholders until real footage lands at the same paths;
-     see docs/videos-nzai-README.md. */
   steps: [
     {
       number: '01',
-      headlinePrefix: 'Your report, ',
-      highlightedVerb: 'alive',
+      headlinePrefix: 'Where your energy ',
+      highlightedVerb: 'goes',
       headlineSuffix: '.',
       body:
-        'Most carbon reports are read once and filed. This one runs on live data, responds to the questions you ask it, and updates as the year goes on. When the board needs a document, it still prints to one.',
+        'Most organisations can\'t say what feeds what, or what it costs. Here every supply, building and meter sits on one map, with the cost behind each a click away.',
       video: {
-        mp4: `${VIDEO_BASE}/01-living-reports.mp4`,
-        webm: `${VIDEO_BASE}/01-living-reports.webm`,
-        poster: `${VIDEO_BASE}/01-living-reports-poster.jpg`,
-        alt: 'An interactive carbon report responding to input changes and exporting to PDF',
+        mp4: `${VIDEO_BASE}/01-energy-map.mp4`,
+        webm: `${VIDEO_BASE}/01-energy-map.webm`,
+        poster: `${VIDEO_BASE}/01-energy-map-poster.jpg`,
+        alt: 'A site map where selecting a supply point highlights the buildings it serves and opens a monthly cost chart',
       },
     },
     {
@@ -142,40 +134,54 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'traced',
       headlineSuffix: '.',
       body:
-        'A full Scope 1, 2 and 3 inventory you can interrogate rather than read. Follow an emission from a headline figure down to the individual supplier behind it, and watch the picture change as your data improves.',
+        'Follow emissions from the total for the whole organisation down to one site, one supplier and the spend behind it, and see where the biggest reductions lie.',
       video: {
-        mp4: `${VIDEO_BASE}/02-carbon-inventory.mp4`,
-        webm: `${VIDEO_BASE}/02-carbon-inventory.webm`,
-        poster: `${VIDEO_BASE}/02-carbon-inventory-poster.jpg`,
-        alt: 'A carbon inventory morphing from bar chart to Sankey diagram and drilling to supplier level',
+        mp4: `${VIDEO_BASE}/02-carbon-traced.mp4`,
+        webm: `${VIDEO_BASE}/02-carbon-traced.webm`,
+        poster: `${VIDEO_BASE}/02-carbon-traced-poster.jpg`,
+        alt: 'A carbon inventory moving from bar chart to donut to Sankey, then drilling down to a single supplier',
       },
     },
     {
       number: '03',
-      headlinePrefix: 'Your whole estate, ',
-      highlightedVerb: 'in one place',
+      headlinePrefix: 'Risk, ',
+      highlightedVerb: 'mapped',
       headlineSuffix: '.',
       body:
-        'Energy, water, waste, carbon and climate risk for every site you run, in a single view. Start with the portfolio, end up inside a single room - and everything your team knows about that room sits alongside it.',
+        'The people who know a site best record what they see: past flooding, exposed trees, loose items. Each building gets a clear rating and a place on the risk register.',
       video: {
-        mp4: `${VIDEO_BASE}/03-estate-intelligence.mp4`,
-        webm: `${VIDEO_BASE}/03-estate-intelligence.webm`,
-        poster: `${VIDEO_BASE}/03-estate-intelligence-poster.jpg`,
-        alt: "A map zooming from a national portfolio view into a single building's interior spaces",
+        mp4: `${VIDEO_BASE}/03-risk-mapped.mp4`,
+        webm: `${VIDEO_BASE}/03-risk-mapped.webm`,
+        poster: `${VIDEO_BASE}/03-risk-mapped-poster.jpg`,
+        alt: 'A site map where recorded observations give each building a red, amber or green climate risk rating',
       },
     },
     {
       number: '04',
-      headlinePrefix: 'Progress you ',
-      highlightedVerb: 'can see',
+      headlinePrefix: 'Every option, ',
+      highlightedVerb: 'tested',
       headlineSuffix: '.',
       body:
-        'Year-on-year performance against the frameworks you report into, with the actions that drive it assigned to the people responsible. The tool holds the record, so improvement is something you manage rather than reconstruct.',
+        'Switch measures on, adjust their scale and watch the path to net zero respond. The chosen measures become actions, each with an owner.',
       video: {
-        mp4: `${VIDEO_BASE}/04-performance-tracking.mp4`,
-        webm: `${VIDEO_BASE}/04-performance-tracking.webm`,
-        poster: `${VIDEO_BASE}/04-performance-tracking-poster.jpg`,
-        alt: 'Performance scores climbing year on year with actions assigned to team members',
+        mp4: `${VIDEO_BASE}/04-options-tested.mp4`,
+        webm: `${VIDEO_BASE}/04-options-tested.webm`,
+        poster: `${VIDEO_BASE}/04-options-tested-poster.jpg`,
+        alt: 'A net zero trajectory bending down to its target as measures are switched on, then listed as actions with owners',
+      },
+    },
+    {
+      number: '05',
+      headlinePrefix: 'Ask, and it ',
+      highlightedVerb: 'answers',
+      headlineSuffix: '.',
+      body:
+        'Ask a question in plain English, such as which buildings have both meter and occupancy data, and the answer appears on the map from your own record. Your own AI can read it too.',
+      video: {
+        mp4: `${VIDEO_BASE}/05-ask-your-data.mp4`,
+        webm: `${VIDEO_BASE}/05-ask-your-data.webm`,
+        poster: `${VIDEO_BASE}/05-ask-your-data-poster.jpg`,
+        alt: 'A plain-English question typed over an estate map, with the matching buildings highlighted and a small chart beside each',
       },
     },
   ],
