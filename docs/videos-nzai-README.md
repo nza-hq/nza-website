@@ -24,33 +24,53 @@ that fits both without letterboxing.
 ## Filenames (exact — `nzaiConfig.tsx` references these)
 
 ```
-public/videos/nzai/01-living-reports.mp4        + .webm   + -poster.jpg
-public/videos/nzai/02-carbon-inventory.mp4      + .webm   + -poster.jpg
-public/videos/nzai/03-estate-intelligence.mp4   + .webm   + -poster.jpg
-public/videos/nzai/04-performance-tracking.mp4  + .webm   + -poster.jpg
+public/videos/nzai/01-energy-map.mp4        + .webm   + -poster.jpg
+public/videos/nzai/02-carbon-traced.mp4     + .webm   + -poster.jpg
+public/videos/nzai/03-risk-mapped.mp4       + .webm   + -poster.jpg
+public/videos/nzai/04-options-tested.mp4    + .webm   + -poster.jpg
+public/videos/nzai/05-ask-your-data.mp4     + .webm   + -poster.jpg
 ```
 
 Posters are the first frame, JPEG, 1080×1080, under 200KB.
 
-## Shot list (for Chris's recording)
+## Shot list
 
-- **01 Living reports** — a report scrolling; a chart responds to an input
-  change; a section expands to reveal detail; ends on the PDF export animating
-  out. Show it being *used*, not read.
-- **02 Live carbon inventory** — bars load by scope; one highlights; morphs
-  into a flowing Sankey; a click expands a branch; drills to supplier level.
-- **03 Estate intelligence** — UK map with site pins; zoom to one site; 2D
-  estate plan; click a building; interior spaces with data attached.
-- **04 Performance tracking** — score bars climb across years; an action list
-  populates; names assign to actions; a target line is met.
+- **01 Energy map** (source: Hartpury Estate Explorer, brief S01). Site map → select
+  substation A → the buildings it serves light up → a monthly cost chart opens beside
+  them → select substation B → the highlight and chart swap. Final frame: B's buildings
+  lit, chart open.
+- **02 Carbon traced** (source: IVG carbon inventory). Bars rise by scope → swivel into
+  a donut → flow into a Sankey → zoom into one site → one supplier with its spend → its
+  trajectory. Final frame: the supplier view with trajectory.
+- **03 Risk mapped** (source: invented site, built on the decodED risk-register work).
+  Pins drop as observations are recorded → buildings take red / amber / green ratings →
+  one opens its risk-register entry. Final frame: the rated site with one entry open.
+- **04 Options tested** (source: forked strategy playground). The business-as-usual line
+  climbs → measures switch on and sliders move → the line bends onto the science-based
+  target → the chosen measures slide up as an action list with owners' initials. Stacked
+  layout, chart on top. Final frame: on target, with the action list.
+- **05 Ask your data** (source: Hartpury Estate Explorer, brief S01). The question "Which
+  buildings have floor plans and a meter?" types itself → a short working state → the
+  matching buildings glow and the rest dim → a small card opens beside each → the answer
+  line "Floor plans and a meter: {n} buildings". The answer is produced by an agent
+  reading the record and checked by a test; the panel only replays it.
+
+> Clips are recordings of real NZA tools in a showcase mode (1080×1080, chrome hidden,
+> larger type, figures illegible), driven by a scripted Playwright run and encoded with
+> ffmpeg. They are produced in each tool's own repo, not here. Drop finished files in at
+> the exact names above; no code change is needed.
 
 ## Anonymisation — mandatory before any recording ships
 
 - No client logos, names, or identifying branding anywhere in frame.
 - No third-party framework marks (including GRESB's).
-- Item 04: shift the years and round the scores. A real trajectory in a known
-  sector identifies the client even without a logo.
 - Show the interface working; never a real client's numbers.
+- Real data only, never invented figures. Every £, kWh, m² and count is illegible in
+  frame, except clip 05's answer count.
+- No aerial or satellite imagery until its licence is confirmed for marketing use.
+- Never show gaps or missing data. Frames show what is held.
+- 04: use generic measure names and changed numbers. No office names.
+- 03: entirely invented.
 
 ## Regenerating the placeholders
 
