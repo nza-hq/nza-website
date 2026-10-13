@@ -68,21 +68,41 @@ export const nzaiConfig: ProductPageConfig = {
     ],
   },
 
-  /* SECTION 2 - Manifesto (replaces the v9 bridge / transition slot
-     per the manifestos brief Movement 2). v9's "Three stages. One
-     relationship." was lighter-weight in the old transition spot;
-     the manifesto now carries the full "why" beat at viewport scale.
-     Italic emphasis on "inside" per Movement 2's locked emphasis
-     list (Chunk 3 of the manifestos brief). */
   manifesto: {
     microLabel: 'WHY NZ:AI',
     headline: (
       <>
-        Climate action is an <em>inside</em> job.
+        The tools to act, <em>built</em> around you.
       </>
     ),
-    body:
-      "Real progress on net zero comes from the people inside your organisation - the ones with the relationships, the knowledge, and the context to act. They need the data in front of them, in a form they can use. NZ:AI puts it there. These are four of the tools we've built.",
+    body: (
+      <>
+        <p>
+          Energy costs, carbon and climate risk are hard to see and harder to act on. Most
+          organisations don't know where to start. NZ:AI changes that.
+        </p>
+        <p>
+          <strong>Decode.</strong> We learn how your organisation works and gather what it
+          already knows.
+        </p>
+        <p>
+          <strong>Build.</strong> We create bespoke software around your data: maps, models
+          and live dashboards that show where you stand, what it costs and what to do next.
+        </p>
+        <p>
+          <strong>Embed.</strong> We work alongside your people, so they can lead the change
+          themselves.
+        </p>
+        <p>
+          Software like this was once only affordable for the largest organisations. Now it
+          can be built for yours.
+        </p>
+        <p>
+          And because everything sits in one structured record, you can ask it questions in
+          plain English, or point your own AI at it.
+        </p>
+      </>
+    ),
     accentColor: 'nzai',
   },
 
