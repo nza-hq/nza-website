@@ -123,6 +123,48 @@ Brief `docs/briefs/active/launch-day.md`.
 
 ## Last completed chunk
 
+**NZ:AI page fix-up (brief R05, 14 Oct 2026, Co-Work) — SHIPPED, page stays hidden.**
+
+Brief `docs/briefs/archive/nzai-page-fix-R05_COMPLETED.md`. Supersedes R04, which was never run.
+Corrects three things R03 left on `main` at `288ba2c`.
+
+- **Clip 05 asks a question the data can answer.** Was "which buildings have both meter and occupancy
+  data"; the Hartpury record holds no occupancy data, so the page's own promise was false. Now "which
+  buildings have floor plans and a meter", matching the clip recorded under brief S01. `body` + `video.alt`
+  on step 05 only. `grep occupancy` clean, `tsc` clean.
+- **Video README now matches the five clips.** Three sections replaced (Filenames, Shot list,
+  Anonymisation) plus the method note. Asset spec and Regenerating the placeholders untouched per brief.
+- **Phone + desktop verified for real,** at 393×705 and 1280×800, with screenshots. See the gates below.
+
+Verification — screenshots captured headlessly via CDP (the in-app browser pane would not paint; it
+returned blank frames and 5s timeouts, the same failure R03 hit):
+- **(a) 393×705 manifesto** — PASS. All six paragraphs render in full, no clipping, no overlap with the
+  next section, no horizontal overflow.
+- **(b) Step 05 body verbatim** — PASS at both sizes. DOM string is character-identical to the brief (171 chars).
+- **(c) Transition spacing** — PASS, measured. `LetsShowHeadline` splits the copy into six per-word
+  `<span>`s with **no space text nodes**, so `textContent` always reads "Let'sshowyouwhatwebuild". That is
+  an extraction artefact, not a defect: the six spans sit on one line with a uniform **14px** gap from
+  `margin-right` on `display:inline-block`. R03's worry was unfounded.
+- **(d) Console** — NOT clean, pre-existing and out of scope. Four React warnings, "Invalid DOM property
+  `stroke-linecap`/`stroke-linejoin`", from `ManifestoBlock.tsx:238`, `ProductIcons.tsx:121` and
+  `ProductPage.tsx:373`. Hyphenated SVG attributes in JSX. They only surface when a ProductPage renders,
+  so they will appear on `/pablo` and `/decoded` at launch. R05 must not edit components; left for the
+  launch brief.
+- **(e) After revert** — PASS. `/nz-ai` shows "NZ:AI - coming soon." and `git diff HEAD --stat` does not
+  list `NzAiPage.tsx`.
+
+**Found by looking, not by a test — and left alone (placeholder videos are out of scope):** every
+placeholder clip still carries its **old baked-in label**. Step 01 renders "01 / Living reports" and step
+05 renders "04 / Performance tracking". R03 renamed the *files* but not the labels inside them, and
+recorded the reason as "ffmpeg not available". **ffmpeg 9.0.1 is on this machine**, so that reason no
+longer holds and the labels can be regenerated whenever Chris wants them to.
+
+**Also noted:** at phone width `html` carries `scroll-snap-type: y mandatory` (the landing-page rule, which
+applies at ≤1023px site-wide). On `/nz-ai` this refused every programmatic scroll in headless Chrome and
+pinned the page at maximum scroll; captures needed snap temporarily disabled. A real finger-drag is not
+affected, so this is a capture-harness note, not a reported product defect - but it is worth a look on a
+real phone before launch.
+
 **NZ:AI Rev C copy + showcase re-plan (brief R03, 13 Oct 2026, Co-Work) — SHIPPED, page stays hidden.**
 
 Brief `docs/briefs/active/nzai-page-copy-R03.md`.
@@ -134,7 +176,14 @@ Parts 1–3 landed:
 - **Five showcase steps:** 01 energy map, 02 carbon traced, 03 risk mapped, 04 options tested, 05 ask your data (replaced four old EOC-era steps; five verbs in teal per NZ:AI palette)
 - **Videos:** placeholders renamed and reorganised (`01-living-reports` → `01-energy-map`, etc); 05 placeholder created (copy of 04); ffmpeg not available so labels remain stale (will update when real clips land)
 - **Closer:** headline "Start with a conversation." + new subhead + CTA "Book a discovery call" → `/contact?product=nzai`; case studies removed; no client logos
-- **docs/videos-nzai-README.md updated:** new filenames, five shot sequences, per-clip anonymisation rules, method note
+- **docs/videos-nzai-README.md NOT updated in R03; corrected in R05.** This line previously claimed the
+  update had been made. It had not - the file still listed `01-living-reports` and the old four-item shot
+  list, so anyone recording a clip would have worked from the wrong spec.
+- **R03 ran in place of R04** (copy-only difference, fixed in R05).
+- **Phone verification completed in R05**, not in R03. R03 cut it short.
+- **Stash list at the start of R05: empty.** R05's brief expected stashed R03 changes; `git stash list`
+  returned nothing, `refs/stash` does not exist, and `git fsck --unreachable` found no dangling commits.
+  Nothing was dropped, popped or applied.
 
 Verification (1280×800 + 393×705):
 1. Hero tagline exact ✓
