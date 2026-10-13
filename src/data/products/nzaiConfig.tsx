@@ -1,36 +1,21 @@
 import type { ProductPageConfig } from '../../components/product/ProductPage'
 
-const CLIENT_LOGO_BASE = '/assets/clients'
 const VIDEO_BASE = '/videos/nzai'
 
 /**
- * NZ:AI product page config - "from process to proof" restructure
- * (nzai-showcase brief, Sept 2026).
+ * NZ:AI product page config - Rev C copy + five-step showcase re-plan
+ * (brief R03 part 1, 13 Oct 2026).
  *
- * The page used to explain a three-stage process (Decode -> Build ->
- * Partner). That arc now lives on the landing page's screen 2, told
- * more briefly. This page's job is to PROVE NZA can build things, so
- * the steps slot now carries FOUR showcase items - each backed by a
- * short square video of a real tool. The page stops explaining and
- * starts showing.
+ * Rev C positioning: energy, carbon and climate intelligence (the "what")
+ * that organisations build around themselves (the "how"), run as their
+ * extended sustainability function (the "why"). The five showcase steps
+ * answer a single visitor question: what questions can an organisation
+ * ask? Filenames change from the old EOC-era names to function names
+ * (energy-map, carbon-traced, risk-mapped, options-tested, ask-your-data).
+ * Case studies are held pending client sign-off. Page stays "coming soon".
  *
- *   - Hero:      "Intelligence you own." + a 17-word one-liner that
- *                sets up the showcase.
- *   - Manifesto: headline "Climate action is an *inside* job."
- *                unchanged; body now hands into the four tools.
- *   - Steps:     four video showcase items, ordered to widen the frame
- *                (one document -> one dataset -> one estate -> many
- *                years). Verbs render in NZ:AI teal via `.step-verb`.
- *   - Voice:     first-person "we" stays sanctioned on /nz-ai.
- *   - AI:        the copy now carries zero substantive AI mentions
- *                (brand name NZ:AI aside) - the tools demonstrate the
- *                capability rather than claiming it.
- *
- * The shared product-page TEMPLATE is unchanged. Video support is a new
- * visual type in ProductStepsSection (ProductStepVideo); PABLO/decodED
- * keep their SVG illustrations. Placeholder footage lives in
- * public/videos/nzai/ - see docs/videos-nzai-README.md for the real
- * recording spec.
+ * First-person "we" is sanctioned on /nz-ai per CLAUDE.md.
+ * AI is mentioned in exactly two places: manifesto paragraph six and step 05.
  */
 export const nzaiConfig: ProductPageConfig = {
   slug: 'nzai',
@@ -51,25 +36,14 @@ export const nzaiConfig: ProductPageConfig = {
   },
 
   hero: {
-    /* microLabel updated per v9: NZ:AI now stands for Net Zero
-       Advisory and Intelligence (not "intelligence platform"). The
-       expanded form sits in the mono eyebrow above the logo. */
     microLabel: 'NET ZERO ADVISORY + INTELLIGENCE',
     name: 'NZ:AI',
     logoSrc: '/assets/logos/nzai-logo.svg',
-    /* Hero tagline (nzai-showcase brief Part 3). Renders in the
-       template's DM Serif italic tagline treatment. */
-    tagline: 'Intelligence you own.',
-    /* Hero one-liner (nzai-showcase brief Part 3) - 17 words, replacing
-       the v9 58-word paragraph. Sets up the showcase ("Here's what that
-       looks like.") that the four items below deliver. */
+    tagline: 'Expertise you can act on. Intelligence you own.',
     oneLiner:
-      "Carbon and climate intelligence, built for your organisation and owned by it. Here's what that looks like.",
-    ctaLabel: 'Get in touch',
-    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
-    /* Existing screens retained - v9 notes the existing platform
-       screenshots are fine for launch and a morphing-chart hero
-       animation is nice-to-have for later. */
+      'Energy, carbon and climate intelligence, built around your organisation and run as your extended sustainability function.',
+    ctaLabel: 'Book a discovery call',
+    ctaHref: '/contact?product=nzai',
     screens: [
       {
         src: '/images/products/nzai/nzai-map.png',
@@ -113,13 +87,10 @@ export const nzaiConfig: ProductPageConfig = {
   },
 
   letsShow: {
-    /* nzai-showcase brief Part 3: "Let's show you what [Request Demo]
-       we've built" - the page now SHOWS built tools rather than
-       explaining how the process works. */
-    leadingText: "Let's show you what",
+    leadingText: "Let's show you",
     pillLabel: 'Request Demo',
     pillHref: '/contact?product=nzai',
-    trailingText: "we've built",
+    trailingText: 'what we build',
   },
 
   /* FOUR SHOWCASE ITEMS - each backed by a short square video of a real
@@ -189,56 +160,11 @@ export const nzaiConfig: ProductPageConfig = {
     },
   ],
 
-  /* v9 CLOSING CTA - "Let's work out if it's the right fit."
-     Closer microLabel dropped (matches PABLO's June 2026 redesign -
-     the eyebrow felt redundant once headline + subhead carried the
-     credibility weight).
-
-     Closer switched from a flat clientLogos row to PABLO's
-     click-to-expand caseStudies format. Three real engagements
-     anchor v9's partnership claim with concrete examples - EOC's
-     SBTi-aligned interventions playground, RWGC's emissions
-     visualisation for members + GEO certification, and Molson's
-     supply-chain embodied + operational lifecycle tool. One card
-     open at a time (the template's single-expand state handles
-     that automatically). */
   closer: {
-    /* Closer refreshed per nzai-showcase brief Part 5. Case studies
-       below (EOC, Royal Wimbledon, Molson) unchanged. */
     headline: 'Start with a conversation.',
     subhead:
-      'Most organisations are sitting on better data than they realise. We decode it, build the tools that make it usable, and stay alongside your team as both improve.',
-    caseStudies: [
-      {
-        id: 'eckersley-ocallaghan',
-        logoSrc: `${CLIENT_LOGO_BASE}/eckersley-ocallaghan.svg`,
-        alt: "Eckersley O'Callaghan",
-        companyName: "Eckersley O'Callaghan",
-        body:
-          "We've helped map out their carbon emissions across their nine global offices and built an interactive decarbonisation strategy that lets them play with interventions and test what happens under different scenarios, fully aligned to SBTi.",
-      },
-      {
-        id: 'royal-wimbledon',
-        /* Use the -2 variant which includes the wordmark alongside the
-           crest, matching the convention PABLO uses on the same row -
-           the case-studies row then reads consistently across the
-           three products. */
-        logoSrc: `${CLIENT_LOGO_BASE}/royal-wimbledon-golf-club-2.svg`,
-        alt: 'Royal Wimbledon Golf Club',
-        companyName: 'Royal Wimbledon Golf Club',
-        body:
-          "We're building a platform for them to visualise their energy use and emissions and show that to their members. As they put it, it will help them with their GEO certification - a tool to really manage their emissions well.",
-      },
-      {
-        id: 'molson-group',
-        logoSrc: `${CLIENT_LOGO_BASE}/molson-group.svg`,
-        alt: 'Molson Group',
-        companyName: 'Molson Group',
-        body:
-          "Molson is one of the UK's biggest construction equipment dealers. We're helping them understand their supply chain emissions through a tool that lets them see their entire product portfolio - down to the individual digger - and the embodied carbon and operational lifecycle emissions associated with each.",
-      },
-    ],
-    ctaLabel: 'Get in touch',
-    ctaHref: 'mailto:info@netzeroadvisory.uk?subject=NZ%3AAI%20-%20Get%20in%20touch',
+      'Every partnership starts with a discovery call and a working session with your team. From there, we build what is needed first and keep building as your ambition grows.',
+    ctaLabel: 'Book a discovery call',
+    ctaHref: '/contact?product=nzai',
   },
 }
