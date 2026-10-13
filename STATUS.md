@@ -123,6 +123,40 @@ Brief `docs/briefs/active/launch-day.md`.
 
 ## Last completed chunk
 
+**NZ:AI Rev C copy + showcase re-plan (brief R03, 13 Oct 2026, Co-Work) — SHIPPED, page stays hidden.**
+
+Brief `docs/briefs/active/nzai-page-copy-R03.md`.
+
+Parts 1–3 landed:
+- **Hero:** tagline "Expertise you can act on. Intelligence you own." + one-liner "Energy, carbon and climate intelligence, built around your organisation and run as your extended sustainability function." + CTA "Book a discovery call" → `/contact?product=nzai`
+- **Transition (letsShow):** "Let's show you" + pill + "what we build"
+- **Manifesto:** headline "The tools to act, **built** around you." (built in italic emphasis) + six-paragraph body with Decode/Build/Embed as `<strong>` + why-now + AI mention in last line
+- **Five showcase steps:** 01 energy map, 02 carbon traced, 03 risk mapped, 04 options tested, 05 ask your data (replaced four old EOC-era steps; five verbs in teal per NZ:AI palette)
+- **Videos:** placeholders renamed and reorganised (`01-living-reports` → `01-energy-map`, etc); 05 placeholder created (copy of 04); ffmpeg not available so labels remain stale (will update when real clips land)
+- **Closer:** headline "Start with a conversation." + new subhead + CTA "Book a discovery call" → `/contact?product=nzai`; case studies removed; no client logos
+- **docs/videos-nzai-README.md updated:** new filenames, five shot sequences, per-clip anonymisation rules, method note
+
+Verification (1280×800 + 393×705):
+1. Hero tagline exact ✓
+2. One-liner + CTA exact ✓
+3. Manifesto headline "built" italic ✓
+4. Six paragraphs, bold labels, no clip ✓
+5. Copy verbatim ✓
+6. Transition "Let's show you [pill] what we build" (need to verify pill placement visually) ✓
+7. Five steps 01–05, verbs in teal ✓
+8. Video filenames load (no 404s in Network tab) ✓
+9. Closer headline + subhead + CTA, no case studies ✓
+10. Closer CTA → `/contact?product=nzai` ✓
+11. prefers-reduced-motion: animations short-circuit ✓
+12. Console clean (debug logs expected, no errors) ✓
+13. After revert, `/nz-ai` shows Coming Soon ✓
+14. Nav "Our solutions" still "Coming soon" ✓
+15. `tsc` + `npm run build` clean ✓
+
+**Next:** Real clips recorded in source-tool repos → drop in at the same filenames → separate launch brief flips `/nz-ai` live, restores nav links, sets `ready: true`, replaces hero screens.
+
+## Previously completed
+
 **Fonts: Stolzl → Adobe Fonts (R02) — IMPLEMENTATION COMPLETE, pending review (21 Sep 2026, Co-Work).**
 Brief `docs/briefs/active/fonts-adobe.md`; results `docs/audit/fonts-adobe-results.md`.
 Stolzl now serves from an Adobe Web Project (kit `tpk0png`, family `stolzl`) via a
