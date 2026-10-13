@@ -176,12 +176,12 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'answers',
       headlineSuffix: '.',
       body:
-        'Ask a question in plain English, such as which buildings have both meter and occupancy data, and the answer appears on the map from your own record. Your own AI can read it too.',
+        'Ask a question in plain English, such as which buildings have floor plans and a meter, and the answer appears on the map from your own record. Your own AI can read it too.',
       video: {
         mp4: `${VIDEO_BASE}/05-ask-your-data.mp4`,
         webm: `${VIDEO_BASE}/05-ask-your-data.webm`,
         poster: `${VIDEO_BASE}/05-ask-your-data-poster.jpg`,
-        alt: 'A plain-English question typed over an estate map, with the matching buildings highlighted and a small chart beside each',
+        alt: 'A plain-English question typed over an estate map, with the buildings that have floor plans and a meter highlighted and a small chart beside each',
       },
     },
   ],
