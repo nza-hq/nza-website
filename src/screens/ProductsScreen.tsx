@@ -59,7 +59,7 @@ const PRODUCTS: Product[] = [
     id: 'nzai',
     name: 'NZ:AI',
     href: '/nz-ai',
-    ready: false,
+    ready: true,
     /* Homepage products section is back on cream (Chris reverted v2
        chunk C). Use the dark-text variant so the wordmark reads on
        the cream surface. White-text variant stays in use on the
@@ -74,7 +74,7 @@ const PRODUCTS: Product[] = [
     id: 'pablo',
     name: 'PABLO',
     href: '/pablo',
-    ready: false,
+    ready: true,
     logoSrc: '/assets/logos/pablo-logo.svg',
     alt: 'PABLO',
     descriptor: 'Understand your energy. Plan your investment.',
@@ -85,7 +85,7 @@ const PRODUCTS: Product[] = [
     id: 'decoded',
     name: 'decodED',
     href: '/decoded',
-    ready: false,
+    ready: true,
     logoSrc: '/assets/logos/decoded-logo.svg',
     alt: 'decodED',
     descriptor: 'Climate action for education.',
