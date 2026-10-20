@@ -875,13 +875,29 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  /* Proximity + the firm per-step stop above = the steps lock onto each beat,
-     while the hero / manifesto / closer scroll freely and nothing jams (the
-     footer is NOT a snap point here - that was the earlier bottom-lock bug).
-     Gated via :has(.product-page) so the coming-soon stub and every other
-     route keep native scroll. */
+  /* Firm lock onto every beat (Chris: like the home page). MANDATORY snap, with
+     EVERY section a snap point so the scroll always settles on a full page and
+     nothing is skipped. No jam: unlike the earlier home-page bug (where the
+     shared footer was the ONLY snap point), here the hero, manifesto, lets-show,
+     each step, the closer AND the footer are all snap points, so every position
+     has somewhere to rest. Gated via :has(.product-page) + phone width so the
+     stub and every other route keep native scroll. */
   html:has(.product-page) {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
+  }
+  .product-hero,
+  .product-lets-show {
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .product-page .manifesto-block,
+  .product-closer {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  html:has(.product-page) .site-footer {
+    scroll-snap-align: end;
   }
 }
 
@@ -975,10 +991,11 @@
   overflow: visible;
   box-shadow: 0 30px 60px -30px rgba(31, 51, 71, 0.10);
 }
-/* NZ:AI: white card on the pale-grey showcase surface, not the warm cream
-   the other products use (Chris: cream is the wrong vibe for NZ:AI). */
+/* NZ:AI: the card matches the pale-grey showcase surface so there's no jarring
+   white-on-grey offset (Chris) - the thin border + soft shadow + dot texture
+   still read it as a gentle raised panel, and the rounded video sits on it. */
 [data-product="nzai"] .product-steps-frame {
-  background-color: #FFFFFF;
+  background-color: #EDEFF2;
 }
 
 /* REQUEST DEMO PILL pinned at the top-right of the shared frame.
@@ -1088,12 +1105,18 @@
    against the near-square frame) stays transparent and shows the
    frame's cream. Radius matches the inline illustration treatment. */
 .product-step-video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  /* Keep the square clip square and sized to fit its frame, and centre it (the
+     frame-illustration is a flex box). The old width/height:100% made the
+     element taller than the square video, so the 18px rounding clipped the
+     letterboxed element box, not the visible video - the bevel never showed
+     (Chris). Sizing the element to the video fixes that. */
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
   display: block;
-  /* Rounded to echo the card frame around it (Chris: "bevelled edges so it
-     matches the box"). Matches .product-steps-frame's 18px corners. */
   border-radius: 18px;
 }
 
