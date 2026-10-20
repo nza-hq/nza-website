@@ -22,7 +22,10 @@ export const nzaiConfig: ProductPageConfig = {
 
   palette: {
     canvas: '#0A1628',
-    cream: '#FAF5EB',
+    /* NZ:AI uses a pale cool grey for the showcase surface, not the warm
+       cream the landing page uses (Chris: cream is the wrong vibe here). The
+       showcase cards sit on it as white panels (see product-page.css). */
+    cream: '#EDEFF2',
     accent: '#0F9888',
     accentLight: '#5FDDC4',
     canvasElevated: 'rgba(95, 221, 196, 0.06)',
@@ -37,9 +40,9 @@ export const nzaiConfig: ProductPageConfig = {
     microLabel: 'NET ZERO ADVISORY + INTELLIGENCE',
     name: 'NZ:AI',
     logoSrc: '/assets/logos/nzai-logo.svg',
-    tagline: 'Expertise you can act on. Intelligence you own.',
+    tagline: 'A new kind of advisory service.',
     oneLiner:
-      'Energy, carbon and climate intelligence, built around your organisation and run as your extended sustainability function.',
+      'Specialist energy, carbon and climate expertise, combined with software built on your own data. Advice you can act on, and intelligence that stays with you.',
     ctaLabel: 'Book a discovery call',
     ctaHref: '/contact?product=nzai',
     screens: [
@@ -74,13 +77,16 @@ export const nzaiConfig: ProductPageConfig = {
       </>
     ),
     body:
-      'Energy costs, carbon and climate risk are hard to see and harder to act on. NZ:AI brings what your organisation knows, from its data and its people, into one connected record. We learn how you work, build the tools you need around it, and stay alongside your team as they lead the change.',
+      'What is really driving your energy costs? What should you do with your carbon data? How will a changing climate affect your sites? None of these can be answered from the outside. The answers depend on how your organisation works, and much of that knowledge sits with your people. So NZ:AI works from the inside: we embed with your team, bring what you know into one connected record, and build the tools to act on it.',
     accentColor: 'nzai',
   },
 
   letsShow: {
     leadingText: "Let's show you",
-    pillLabel: 'Request Demo',
+    /* Empty = no Request Demo pill on the showcase frame. The top nav's
+       "Get in touch" already carries conversion, so the pill doubled up
+       (Chris). ProductStepsSection skips the pill when the label is blank. */
+    pillLabel: '',
     pillHref: '/contact?product=nzai',
     trailingText: 'what we build',
   },
