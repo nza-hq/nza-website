@@ -1,9 +1,10 @@
 # NZ:AI showcase videos — recording spec
 
 The `/nz-ai` page's five showcase items each play a short video of a real tool
-in the pinned frame. Clips 02–05 in `public/videos/nzai/` are real recordings.
-**Clip 01 is a labelled placeholder card** until its recording exists; it drops
-in at the exact same filename.
+in the pinned frame. All five clips in `public/videos/nzai/` are real recordings.
+Clip 01 is captured from the Hartpury digital twin (see the `hartpury-clip01`
+worktree, `showcase/nzai-clip01` branch, `shoot-clip01.mjs`); it is dressed at
+capture time (teal, anonymised names, big legible type) — the tool is untouched.
 
 ## Asset spec (all five recordings)
 
@@ -35,7 +36,7 @@ Posters are the first frame, JPEG, 1080×1080, under 200KB.
 
 ## Shot list
 
-- **01 Your energy, decoded** (source: Hartpury, the live `EnergyFlow` view; brief to follow). One supply bar ("the bill") → it opens into incomer → substations → buildings, band widths by energy → the biggest path lights up to one building with its own meter → that building's half-hourly profile, out-of-hours shaded, with chips for its other supplies. Figures illegible. Final frame: the profile beside the lit path. *Until it is recorded, the file at this name is a labelled placeholder card (see "Regenerating the placeholders").*
+- **01 Your energy, decoded** (source: Hartpury digital twin, the live Utilities → Network + Readings views). The electricity network Sankey grows in (grid → substations), then drills into one substation's buildings → one building (Sports Hall) is selected → crossfade into its half-hourly readings, which rise into life on the whole year, then zoom in a step at a time: a week in mid-January → the next week → a single day. Names anonymised, big legible type, teal throughout. Final frame: the day's profile.
 - **02 Carbon data you can act on** (source: IVG carbon inventory, briefs S02 + S05). Statement table → bar by scope → Scope 3 by category → Purchased goods by supplier → one supplier becomes a card: total spend, science-based target status, supplier-specific factors, and one bar of its spend split by invoice. Final frame: the card.
 - **03 Climate risk, made local** (source: IVG climate-risk data for one real site, unnamed; briefs S03 + S05). An illustrative building-level view: a site plan where most buildings read green and a few red → across the 2030s, 2050s and 2080s more warm to amber and red, and on the spider the wildfire icon reddens → wildfire selected: the homes nearest the woodland light up, the rest grey, with notes from the site team → a chart of high fire-danger days a year to the 2080s, one line per emissions scenario. Final frame: the chart beside the highlighted buildings. *Building-level risk is a designed illustration (the survey rates at site level and this site's wildfire stays moderate/low); the geometry and the fire-danger chart are real — see clip 03's design note D10 Rev F.*
 - **04 Every option, tested** (source: the EOC strategy playground, brief S04; done). Four measures switch on and adjust one by one; the plan line bends from red through amber to green onto the net zero pathway. Final frame: on the pathway.

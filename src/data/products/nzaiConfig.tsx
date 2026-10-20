@@ -100,10 +100,11 @@ export const nzaiConfig: ProductPageConfig = {
       body:
         'Saving energy starts with knowing why it is used. We help you unlock your data at every level, from the whole site down to one building on one day, adding meters and sensors where they are missing. Then we layer it with what else is happening, from occupancy to weather, so you can see what drives your demand and costs, and what to change.',
       video: {
-        mp4: `${VIDEO_BASE}/01-energy-map.mp4`,
-        webm: `${VIDEO_BASE}/01-energy-map.webm`,
-        poster: `${VIDEO_BASE}/01-energy-map-poster.jpg`,
-        alt: 'A site energy network drawn as a flow diagram, from the incoming supply through substations to buildings, then one building\'s half-hourly profile with out-of-hours use shaded.',
+        /* ?v bump busts the cached placeholder clip that lived at this filename */
+        mp4: `${VIDEO_BASE}/01-energy-map.mp4?v=2`,
+        webm: `${VIDEO_BASE}/01-energy-map.webm?v=2`,
+        poster: `${VIDEO_BASE}/01-energy-map-poster.jpg?v=2`,
+        alt: 'The electricity network drawn as a branching flow from the grid through substations to buildings; one building is selected and its half-hourly readings appear, zooming from a whole year down to a single day.',
       },
     },
     {
