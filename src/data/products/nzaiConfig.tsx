@@ -98,7 +98,7 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'decoded',
       headlineSuffix: '.',
       body:
-        'Most organisations see their energy as one meter and one bill. We help you put the right meters and sensors in place and bring it all into one record, so you can see what drives your demand and costs, and what to change.',
+        'Saving energy starts with knowing why it is used. We help you unlock your data at every level, from the whole site down to one building on one day, adding meters and sensors where they are missing. Then we layer it with what else is happening, from occupancy to weather, so you can see what drives your demand and costs, and what to change.',
       video: {
         mp4: `${VIDEO_BASE}/01-energy-map.mp4`,
         webm: `${VIDEO_BASE}/01-energy-map.webm`,
@@ -112,7 +112,7 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'act on',
       headlineSuffix: '.',
       body:
-        'A carbon footprint is usually a single number in a report. We build yours as a record you can explore, down to any site, vehicle or supplier, with the spend, commitments and data quality behind it, so you know where to act.',
+        'Carbon data only becomes useful when you can trace each tonne to its source. We build your footprint as a record you can explore, down to any site, vehicle or supplier, with the spend, commitments and data quality behind it, so you know where to act.',
       video: {
         /* ?v bump busts the CDN/browser cache when the clip is re-recorded at
            the same filename (the table-hold re-record; Chris saw the old one) */
@@ -156,7 +156,7 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'work',
       headlineSuffix: '.',
       body:
-        'Most of what an organisation knows sits in spreadsheets, inboxes and people\'s heads. We bring it into one record you can ask questions of in plain English, or open up to your own AI.',
+        'Most of what an organisation knows sits in spreadsheets, inboxes and people\'s heads. We bring it into one record, so it can be seen any way you need: on a map, in a chart, as a plain-English answer, or through your own AI. One record, as many views as you have questions.',
       video: {
         mp4: `${VIDEO_BASE}/05-ask-your-data.mp4`,
         webm: `${VIDEO_BASE}/05-ask-your-data.webm`,
