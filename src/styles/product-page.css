@@ -991,11 +991,11 @@
   overflow: visible;
   box-shadow: 0 30px 60px -30px rgba(31, 51, 71, 0.10);
 }
-/* NZ:AI: the card matches the pale-grey showcase surface so there's no jarring
-   white-on-grey offset (Chris) - the thin border + soft shadow + dot texture
-   still read it as a gentle raised panel, and the rounded video sits on it. */
+/* NZ:AI: the card matches the soft off-white showcase surface so there's no
+   jarring offset (Chris) - the thin border + soft shadow + dot texture still
+   read it as a gentle raised panel, and the rounded video sits on it. */
 [data-product="nzai"] .product-steps-frame {
-  background-color: #EDEFF2;
+  background-color: #F7F6F3;
 }
 
 /* REQUEST DEMO PILL pinned at the top-right of the shared frame.

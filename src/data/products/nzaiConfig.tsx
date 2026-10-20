@@ -22,10 +22,10 @@ export const nzaiConfig: ProductPageConfig = {
 
   palette: {
     canvas: '#0A1628',
-    /* NZ:AI uses a pale cool grey for the showcase surface, not the warm
-       cream the landing page uses (Chris: cream is the wrong vibe here). The
-       showcase cards sit on it as white panels (see product-page.css). */
-    cream: '#EDEFF2',
+    /* NZ:AI showcase surface: a soft, barely-warm off-white - not the cold grey
+       it had (Chris: too cold) and not the landing's cream (too warm). The card
+       sits on it in the same tone (see product-page.css) so there's no offset. */
+    cream: '#F7F6F3',
     accent: '#0F9888',
     accentLight: '#5FDDC4',
     canvasElevated: 'rgba(95, 221, 196, 0.06)',
