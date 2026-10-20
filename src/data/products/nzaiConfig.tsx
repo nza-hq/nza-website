@@ -52,14 +52,14 @@ export const nzaiConfig: ProductPageConfig = {
         alt: 'NZ:AI global emissions inventory with world map',
       },
       {
+        src: '/images/products/nzai/nzai-sankey.png',
+        shortLabel: 'Carbon flows',
+        alt: 'NZ:AI carbon inventory drawn as a Sankey of scopes, categories and sites',
+      },
+      {
         src: '/images/products/nzai/nzai-waterfall.png',
         shortLabel: 'Strategy view',
         alt: 'NZ:AI strategy interventions waterfall chart',
-      },
-      {
-        src: '/images/products/nzai/nzai-data-quality.png',
-        shortLabel: 'Data quality',
-        alt: 'NZ:AI data quality explainer with journey chart',
       },
       {
         src: '/images/products/nzai/nzai-trajectory.png',
