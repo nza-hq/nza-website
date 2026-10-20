@@ -114,9 +114,11 @@ export const nzaiConfig: ProductPageConfig = {
       body:
         'A carbon footprint is usually a single number in a report. We build yours as a record you can explore, down to any site, vehicle or supplier, with the spend, commitments and data quality behind it, so you know where to act.',
       video: {
-        mp4: `${VIDEO_BASE}/02-carbon-traced.mp4`,
-        webm: `${VIDEO_BASE}/02-carbon-traced.webm`,
-        poster: `${VIDEO_BASE}/02-carbon-traced-poster.jpg`,
+        /* ?v bump busts the CDN/browser cache when the clip is re-recorded at
+           the same filename (the table-hold re-record; Chris saw the old one) */
+        mp4: `${VIDEO_BASE}/02-carbon-traced.mp4?v=2`,
+        webm: `${VIDEO_BASE}/02-carbon-traced.webm?v=2`,
+        poster: `${VIDEO_BASE}/02-carbon-traced-poster.jpg?v=2`,
         alt: 'A carbon inventory table opening into bars by scope, category and supplier, ending on one supplier\'s card showing its spend, target status and data quality.',
       },
     },

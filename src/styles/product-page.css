@@ -692,6 +692,13 @@
 /* the lets-show scroll cue is phone-only; the .scroll-cue base styles
    (landing.css) position it absolute, bottom-centre of the section */
 .product-lets-show-scroll { display: none; }
+
+/* NZ:AI phone: drop the hero "Book a discovery call" CTA. The nav's "Get in
+   touch" already carries conversion, and the button pushed the hero carousel
+   down off the screen (Chris). Phone only; desktop keeps it. */
+@media (max-width: 599px) {
+  [data-product="nzai"] .product-hero-cta-wrap { display: none; }
+}
 .product-lets-show-headline {
   font-family: var(--font-display);
   font-weight: 500;
@@ -883,7 +890,10 @@
      body taller than the screen scrolls within the page. */
   .product-step-text-block {
     min-height: 100svh;
-    padding: 0;
+    /* top padding clears the fixed 56px nav so the centred content's number
+       isn't tucked behind it, with ~10px breathing (Chris) */
+    padding: 68px 0 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
