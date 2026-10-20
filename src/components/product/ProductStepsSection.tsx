@@ -91,6 +91,18 @@ export function ProductStepsSection({
      1023px matches the .product-steps-frame-col / inline CSS switch. */
   const isMobile = useMediaQuery('(max-width: 1023px)')
 
+  /* Mobile only: which steps have their body expanded. Collapsed by default so
+     the headline + video fit one phone screen (Chris); "Read more" reveals the
+     body. Desktop shows the body inline and hides the toggle (CSS). */
+  const [openBodies, setOpenBodies] = useState<Set<number>>(new Set())
+  const toggleBody = (i: number) =>
+    setOpenBodies((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+
   // IntersectionObserver with a narrow active-band in the middle of
   // the viewport. rootMargin -45% top + -45% bottom shrinks the IO
   // root rect to a 10vh-tall band in the middle of the viewport; a
@@ -176,12 +188,33 @@ export function ProductStepsSection({
                   </>
                 )}
               </h3>
-              <p className="product-step-body">{step.body}</p>
+              {/* Read more toggle - mobile only (CSS). Collapses the body so
+                  the headline + video fit one phone screen; desktop shows the
+                  body inline and hides this button. */}
+              <button
+                type="button"
+                className="product-step-readmore"
+                aria-expanded={openBodies.has(i)}
+                onClick={() => toggleBody(i)}
+              >
+                <span>{openBodies.has(i) ? 'Show less' : 'Read more'}</span>
+                <span className="product-step-readmore-icon" aria-hidden="true">
+                  {openBodies.has(i) ? '–' : '+'}
+                </span>
+              </button>
+              <div
+                className={
+                  'product-step-body-wrap' +
+                  (openBodies.has(i) ? ' is-open' : '')
+                }
+              >
+                <p className="product-step-body">{step.body}</p>
+              </div>
 
               {/* Inline visual shown ONLY on mobile via CSS - the shared
-                  sticky frame on desktop replaces this. Video or SVG per
-                  the step; active when this is the active step so the
-                  mobile inline video plays as the user reaches it. */}
+                  sticky frame on desktop replaces this. CSS order puts it right
+                  under the headline on mobile so the video is the beat; the
+                  body collapses below behind "Read more". */}
               <div className="product-step-inline-illustration">
                 <StepVisual
                   step={step}
@@ -202,14 +235,16 @@ export function ProductStepsSection({
           frame is sticky for the full four-step scroll range). */}
       <div className="product-steps-frame-col">
         <div className="product-steps-frame">
-          <Link
-            to={requestDemoHref}
-            className="product-steps-request-pill"
-            aria-label={requestDemoLabel}
-          >
-            {requestDemoLabel}
-            <span aria-hidden="true"> →</span>
-          </Link>
+          {requestDemoLabel && (
+            <Link
+              to={requestDemoHref}
+              className="product-steps-request-pill"
+              aria-label={requestDemoLabel}
+            >
+              {requestDemoLabel}
+              <span aria-hidden="true"> →</span>
+            </Link>
+          )}
           {steps.map((step, i) => (
             <div
               key={i}

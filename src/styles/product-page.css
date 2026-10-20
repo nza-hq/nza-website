@@ -859,7 +859,29 @@
 @media (max-width: 1023px) {
   .product-step-text-block {
     min-height: auto;
-    padding: 56px 0;
+    padding: 48px 0;
+  }
+}
+@media (max-width: 599px) {
+  /* PHONE: each beat is a full-screen snap page so the scroll locks onto it and
+     holds the video (Chris: like the home page). Content centres; an expanded
+     body taller than the screen scrolls within the page. */
+  .product-step-text-block {
+    min-height: 100svh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  /* Proximity + the firm per-step stop above = the steps lock onto each beat,
+     while the hero / manifesto / closer scroll freely and nothing jams (the
+     footer is NOT a snap point here - that was the earlier bottom-lock bug).
+     Gated via :has(.product-page) so the coming-soon stub and every other
+     route keep native scroll. */
+  html:has(.product-page) {
+    scroll-snap-type: y proximity;
   }
 }
 
@@ -952,6 +974,11 @@
      the "screen within the window" per Chris's note. */
   overflow: visible;
   box-shadow: 0 30px 60px -30px rgba(31, 51, 71, 0.10);
+}
+/* NZ:AI: white card on the pale-grey showcase surface, not the warm cream
+   the other products use (Chris: cream is the wrong vibe for NZ:AI). */
+[data-product="nzai"] .product-steps-frame {
+  background-color: #FFFFFF;
 }
 
 /* REQUEST DEMO PILL pinned at the top-right of the shared frame.
@@ -1065,7 +1092,9 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  border-radius: 12px;
+  /* Rounded to echo the card frame around it (Chris: "bevelled edges so it
+     matches the box"). Matches .product-steps-frame's 18px corners. */
+  border-radius: 18px;
 }
 
 /* INLINE ILLUSTRATION - mobile only (shared frame is hidden).
@@ -1096,6 +1125,84 @@
     stroke-width: 1.5;
     fill: none;
   }
+}
+
+/* ---- Mobile step: headline + video on one screen, body behind "Read more"
+   (Chris). Default-collapsed so each beat fits; the toggle is desktop-hidden.
+   Beat order on mobile: meta/headline, then the video, then the toggle +
+   collapsible body. ------------------------------------------------------- */
+.product-step-readmore { display: none; }
+@media (max-width: 1023px) {
+  .product-step-text-sticky > .product-step-inline-illustration { order: 3; }
+  .product-step-text-sticky > .product-step-readmore { order: 4; }
+  .product-step-text-sticky > .product-step-body-wrap { order: 5; }
+
+  .product-step-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-height: 44px; /* touch target */
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--step-verb-colour, var(--product-accent));
+    cursor: pointer;
+  }
+  .product-step-readmore-icon { font-size: 20px; line-height: 1; font-weight: 400; }
+
+  /* grid-rows 0fr -> 1fr accordion: smooth height from the body's natural
+     size with no max-height guesswork. */
+  .product-step-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 320ms var(--product-ease, ease);
+  }
+  .product-step-body-wrap.is-open { grid-template-rows: 1fr; }
+  .product-step-body-wrap > .product-step-body {
+    overflow: hidden;
+    min-height: 0;
+    margin: 0;
+  }
+
+  /* NZ:AI: the video is the beat - drop the bounding box and fill the screen
+     width edge to edge (small gutter so the rounded corners read), as big as
+     possible (Chris). Other products keep the boxed SVG illustration. */
+  [data-product="nzai"] .product-step-inline-illustration {
+    padding: 0 12px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    /* full-bleed via negative margins (robust inside the flex column) so the
+       video spans the screen width, symmetric, with a 12px gutter for the
+       rounded corners to read. */
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+    aspect-ratio: auto;
+  }
+  [data-product="nzai"] .product-step-inline-illustration .product-step-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+}
+@media (max-width: 599px) {
+  /* Smaller type on phones so the headline + video sit on one screen (Chris).
+     Extra specificity so it wins over the base .product-step-headline clamp
+     that is declared later in the file. */
+  .product-step-text-block .product-step-headline { font-size: 27px; line-height: 1.12; }
+  .product-step-text-block .product-step-body { font-size: 15px; }
 }
 
 /* === Legacy single-step layout, no longer used but kept defs
@@ -1309,6 +1416,13 @@
   padding: 140px 0 120px;
   text-align: center;
   overflow: hidden;
+  /* Fill the screen like the landing closers (Chris: "the start of the
+     conversation bit ... fills the whole screen"). Flex-centres the inner
+     block vertically; the padding becomes breathing room on short screens. */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 @media (max-width: 767px) { .product-closer { padding: 96px 0 80px; } }
 .product-closer-inner {
