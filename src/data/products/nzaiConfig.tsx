@@ -3,19 +3,17 @@ import type { ProductPageConfig } from '../../components/product/ProductPage'
 const VIDEO_BASE = '/videos/nzai'
 
 /**
- * NZ:AI product page config - Rev C copy + five-step showcase re-plan
- * (brief R03 part 1, 13 Oct 2026).
+ * NZ:AI product page config - copy deck Rev E (brief R07, 19 Oct 2026).
  *
- * Rev C positioning: energy, carbon and climate intelligence (the "what")
- * that organisations build around themselves (the "how"), run as their
- * extended sustainability function (the "why"). The five showcase steps
- * answer a single visitor question: what questions can an organisation
- * ask? Filenames change from the old EOC-era names to function names
- * (energy-map, carbon-traced, risk-mapped, options-tested, ask-your-data).
- * Case studies are held pending client sign-off. Page stays "coming soon".
+ * Message: NZ:AI turns what an organisation knows (its data and its people)
+ * into intelligence it can act on. Each step body sets the scene for a
+ * newcomer, says what NZA does with the client's team, then what the client
+ * can act on. The five clips are examples of that method.
+ * Filenames are unchanged from R03. Case studies are held pending client
+ * sign-off. Page stays "coming soon".
  *
  * First-person "we" is sanctioned on /nz-ai per CLAUDE.md.
- * AI is mentioned in exactly two places: manifesto paragraph six and step 05.
+ * AI is mentioned in exactly one place: step 05.
  */
 export const nzaiConfig: ProductPageConfig = {
   slug: 'nzai',
@@ -75,34 +73,8 @@ export const nzaiConfig: ProductPageConfig = {
         The tools to act, <em>built</em> around you.
       </>
     ),
-    body: (
-      <>
-        <p>
-          Energy costs, carbon and climate risk are hard to see and harder to act on. Most
-          organisations don't know where to start. NZ:AI changes that.
-        </p>
-        <p>
-          <strong>Decode.</strong> We learn how your organisation works and gather what it
-          already knows.
-        </p>
-        <p>
-          <strong>Build.</strong> We create bespoke software around your data: maps, models
-          and live dashboards that show where you stand, what it costs and what to do next.
-        </p>
-        <p>
-          <strong>Embed.</strong> We work alongside your people, so they can lead the change
-          themselves.
-        </p>
-        <p>
-          Software like this was once only affordable for the largest organisations. Now it
-          can be built for yours.
-        </p>
-        <p>
-          And because everything sits in one structured record, you can ask it questions in
-          plain English, or point your own AI at it.
-        </p>
-      </>
-    ),
+    body:
+      'Energy costs, carbon and climate risk are hard to see and harder to act on. NZ:AI brings what your organisation knows, from its data and its people, into one connected record. We learn how you work, build the tools you need around it, and stay alongside your team as they lead the change.',
     accentColor: 'nzai',
   },
 
@@ -116,44 +88,44 @@ export const nzaiConfig: ProductPageConfig = {
   steps: [
     {
       number: '01',
-      headlinePrefix: 'Where your energy ',
-      highlightedVerb: 'goes',
+      headlinePrefix: 'Your energy, ',
+      highlightedVerb: 'decoded',
       headlineSuffix: '.',
       body:
-        'Most organisations can\'t say what feeds what, or what it costs. Here every supply, building and meter sits on one map, with the cost behind each a click away.',
+        'Most organisations see their energy as one meter and one bill. We help you put the right meters and sensors in place and bring it all into one record, so you can see what drives your demand and costs, and what to change.',
       video: {
         mp4: `${VIDEO_BASE}/01-energy-map.mp4`,
         webm: `${VIDEO_BASE}/01-energy-map.webm`,
         poster: `${VIDEO_BASE}/01-energy-map-poster.jpg`,
-        alt: 'A site map where selecting a supply point highlights the buildings it serves and opens a monthly cost chart',
+        alt: 'A site energy network drawn as a flow diagram, from the incoming supply through substations to buildings, then one building\'s half-hourly profile with out-of-hours use shaded.',
       },
     },
     {
       number: '02',
-      headlinePrefix: 'Every tonne, ',
-      highlightedVerb: 'traced',
+      headlinePrefix: 'Carbon data you can ',
+      highlightedVerb: 'act on',
       headlineSuffix: '.',
       body:
-        'Follow emissions from the total for the whole organisation down to one site, one supplier and the spend behind it, and see where the biggest reductions lie.',
+        'A carbon footprint is usually a single number in a report. We build yours as a record you can explore, down to any site, vehicle or supplier, with the spend, commitments and data quality behind it, so you know where to act.',
       video: {
         mp4: `${VIDEO_BASE}/02-carbon-traced.mp4`,
         webm: `${VIDEO_BASE}/02-carbon-traced.webm`,
         poster: `${VIDEO_BASE}/02-carbon-traced-poster.jpg`,
-        alt: 'A carbon inventory moving from bar chart to donut to Sankey, then drilling down to a single supplier',
+        alt: 'A carbon inventory table opening into bars by scope, category and supplier, ending on one supplier\'s card showing its spend, target status and data quality.',
       },
     },
     {
       number: '03',
-      headlinePrefix: 'Risk, ',
-      highlightedVerb: 'mapped',
+      headlinePrefix: 'Climate risk, made ',
+      highlightedVerb: 'local',
       headlineSuffix: '.',
       body:
-        'The people who know a site best record what they see: past flooding, exposed trees, loose items. Each building gets a clear rating and a place on the risk register.',
+        'Climate change will affect every organisation differently. We work with your team to understand the risks to your sites, people, services and supply chain, combining future climate data with what you know, so you can plan how to adapt.',
       video: {
         mp4: `${VIDEO_BASE}/03-risk-mapped.mp4`,
         webm: `${VIDEO_BASE}/03-risk-mapped.webm`,
         poster: `${VIDEO_BASE}/03-risk-mapped-poster.jpg`,
-        alt: 'A site map where recorded observations give each building a red, amber or green climate risk rating',
+        alt: 'A site plan beside a climate risk chart. As the decades pass the risk rises, then the buildings nearest the woodland light up for wildfire, with notes from the site team, beside a projection of high fire-danger days to 2080.',
       },
     },
     {
@@ -162,21 +134,21 @@ export const nzaiConfig: ProductPageConfig = {
       highlightedVerb: 'tested',
       headlineSuffix: '.',
       body:
-        'Switch measures on, adjust their scale and watch the path to net zero respond. The chosen measures become actions, each with an owner.',
+        'There is no single route to net zero. We model your emissions pathway with your team, so you can test each measure, adjust it and see straight away which levers make the biggest difference.',
       video: {
         mp4: `${VIDEO_BASE}/04-options-tested.mp4`,
         webm: `${VIDEO_BASE}/04-options-tested.webm`,
         poster: `${VIDEO_BASE}/04-options-tested-poster.jpg`,
-        alt: 'A net zero trajectory bending down to its target as measures are switched on, then listed as actions with owners',
+        alt: 'A carbon trajectory chart where four measures are switched on and adjusted one by one, bending the plan line down from red to green until it meets the net zero pathway.',
       },
     },
     {
       number: '05',
-      headlinePrefix: 'Ask, and it ',
-      highlightedVerb: 'answers',
+      headlinePrefix: 'Put your data to ',
+      highlightedVerb: 'work',
       headlineSuffix: '.',
       body:
-        'Ask a question in plain English, such as which buildings have floor plans and a meter, and the answer appears on the map from your own record. Your own AI can read it too.',
+        'Most of what an organisation knows sits in spreadsheets, inboxes and people\'s heads. We bring it into one record you can ask questions of in plain English, or open up to your own AI.',
       video: {
         mp4: `${VIDEO_BASE}/05-ask-your-data.mp4`,
         webm: `${VIDEO_BASE}/05-ask-your-data.webm`,
