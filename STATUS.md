@@ -1,5 +1,44 @@
 # STATUS.md
 
+## R07 - NZ:AI page to Rev E, real clips in, private preview (20 Oct 2026, Co-Work) - SHIPPED, page still hidden
+
+Brief [`active/nzai-page-R07.md`](docs/briefs/active/nzai-page-R07.md) (authorised by Chris). Gets the hidden
+`/nz-ai` into a state Chris can test end to end: Rev E copy, four real showcase clips, an honest placeholder
+for clip 01, and a private `?preview=1` view - without launching. Commits: `5cf7ccc` (land) · `4a7925c`
+(part 1 copy) · `8802716` (part 2 README) · `6cd036b` (part 3 clips) · `f154b44` (part 4 preview) · the close.
+
+**What changed.** (1) `nzaiConfig.tsx`: one-paragraph manifesto string + five step rewrites to copy deck Rev E
+(verbatim). (2) `docs/videos-nzai-README.md`: to Rev E; clip 03's shot-list reworded to the new illustrative
+build (it post-dates the brief's Rev E wording - flagged to Chris). (3) `public/videos/nzai/`: the twelve real
+02-05 files copied in byte for byte, clip 01 placeholder regenerated as a labelled grey card ("01 / Your
+energy, decoded / Recording to follow"). (4) `NzAiPage.tsx`: `?preview=1` renders `<ProductPage>` with a
+`noindex, nofollow` meta; plain `/nz-ai` still renders `<ProductComingSoon>`. Nav, `ProductsScreen` and
+`ready` flags untouched; nothing links to the preview.
+
+**Verification** (dev 5173, DevicePreview at 393×705 + 1280×800):
+- **(a)** Plain `/nz-ai` = "NZ:AI - coming soon."; no robots meta. Nav + products screen unchanged. PASS.
+- **(b)** Manifesto paragraph at 393×705 not clipped (`p.scrollHeight == clientHeight`) and does not overlap
+  the next section. PASS (confirmed in DOM; page uses a smooth-scroll lib).
+- **(c)** Step 02 headline DOM: `Carbon data you can <span class="step-verb">act on</span>.` - one span,
+  normal space before, full stop after, colour `rgb(15,152,136)` = #0F9888 teal. PASS.
+- **(d)** All five step bodies + manifesto render verbatim against the brief. PASS.
+- **(e)** Steps 02-05 play their real clips (posters 200, webm 206, `currentSrc` = the .webm, `loop=false` so
+  the last frame holds); step 01 shows the placeholder card. Screens captured for 01 (card), 03 (real clip,
+  desktop + phone). The webm `ERR_ABORTED` entries are the normal range-request aborts of a paused `<video>`;
+  the same files complete and full bytes transfer. PASS.
+- **(f)** `?preview=1`: `meta[name=robots].content` = `noindex, nofollow`; plain `/nz-ai`: no such tag. PASS.
+- **(g)** Console: only the known React `stroke-linecap` / `stroke-linejoin` warnings (left for the launch
+  brief); no new errors. PASS.
+- **(h)** `npx tsc --noEmit` clean; `npm run build` clean. PASS.
+
+**Clip sources (SHA-256, source = destination, all matched):** 02 from `ivg-showcase/showcase/out/` (brief S05
+Rev E); 03 from same (S05, **Rev F.1** illustrative, 20 Oct); 04 from `_clips/` (S04 Rev C); 05 from
+`hartpury-showcase/showcase/out/` (S01). Full hashes in the brief's final report. ffprobe (15 files): all
+1080×1080, H.264/VP9, no audio, ≤12.0 s, videos <1.5 MB, posters <200 KB.
+
+Page hidden; preview at `/nz-ai?preview=1` for Chris; the launch brief removes the flag and renders ProductPage
+unconditionally.
+
 ## In progress
 
 **Homepage approved copy + card hierarchy (copy brief, 22 Sep 2026, Co-Work / Fable) - SHIPPED.**
