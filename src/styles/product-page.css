@@ -176,7 +176,9 @@
   text-transform: uppercase;
   color: var(--product-accent-light);
   background: transparent;
-  border: 0.5px solid var(--product-accent-light);
+  /* 1px, not 0.5px: a sub-pixel border on the 999px pill rendered with a faint
+     seam/break at the rounded right end on some displays (Chris) */
+  border: 1px solid var(--product-accent-light);
   border-radius: 999px;
   text-decoration: none;
   cursor: pointer;
@@ -692,6 +694,11 @@
 /* the lets-show scroll cue is phone-only; the .scroll-cue base styles
    (landing.css) position it absolute, bottom-centre of the section */
 .product-lets-show-scroll { display: none; }
+/* recolour the reused cue to navy: its base colours are off-white (for the dark
+   landing hero) and were invisible on the light lets-show surface (Chris) */
+.product-lets-show-scroll .scroll-cue-label { color: rgba(26, 37, 64, 0.6); }
+.product-lets-show-scroll .scroll-cue-line { background: rgba(26, 37, 64, 0.2); }
+.product-lets-show-scroll .scroll-cue-line::after { background: rgba(26, 37, 64, 0.7); }
 
 /* NZ:AI phone: drop the hero "Book a discovery call" CTA. The nav's "Get in
    touch" already carries conversion, and the button pushed the hero carousel
@@ -750,6 +757,17 @@
   opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
+  .product-lets-show-headline .lets-show-word-inner {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+@media (max-width: 599px) {
+  /* The word-by-word reveal is driven by an IntersectionObserver that doesn't
+     fire reliably for this headline inside the mobile snap page, leaving it
+     blank. Show the words statically on phones so "Let's show you what we
+     build" always appears (Chris). */
   .product-lets-show-headline .lets-show-word-inner {
     transform: none;
     opacity: 1;
@@ -1839,7 +1857,9 @@
   text-transform: uppercase;
   color: var(--product-accent-light);
   background: transparent;
-  border: 0.5px solid var(--product-accent-light);
+  /* 1px, not 0.5px: a sub-pixel border on the 999px pill rendered with a faint
+     seam/break at the rounded right end on some displays (Chris) */
+  border: 1px solid var(--product-accent-light);
   border-radius: 999px;
   text-decoration: none;
   transition: background 240ms var(--product-ease),
