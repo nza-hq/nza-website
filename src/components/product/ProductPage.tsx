@@ -411,6 +411,14 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
             trailingText={config.letsShow.trailingText}
           />
         </div>
+        {/* Scroll reminder, phone only (CSS). Reuses the home hero's scroll-cue
+            look (mono "Scroll" over a line with a running segment); shown
+            persistently here since the headline is centred as its own snap
+            page and the cue nudges the reader on into the steps (Chris). */}
+        <div className="scroll-cue is-shown product-lets-show-scroll" aria-hidden="true">
+          <span className="scroll-cue-label">Scroll</span>
+          <span className="scroll-cue-line" />
+        </div>
       </section>
 
       {/* =========================================================

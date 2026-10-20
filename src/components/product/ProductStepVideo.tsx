@@ -66,30 +66,40 @@ export function ProductStepVideo({
   }, [isActive, reducedMotion])
 
   // Reduced motion: static poster image, no <video>, no footage fetch.
+  // Wrapped in the rounded, overflow-clipped frame so a static poster rounds
+  // the same way the video does.
   if (reducedMotion) {
     return (
-      <img
-        className="product-step-video"
-        src={video.poster}
-        alt={video.alt}
-      />
+      <div className="product-step-video-frame">
+        <img
+          className="product-step-video"
+          src={video.poster}
+          alt={video.alt}
+        />
+      </div>
     )
   }
 
+  // The <video> sits inside a rounded, overflow:hidden frame and slightly
+  // over-fills it (scale in CSS). That clips away the 1px element-edge seam a
+  // rounded, object-fit video otherwise leaves at the bottom/right - invisible
+  // on the dark clips but a black hairline on the light map clip (Chris).
   return (
-    <video
-      ref={ref}
-      className="product-step-video"
-      muted
-      playsInline
-      preload="metadata"
-      poster={video.poster}
-      aria-label={video.alt}
-    >
-      {/* WebM (VP9) first - smaller; browsers that can't decode it
-          (e.g. Safari) fall through to the H.264 MP4. */}
-      <source src={video.webm} type="video/webm" />
-      <source src={video.mp4} type="video/mp4" />
-    </video>
+    <div className="product-step-video-frame">
+      <video
+        ref={ref}
+        className="product-step-video"
+        muted
+        playsInline
+        preload="metadata"
+        poster={video.poster}
+        aria-label={video.alt}
+      >
+        {/* WebM (VP9) first - smaller; browsers that can't decode it
+            (e.g. Safari) fall through to the H.264 MP4. */}
+        <source src={video.webm} type="video/webm" />
+        <source src={video.mp4} type="video/mp4" />
+      </video>
+    </div>
   )
 }

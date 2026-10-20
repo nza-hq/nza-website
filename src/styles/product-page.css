@@ -676,7 +676,22 @@
     min-height: auto;
     padding: 0 20px;
   }
+  /* Phone: the "Let's show you what we build" headline sits centred in its own
+     full-screen snap page, with the scroll cue beneath it (Chris). */
+  .product-lets-show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  /* extra specificity so it wins over the base display:none below regardless
+     of source order */
+  .product-lets-show .product-lets-show-scroll { display: flex; }
 }
+/* the lets-show scroll cue is phone-only; the .scroll-cue base styles
+   (landing.css) position it absolute, bottom-centre of the section */
+.product-lets-show-scroll { display: none; }
 .product-lets-show-headline {
   font-family: var(--font-display);
   font-weight: 500;
@@ -1104,20 +1119,27 @@
    source; object-fit: contain so it never crops. Letterbox (minimal
    against the near-square frame) stays transparent and shows the
    frame's cream. Radius matches the inline illustration treatment. */
-.product-step-video {
-  /* Keep the square clip square and sized to fit its frame, and centre it (the
-     frame-illustration is a flex box). The old width/height:100% made the
-     element taller than the square video, so the 18px rounding clipped the
-     letterboxed element box, not the visible video - the bevel never showed
-     (Chris). Sizing the element to the video fixes that. */
+/* The square, rounded clip frame. Sized to the square video and centred by the
+   flex parent; overflow:hidden + the video's slight over-fill below clip away
+   the 1px element-edge seam a rounded object-fit video leaves (black hairline
+   on the light map clip; invisible on the dark ones - Chris). */
+.product-step-video-frame {
   aspect-ratio: 1 / 1;
   max-width: 100%;
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: cover;
   display: block;
   border-radius: 18px;
+  overflow: hidden;
+}
+.product-step-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* over-fill a hair so the element edge sits outside the frame's clip */
+  transform: scale(1.015);
 }
 
 /* INLINE ILLUSTRATION - mobile only (shared frame is hidden).
@@ -1212,12 +1234,12 @@
     box-sizing: border-box;
     aspect-ratio: auto;
   }
-  [data-product="nzai"] .product-step-inline-illustration .product-step-video {
+  [data-product="nzai"] .product-step-inline-illustration .product-step-video-frame {
     width: 100%;
     height: auto;
+    max-width: none;
+    max-height: none;
     aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 18px;
   }
 }
 @media (max-width: 599px) {
