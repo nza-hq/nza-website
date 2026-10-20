@@ -1343,9 +1343,12 @@
    feel: every landing screen is a snap page, MANDATORY so a swipe
    always settles on the next screen filling the viewport. The earlier
    PROXIMITY version only settled if you happened to ease off near a
-   boundary - "it feels hard to scroll" (Chris). Only sections with a
-   scroll-snap-align are snap points, so product pages (no align)
-   scroll normally even though the type is set on <html>.
+   boundary - "it feels hard to scroll" (Chris). The whole snap block is
+   gated to `html.snap-home` (WebsitePage adds it on the landing route) -
+   the shared .site-footer carries a snap-align, so leaving the mandatory
+   type on <html> everywhere made the footer the only snap point on other
+   routes and jammed them at the bottom (drops to the footer, won't scroll
+   up). Scoping to .snap-home keeps native scroll on every non-home page.
 
    Why the hero parallax goes on mobile: #home is position: sticky
    inside .hero-coral-stack so the coral page rises up over it. A sticky
@@ -1361,25 +1364,25 @@
    full-screen" Chris saw.
    ============================================================ */
 @media (max-width: 1023px) {
-  html {
+  html.snap-home {
     scroll-snap-type: y mandatory;
     scroll-padding-top: 0;
   }
-  .hero-coral-stack #home.landing-screen {
+  .snap-home .hero-coral-stack #home.landing-screen {
     position: relative;
   }
-  #home,
-  #how-we-work,
-  #solutions,
-  #get-in-touch {
+  .snap-home #home,
+  .snap-home #how-we-work,
+  .snap-home #solutions,
+  .snap-home #get-in-touch {
     scroll-snap-align: start;
     /* always = a single swipe can't fly past a page; the scroll must
        settle on each one before the next. */
     scroll-snap-stop: always;
   }
-  #how-we-work,
-  #solutions,
-  #get-in-touch {
+  .snap-home #how-we-work,
+  .snap-home #solutions,
+  .snap-home #get-in-touch {
     /* Each page fills the screen (#home already does). Content taller
        than the viewport still scrolls within its page - an oversized
        snap area may rest anywhere it covers the viewport. */
@@ -1387,8 +1390,10 @@
   }
   /* The legal strip after the last page. With mandatory snapping the end
      of the document is only reachable if something down there is a snap
-     position, so the footer aligns its bottom edge to the viewport. */
-  .site-footer {
+     position, so the footer aligns its bottom edge to the viewport. Gated
+     to .snap-home so the shared footer is NOT a snap point on other routes
+     (which would jam them at the bottom). */
+  .snap-home .site-footer {
     scroll-snap-align: end;
   }
 }

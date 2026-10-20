@@ -25,6 +25,17 @@ import { GetInTouchScreen } from '../screens/GetInTouchScreen'
  * preloader -> hero auto-transition handled inside HomeScreen.
  */
 export function WebsitePage() {
+  // Mobile scroll-snap paging (landing.css) is gated to this class so it only
+  // applies on the home page. The site footer carries a scroll-snap-align and is
+  // shared by every page; without this gate, the `html { scroll-snap-type: y
+  // mandatory }` rule would make the footer the only snap point on other routes
+  // and jam them at the bottom (the page drops to the footer and refuses to
+  // scroll up). Marking <html> keeps the snap machinery on the landing page only.
+  useEffect(() => {
+    document.documentElement.classList.add('snap-home')
+    return () => document.documentElement.classList.remove('snap-home')
+  }, [])
+
   // First-paint deep-link: jump to the URL hash once sections are mounted.
   useEffect(() => {
     const hash = window.location.hash
