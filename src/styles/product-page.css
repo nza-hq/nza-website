@@ -1290,43 +1290,43 @@
   .product-step-text-block .product-step-headline { font-size: 27px; line-height: 1.12; }
   .product-step-text-block .product-step-body { font-size: 15px; }
 
-  /* NZ:AI phone beat: everything fits one screen, even with the body open
-     (Chris). The beat is exactly one screen tall; header and "Read more" keep
+  /* NZ:AI + PABLO phone beat: everything fits one screen, even with the body
+     open (Chris; PABLO joined 21 Oct 2026). The beat is exactly one screen tall; header and "Read more" keep
      their natural size and the VIDEO takes whatever height is left (a size
      container, so the square is min(width, height)). Collapsed, that is the
      full-width video centred in the space; as the body opens, the space shrinks
      and the video eases down with it - the grid-rows accordion drives it. */
-  [data-product="nzai"] .product-step-text-block {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block {
     height: 100svh;
     min-height: 0;
     padding: 64px 0 12px;
     justify-content: flex-start;
   }
-  [data-product="nzai"] .product-step-text-sticky {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky {
     flex: 1 1 auto;
     min-height: 0;
     gap: 0;
     /* centre the group; the video only gives up height once space runs out */
     justify-content: center;
   }
-  [data-product="nzai"] .product-step-text-sticky > * { flex-shrink: 0; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > * { flex-shrink: 0; }
 
   /* Two states (Chris): COLLAPSED keeps the original breathing room - "01." on
      its own line, the hairline beneath, generous gaps. EXPANDED ("Read more")
      squashes it - "01." and its line on one row, everything tight - so the body
      fits. Spacing lives in margins (not flex gap) so it eases between the two
      in step with the body accordion. */
-  [data-product="nzai"] .product-step-text-sticky > .product-step-rule,
-  [data-product="nzai"] .product-step-text-block .product-step-headline,
-  [data-product="nzai"] .product-step-text-sticky > .product-step-inline-illustration,
-  [data-product="nzai"] .product-step-text-sticky > .product-step-readmore {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-rule,
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block .product-step-headline,
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-inline-illustration,
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-readmore {
     transition: margin 320ms var(--product-ease, ease),
                 height 320ms var(--product-ease, ease),
                 opacity 240ms var(--product-ease, ease);
   }
-  [data-product="nzai"] .product-step-meta { gap: 12px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-meta { gap: 12px; }
   /* the inline hairline beside "01." - only shown when expanded */
-  [data-product="nzai"] .product-step-meta::after {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-meta::after {
     content: '';
     flex: 1;
     height: 1px;
@@ -1336,10 +1336,10 @@
   }
 
   /* collapsed (default): the original spacing */
-  [data-product="nzai"] .product-step-text-sticky > .product-step-rule { margin: 32px 0 28px; }
-  [data-product="nzai"] .product-step-text-block .product-step-headline { margin-top: 0; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-rule { margin: 32px 0 28px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block .product-step-headline { margin-top: 0; }
   /* the video fills the leftover height and stays square */
-  [data-product="nzai"] .product-step-text-sticky > .product-step-inline-illustration {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-inline-illustration {
     flex: 1 1 0;
     min-height: 140px;
     /* never taller than the full-width square (100vw less the 12px gutters) */
@@ -1348,24 +1348,37 @@
     margin-bottom: 0;
     container-type: size;
   }
-  [data-product="nzai"] .product-step-text-sticky > .product-step-readmore { margin-top: 24px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-sticky > .product-step-readmore { margin-top: 24px; }
 
   /* expanded: squash */
-  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-meta::after { opacity: 1; }
-  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-rule {
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block.is-expanded .product-step-meta::after { opacity: 1; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-rule {
     margin: 0;
     height: 0;
     opacity: 0;
   }
-  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-headline { margin-top: 10px; }
-  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-inline-illustration { margin-top: 12px; }
-  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-readmore { margin-top: 4px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block.is-expanded .product-step-headline { margin-top: 10px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-inline-illustration { margin-top: 12px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-readmore { margin-top: 4px; }
   [data-product="nzai"] .product-step-inline-illustration .product-step-video-frame {
     width: min(100cqw, 100cqh);
     height: min(100cqw, 100cqh);
     aspect-ratio: 1 / 1;
   }
-  [data-product="nzai"] .product-step-text-block .product-step-body { line-height: 1.5; padding-bottom: 4px; }
+  :is([data-product="nzai"], [data-product="pablo"]) .product-step-text-block .product-step-body { line-height: 1.5; padding-bottom: 4px; }
+
+  /* PABLO keeps its boxed illustration rather than NZ:AI's full-bleed video:
+     the box takes the leftover height (flex) and its width follows from the
+     1:1 ratio, so it stays square as it shrinks; capped at the column width. */
+  [data-product="pablo"] .product-step-text-sticky > .product-step-inline-illustration {
+    container-type: normal;
+    max-height: calc(100vw - 40px);
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    padding: 24px;
+  }
 }
 
 /* === Legacy single-step layout, no longer used but kept defs
