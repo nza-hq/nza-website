@@ -76,8 +76,13 @@ export const nzaiConfig: ProductPageConfig = {
         The tools to act, <em>built</em> around you.
       </>
     ),
-    body:
-      'What is really driving your energy costs? What should you do with your carbon data? How will a changing climate affect your sites? None of these can be answered from the outside. The answers depend on how your organisation works, and much of that knowledge sits with your people. So NZ:AI works from the inside: we embed with your team, bring what you know into one connected record, and build the tools to act on it.',
+    /* "NZ:AI" set in the navy of the headline's "built" so the name breaks up
+       the paragraph (Chris, 21 Oct 2026) - .manifesto-brand in manifesto-block.css */
+    body: (
+      <p>
+        What is really driving your energy costs? What should you do with your carbon data? How will a changing climate affect your sites? None of these can be answered from the outside. The answers depend on how your organisation works, and much of that knowledge sits with your people. So <span className="manifesto-brand">NZ:AI</span> works from the inside: we embed with your team, bring what you know into one connected record, and build the tools to act on it.
+      </p>
+    ),
     accentColor: 'nzai',
   },
 

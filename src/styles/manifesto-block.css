@@ -180,6 +180,13 @@
 .manifesto-block--nzai .manifesto-block-headline em {
   color: #0A1628;
 }
+/* The product name inside the NZ:AI manifesto body, in the same navy as the
+   headline emphasis, to break up the white paragraph (Chris). Medium weight:
+   navy at the body's Light 300 reads faint on the teal. */
+.manifesto-block--nzai .manifesto-brand {
+  color: #0A1628;
+  font-weight: 500;
+}
 
 .manifesto-block-body {
   margin-top: clamp(28px, 3.5vh, 40px);
