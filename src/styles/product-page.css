@@ -1933,6 +1933,15 @@
   color: var(--ink);
 }
 
+/* The MaskReveal wrapper clips (overflow: hidden) and shrink-wraps the pill to
+   a fractional width, so the pill's border sat exactly on the clip edge and the
+   rounded right end was shaved (Chris). A few px of slack inside the clip,
+   cancelled by a negative margin, keeps the layout identical; it also leaves
+   room for the 1px hover lift. */
+.product-closer-cta-reveal {
+  padding: 4px;
+  margin: -4px;
+}
 .product-closer-cta {
   display: inline-flex;
   align-items: center;

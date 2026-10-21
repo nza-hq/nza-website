@@ -179,6 +179,10 @@
    + Times fingerprint preserved; only the colour changes. Scoped to NZ:AI. */
 .manifesto-block--nzai .manifesto-block-headline em {
   color: #0A1628;
+  /* Option B (Chris, 21 Oct 2026): Times italic 400 read thin beside this
+     headline's Stolzl 500, so thicken the strokes in the same face rather than
+     switching weight or font. */
+  -webkit-text-stroke: 1.1px currentColor;
 }
 /* The product name inside the NZ:AI manifesto body, in the same navy as the
    headline emphasis, to break up the white paragraph (Chris). Medium weight:

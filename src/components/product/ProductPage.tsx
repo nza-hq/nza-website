@@ -607,7 +607,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
               </MaskReveal>
             )}
 
-          <MaskReveal as="div" delay={650}>
+          <MaskReveal as="div" className="product-closer-cta-reveal" delay={650}>
             <a className="product-closer-cta" href={config.closer.ctaHref}>
               {config.closer.ctaLabel}
             </a>
