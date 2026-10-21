@@ -107,7 +107,7 @@ export const pabloConfig: ProductPageConfig = {
       highlightedVerb: 'Rebuild',
       headlineSuffix: " your bill",
       body:
-        "All PABLO needs is your load data and a copy of your bill. From those two inputs it rebuilds your bill from first principles - wholesale, network charges, levies, and what your supplier adds on top - so you can see exactly what you're paying for, and exactly where the savings are.",
+        "All PABLO needs is your load data and a copy of your bill. From those two inputs it rebuilds your bill from first principles - wholesale, network charges, levies, and what your supplier adds on top - so you can see exactly what you're paying for, and exactly where the opportunity for savings lie.",
       illustrationConcept: 'bill-decomposition',
     },
     {
@@ -118,7 +118,7 @@ export const pabloConfig: ProductPageConfig = {
       highlightedVerb: '',
       headlineSuffix: '',
       body:
-        "It's not just how much electricity you use - it's when. The same unit costs more at five on a winter evening than at three in the morning, because the market, the network and the levies all charge more when demand is high. PABLO lays those prices over your usage, so you can see which hours are quietly costing you the most.",
+        "It's not just how much electricity you use - it's when. The same unit costs more at 6pm on a winter evening than a summer afternoon, because the market, the network and the levies all charge more when demand is high. PABLO lays those prices over your usage, so you can see which hours are quietly costing you the most.",
       illustrationConcept: 'demand-profile-half-hourly',
     },
     {
