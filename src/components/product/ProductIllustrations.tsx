@@ -302,6 +302,8 @@ const ANIMATED_CONCEPTS: Record<
   ),
 }
 
+const BLANK_ANIMATED_VISUALS = true
+
 export function ProductIllustration({
   concept,
   stepIndex,
@@ -311,7 +313,9 @@ export function ProductIllustration({
 }) {
   const animated = ANIMATED_CONCEPTS[concept]
   if (animated && stepIndex !== undefined) {
-    return animated({ stepIndex })
+    // Temporary: blank the animated PABLO visuals (frames stay) while
+    // new visual ideas are explored. Set to false to restore.
+    return BLANK_ANIMATED_VISUALS ? null : animated({ stepIndex })
   }
   const illustration = ILLUSTRATIONS[concept]
   if (!illustration) return null
