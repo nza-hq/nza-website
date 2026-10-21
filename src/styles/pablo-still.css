@@ -1,0 +1,14 @@
+/* TEMPORARY: PABLO motion paused for layout review (no animations, text
+   held at its final position). Scoped to the PABLO page only. Delete this
+   file and its import in ProductPage.tsx to restore the animations. */
+.product-page[data-product="pablo"] *,
+.product-page[data-product="pablo"] *::before,
+.product-page[data-product="pablo"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+.product-page[data-product="pablo"] .mask-reveal-inner,
+.product-page[data-product="pablo"] .lets-show-word-inner {
+  transform: none !important;
+  opacity: 1 !important;
+}
