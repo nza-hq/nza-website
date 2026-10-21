@@ -1,5 +1,24 @@
 # STATUS.md
 
+## NZ:AI LAUNCH (21 Oct 2026, Co-Work) - SHIPPED, page live
+
+Launched on Chris's instruction. `/nz-ai` now renders the full ProductPage for everyone (the `?preview=1`
+gate and its `noindex, nofollow` meta are gone). It is unlocked on the main site: the homepage "Our solutions"
+NZ:AI card is `ready: true` ("Explore NZ:AI →" links to `/nz-ai`), and the nav "Our solutions" dropdown
+(desktop + mobile) lists NZ:AI as a live link. PABLO + decodED stay "Coming soon" (shown, not clickable).
+
+Since R07: real clip 01 "Your energy, decoded" (captured from the Hartpury digital twin, `hartpury-clip01`
+worktree, `showcase/nzai-clip01`), hero screen 2 = anonymised IVG carbon-flows Sankey, step 01/02/05 copy,
+step videos only play once centred (after a short settle on frame 0), the "Let's show you" scroll cue + phone
+jitter fix, and a phone step layout that keeps its breathing room collapsed and squashes to fit when expanded.
+
+**Verification** (dev 5173): plain `/nz-ai` renders the page (5 steps, no robots meta, title "NZ:AI · Net Zero
+Advisory"); homepage card = `<a href="/nz-ai">Explore NZ:AI →</a>`, PABLO + decodED cards "Coming soon"; nav
+dropdown = NZ:AI link, then "Coming soon" PABLO / decodED. `npm run build` clean.
+
+**Next:** open the organic-motion PR (readings rise-in + span-zoom) to `hartpury-digital-twin` `main` - it is
+committed on `showcase/nzai-clip01`, not yet a PR (Product mode: PR only, Chris merges).
+
 ## R07 - NZ:AI page to Rev E, real clips in, private preview (20 Oct 2026, Co-Work) - SHIPPED, page still hidden
 
 Brief [`active/nzai-page-R07.md`](docs/briefs/active/nzai-page-R07.md) (authorised by Chris). Gets the hidden

@@ -43,7 +43,8 @@ type Product = {
   href: string
   /** True once the product's detail page is finished and meant to be
       public - swaps the non-interactive "Coming soon" status for the
-      Explore link. All three pages are still held (ProductComingSoon). */
+      Explore link. NZ:AI is live; PABLO + decodED are still held
+      (ProductComingSoon). */
   ready: boolean
   logoSrc: string
   alt: string
@@ -59,7 +60,8 @@ const PRODUCTS: Product[] = [
     id: 'nzai',
     name: 'NZ:AI',
     href: '/nz-ai',
-    ready: false,
+    /* Live - launched 21 Oct 2026 (Chris). PABLO / decodED still held. */
+    ready: true,
     /* Homepage products section is back on cream (Chris reverted v2
        chunk C). Use the dark-text variant so the wordmark reads on
        the cream surface. White-text variant stays in use on the

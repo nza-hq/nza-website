@@ -139,20 +139,25 @@ export function SiteNav() {
                 {/* Dropdown order (Chris): NZ:AI / PABLO / decodED. The
                     internal key `openMenu === 'products'` stays for code
                     clarity - only the visible order changes.
-                    Coming soon (Chris, Sept 2026): the product pages are
-                    held, so - like About us - the three are shown but not
-                    clickable. They were Links to /nz-ai, /pablo, /decoded;
-                    restore those when the pages go live. */}
+                    NZ:AI is live (launched 21 Oct 2026, Chris) and links to
+                    /nz-ai. PABLO + decodED are still held, so - like About
+                    us - they're shown under "Coming soon" but not clickable;
+                    restore their Links (/pablo, /decoded) when they go live. */}
                 {openMenu === 'products' && (
-                  <div className="site-nav-dropdown site-nav-dropdown--soon" role="menu">
-                    <span className="site-nav-dropdown-soon">Coming soon</span>
-                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
+                  <div className="site-nav-dropdown" role="menu">
+                    <Link
+                      to="/nz-ai"
+                      className="site-nav-dropdown-item"
+                      role="menuitem"
+                      onClick={() => setOpenMenu(null)}
+                    >
                       <span
                         className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
                         aria-hidden="true"
                       />
                       NZ:AI
-                    </span>
+                    </Link>
+                    <span className="site-nav-dropdown-soon">Coming soon</span>
                     <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       <span
                         className="site-nav-dropdown-swatch site-nav-dropdown-swatch--pablo"
@@ -273,17 +278,22 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
             <span className="site-nav-mobile-section-chevron" aria-hidden="true" />
           </button>
           {/* Mobile order matches desktop: NZ:AI / PABLO / decodED.
-              Coming soon - shown but not clickable, like About us (Chris);
-              were Links to /nz-ai, /pablo, /decoded. */}
+              NZ:AI is live and links to /nz-ai; PABLO + decodED are still
+              "Coming soon" - shown but not clickable, like About us (Chris). */}
           <div className="site-nav-mobile-section-body">
-            <span className="site-nav-dropdown-soon">Coming soon</span>
-            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
+            <Link
+              to="/nz-ai"
+              className="site-nav-mobile-link"
+              onClick={onClose}
+              tabIndex={expanded === 'products' ? 0 : -1}
+            >
               <span
                 className="site-nav-dropdown-swatch site-nav-dropdown-swatch--nzai"
                 aria-hidden="true"
               />
               NZ:AI
-            </span>
+            </Link>
+            <span className="site-nav-dropdown-soon">Coming soon</span>
             <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
               <span
                 className="site-nav-dropdown-swatch site-nav-dropdown-swatch--pablo"
