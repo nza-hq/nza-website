@@ -107,7 +107,7 @@ export const pabloConfig: ProductPageConfig = {
       highlightedVerb: 'Rebuild',
       headlineSuffix: " your bill",
       body:
-        "All PABLO needs is your half-hourly data and a copy of your bill. From those two inputs it rebuilds your bill from first principles - wholesale, network charges, levies, risk - so you can see what you're actually paying for, not just what you're being charged.",
+        "All PABLO needs is your load data and a copy of your bill. From those two inputs it rebuilds your bill from first principles - wholesale, network charges, levies, and what your supplier adds on top - so you can see exactly what you're paying for, and exactly where the savings are.",
       illustrationConcept: 'bill-decomposition',
     },
     {
@@ -118,7 +118,7 @@ export const pabloConfig: ProductPageConfig = {
       highlightedVerb: '',
       headlineSuffix: '',
       body:
-        "How much you use matters less than when. Your load shape sets what wholesale energy costs at the moment you buy it, when you're using the network and what it charges you for that, and how much you pay in peak-period levies. PABLO lays price, network and levy over a year of your demand so you can see which hours are costing you.",
+        "It's not just how much electricity you use - it's when. The same unit costs more at five on a winter evening than at three in the morning, because the market, the network and the levies all charge more when demand is high. PABLO lays those prices over your usage, so you can see which hours are quietly costing you the most.",
       illustrationConcept: 'demand-profile-half-hourly',
     },
     {
@@ -129,28 +129,27 @@ export const pabloConfig: ProductPageConfig = {
       highlightedVerb: '',
       headlineSuffix: '',
       body:
-        "Where you sit on the grid and the capacity you've agreed set a large, fixed part of your bill - and those charges are rising fastest. Most sites pay for capacity they never use. PABLO shows your agreed capacity against your real peak, what the headroom is costing you year on year, and how much you can export.",
+        "Every site has an agreed limit on how much power it can draw from the grid, and you pay for that limit whether you use it or not. Most sites never get close. PABLO shows your agreed capacity against what you actually draw, what the unused headroom costs you, and where your demand is heading - so you can right-size your connection with confidence.",
       illustrationConcept: 'charges-stack',
     },
     {
       number: '04',
       iconName: 'ti-flask',
-      headline: "Your supply arrangement",
       headlinePrefix: '',
-      highlightedVerb: '',
-      headlineSuffix: '',
+      highlightedVerb: 'Optimise',
+      headlineSuffix: " your energy strategy",
       body:
-        "Your contract decides how much of your bill you can see and how much you can influence. A fixed flat rate hides every component - and the premium you pay for the supplier carrying the risk. PABLO shows the gap between your contracted rate and the rebuilt bill, and what changes if you could see the charges underneath.",
+        "Once you understand the true cost of your electricity, you can start to optimise against it. Solar, storage, load shifting, peak shaving, capacity reduction, flexibility services - PABLO models them against your real building and shows you how they work together, so you can find the solution that's right for you.",
       illustrationConcept: 'options-sandbox',
     },
     {
       number: '05',
       iconName: 'ti-chart-bar',
       headlinePrefix: '',
-      highlightedVerb: 'Build',
-      headlineSuffix: " the stack",
+      highlightedVerb: 'Understand',
+      headlineSuffix: " the value over time",
       body:
-        "Once you can see all three, you can change them. Solar, storage, peak shaving, flexibility, market participation - layered on your real load, dispatched half-hour by half-hour, with the cost stack and the financial case responding as you go. Compare scenarios, see the payback, and recommend a strategy with confidence - or challenge one.",
+        "An energy strategy plays out over decades, and almost everything in it moves - energy prices, network charges, equipment that wears and gets replaced. PABLO builds the whole-life picture: what business as usual really costs, what each option saves, and how that changes as the world around it does. Test the assumptions, see how the case responds, and move forward with confidence.",
       illustrationConcept: 'investment-case-stack',
     },
   ],
