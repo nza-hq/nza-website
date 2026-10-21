@@ -1289,6 +1289,54 @@
      that is declared later in the file. */
   .product-step-text-block .product-step-headline { font-size: 27px; line-height: 1.12; }
   .product-step-text-block .product-step-body { font-size: 15px; }
+
+  /* NZ:AI phone beat: everything fits one screen, even with the body open
+     (Chris). The beat is exactly one screen tall; header and "Read more" keep
+     their natural size and the VIDEO takes whatever height is left (a size
+     container, so the square is min(width, height)). Collapsed, that is the
+     full-width video centred in the space; as the body opens, the space shrinks
+     and the video eases down with it - the grid-rows accordion drives it. */
+  [data-product="nzai"] .product-step-text-block {
+    height: 100svh;
+    min-height: 0;
+    padding: 64px 0 12px;
+    justify-content: flex-start;
+  }
+  [data-product="nzai"] .product-step-text-sticky {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 0;
+    /* centre the group; the video only gives up height once space runs out */
+    justify-content: center;
+  }
+  [data-product="nzai"] .product-step-text-sticky > * { flex-shrink: 0; }
+  /* compact header: "01." and its hairline on one line, headline tight below */
+  [data-product="nzai"] .product-step-rule { display: none; }
+  [data-product="nzai"] .product-step-meta { gap: 12px; }
+  [data-product="nzai"] .product-step-meta::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: color-mix(in oklab, var(--product-text-on-cream) 18%, transparent);
+  }
+  [data-product="nzai"] .product-step-number { font-size: 16px; line-height: 1; }
+  [data-product="nzai"] .product-step-text-block .product-step-headline { margin-top: 10px; }
+  /* the video fills the leftover height and stays square */
+  [data-product="nzai"] .product-step-text-sticky > .product-step-inline-illustration {
+    flex: 1 1 0;
+    min-height: 140px;
+    /* never taller than the full-width square (100vw less the 12px gutters) */
+    max-height: calc(100vw - 24px);
+    margin-top: 12px;
+    margin-bottom: 4px;
+    container-type: size;
+  }
+  [data-product="nzai"] .product-step-inline-illustration .product-step-video-frame {
+    width: min(100cqw, 100cqh);
+    height: min(100cqw, 100cqh);
+    aspect-ratio: 1 / 1;
+  }
+  [data-product="nzai"] .product-step-text-block .product-step-body { line-height: 1.5; padding-bottom: 4px; }
 }
 
 /* === Legacy single-step layout, no longer used but kept defs
