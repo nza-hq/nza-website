@@ -153,7 +153,8 @@ export function ProductStepsSection({
             }}
             className={
               'product-step-text-block' +
-              (i === activeIndex ? ' is-active' : '')
+              (i === activeIndex ? ' is-active' : '') +
+              (openBodies.has(i) ? ' is-expanded' : '')
             }
           >
             {/* Text content is sticky WITHIN its 100vh-tall block -

@@ -1310,27 +1310,56 @@
     justify-content: center;
   }
   [data-product="nzai"] .product-step-text-sticky > * { flex-shrink: 0; }
-  /* compact header: "01." and its hairline on one line, headline tight below */
-  [data-product="nzai"] .product-step-rule { display: none; }
+
+  /* Two states (Chris): COLLAPSED keeps the original breathing room - "01." on
+     its own line, the hairline beneath, generous gaps. EXPANDED ("Read more")
+     squashes it - "01." and its line on one row, everything tight - so the body
+     fits. Spacing lives in margins (not flex gap) so it eases between the two
+     in step with the body accordion. */
+  [data-product="nzai"] .product-step-text-sticky > .product-step-rule,
+  [data-product="nzai"] .product-step-text-block .product-step-headline,
+  [data-product="nzai"] .product-step-text-sticky > .product-step-inline-illustration,
+  [data-product="nzai"] .product-step-text-sticky > .product-step-readmore {
+    transition: margin 320ms var(--product-ease, ease),
+                height 320ms var(--product-ease, ease),
+                opacity 240ms var(--product-ease, ease);
+  }
   [data-product="nzai"] .product-step-meta { gap: 12px; }
+  /* the inline hairline beside "01." - only shown when expanded */
   [data-product="nzai"] .product-step-meta::after {
     content: '';
     flex: 1;
     height: 1px;
     background: color-mix(in oklab, var(--product-text-on-cream) 18%, transparent);
+    opacity: 0;
+    transition: opacity 240ms var(--product-ease, ease);
   }
-  [data-product="nzai"] .product-step-number { font-size: 16px; line-height: 1; }
-  [data-product="nzai"] .product-step-text-block .product-step-headline { margin-top: 10px; }
+
+  /* collapsed (default): the original spacing */
+  [data-product="nzai"] .product-step-text-sticky > .product-step-rule { margin: 32px 0 28px; }
+  [data-product="nzai"] .product-step-text-block .product-step-headline { margin-top: 0; }
   /* the video fills the leftover height and stays square */
   [data-product="nzai"] .product-step-text-sticky > .product-step-inline-illustration {
     flex: 1 1 0;
     min-height: 140px;
     /* never taller than the full-width square (100vw less the 12px gutters) */
     max-height: calc(100vw - 24px);
-    margin-top: 12px;
-    margin-bottom: 4px;
+    margin-top: 40px;
+    margin-bottom: 0;
     container-type: size;
   }
+  [data-product="nzai"] .product-step-text-sticky > .product-step-readmore { margin-top: 24px; }
+
+  /* expanded: squash */
+  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-meta::after { opacity: 1; }
+  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-rule {
+    margin: 0;
+    height: 0;
+    opacity: 0;
+  }
+  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-headline { margin-top: 10px; }
+  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-inline-illustration { margin-top: 12px; }
+  [data-product="nzai"] .product-step-text-block.is-expanded .product-step-text-sticky > .product-step-readmore { margin-top: 4px; }
   [data-product="nzai"] .product-step-inline-illustration .product-step-video-frame {
     width: min(100cqw, 100cqh);
     height: min(100cqw, 100cqh);
