@@ -2,6 +2,10 @@ import type { ProductPageConfig } from '../../components/product/ProductPage'
 
 const VIDEO_BASE = '/videos/nzai'
 
+/* Both "Book a discovery call" buttons (hero + closer) go to Chris's Microsoft
+   Bookings page; ProductPage opens http(s) CTAs in a new tab. */
+const BOOKING_URL = 'https://bookings.cloud.microsoft/owa/calendar/NZAIDiscoveryCall@thenza.co.uk/bookings/'
+
 /**
  * NZ:AI product page config - copy deck Rev E (brief R07, 19 Oct 2026).
  *
@@ -44,7 +48,7 @@ export const nzaiConfig: ProductPageConfig = {
     oneLiner:
       'Specialist energy, carbon and climate expertise, combined with software built on your own data. Advice you can act on, and intelligence that stays with you.',
     ctaLabel: 'Book a discovery call',
-    ctaHref: '/contact?product=nzai',
+    ctaHref: BOOKING_URL,
     screens: [
       {
         src: '/images/products/nzai/nzai-map.png',
@@ -106,9 +110,9 @@ export const nzaiConfig: ProductPageConfig = {
         'Saving energy starts with knowing why it is used. We help you unlock your data at every level, from the whole site down to one building on one day, adding meters and sensors where they are missing. Then we layer it with what else is happening, from occupancy to weather, so you can see what drives your demand and costs, and what to change.',
       video: {
         /* ?v bump busts the cached placeholder clip that lived at this filename */
-        mp4: `${VIDEO_BASE}/01-energy-map.mp4?v=3`,
-        webm: `${VIDEO_BASE}/01-energy-map.webm?v=3`,
-        poster: `${VIDEO_BASE}/01-energy-map-poster.jpg?v=3`,
+        mp4: `${VIDEO_BASE}/01-energy-map.mp4?v=4`,
+        webm: `${VIDEO_BASE}/01-energy-map.webm?v=4`,
+        poster: `${VIDEO_BASE}/01-energy-map-poster.jpg?v=4`,
         alt: 'The electricity network drawn as a branching flow from the grid through substations to buildings. One building is selected and a panel slides up with its monthly use, then its half-hourly readings for the year, then a single week.',
       },
     },
@@ -177,6 +181,6 @@ export const nzaiConfig: ProductPageConfig = {
     subhead:
       'Every partnership starts with a discovery call and a working session with your team. From there, we build what is needed first and keep building as your ambition grows.',
     ctaLabel: 'Book a discovery call',
-    ctaHref: '/contact?product=nzai',
+    ctaHref: BOOKING_URL,
   },
 }

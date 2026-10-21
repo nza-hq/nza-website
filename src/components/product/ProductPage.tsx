@@ -160,6 +160,10 @@ export type ProductPageConfig = {
   }
 }
 
+/** An off-site CTA (e.g. NZ:AI's Bookings page) opens in a new tab so the site stays open. */
+const externalLinkProps = (href: string) =>
+  /^https?:\/\//.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+
 export function ProductPage({ config }: { config: ProductPageConfig }) {
   useContextClass(config.contextClass)
 
@@ -344,7 +348,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
               {config.hero.oneLiner}
             </MaskReveal>
             <MaskReveal as="div" className="product-hero-cta-wrap" delay={800}>
-              <a className="product-hero-cta" href={config.hero.ctaHref}>
+              <a className="product-hero-cta" href={config.hero.ctaHref} {...externalLinkProps(config.hero.ctaHref)}>
                 {config.hero.ctaLabel}
               </a>
               {config.hero.secondaryCtaLabel && config.hero.secondaryCtaHref && (
@@ -608,7 +612,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
             )}
 
           <MaskReveal as="div" className="product-closer-cta-reveal" delay={650}>
-            <a className="product-closer-cta" href={config.closer.ctaHref}>
+            <a className="product-closer-cta" href={config.closer.ctaHref} {...externalLinkProps(config.closer.ctaHref)}>
               {config.closer.ctaLabel}
             </a>
           </MaskReveal>
