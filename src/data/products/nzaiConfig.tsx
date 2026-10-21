@@ -2,10 +2,9 @@ import type { ProductPageConfig } from '../../components/product/ProductPage'
 
 const VIDEO_BASE = '/videos/nzai'
 
-/* Both "Book a discovery call" buttons (hero + closer) go to Chris's Microsoft
-   "Bookings with me" discovery-call page; ProductPage opens http(s) CTAs in
-   a new tab. */
-const BOOKING_URL = 'https://bookings.cloud.microsoft/bookwithme/user/9f2e13ea286241e59c39a0450f8d3747@thenza.co.uk/meetingtype/nWAYKVSf2EKXkw58RZBzxQ2?anonymous&ismsaljsauthenabled&ep=mlink'
+/* Both "Book a discovery call" buttons (hero + closer) go to the shared NZ:AI
+   Microsoft Bookings page; ProductPage opens http(s) CTAs in a new tab. */
+const BOOKING_URL = 'https://bookings.cloud.microsoft/book/NZAI@thenza.co.uk/?ismsaljsauthenabled'
 
 /**
  * NZ:AI product page config - copy deck Rev E (brief R07, 19 Oct 2026).
