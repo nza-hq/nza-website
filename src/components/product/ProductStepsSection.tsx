@@ -83,6 +83,13 @@ export function ProductStepsSection({
 }: Props) {
   const [activeIndex, setActiveIndex] = useState(0)
   const textRefs = useRef<(HTMLDivElement | null)[]>([])
+  const gridRef = useRef<HTMLDivElement | null>(null)
+  /* Whether the steps section is actually on screen. Gates every video's
+     `isActive` so step 0 (the default activeIndex) does NOT autoplay on page
+     load while the section is still far below the fold — it would finish before
+     the reader ever scrolled to it and then never restart (Chris). The video
+     starts, from frame 0, when the section first comes into view. */
+  const [inView, setInView] = useState(false)
   /* Only ONE of the two visual slots is on screen at a time - the
      desktop shared frame (>=1024) or the mobile inline block (<=1023),
      mutually exclusive via CSS. Gate each slot's `isActive` by which is
@@ -129,8 +136,22 @@ export function ProductStepsSection({
     return () => obs.disconnect()
   }, [steps.length])
 
+  // Track whether the steps section is on screen, to gate video playback (see
+  // the `inView` note above). Toggles with the grid's intersection so leaving
+  // and returning re-triggers the active step's video from frame 0.
+  useEffect(() => {
+    const el = gridRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <div className="product-steps-grid">
+    <div className="product-steps-grid" ref={gridRef}>
       <div className="product-steps-text-col">
         {steps.map((step, i) => (
           <div
@@ -219,7 +240,7 @@ export function ProductStepsSection({
                 <StepVisual
                   step={step}
                   index={i}
-                  isActive={i === activeIndex && isMobile}
+                  isActive={i === activeIndex && isMobile && inView}
                 />
               </div>
             </div>
@@ -257,7 +278,7 @@ export function ProductStepsSection({
               <StepVisual
                 step={step}
                 index={i}
-                isActive={i === activeIndex && !isMobile}
+                isActive={i === activeIndex && !isMobile && inView}
               />
             </div>
           ))}

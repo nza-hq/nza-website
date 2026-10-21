@@ -410,14 +410,16 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
             leadingText={config.letsShow.leadingText}
             trailingText={config.letsShow.trailingText}
           />
-        </div>
-        {/* Scroll reminder, phone only (CSS). Reuses the home hero's scroll-cue
-            look (mono "Scroll" over a line with a running segment); shown
-            persistently here since the headline is centred as its own snap
-            page and the cue nudges the reader on into the steps (Chris). */}
-        <div className="scroll-cue is-shown product-lets-show-scroll" aria-hidden="true">
-          <span className="scroll-cue-label">Scroll</span>
-          <span className="scroll-cue-line" />
+          {/* Scroll reminder. Lives INSIDE the pinned inner so on desktop it
+              sits at the foot of the held "Let's show you" viewport (not the
+              foot of the 200vh section, which is off-screen during the pin).
+              Shown on phone for all products, and on desktop for NZ:AI (CSS),
+              where the manifesto's own cue is hidden so the nudge lives on this
+              hold instead of the green "Why NZ:AI" page (Chris). */}
+          <div className="scroll-cue is-shown product-lets-show-scroll" aria-hidden="true">
+            <span className="scroll-cue-label">Scroll</span>
+            <span className="scroll-cue-line" />
+          </div>
         </div>
       </section>
 

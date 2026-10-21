@@ -677,6 +677,11 @@
     position: static;
     min-height: auto;
     padding: 0 20px;
+    /* Kill the scroll parallax on phone: the JS keeps setting --lets-show-text-y,
+       and that per-frame transform fought the snap-paging here, causing a visible
+       jitter as the "Let's show you" page settled (Chris). */
+    transform: none;
+    will-change: auto;
   }
   /* Phone: the "Let's show you what we build" headline sits centred in its own
      full-screen snap page, with the scroll cue beneath it (Chris). */
@@ -691,9 +696,17 @@
      of source order */
   .product-lets-show .product-lets-show-scroll { display: flex; }
 }
-/* the lets-show scroll cue is phone-only; the .scroll-cue base styles
-   (landing.css) position it absolute, bottom-centre of the section */
+/* the lets-show scroll cue is phone-only by default; the .scroll-cue base styles
+   (landing.css) position it absolute, bottom-centre of its positioned ancestor
+   (now the pinned inner) */
 .product-lets-show-scroll { display: none; }
+/* NZ:AI: also show it on desktop, at the foot of the pinned "Let's show you"
+   hold, and hide the manifesto's own cue so the scroll nudge lives on this page
+   rather than the green "Why NZ:AI" page (Chris). */
+@media (min-width: 600px) {
+  [data-product="nzai"] .product-lets-show-scroll { display: flex; }
+}
+.manifesto-block--nzai .manifesto-block-scroll-prompt { display: none; }
 /* recolour the reused cue to navy: its base colours are off-white (for the dark
    landing hero) and were invisible on the light lets-show surface (Chris) */
 .product-lets-show-scroll .scroll-cue-label { color: rgba(26, 37, 64, 0.6); }
