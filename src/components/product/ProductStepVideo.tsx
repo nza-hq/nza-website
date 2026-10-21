@@ -48,21 +48,26 @@ export function ProductStepVideo({
     const v = ref.current
     if (!v) return
     if (isActive) {
-      // Restart from the top every time the step becomes active.
+      // Seek to the top immediately so the clip's FIRST frame is on screen, then
+      // hold it for a short settle before playing. The step only becomes active
+      // once it is centred in the viewport, so this guarantees the opening frames
+      // are visible before motion starts - the story reads from frame 0 (Chris).
       try {
         v.currentTime = 0
       } catch {
         /* currentTime can throw before metadata loads - harmless. */
       }
-      const played = v.play()
-      // Autoplay of a muted, inline video is allowed, but guard the
-      // promise so a rejection (e.g. mid-load interruption) never throws.
-      if (played && typeof played.catch === 'function') {
-        played.catch(() => {})
-      }
-    } else {
-      v.pause()
+      const id = window.setTimeout(() => {
+        const played = v.play()
+        // Autoplay of a muted, inline video is allowed, but guard the promise so
+        // a rejection (e.g. mid-load interruption) never throws.
+        if (played && typeof played.catch === 'function') {
+          played.catch(() => {})
+        }
+      }, 280)
+      return () => window.clearTimeout(id)
     }
+    v.pause()
   }, [isActive, reducedMotion])
 
   // Reduced motion: static poster image, no <video>, no footage fetch.
