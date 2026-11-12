@@ -632,3 +632,15 @@ In rough priority order:
 - GitHub Actions: `tsc --noEmit` + `vite build` on every PR.
 - Once on Vercel, Lighthouse CI on preview URLs.
 - Eventually refactor `pablo-charts.js` into typed ESM chart modules so future React PABLO components can import individual charts.
+
+## Search findability (12 Nov 2026, Claude, branch `claude/seo-findability`)
+
+Trigger: a former colleague couldn't find NZA on Google. The live site served one identical head on every URL, no robots.txt/sitemap.xml (both fell through the SPA rewrite to the homepage HTML), and never used the name "NZA".
+
+- `src/seo/pages.ts` is the single source for per-route title, description and index/noindex. Public name: **NZA paired with Net Zero Advisory** (Chris, 12 Nov); NZA Consultancy Ltd is legal name only.
+- `seo-pages` plugin in `vite.config.ts` writes `dist/<route>.html` per route (own title, description, canonical, robots, og/twitter, Organization JSON-LD), plus `robots.txt` and `sitemap.xml` (indexable pages only). `vercel.json` gains `cleanUrls` so `/nz-ai` serves `nz-ai.html`; the SPA rewrite still catches everything else.
+- `SeoHead` keeps title/description/canonical right on client-side navigation. ProductPage's own title effect removed (one source).
+- Stubs and coming-soon pages (/pablo, /decoded, /about, /clients, /contact, /privacy) are `noindex` and out of the sitemap. **When one launches, set `index: true` in `src/seo/pages.ts`.**
+- Verified: build + lint green; headless Chrome render of /, /nz-ai, /expertise, /approach shows the right title, canonical and body text.
+- Not done (deliberate): full pre-rendering of body HTML. Google renders the JS, so body text is indexed; pre-rendering is a bigger change for a later pass.
+- Off-repo follow-ups: Google Search Console + Bing Webmaster (submit sitemap), Google Business Profile, LinkedIn page name/website consistency.

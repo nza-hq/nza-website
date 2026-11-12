@@ -1,6 +1,9 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { ORGANIZATION_JSONLD, SEO_PAGES, SITE_NAME, SITE_URL } from './src/seo/pages'
 
 /**
  * Make the built app stylesheet non-render-blocking.
@@ -55,7 +58,84 @@ function nonBlockingAppCss(): Plugin {
   }
 }
 
+/**
+ * Per-route search metadata (Nov 2026).
+ *
+ * The site is a single-page app, so before this every URL served the same
+ * index.html: one title, one description, og:url pointing at the homepage,
+ * and robots.txt / sitemap.xml falling through the SPA rewrite to the
+ * homepage HTML. Google saw /nz-ai as a copy of /.
+ *
+ * After the build, this writes one HTML file per route from
+ * src/seo/pages.ts (dist/nz-ai.html etc., served at /nz-ai by Vercel's
+ * cleanUrls - real files win over the rewrite), each with its own title,
+ * description, canonical, robots and share tags, plus the Organization
+ * JSON-LD. It also writes robots.txt and sitemap.xml. The body is still
+ * the client-rendered app; Google renders JS, and full pre-rendering of
+ * body content is a separate, larger change.
+ */
+function escapeAttr(v: string) {
+  return v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
+}
+
+function seoPages(): Plugin {
+  let outDir = 'dist'
+  return {
+    name: 'seo-pages',
+    apply: 'build',
+    configResolved(c) {
+      outDir = resolve(c.root, c.build.outDir)
+    },
+    closeBundle() {
+      const base = readFileSync(resolve(outDir, 'index.html'), 'utf8')
+      const jsonLd = JSON.stringify(ORGANIZATION_JSONLD).replace(/</g, '\\u003c')
+
+      for (const page of SEO_PAGES) {
+        const url = `${SITE_URL}${page.path === '/' ? '/' : page.path}`
+        const t = escapeAttr(page.title)
+        const d = escapeAttr(page.description)
+        const swap = (html: string, re: RegExp, tag: string) => {
+          if (!re.test(html)) throw new Error(`seo-pages: tag not found ${re}`)
+          return html.replace(re, tag)
+        }
+        let html = base
+        html = swap(html, /<title>[^<]*<\/title>/, `<title>${t}</title>`)
+        html = swap(html, /<meta name="description"[^>]*>/, `<meta name="description" content="${d}" />`)
+        html = swap(html, /<meta property="og:site_name"[^>]*>/, `<meta property="og:site_name" content="${escapeAttr(SITE_NAME)}" />`)
+        html = swap(html, /<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${url}" />`)
+        html = swap(html, /<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${t}" />`)
+        html = swap(html, /<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${d}" />`)
+        html = swap(html, /<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${t}" />`)
+        html = swap(html, /<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${d}" />`)
+        html = html.replace(
+          '</head>',
+          `  <link rel="canonical" href="${url}" />\n` +
+            `    <meta name="robots" content="${page.index ? 'index, follow' : 'noindex, follow'}" />\n` +
+            `    <script type="application/ld+json">${jsonLd}</script>\n  </head>`,
+        )
+        const file = page.path === '/' ? 'index.html' : `${page.path.slice(1)}.html`
+        writeFileSync(resolve(outDir, file), html)
+      }
+
+      const indexed = SEO_PAGES.filter((p) => p.index)
+      writeFileSync(
+        resolve(outDir, 'sitemap.xml'),
+        '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+          indexed
+            .map((p) => `  <url><loc>${SITE_URL}${p.path === '/' ? '/' : p.path}</loc></url>`)
+            .join('\n') +
+          '\n</urlset>\n',
+      )
+      writeFileSync(
+        resolve(outDir, 'robots.txt'),
+        `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+      )
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), nonBlockingAppCss()],
+  plugins: [react(), tailwindcss(), nonBlockingAppCss(), seoPages()],
 })

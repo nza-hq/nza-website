@@ -241,15 +241,8 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
      is provided (currently just PABLO per the June 2026 redesign). */
   const [expandedCaseId, setExpandedCaseId] = useState<string | null>(null)
 
-  // Set the document title per product so browser tabs read the
-  // product name. Restores on unmount.
-  useEffect(() => {
-    const previous = document.title
-    document.title = `${config.hero.name.replace(/\.$/, '')} · Net Zero Advisory`
-    return () => {
-      document.title = previous
-    }
-  }, [config.hero.name])
+  // Page title comes from src/seo/pages.ts via SeoHead (one source for
+  // search and browser tabs).
 
   const rootStyle: CSSProperties = {
     // CSS variables that the product-page.css rules read.
