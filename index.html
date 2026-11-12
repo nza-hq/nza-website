@@ -49,11 +49,12 @@
     </noscript>
     <title>Net Zero Advisory - specialists in buildings, energy and climate</title>
 
-    <!-- Share cards. Crawlers do not run JS, so these live in the HTML, not in
-         React. One shared set serves every route via the vercel.json rewrite.
-         Deliberately no rel=canonical link (one would flag every route
-         as a duplicate of /). The image URL is absolute - relative paths fail
-         on every crawler. -->
+    <!-- Share cards and search tags. Crawlers do not run JS, so these live in
+         the HTML, not in React. These are the homepage defaults: at build the
+         seo-pages plugin (vite.config.ts) rewrites title, description, og/
+         twitter text and og:url per route from src/seo/pages.ts, and adds
+         rel=canonical, robots and the Organization JSON-LD to each file.
+         The image URL is absolute - relative paths fail on every crawler. -->
     <meta name="description" content="Specialists in buildings, energy and climate. We work alongside your team to build tools that are tailored, intuitive, and yours to own." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Net Zero Advisory" />

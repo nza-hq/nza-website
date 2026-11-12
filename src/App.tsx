@@ -4,6 +4,7 @@ import { WebsitePage } from './routes/WebsitePage'
 import { SiteNav } from './components/SiteNav'
 import { SiteFooter } from './components/SiteFooter'
 import { DevicePreview } from './components/DevicePreview'
+import { SeoHead } from './components/SeoHead'
 import { Analytics } from '@vercel/analytics/react'
 
 /**
@@ -50,6 +51,7 @@ const ContactPage = lazy(() =>
 export default function App() {
   return (
     <>
+      <SeoHead />
       <SiteNav />
       {/* Suspense catches the lazy route chunks while they load. Fallback is
           null - navigation to a product page briefly shows the nav/footer
