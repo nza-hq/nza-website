@@ -4,9 +4,10 @@ The `/decoded` page's five steps each play a short clip of the real decodED app 
 pinned frame. All five are recorded on **Finham Park School, Coventry (URN 136963)**, so the
 page tells one school's story (Linzie, 14 Nov 2026).
 
-**Status:** the five files below are labelled placeholder cards ("Recording to follow"),
-cream with the step number and title. Replace them with the real recordings at the same
-filenames; no config change is needed. If a clip is re-recorded at a filename that has
+**Status:** all five are real recordings of the live site on Finham Park (14 Nov 2026), replacing
+the placeholder cards. Pro was a stand-in in the browser only (no account written); the plan's people
+are roles, not names. The recording rig (Playwright screencast frames, then ffmpeg) lives outside this
+repo, in `nza-hq/_clips/decoded-rig/` on Chris's PC. If a clip is re-recorded at a filename that has
 already shipped, add a `?v=` bump in `decodedConfig.tsx` (as `nzaiConfig.tsx` does).
 
 ## Asset spec (same as NZ:AI)
