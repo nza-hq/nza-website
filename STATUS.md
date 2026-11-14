@@ -12,9 +12,10 @@ NZA specialists; closer with Find your school + Book a call ("nurseries to unive
 `ProductPage` closer gains an optional second CTA. `public/videos/decoded/` holds five labelled placeholder cards
 ("Recording to follow"); spec + shot list in `docs/videos-decoded-README.md`.
 
-**Open:** the app address behind "Find your school" (interim `https://decoded.netzeroadvisory.uk`, one constant);
-the price line says only "starting from £500 per school" (Linzie); the five Finham Park recordings and
-fresh hero screenshots (the cloud session cannot reach the app or map tiles).
+**Since:** the price line says only "starting from £500 per school" (Linzie). The five Finham Park clips and four
+fresh hero screenshots (1600x1000) are in, recorded on the live site on 14 Nov; the old screenshots are removed.
+
+**Open:** the app address behind "Find your school" (interim `https://decoded.netzeroadvisory.uk`, one constant).
 
 ## NZ:AI LAUNCH (21 Oct 2026, Co-Work) - SHIPPED, page live
 
