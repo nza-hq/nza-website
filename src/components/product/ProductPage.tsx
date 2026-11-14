@@ -158,6 +158,10 @@ export type ProductPageConfig = {
     }>
     ctaLabel: string
     ctaHref: string
+    /** Optional second CTA beside the closer's main one. decodED uses it so
+     *  a reader can find their school or book a call at the end. */
+    secondaryCtaLabel?: string
+    secondaryCtaHref?: string
   }
 }
 
@@ -609,6 +613,15 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
             <a className="product-closer-cta" href={config.closer.ctaHref} {...externalLinkProps(config.closer.ctaHref)}>
               {config.closer.ctaLabel}
             </a>
+            {config.closer.secondaryCtaLabel && config.closer.secondaryCtaHref && (
+              <a
+                className="product-closer-cta product-closer-cta--secondary"
+                href={config.closer.secondaryCtaHref}
+                {...externalLinkProps(config.closer.secondaryCtaHref)}
+              >
+                {config.closer.secondaryCtaLabel}
+              </a>
+            )}
           </MaskReveal>
         </div>
       </section>

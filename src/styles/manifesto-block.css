@@ -192,6 +192,13 @@
   font-weight: 500;
 }
 
+/* The product name inside the decodED manifesto body, in the orange of the
+   headline emphasis, matching the NZ:AI treatment. */
+.manifesto-block--decoded .manifesto-brand {
+  color: #E8743C;
+  font-weight: 500;
+}
+
 .manifesto-block-body {
   margin-top: clamp(28px, 3.5vh, 40px);
   font-family: 'Inter', system-ui, sans-serif;
