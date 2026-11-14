@@ -204,7 +204,9 @@ export const decodedConfig: ProductPageConfig = {
 
   /* "Going further with NZA": free to explore, Pro priced per school by
      pupil numbers, and NZA's specialists. Prices match the app's own
-     pricing table (nza-decoded public/help.html, ex VAT). */
+     pricing table (nza-decoded public/help.html, ex VAT). The upper figure
+     is the band of the largest secondary in GIAS (Linzie, 14 Nov 2026):
+     Walton High, Milton Keynes, 3,037 pupils (the 3,000-4,999 band, £2,600). */
   goingFurther: {
     microLabel: 'GOING FURTHER WITH NZA',
     headline: 'Explore for free. Take it further with decodED Pro.',
@@ -216,9 +218,9 @@ export const decodedConfig: ProductPageConfig = {
         body: (
           <p>
             One price per school, set by pupil numbers and kept as low as
-            possible: from £500 a year for a small school, and around £900 to
-            £1,100 for a typical secondary. As many people at the school as
-            you like, at no extra cost.
+            possible: from £500 a year for a small school, up to £2,600 for
+            the very largest secondary. As many people at the school as you
+            like, at no extra cost.
           </p>
         ),
       },

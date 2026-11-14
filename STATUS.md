@@ -13,7 +13,7 @@ NZA specialists; closer with Find your school + Book a call ("nurseries to unive
 ("Recording to follow"); spec + shot list in `docs/videos-decoded-README.md`.
 
 **Open:** the app address behind "Find your school" (interim `https://decoded.netzeroadvisory.uk`, one constant);
-the secondary price (Linzie said £1,200, the app's table says £900-£1,100); the five Finham Park recordings and
+the upper price is £2,600, the band of the largest secondary in GIAS (Walton High, 3,037 pupils); the five Finham Park recordings and
 fresh hero screenshots (the cloud session cannot reach the app or map tiles).
 
 ## NZ:AI LAUNCH (21 Oct 2026, Co-Work) - SHIPPED, page live
