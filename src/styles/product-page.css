@@ -2001,7 +2001,7 @@
 /* Secondary closer CTA (decodED "Book a call" beside "Find your school"):
    outlined, not filled, so the main CTA still leads. Wraps under the main
    one on a phone. */
-.product-closer-cta-reveal:has(.product-closer-cta--secondary) {
+.product-closer-cta-reveal .mask-reveal-inner:has(.product-closer-cta--secondary) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

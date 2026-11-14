@@ -1,5 +1,21 @@
 # STATUS.md
 
+## decodED page to the agreed plan, private preview (14 Nov 2026, cloud Claude Code thread) - PR open, page still hidden
+
+Plan agreed with Linzie (Claude Doc "decodED web page: plan", 14 Nov). `/decoded?preview=1` renders the full
+ProductPage with `noindex, nofollow`; plain `/decoded`, the nav and the products screen are unchanged ("Coming soon").
+
+**What changed.** `decodedConfig.tsx` rewritten in the NZ:AI format: hero "Find your school. Start its climate action
+plan." with Find your school (app) + Book a call; manifesto body as one paragraph (headline and gov.uk tooltip kept);
+five steps, one per lens, each with a video slot; "Going further" = pricing from the app's own table, a growing twin,
+NZA specialists; closer with Find your school + Book a call ("nurseries to universities", no England and Wales).
+`ProductPage` closer gains an optional second CTA. `public/videos/decoded/` holds five labelled placeholder cards
+("Recording to follow"); spec + shot list in `docs/videos-decoded-README.md`.
+
+**Open:** the app address behind "Find your school" (interim `https://decoded.netzeroadvisory.uk`, one constant);
+the secondary price (Linzie said £1,200, the app's table says £900-£1,100); the five Finham Park recordings and
+fresh hero screenshots (the cloud session cannot reach the app or map tiles).
+
 ## NZ:AI LAUNCH (21 Oct 2026, Co-Work) - SHIPPED, page live
 
 Launched on Chris's instruction. `/nz-ai` now renders the full ProductPage for everyone (the `?preview=1`
