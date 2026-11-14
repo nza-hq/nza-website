@@ -1998,6 +1998,30 @@
   color: #FFFFFF;
 }
 
+/* Secondary closer CTA (decodED "Book a call" beside "Find your school"):
+   outlined, not filled, so the main CTA still leads. Wraps under the main
+   one on a phone. */
+.product-closer-cta-reveal:has(.product-closer-cta--secondary) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.product-closer-cta--secondary,
+.is-light .product-closer-cta--secondary {
+  background: transparent;
+  color: var(--product-accent);
+  border-color: var(--product-accent);
+}
+.product-closer-cta--secondary:hover,
+.product-closer-cta--secondary:focus-visible,
+.is-light .product-closer-cta--secondary:hover,
+.is-light .product-closer-cta--secondary:focus-visible {
+  background: var(--product-accent);
+  border-color: var(--product-accent);
+  color: #FFFFFF;
+}
+
 /* =========================================================================
    REDUCED MOTION
    ========================================================================= */

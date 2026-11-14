@@ -3,12 +3,35 @@ import { Tooltip } from '../../components/Tooltip'
 
 /* DfE Sustainability and Climate Change Strategy (2022) source URL +
    tooltip summary for the inline "climate action plan" link in the
-   decodED manifesto. Copy locked per manifestos brief Movement 2. */
+   decodED manifesto. */
 const DFE_STRATEGY_URL =
   'https://www.gov.uk/government/publications/sustainability-and-climate-change-strategy'
 const DFE_TOOLTIP_BODY =
   'DfE Sustainability and Climate Change Strategy (2022). By 2025, all education settings nominate a sustainability lead and publish a climate action plan covering decarbonisation, adaptation, biodiversity, and climate education and green careers.'
 
+/* "Find your school" opens the decodED app itself. Interim address: which
+   public address the button lands on is still to be decided (Linzie, 14 Nov
+   2026: "get everything else built and then decide"). Change it here only -
+   the hero and the closer both read this constant. */
+const APP_URL = 'https://decoded.netzeroadvisory.uk'
+
+/* "Book a call" - the site's contact route, tagged with the product. */
+const BOOK_A_CALL_URL = '/contact?product=decoded'
+
+const VIDEO_BASE = '/videos/decoded'
+
+/**
+ * decodED product page config - rewritten to the NZ:AI format from the plan
+ * Linzie agreed on 14 Nov 2026 (doc "decodED web page: plan").
+ *
+ * The page follows a first visit to the app: find a school, the twin is built
+ * from public data, then the three lenses (Carbon, Climate, Nature) and the
+ * plan. Every clip is recorded from the real app on Finham Park School,
+ * Coventry (URN 136963), so the five steps tell one school's story.
+ *
+ * No first-person "we" (site rule; only /nz-ai is exempt). "decodED" is the
+ * name's one spelling throughout.
+ */
 export const decodedConfig: ProductPageConfig = {
   slug: 'decoded',
   contextClass: 'context-decoded',
@@ -17,83 +40,55 @@ export const decodedConfig: ProductPageConfig = {
   palette: {
     canvas: '#F3EFE3',
     cream: '#FAF5EB',
-    /* Body / large type uses deep green; the orange accent drives
-       verb highlights + CTAs (per brief Section 7 + Section 4 verb
-       rule). */
+    /* Body / large type uses deep green; the orange accent drives verb
+       highlights + CTAs. */
     accent: '#0F5D43',
     accentLight: '#E8743C',
     canvasElevated: 'rgba(15, 93, 67, 0.04)',
-    /* Verb highlight is orange for decodED specifically. */
     stepVerbColour: '#E8743C',
   },
 
-  /* Hero refreshed per manifestos brief Movement 3.1:
-       - Catchline / tagline tightened to "Climate action in education."
-         (brief calls this "unchanged from whatever currently ships";
-         the prior tagline "Climate action, decoded for education."
-         carried an extra clause and is now trimmed to match).
-       - Pitch line replaced with the free-to-everyone postcode-to-plan
-         line.
-       - Primary CTA: "Search your postcode". No postcode-search route
-         exists yet, so the href points to /contact?product=decoded
-         as an interim fallback. Flag for follow-up when the postcode
-         entry surface is built.
-       - Secondary CTA: "Join the waitlist" - mailto so interested
-         schools land directly in the inbox without a new form. */
+  /* Hero: the app's own landing line, so the web page and the app say the
+     same thing on first contact. "Find your school" sits right at the start
+     (Linzie, 14 Nov 2026). */
   hero: {
-    microLabel: 'EDUCATION PLATFORM',
+    microLabel: 'CLIMATE ACTION IN EDUCATION',
     name: 'decodED',
     logoSrc: '/assets/logos/decoded-logo.svg',
-    tagline: 'Climate action in education.',
+    tagline: 'Find your school. Start its climate action plan.',
     oneLiner:
-      'Free for every nursery, school, college, and university. Search a postcode, build your digital twin, and start your climate action plan today.',
-    ctaLabel: 'Search your postcode',
-    ctaHref: '/contact?product=decoded',
-    secondaryCtaLabel: 'Join the waitlist',
-    secondaryCtaHref:
-      'mailto:info@netzeroadvisory.uk?subject=decodED%20-%20Join%20the%20waitlist',
+      'decodED builds a 3D digital twin of your site from public data, in under a minute. From there the whole school can see its carbon, its climate risks and its nature, build its climate action plan together, and take it into the classroom. Free to explore.',
+    ctaLabel: 'Find your school',
+    ctaHref: APP_URL,
+    secondaryCtaLabel: 'Book a call',
+    secondaryCtaHref: BOOK_A_CALL_URL,
     screens: [
       {
-        /* Real decodED site-loaded / map screen. */
         src: '/images/products/decoded/decoded-map.png',
         shortLabel: 'Site loaded',
-        alt: 'decodED with site loaded after postcode entry, showing map and site info',
+        alt: 'decodED with a school found, showing its site on the map',
       },
       {
-        /* Real decodED 3D buildings detail screen. */
         src: '/images/products/decoded/decoded-map-2.png',
         shortLabel: '3D buildings',
-        alt: 'decodED 3D buildings detail view',
+        alt: 'decodED digital twin of a school, its buildings in 3D',
       },
       {
-        /* Real decodED dashboard / future view screen. */
         src: '/images/products/decoded/decoded-dashboard.png',
         shortLabel: 'Dashboard',
-        alt: 'decodED dashboard showing climate risk, biodiversity and key metrics',
+        alt: 'decodED showing climate risk, nature and key figures for a school',
       },
       {
-        /* Second dashboard view added by Chris (decoded-dashboard-2). */
         src: '/images/products/decoded/decoded-dashboard-2.png',
         shortLabel: 'Detail view',
-        alt: 'decodED dashboard detail view with additional metric breakdowns',
+        alt: 'decodED detail view with figures broken down',
       },
     ],
   },
 
-  /* SECTION 2 - Manifesto (replaces the old `transition` two-liner
-     per the manifestos brief Movement 2). Chunk 3 adds:
-       - Italic emphasis on "right hands" in the headline. Per Chris
-         (July 2026) the emphasis renders in decodED ORANGE, not the
-         site's default coral, to match decodED's orange accent + CTAs.
-         Colour override lives in .manifesto-block--decoded ... em in
-         manifesto-block.css.
-       - Inline gov.uk reference on "climate action plan" in the first
-         paragraph, wrapped in the Tooltip primitive. Per Chris (July
-         2026) the trigger no longer navigates on its own - hover OR
-         click opens an on-brand popover; the reader only lands on
-         gov.uk if they click the link inside it.
-       - Body split into two paragraphs at the natural break (was
-         a single run-on string in the scaffold). */
+  /* Manifesto: headline kept; body rewritten as one paragraph in the NZ:AI
+     shape (the questions, the problem, what decodED does). The italic
+     emphasis renders in decodED orange (.manifesto-block--decoded em). */
   manifesto: {
     microLabel: 'WHY DECODED',
     headline: (
@@ -102,133 +97,139 @@ export const decodedConfig: ProductPageConfig = {
       </>
     ),
     body: (
-      <>
-        <p>
-          Every educational institution in England is now required to have a{' '}
-          <Tooltip
-            label="climate action plan"
-            body={DFE_TOOLTIP_BODY}
-            footerHref={DFE_STRATEGY_URL}
-            footerText="Read on gov.uk"
-          />{' '}
-          - covering decarbonisation, adaptation, biodiversity, and education
-          and green careers. Most schools have one person carrying this.
-          Decoded gives them the tools. NZA brings the expertise.
-        </p>
-        <p>
-          And the work doesn't stop at the lead. Decoded puts granular, real,
-          manageable data in the hands of everyone with a part to play -
-          estates teams, teachers, students, parents. Climate action needs
-          every skillset and every perspective, and the data to back them.
-        </p>
-      </>
+      <p>
+        Every school in England is expected to have a{' '}
+        <Tooltip
+          label="climate action plan"
+          body={DFE_TOOLTIP_BODY}
+          footerHref={DFE_STRATEGY_URL}
+          footerText="Read on gov.uk"
+        />
+        , covering carbon, a changing climate, nature, and climate education
+        and green careers. Most have one person carrying it. Where do they
+        start? What does the school already know? Who else can help?{' '}
+        <span className="manifesto-brand">decodED</span> answers the first
+        question in under a minute, with a digital twin built from public data.
+        Then it puts the figures in the hands of everyone with a part to play,
+        from the estates team to teachers, pupils and parents, so the plan
+        belongs to the whole school.
+      </p>
     ),
     accentColor: 'decoded',
   },
 
   letsShow: {
     leadingText: "Let's show you how",
-    pillLabel: 'Request Demo',
-    pillHref: '/contact?product=decoded',
+    /* Empty = no pill on the showcase frame, as on /nz-ai: the hero and the
+       closer already carry "Find your school". */
+    pillLabel: '',
+    pillHref: APP_URL,
     trailingText: 'decodED works',
   },
 
-  /* Five "how it works" cards per manifestos brief Movement 3.2 -
-     full replacement of the previous four-card flow. Headlines are
-     short action statements (Search. / Data populates. / Input what
-     only you know. / Explore the four pillars. / Draft your plan.)
-     with the action verb highlighted in decodED's orange via the
-     existing `.step-verb` mechanism. Brief flagged italic-on-"only"
-     and italic-on-"clear" as suggestions; per Chris's earlier
-     instruction (no italic, theme colour on verbs), those are not
-     applied and the verb-colour treatment is used consistently
-     across all five cards. Em-dashes in body copy converted to
-     hyphens per CLAUDE.md. */
+  /* Five steps, one per lens, in the order of a first visit to the app.
+     Clips: docs/videos-decoded-README.md. */
   steps: [
     {
       number: '01',
-      iconName: 'ti-search',
-      headlinePrefix: '',
-      highlightedVerb: 'Search',
-      headlineSuffix: '.',
+      headlinePrefix: 'Your school, ',
+      highlightedVerb: 'built',
+      headlineSuffix: ' in 3D.',
       body:
-        'Find any educational site - or any building within one. Draw a boundary and watch your 3D model come to life.',
-      illustrationConcept: 'postcode-search-3d',
+        'Search for your school by name and decodED builds its digital twin from public records: building footprints, LiDAR heights, energy certificates, flood and climate data. In under a minute the site rises from the map, ready to explore building by building.',
+      video: {
+        mp4: `${VIDEO_BASE}/01-twin-built.mp4`,
+        webm: `${VIDEO_BASE}/01-twin-built.webm`,
+        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg`,
+        alt: 'A school name typed into a search box. The map flies to the school, its site is revealed and its buildings rise in 3D.',
+      },
     },
     {
       number: '02',
-      iconName: 'ti-database',
-      headlinePrefix: 'Data ',
-      highlightedVerb: 'populates',
+      headlinePrefix: 'Your carbon, ',
+      highlightedVerb: 'counted',
       headlineSuffix: '.',
       body:
-        'Decoded pulls in useful publicly available data - building footprints, floor areas, energy performance certificates, climate projections. Your digital twin starts taking shape in seconds.',
-      illustrationConcept: 'data-streams-populating',
+        "decodED estimates the school's footprint from its energy certificates, spending and travel, then shows where it comes from and where it is heading to 2050. Swap any estimate for the school's own readings and every figure follows.",
+      video: {
+        mp4: `${VIDEO_BASE}/02-carbon-counted.mp4`,
+        webm: `${VIDEO_BASE}/02-carbon-counted.webm`,
+        poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg`,
+        alt: "The school's carbon footprint broken down by topic, then a chart of where its emissions are heading to 2050.",
+      },
     },
     {
       number: '03',
-      iconName: 'ti-edit',
-      headlinePrefix: '',
-      highlightedVerb: 'Input',
-      headlineSuffix: ' what only you know.',
+      headlinePrefix: 'Your climate risks, ',
+      highlightedVerb: 'mapped',
+      headlineSuffix: '.',
       body:
-        'Heating systems, travel patterns, overheating, flooding, biodiversity on site. A handful of straightforward questions - and the climate risk assessment - where human input matters most.',
-      illustrationConcept: 'human-input-questions',
+        "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
+      video: {
+        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4`,
+        webm: `${VIDEO_BASE}/03-risks-mapped.webm`,
+        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg`,
+        alt: "Flood risk shown in blue over the school's site and the roads around it.",
+      },
     },
     {
       number: '04',
-      iconName: 'ti-layout-grid',
-      headlinePrefix: '',
-      highlightedVerb: 'Explore',
-      headlineSuffix: ' the four pillars.',
+      headlinePrefix: 'Your nature, ',
+      highlightedVerb: 'found',
+      headlineSuffix: '.',
       body:
-        'Decarbonisation. Adaptation. Biodiversity. Education and green careers. Decoded walks you through each one - giving you a clear picture of your climate action plan, pillar by pillar.',
-      illustrationConcept: 'four-pillars-grid',
+        'See the habitats on the school site, and the nature reserves and species records nearby. Add sightings and surveys, and find where a hedge, a pond or more trees would make the biggest difference.',
+      video: {
+        mp4: `${VIDEO_BASE}/04-nature-found.mp4`,
+        webm: `${VIDEO_BASE}/04-nature-found.webm`,
+        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg`,
+        alt: "Habitats painted over the school's site in greens, then the view pulls out to the nature around it.",
+      },
     },
     {
       number: '05',
-      iconName: 'ti-list-numbers',
-      headlinePrefix: '',
-      highlightedVerb: 'Draft',
-      headlineSuffix: ' your plan.',
+      headlinePrefix: 'Your plan, ',
+      highlightedVerb: 'shared',
+      headlineSuffix: '.',
       body:
-        'A credible climate action plan, ready to refine, share, and act on. Save it, build on it over time, and bring more of your team in.',
-      illustrationConcept: 'action-plan-document',
+        "Choose targets, see where to start, and give each action an owner and a date. Then take it into the classroom: lessons built on the school's own figures, a pupil travel survey, and the school's story from its site out to the planet.",
+      video: {
+        mp4: `${VIDEO_BASE}/05-plan-shared.mp4`,
+        webm: `${VIDEO_BASE}/05-plan-shared.webm`,
+        poster: `${VIDEO_BASE}/05-plan-shared-poster.jpg`,
+        alt: "The school's climate action plan: its targets and where to start, with actions laid out by owner and date.",
+      },
     },
   ],
 
-  /* SECTION 4.5 - "Going Further with NZA" triptych per the
-     manifestos brief Movement 3.3. Sits between the how-it-works
-     cards and the closer. Frames Decoded as the free foundation
-     that NZA takes further over time. PABLO mention in Card 02
-     gets a typographic moment via the `.pablo-mark` bold span
-     per the brief's "should be its own typographic moment"
-     guidance. Em-dashes converted to hyphens per CLAUDE.md. */
+  /* "Going further with NZA": free to explore, Pro priced per school by
+     pupil numbers, and NZA's specialists. Prices match the app's own
+     pricing table (nza-decoded public/help.html, ex VAT). */
   goingFurther: {
     microLabel: 'GOING FURTHER WITH NZA',
-    headline: 'Build your plan for free. Take it further with NZA.',
+    headline: 'Explore for free. Take it further with decodED Pro.',
     intro:
-      'The digital twin you start with Decoded - once a capability reserved for big commercial estates - is now the foundation for your institution. Free to keep, with the digital twin growing into the operating system for your whole estate as NZA works alongside you.',
+      'Anyone can find a school and explore its twin for free. decodED Pro opens everything else: the school\'s own figures, every lens in full, the plan and the classroom, for everyone at the school.',
     cards: [
       {
-        title: 'Estate data management',
+        title: 'Priced to be within reach',
         body: (
           <p>
-            Centralised data. Real-world monitoring through sub-metering and
-            sensors. AI-native interrogation of your estate. The kind of
-            operational visibility most institutions have never had - built on
-            the same digital twin you started for free.
+            One price per school, set by pupil numbers and kept as low as
+            possible: from £500 a year for a small school, and around £900 to
+            £1,100 for a typical secondary. As many people at the school as
+            you like, at no extra cost.
           </p>
         ),
       },
       {
-        title: 'Energy cost optimisation',
+        title: 'A twin that keeps growing',
         body: (
           <p>
-            <span className="pablo-mark">PABLO</span>, NZA's energy strategy
-            tool, plugs directly into your digital twin. Optimise costs, model
-            renewables and storage, prepare for the energy transition. Make
-            every electrification decision a confident one.
+            Add meters and sensors to the same twin, and live data takes the
+            place of estimates. The model becomes a tool the school uses every
+            week: warmer classrooms in January, cooler ones in June, and waste
+            found before the invoice does.
           </p>
         ),
       },
@@ -236,36 +237,27 @@ export const decodedConfig: ProductPageConfig = {
         title: 'Specialist expertise',
         body: (
           <p>
-            NZA's decarbonisation, climate, and biodiversity specialists work
-            alongside your sustainability lead, estates team, teachers, and
-            students. Detailed assessments, real engineering, and the experts
-            the digital twin needs to grow.
+            NZA's decarbonisation, climate and biodiversity specialists work
+            alongside your sustainability lead, estates team, teachers and
+            pupils. Detailed assessments and real engineering, when the plan
+            needs more than the tool.
           </p>
         ),
       },
     ],
-    ctaText: 'Get in touch to find out more',
-    ctaHref:
-      'mailto:info@netzeroadvisory.uk?subject=decodED%20-%20Going%20further%20with%20NZA',
+    ctaText: 'Book a call to find out more',
+    ctaHref: BOOK_A_CALL_URL,
   },
 
-  /* Closer refreshed per manifestos brief Movement 3.4. The brief
-     gives two sentences: a long inclusive "Built for everyone..."
-     statement and the short brand signature "Climate action,
-     decoded." Mapping:
-       - microLabel dropped (matches PABLO's June 2026 redesign).
-       - headline = the long sentence (substantive close-out).
-       - subhead = "Climate action, decoded." (small final stamp
-         that punctuates the page like a brand signature).
-       - CTA "Get in touch" -> "Search your postcode" matching the
-         hero's primary CTA. Same href - same interim destination
-         until the postcode entry surface ships.
-     No client logo row for decodED. */
+  /* Closer: once someone has read the page, they can find their school or
+     book a call (Linzie, 14 Nov 2026). */
   closer: {
     headline:
-      'Built for everyone in education - nurseries to universities - who wants to understand their estate, plan for the future, and act on what matters.',
+      'Built for everyone in education, from nurseries to universities, who wants to understand their site, plan for the future and act on what matters.',
     subhead: 'Climate action, decoded.',
-    ctaLabel: 'Search your postcode',
-    ctaHref: '/contact?product=decoded',
+    ctaLabel: 'Find your school',
+    ctaHref: APP_URL,
+    secondaryCtaLabel: 'Book a call',
+    secondaryCtaHref: BOOK_A_CALL_URL,
   },
 }
