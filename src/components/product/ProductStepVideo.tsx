@@ -31,11 +31,11 @@ export type StepVideo = {
   poster: string
   /** Accessible description of what the clip shows. */
   alt: string
-  /** With reduced motion on, still offer the clip: a paused <video> with its
-   *  controls, played only when the visitor presses play, instead of a static
-   *  poster. For pages whose clips are the content, not decoration (decodED:
-   *  Linzie, 15 Nov 2026, saw only "screenshots"). */
-  playOnRequest?: boolean
+  /** Play even when the visitor's system asks for reduced motion (e.g. Windows
+   *  with "Animation effects" off). For pages whose clips are the content, not
+   *  decoration: decodED (Linzie, 15 Nov 2026: on her Windows PC "zero
+   *  moving"). The clip still plays once, only while its step is active. */
+  alwaysPlay?: boolean
 }
 
 export function ProductStepVideo({
@@ -46,7 +46,8 @@ export function ProductStepVideo({
   isActive: boolean
 }) {
   const ref = useRef<HTMLVideoElement | null>(null)
-  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const prefersReduced = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const reducedMotion = prefersReduced && !video.alwaysPlay
 
   useEffect(() => {
     if (reducedMotion) return
@@ -83,24 +84,6 @@ export function ProductStepVideo({
   // Reduced motion: static poster image, no <video>, no footage fetch.
   // Wrapped in the rounded, overflow-clipped frame so a static poster rounds
   // the same way the video does.
-  if (reducedMotion && video.playOnRequest) {
-    return (
-      <div className="product-step-video-frame">
-        <video
-          className="product-step-video product-step-video--on-request"
-          muted
-          playsInline
-          controls
-          preload="none"
-          poster={video.poster}
-          aria-label={video.alt}
-        >
-          <source src={video.webm} type="video/webm" />
-          <source src={video.mp4} type="video/mp4" />
-        </video>
-      </div>
-    )
-  }
   if (reducedMotion) {
     return (
       <div className="product-step-video-frame">
