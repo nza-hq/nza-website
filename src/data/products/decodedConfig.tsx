@@ -141,8 +141,9 @@ export const decodedConfig: ProductPageConfig = {
     logoWord: { word: 'decodED', node: <DecodedLogoInline /> },
   },
 
-  /* Five steps, one per lens, in the order of a first visit to the app.
-     Clips: docs/videos-decoded-README.md. */
+  /* Six steps in the order of a first visit to the app (Linzie, 15 Nov 2026:
+     the sixth, the school's story in the classroom, added). Clips:
+     docs/videos-decoded-README.md. */
   steps: [
     {
       number: '01',
@@ -161,7 +162,7 @@ export const decodedConfig: ProductPageConfig = {
         mp4: `${VIDEO_BASE}/01-twin-built.mp4`,
         webm: `${VIDEO_BASE}/01-twin-built.webm`,
         poster: `${VIDEO_BASE}/01-twin-built-poster.jpg`,
-        alt: 'Finham Park typed into the search. The map flies to the school, its site is revealed and its buildings rise in 3D, then one building opens with its details.',
+        alt: 'Finham Park typed into the search. The map flies to the school and its site is built in 3D, sped up.',
       },
     },
     {
@@ -181,7 +182,7 @@ export const decodedConfig: ProductPageConfig = {
         mp4: `${VIDEO_BASE}/02-carbon-counted.mp4`,
         webm: `${VIDEO_BASE}/02-carbon-counted.webm`,
         poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg`,
-        alt: "The school's emissions inventory, then its carbon flows by theme, then a chart of where its emissions are heading to 2050.",
+        alt: "A small primary school's carbon figures: the table, a chart of where its emissions come from, and the path from 2020 to 2050.",
       },
     },
     {
@@ -195,7 +196,7 @@ export const decodedConfig: ProductPageConfig = {
         mp4: `${VIDEO_BASE}/03-risks-mapped.mp4`,
         webm: `${VIDEO_BASE}/03-risks-mapped.webm`,
         poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg`,
-        alt: "Heavy rain risk on the school's site, then the view widens to the roads around it that flood.",
+        alt: 'A school beside the Thames in 3D, with flooding and then one climate hazard after another coloured across its site.',
       },
     },
     {
@@ -204,26 +205,40 @@ export const decodedConfig: ProductPageConfig = {
       highlightedVerb: 'found',
       headlineSuffix: '.',
       body:
-        'See the habitats on the school site, and the nature reserves and species records nearby. Add sightings and surveys, and find where a hedge, a pond or more trees would make the biggest difference.',
+        'See the habitats on the school site, and the nature reserves and species records in and around it. Add sightings and surveys, find where a hedge, a pond or more trees would make the biggest difference, and connect the site to the nature beyond its fence.',
       video: {
         mp4: `${VIDEO_BASE}/04-nature-found.mp4`,
         webm: `${VIDEO_BASE}/04-nature-found.webm`,
         poster: `${VIDEO_BASE}/04-nature-found-poster.jpg`,
-        alt: "Habitats painted over the school's site, then the view pulls out to the green land and nature within 1 km.",
+        alt: 'A school site in 2D with a 1 km ring, nature records popping up as dots, then the ring widening and more appearing.',
       },
     },
     {
       number: '05',
       headlinePrefix: 'Your plan, ',
-      highlightedVerb: 'shared',
+      highlightedVerb: 'made',
       headlineSuffix: '.',
       body:
-        "Choose targets, see where to start, and give each action an owner and a date. Then take it into the classroom: lessons built on the school's own figures, a pupil travel survey, and the school's story from its site out to the planet.",
+        'Choose targets for carbon, climate and nature, see where to start, and give each action an owner and a date. Follow it as a list, a board or a timeline, with everyone who has a part in it.',
       video: {
-        mp4: `${VIDEO_BASE}/05-plan-shared.mp4`,
-        webm: `${VIDEO_BASE}/05-plan-shared.webm`,
-        poster: `${VIDEO_BASE}/05-plan-shared-poster.jpg`,
-        alt: "The school's carbon targets and where to start, then every action on a board under Planned, Doing and Done, each with an owner and a term.",
+        mp4: `${VIDEO_BASE}/05-plan-made.mp4`,
+        webm: `${VIDEO_BASE}/05-plan-made.webm`,
+        poster: `${VIDEO_BASE}/05-plan-made-poster.jpg`,
+        alt: "A school's climate action plan: its targets, an area's actions, then every action as a list, a board and a timeline, and the people behind it.",
+      },
+    },
+    {
+      number: '06',
+      headlinePrefix: 'Your story, ',
+      highlightedVerb: 'told',
+      headlineSuffix: '.',
+      body:
+        "Take the school's climate action into the classroom: its story from its own site out to the planet, lessons built on the school's own figures, and a pupil travel survey.",
+      video: {
+        mp4: `${VIDEO_BASE}/06-story-classroom.mp4`,
+        webm: `${VIDEO_BASE}/06-story-classroom.webm`,
+        poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg`,
+        alt: "The school's story: the Earth turning and the school's figures changing, from its site out to the planet.",
       },
     },
   ],
