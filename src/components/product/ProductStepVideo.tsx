@@ -67,13 +67,8 @@ export function ProductStepVideo({
         const played = v.play()
         // Autoplay of a muted, inline video is allowed, but guard the promise so
         // a rejection (e.g. mid-load interruption) never throws.
-        // If the browser refuses (e.g. iOS Low Power Mode blocks autoplay),
-        // show the controls so the clip can still be played by hand rather
-        // than sitting there looking like a still.
         if (played && typeof played.catch === 'function') {
-          played.catch(() => {
-            v.controls = true
-          })
+          played.catch(() => {})
         }
       }, 280)
       return () => window.clearTimeout(id)
@@ -94,7 +89,7 @@ export function ProductStepVideo({
       fellBack.current = true
       v.src = video.mp4
       v.load()
-      if (isActive && !reducedMotion) v.play()?.catch(() => { v.controls = true })
+      if (isActive && !reducedMotion) v.play()?.catch(() => {})
     }
   }
 
