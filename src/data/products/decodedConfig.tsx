@@ -87,13 +87,13 @@ export const decodedConfig: ProductPageConfig = {
       },
       {
         src: '/images/products/decoded/decoded-03-plan.png',
-        shortLabel: 'Plan board',
-        alt: "decodED plan board with Finham Park School's climate actions under Planned, Doing and Done",
+        shortLabel: 'Plan timeline',
+        alt: "decodED plan timeline for Finham Park School: every climate action as a bar across two school years, by area, with milestones",
       },
       {
         src: '/images/products/decoded/decoded-04-story.png',
         shortLabel: 'Our story',
-        alt: 'decodED Our story: Finham Park School on a globe, from the classroom to the planet',
+        alt: "decodED's full-screen story: the globe at night shaded by electricity from renewables, beside a chart of the world's renewables rising to meet coal",
       },
     ],
   },
