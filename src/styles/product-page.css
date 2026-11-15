@@ -2919,3 +2919,71 @@
     line-height: 1.5;
   }
 }
+
+/* =========================================================================
+   CLOSER, CARD VARIANT (decodED, Linzie 15 Nov 2026)
+   The last section as a full-bleed accent card with curved top corners,
+   like the manifesto: the accent layer is a ::before that drifts with
+   --closer-parallax-y (set in ProductPage), the content lags on entry
+   with --closer-text-y. The page ends on the accent colour.
+   ========================================================================= */
+.product-closer--card {
+  background: transparent;
+  color: #FFFFFF;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  /* clip, not hidden: no scroll container, same as the manifesto. */
+  overflow: clip;
+  z-index: 1;
+  --closer-parallax-y: 0px;
+  --closer-text-y: 0px;
+}
+.product-closer--card::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: 0;
+  right: 0;
+  bottom: -15%;
+  z-index: 0;
+  background: var(--product-accent);
+  transform: translateY(var(--closer-parallax-y));
+  will-change: transform;
+}
+.product-closer--card .product-closer-inner {
+  transform: translate3d(0, var(--closer-text-y), 0);
+  will-change: transform;
+}
+.product-closer--card .product-closer-headline,
+.is-light .product-closer--card .product-closer-headline,
+.product-closer--card .product-closer-subhead,
+.is-light .product-closer--card .product-closer-subhead {
+  color: #FFFFFF;
+}
+/* Secondary CTA in white outline on the accent card. */
+.product-closer--card .product-closer-cta--secondary,
+.is-light .product-closer--card .product-closer-cta--secondary {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.85);
+}
+.product-closer--card .product-closer-cta--secondary:hover,
+.product-closer--card .product-closer-cta--secondary:focus-visible,
+.is-light .product-closer--card .product-closer-cta--secondary:hover,
+.is-light .product-closer--card .product-closer-cta--secondary:focus-visible {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--product-accent);
+}
+@media (max-width: 599px) {
+  .product-closer--card {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-closer--card::before,
+  .product-closer--card .product-closer-inner {
+    transform: none;
+  }
+}

@@ -71,7 +71,7 @@ export const decodedConfig: ProductPageConfig = {
     ),
     ctaLabel: 'Find your school',
     ctaHref: APP_URL,
-    secondaryCtaLabel: 'Book a call',
+    secondaryCtaLabel: 'Book a discovery call',
     secondaryCtaHref: BOOK_A_CALL_URL,
     /* Fresh 1600x1000 captures of the live app on Finham Park (14 Nov 2026). */
     screens: [
@@ -105,7 +105,7 @@ export const decodedConfig: ProductPageConfig = {
     microLabel: 'WHY DECODED',
     headline: (
       <>
-        Good data, in the <em>right hands</em>.
+        Climate action, in <em>everyone&rsquo;s hands</em>.
       </>
     ),
     body: (
@@ -117,14 +117,12 @@ export const decodedConfig: ProductPageConfig = {
           footerHref={DFE_STRATEGY_URL}
           footerText="Read on gov.uk"
         />
-        , covering carbon, a changing climate, nature, and climate education
-        and green careers. Most have one person carrying it. Where do they
-        start? What does the school already know? Who else can help?{' '}
-        <DecodedWord /> answers the first
-        question in under a minute, with a digital twin built from public data.
-        Then it puts the figures in the hands of everyone with a part to play,
-        from the estates team to teachers, pupils and parents, so the plan
-        belongs to the whole school.
+        . Most have one person carrying it, and nowhere obvious to start.{' '}
+        <DecodedWord /> changes that. In under a minute it builds your school
+        as a living digital twin, full of its carbon, climate and nature data.
+        Then it gives everyone a part to play, from the estates team to
+        teachers and pupils, and opens it up to the wider community, so the
+        plan belongs to the whole school.
       </p>
     ),
     accentColor: 'decoded',
@@ -150,14 +148,8 @@ export const decodedConfig: ProductPageConfig = {
       headlinePrefix: 'Your school, ',
       highlightedVerb: 'built',
       headlineSuffix: ' in 3D.',
-      body: (
-        <>
-          Search for your school by name and decodED builds its digital
-          twin from public records: building footprints, LiDAR heights, energy
-          certificates, flood and climate data. In under a minute the site rises
-          from the map, ready to explore building by building.
-        </>
-      ),
+      body:
+        "Search for your school and decodED builds its digital twin from public records: buildings, heights, energy certificates, flood and climate data. In under a minute, watch your site come to life with its carbon, climate and nature data, ready for you to build on.",
       video: {
         mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=5`,
         webm: `${VIDEO_BASE}/01-twin-built.webm?v=5`,
@@ -169,16 +161,10 @@ export const decodedConfig: ProductPageConfig = {
     {
       number: '02',
       headlinePrefix: 'Your carbon, ',
-      highlightedVerb: 'counted',
+      highlightedVerb: 'understood',
       headlineSuffix: '.',
-      body: (
-        <>
-          decodED estimates the school's footprint from its energy
-          certificates, spending and travel, then shows where it comes from and
-          where it is heading to 2050. Swap any estimate for the school's own
-          readings and every figure follows.
-        </>
-      ),
+      body:
+        "A full carbon inventory for your school, clear enough for anyone to understand. See where your emissions come from, where they’re heading to 2050 and where your data has gaps. Fill those gaps with your own figures and every number sharpens. It’s ready to act on from day one.",
       video: {
         mp4: `${VIDEO_BASE}/02-carbon-counted.mp4?v=4`,
         webm: `${VIDEO_BASE}/02-carbon-counted.webm?v=4`,
@@ -193,7 +179,7 @@ export const decodedConfig: ProductPageConfig = {
       highlightedVerb: 'mapped',
       headlineSuffix: '.',
       body:
-        "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
+        "Flooding, heat, drought and storms, shown on your own site, today and as the climate changes. Bring in what your team knows about your buildings and your people, and turn it into a climate risk assessment that shows where to adapt first. It’s an adaptation strategy that works hand in hand with your path to net zero.",
       video: {
         mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=6`,
         webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=6`,
@@ -205,10 +191,10 @@ export const decodedConfig: ProductPageConfig = {
     {
       number: '04',
       headlinePrefix: 'Your nature, ',
-      highlightedVerb: 'found',
+      highlightedVerb: 'brought to life',
       headlineSuffix: '.',
       body:
-        'See the habitats on the school site, and the nature reserves and species records in and around it. Add sightings and surveys, find where a hedge, a pond or more trees would make the biggest difference, and connect the site to the nature beyond its fence.',
+        "See the habitats on your site and the reserves and wildlife records around it. Add your own sightings and surveys, plan how to build with nature, bring wildlife back to your grounds and connect them to the nature beyond the school gates.",
       video: {
         mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=5`,
         webm: `${VIDEO_BASE}/04-nature-found.webm?v=5`,
@@ -220,10 +206,10 @@ export const decodedConfig: ProductPageConfig = {
     {
       number: '05',
       headlinePrefix: 'Your plan, ',
-      highlightedVerb: 'made',
+      highlightedVerb: 'in motion',
       headlineSuffix: '.',
       body:
-        'Choose targets for carbon, climate and nature, see where to start, and give each action an owner and a date. Follow it as a list, a board or a timeline, with everyone who has a part in it.',
+        "With a clear picture of where you stand, you can set targets that are bold and achievable. Choose goals for carbon, climate and nature, see where to begin, understand the likely costs and build the evidence for funding applications. The result is a climate action plan the whole school can follow, measure and report on, year after year.",
       video: {
         mp4: `${VIDEO_BASE}/05-plan-made.mp4?v=4`,
         webm: `${VIDEO_BASE}/05-plan-made.webm?v=4`,
@@ -235,10 +221,10 @@ export const decodedConfig: ProductPageConfig = {
     {
       number: '06',
       headlinePrefix: 'Your story, ',
-      highlightedVerb: 'told',
+      highlightedVerb: 'shared',
       headlineSuffix: '.',
       body:
-        "Take the school's climate action into the classroom: its story from the planet down to its own buildings, lessons built on the school's own figures, and a pupil travel survey.",
+        "Bring climate action into the classroom, starting from your own school. Follow its story from the planet down to its own buildings. Teachers can turn the school’s real data into lessons that link what happens on site to the wider world, then share them across the decodED community so other schools can do the same.",
       video: {
         mp4: `${VIDEO_BASE}/06-story-classroom.mp4?v=5`,
         webm: `${VIDEO_BASE}/06-story-classroom.webm?v=5`,
@@ -271,9 +257,8 @@ export const decodedConfig: ProductPageConfig = {
         tag: 'Free',
         body: (
           <p>
-            Find your school and explore its digital twin, its carbon footprint
-            and where it is heading to 2050. Nothing to pay and no account
-            needed.
+            Find your school and explore its digital twin and the data behind
+            it. Nothing to pay and no account needed.
           </p>
         ),
       },
@@ -294,26 +279,27 @@ export const decodedConfig: ProductPageConfig = {
         featured: true,
         body: (
           <p>
-            NZA's decarbonisation, climate and biodiversity specialists work
-            alongside your sustainability lead and estates team: meters and
-            sensors on the same twin, detailed assessments and real engineering.
+            NZA can work alongside your school and its sustainability lead,
+            bringing the expertise and lessons learned across many estates to
+            help shape your climate action plan and see it through.
           </p>
         ),
       },
     ],
-    ctaText: 'Book a call to find out more',
-    ctaHref: BOOK_A_CALL_URL,
   },
 
   /* Closer: once someone has read the page, they can find their school or
      book a call (Linzie, 14 Nov 2026). */
   closer: {
     headline:
-      'Built for everyone in education, from nurseries to universities, who wants to understand their site, plan for the future and act on what matters.',
+      'Built for everyone in education, from nurseries to universities, ready to understand their site, plan for the future and act on what matters.',
+    /* Ends the page on a dark green card that rises over the cream with the
+       manifesto's parallax (Linzie, 15 Nov 2026). */
+    variant: 'card',
     subhead: 'Climate action, decoded.',
     ctaLabel: 'Find your school',
     ctaHref: APP_URL,
-    secondaryCtaLabel: 'Book a call',
+    secondaryCtaLabel: 'Book a discovery call',
     secondaryCtaHref: BOOK_A_CALL_URL,
   },
 }

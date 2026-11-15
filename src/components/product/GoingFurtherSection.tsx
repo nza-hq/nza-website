@@ -37,8 +37,10 @@ export interface GoingFurtherSectionProps {
   headline: string | ReactNode
   intro: string | ReactNode
   cards: [GoingFurtherCard, GoingFurtherCard, GoingFurtherCard]
-  ctaText: string
-  ctaHref: string
+  /** Optional link under the cards (decodED dropped it, Linzie 15 Nov 2026:
+   *  the nav already has Get in touch). */
+  ctaText?: string
+  ctaHref?: string
 }
 
 export function GoingFurtherSection({
@@ -86,6 +88,7 @@ export function GoingFurtherSection({
           ))}
         </ol>
 
+        {ctaText && ctaHref && (
         <MaskReveal as="div" delay={900}>
           <a
             className="going-further-cta"
@@ -100,6 +103,7 @@ export function GoingFurtherSection({
             </span>
           </a>
         </MaskReveal>
+        )}
       </div>
     </section>
   )

@@ -1,5 +1,12 @@
 # STATUS.md
 
+## 15 Nov 2026 (evening) - decodED copy round 4 (Linzie)
+
+- New page copy from Linzie: manifesto "Climate action, in everyone's hands.", the six step bodies and headlines (understood, brought to life, in motion, shared), tiers 01 and 03, and the closing line.
+- "Book a call to find out more" link under the tiers removed (GoingFurtherSection's link is now optional).
+- Closer drawn as a dark green card with curved top and the manifesto's background parallax (`closer.variant: 'card'`); decodED's footer strip is green too, so the page ends on green.
+- "Book a call" buttons now read "Book a discovery call".
+
 ## decodED page: six beats re-recorded, green clip panel (15 Nov 2026, overnight, cloud thread + Chris's PC) - merged, page still hidden
 
 Linzie's overnight brief. The clip panel is decodED green with orange dots (was cream). All six clips re-recorded

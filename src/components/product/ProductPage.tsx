@@ -135,8 +135,8 @@ export type ProductPageConfig = {
     headline: string | ReactNode
     intro: string | ReactNode
     cards: [GoingFurtherCard, GoingFurtherCard, GoingFurtherCard]
-    ctaText: string
-    ctaHref: string
+    ctaText?: string
+    ctaHref?: string
   }
   /** SECTION 5 - Closer */
   closer: {
@@ -165,6 +165,10 @@ export type ProductPageConfig = {
      *  a reader can find their school or book a call at the end. */
     secondaryCtaLabel?: string
     secondaryCtaHref?: string
+    /** 'card': the closer is drawn as a full-bleed accent card with curved top
+     *  corners and the manifesto's background parallax, so the page ends on
+     *  the accent colour (decodED, Linzie 15 Nov 2026). */
+    variant?: 'card'
   }
 }
 
@@ -241,6 +245,40 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
       window.removeEventListener('resize', onScroll)
     }
   }, [])
+
+  /* Closer card variant: the accent layer drifts at 0.3x scroll (the
+     manifesto's rate) and the content lags 32px on entry, so the card reads
+     as rising over the page. Off under reduced motion. */
+  const closerRef = useRef<HTMLElement | null>(null)
+  const closerIsCard = config.closer.variant === 'card'
+  useEffect(() => {
+    const section = closerRef.current
+    if (!section || !closerIsCard) return
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let rafPending = false
+    const onScroll = () => {
+      if (rafPending) return
+      rafPending = true
+      window.requestAnimationFrame(() => {
+        rafPending = false
+        const rect = section.getBoundingClientRect()
+        const vh = window.innerHeight
+        const offset = rect.top + rect.height / 2 - vh / 2
+        const bgY = Math.max(-200, Math.min(200, -offset * 0.3))
+        const textY = rect.top > 0 ? Math.min(1, rect.top / vh) * 32 : 0
+        section.style.setProperty('--closer-parallax-y', `${bgY}px`)
+        section.style.setProperty('--closer-text-y', `${textY}px`)
+      })
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [closerIsCard])
 
   /* Case studies single-expand state - only one card open at a time.
      Null = all collapsed. Click the open card to collapse, click a
@@ -464,8 +502,11 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
       {/* =========================================================
           SECTION 5 - CLOSER / CREDIBILITY
           ========================================================= */}
-      <section className="product-closer">
-        {!config.isLight && (
+      <section
+        ref={closerRef}
+        className={'product-closer' + (closerIsCard ? ' product-closer--card' : '')}
+      >
+        {!config.isLight && !closerIsCard && (
           <div className="product-hero-blobs" aria-hidden="true">
             <span
               className="product-hero-blob product-hero-blob--1"
