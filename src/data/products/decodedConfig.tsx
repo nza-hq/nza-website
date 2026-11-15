@@ -159,9 +159,9 @@ export const decodedConfig: ProductPageConfig = {
         </>
       ),
       video: {
-        mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=2`,
-        webm: `${VIDEO_BASE}/01-twin-built.webm?v=2`,
-        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg?v=2`,
+        mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=4`,
+        webm: `${VIDEO_BASE}/01-twin-built.webm?v=4`,
+        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: 'Finham Park typed into the search. The map flies to the school and its site is built in 3D, sped up.',
       },
@@ -180,9 +180,9 @@ export const decodedConfig: ProductPageConfig = {
         </>
       ),
       video: {
-        mp4: `${VIDEO_BASE}/02-carbon-counted.mp4?v=2`,
-        webm: `${VIDEO_BASE}/02-carbon-counted.webm?v=2`,
-        poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg?v=2`,
+        mp4: `${VIDEO_BASE}/02-carbon-counted.mp4?v=4`,
+        webm: `${VIDEO_BASE}/02-carbon-counted.webm?v=4`,
+        poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: "Finham Primary School's carbon: the emissions table, a flow chart of where its emissions come from, and its path to 2050.",
       },
@@ -195,9 +195,9 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
       video: {
-        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=3`,
-        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=3`,
-        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=3`,
+        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=4`,
+        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=4`,
+        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: 'Eton College: surface water from heavy rain switched on and off over the site in 3D, then on the map around it the Thames floodplain switched on and off, covering almost the whole site.',
       },
@@ -210,9 +210,9 @@ export const decodedConfig: ProductPageConfig = {
       body:
         'See the habitats on the school site, and the nature reserves and species records in and around it. Add sightings and surveys, find where a hedge, a pond or more trees would make the biggest difference, and connect the site to the nature beyond its fence.',
       video: {
-        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=2`,
-        webm: `${VIDEO_BASE}/04-nature-found.webm?v=2`,
-        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=2`,
+        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=4`,
+        webm: `${VIDEO_BASE}/04-nature-found.webm?v=4`,
+        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: 'A school site in 2D with a 1 km ring, nature records popping up as dots, then the ring widening and more appearing.',
       },
@@ -225,9 +225,9 @@ export const decodedConfig: ProductPageConfig = {
       body:
         'Choose targets for carbon, climate and nature, see where to start, and give each action an owner and a date. Follow it as a list, a board or a timeline, with everyone who has a part in it.',
       video: {
-        mp4: `${VIDEO_BASE}/05-plan-made.mp4`,
-        webm: `${VIDEO_BASE}/05-plan-made.webm`,
-        poster: `${VIDEO_BASE}/05-plan-made-poster.jpg`,
+        mp4: `${VIDEO_BASE}/05-plan-made.mp4?v=4`,
+        webm: `${VIDEO_BASE}/05-plan-made.webm?v=4`,
+        poster: `${VIDEO_BASE}/05-plan-made-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: "A school's climate action plan: its targets, an area's actions, then every action as a list, a board and a timeline, and the people behind it.",
       },
@@ -240,9 +240,9 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Take the school's climate action into the classroom: its story from the planet down to its own buildings, lessons built on the school's own figures, and a pupil travel survey.",
       video: {
-        mp4: `${VIDEO_BASE}/06-story-classroom.mp4`,
-        webm: `${VIDEO_BASE}/06-story-classroom.webm`,
-        poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg`,
+        mp4: `${VIDEO_BASE}/06-story-classroom.mp4?v=4`,
+        webm: `${VIDEO_BASE}/06-story-classroom.webm?v=4`,
+        poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg?v=4`,
         alwaysPlay: true,
         alt: "The school's story: the Earth turning as the world's renewables grow, the UK at night, then down through Coventry to the school's buildings.",
       },

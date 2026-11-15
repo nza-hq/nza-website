@@ -22,6 +22,7 @@ no account was written. The plan in 05 is invented. 01-04 replaced files that ha
 | File size | Under 1.5 MB per file per format |
 | Final frame | A meaningful still - it persists after playback |
 | Poster | First frame, JPEG, 1080 x 1080, under 200 KB |
+| Colour range | **Limited (tv)**, `yuv420p`, BT.709. Never full range (`pc` / `yuvj420p`): Intel hardware VP9 decoders refuse full-range VP9 and the clip freezes on its first frame (Linzie's Windows PC, 15 Nov 2026). Encode with `-vf scale=in_range=pc:out_range=tv,format=yuv420p -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709`; check with `ffprobe -show_entries stream=color_range`. |
 
 ## Filenames
 
