@@ -81,6 +81,23 @@ export function ProductStepVideo({
     v.pause()
   }, [isActive, reducedMotion])
 
+  // If the chosen source can't be decoded (e.g. a GPU's hardware VP9 decoder
+  // refusing a stream, Linzie's Windows PC, 15 Nov 2026), the browser does not
+  // move on to the next <source> by itself: it stops on the first frame. So on
+  // a decode error from the WebM, switch to the MP4 and play it if the step is
+  // active.
+  const fellBack = useRef(false)
+  const onError = () => {
+    const v = ref.current
+    if (!v || fellBack.current) return
+    if (v.error && v.currentSrc.includes('.webm')) {
+      fellBack.current = true
+      v.src = video.mp4
+      v.load()
+      if (isActive && !reducedMotion) v.play()?.catch(() => { v.controls = true })
+    }
+  }
+
   // Reduced motion: static poster image, no <video>, no footage fetch.
   // Wrapped in the rounded, overflow-clipped frame so a static poster rounds
   // the same way the video does.
@@ -110,6 +127,7 @@ export function ProductStepVideo({
         preload="metadata"
         poster={video.poster}
         aria-label={video.alt}
+        onError={onError}
       >
         {/* WebM (VP9) first - smaller; browsers that can't decode it
             (e.g. Safari) fall through to the H.264 MP4. */}
