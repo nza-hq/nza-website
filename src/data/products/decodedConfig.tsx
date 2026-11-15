@@ -159,9 +159,9 @@ export const decodedConfig: ProductPageConfig = {
         </>
       ),
       video: {
-        mp4: `${VIDEO_BASE}/01-twin-built.mp4`,
-        webm: `${VIDEO_BASE}/01-twin-built.webm`,
-        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg`,
+        mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=2`,
+        webm: `${VIDEO_BASE}/01-twin-built.webm?v=2`,
+        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg?v=2`,
         alt: 'Finham Park typed into the search. The map flies to the school and its site is built in 3D, sped up.',
       },
     },
@@ -179,10 +179,10 @@ export const decodedConfig: ProductPageConfig = {
         </>
       ),
       video: {
-        mp4: `${VIDEO_BASE}/02-carbon-counted.mp4`,
-        webm: `${VIDEO_BASE}/02-carbon-counted.webm`,
-        poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg`,
-        alt: "A small primary school's carbon figures: the table, a chart of where its emissions come from, and the path from 2020 to 2050.",
+        mp4: `${VIDEO_BASE}/02-carbon-counted.mp4?v=2`,
+        webm: `${VIDEO_BASE}/02-carbon-counted.webm?v=2`,
+        poster: `${VIDEO_BASE}/02-carbon-counted-poster.jpg?v=2`,
+        alt: "Finham Primary School's carbon: the emissions table, a flow chart of where its emissions come from, and its path to 2050.",
       },
     },
     {
@@ -193,10 +193,10 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
       video: {
-        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4`,
-        webm: `${VIDEO_BASE}/03-risks-mapped.webm`,
-        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg`,
-        alt: 'A school beside the Thames in 3D, with flooding and then one climate hazard after another coloured across its site.',
+        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=2`,
+        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=2`,
+        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=2`,
+        alt: 'Eton College in 3D: heavy rain on its site, the Thames floodplain around it, then heat, hot ground, wildfire and cold coloured across the site in turn.',
       },
     },
     {
@@ -207,9 +207,9 @@ export const decodedConfig: ProductPageConfig = {
       body:
         'See the habitats on the school site, and the nature reserves and species records in and around it. Add sightings and surveys, find where a hedge, a pond or more trees would make the biggest difference, and connect the site to the nature beyond its fence.',
       video: {
-        mp4: `${VIDEO_BASE}/04-nature-found.mp4`,
-        webm: `${VIDEO_BASE}/04-nature-found.webm`,
-        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg`,
+        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=2`,
+        webm: `${VIDEO_BASE}/04-nature-found.webm?v=2`,
+        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=2`,
         alt: 'A school site in 2D with a 1 km ring, nature records popping up as dots, then the ring widening and more appearing.',
       },
     },
@@ -233,12 +233,12 @@ export const decodedConfig: ProductPageConfig = {
       highlightedVerb: 'told',
       headlineSuffix: '.',
       body:
-        "Take the school's climate action into the classroom: its story from its own site out to the planet, lessons built on the school's own figures, and a pupil travel survey.",
+        "Take the school's climate action into the classroom: its story from the planet down to its own buildings, lessons built on the school's own figures, and a pupil travel survey.",
       video: {
         mp4: `${VIDEO_BASE}/06-story-classroom.mp4`,
         webm: `${VIDEO_BASE}/06-story-classroom.webm`,
         poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg`,
-        alt: "The school's story: the Earth turning and the school's figures changing, from its site out to the planet.",
+        alt: "The school's story: the Earth turning as the world's renewables grow, the UK at night, then down through Coventry to the school's buildings.",
       },
     },
   ],

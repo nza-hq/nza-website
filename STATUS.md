@@ -1,5 +1,12 @@
 # STATUS.md
 
+## decodED page: six beats re-recorded, green clip panel (15 Nov 2026, overnight, cloud thread + Chris's PC) - merged, page still hidden
+
+Linzie's overnight brief. The clip panel is decodED green with orange dots (was cream). All six clips re-recorded
+(`docs/videos-decoded-README.md` has the schools and shots); beat 5 is now "Your plan, made." on an invented plan, and a
+sixth beat "Your story, told." plays Our story. Open: the Climate lens's grey ground under "All hazards" is still in
+the decodED app (live and main), so beat 3 starts on a hazard rather than All hazards.
+
 ## decodED page polish, Linzie's review (15 Nov 2026, cloud Claude Code thread) - merged, page still hidden
 
 Preview: https://netzeroadvisory.uk/decoded?preview=1 (plain `/decoded` still "Coming soon").
