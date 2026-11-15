@@ -942,9 +942,11 @@ body.context-cream .site-footer {
   background: var(--paper);
   color: var(--ink-navy);
 }
+/* decodED ends on its dark green closer card, so the legal strip carries the
+   green on (Linzie, 15 Nov 2026: "finishing on dark green"). */
 body.context-decoded .site-footer {
-  background: #FBFBF9;
-  color: #235546;
+  background: #235546;
+  color: #FFFFFF;
 }
 .site-footer-inner {
   width: 100%;
@@ -965,9 +967,11 @@ body.context-decoded .site-footer {
   display: inline-block;
   width: 100%;
 }
-body.context-cream .site-footer-legal,
-body.context-decoded .site-footer-legal {
+body.context-cream .site-footer-legal {
   color: rgba(14, 17, 32, 0.4);
+}
+body.context-decoded .site-footer-legal {
+  color: rgba(255, 255, 255, 0.6);
 }
 .site-footer-sep {
   margin: 0 10px;
