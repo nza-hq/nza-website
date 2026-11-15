@@ -46,9 +46,10 @@ public/videos/decoded/06-story-classroom.mp4  + .webm + -poster.jpg
 - **03 Your climate risks, mapped.** Eton College (110158), live, 3D only (`?v=6`). Orbit on throughout,
   passport closed: Rivers and sea on and off, Heat on and off, then Wildfire on to the end. One
   real-time take, no cuts.
-- **04 Your nature, found.** Brockenhurst College, New Forest (130690), live, 2D (`?v=5`; picked over
-  Hartpury and Stowe for the most wildlife). The 1 km ring with the wildlife records popping in, the
-  ring out to 3 km and again, then Connecting nature (its load cut).
+- **04 Your nature, found.** Brockenhurst College, New Forest (130690), live, 2D ( picked over
+  Hartpury and Stowe for the most wildlife; `?v=6` adds the chart). The 1 km ring with the wildlife
+  records popping in and the species chart open, Birds picked (orange), the ring out to 3 km, then
+  Connecting nature (its load cut).
 - **05 Your plan, made.** Finham Park, local main, an invented plan (21 actions, 9 people and groups).
   Overview, Carbon, All actions as list, board and timeline, then People.
 - **06 Your story, told.** St Peter's School, York (121724), live (`?v=5`; Westminster was tried but its
