@@ -241,7 +241,7 @@ export const decodedConfig: ProductPageConfig = {
      shown ("starting from £500 per school"); it matches the app's own table
      (nza-decoded public/help.html, ex VAT). */
   goingFurther: {
-    microLabel: 'THREE STEPS IN',
+    microLabel: '',
     headline: 'Start free. Plan with Pro. Go further with NZA.',
     intro: (
       <p>

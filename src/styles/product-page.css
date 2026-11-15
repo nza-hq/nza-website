@@ -952,6 +952,15 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
+  /* decodED's three-card section was the one page without a snap point, so a
+     swipe from the last step ran free past it (Linzie, 15 Nov 2026). It is
+     taller than a phone screen, so the snap lands on its top and the cards
+     scroll freely inside it before the closer locks in. */
+  .product-page .going-further-section {
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
   html:has(.product-page) .site-footer {
     scroll-snap-align: end;
   }
