@@ -1,5 +1,19 @@
 # STATUS.md
 
+## decodED page polish, Linzie's review (15 Nov 2026, cloud Claude Code thread) - merged, page still hidden
+
+Preview: https://netzeroadvisory.uk/decoded?preview=1 (plain `/decoded` still "Coming soon").
+- Colours now match the decodED app: off-white page `#FBFBF9`, white nav, `#F5F4F1` showcase surface, logo green
+  `#235546` and orange `#E28F2C` (palette, decodED-scoped CSS and the tooltip).
+- "Let's show you how decodED works" draws decodED as the logo (`decoded-logo-tight.svg`, `DecodedLogoInline`);
+  every other decodED in the copy is the coloured word (`DecodedWord`, green "decod" + orange "ED").
+- "Going further" is now three steps: 01 Explore for free, 02 Build your climate action plan with Pro (from £500 per
+  school), 03 Take it further with NZA (featured, green). Cards redesigned on a subgrid so number, title, tag and body
+  line up across all three. Headline and intro green, not dark.
+- Every Book a call goes to decodED's Microsoft Bookings page (new tab).
+- Next: Linzie to review; decide where "Find your school" points (interim https://decoded.netzeroadvisory.uk); then
+  unhide `/decoded`.
+
 ## decodED page to the agreed plan, private preview (14 Nov 2026, cloud Claude Code thread) - PR open, page still hidden
 
 Plan agreed with Linzie (Claude Doc "decodED web page: plan", 14 Nov). `/decoded?preview=1` renders the full

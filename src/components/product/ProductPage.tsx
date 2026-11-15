@@ -60,7 +60,7 @@ export type ProductPageConfig = {
      *  instead of the Stolzl text. */
     logoSrc?: string
     tagline: string
-    oneLiner: string
+    oneLiner: string | ReactNode
     ctaLabel: string
     ctaHref: string
     /** Optional secondary CTA, rendered beside the primary. decodED
@@ -94,6 +94,9 @@ export type ProductPageConfig = {
     pillLabel: string
     pillHref: string
     trailingText: string
+    /** Optional: one word of the headline drawn as the product's logo
+     *  (decodED). The word must appear in leading or trailing text. */
+    logoWord?: { word: string; node: ReactNode }
   }
   /** SECTION 4 - Four numbered steps */
   steps: Array<{
@@ -110,7 +113,7 @@ export type ProductPageConfig = {
     headlinePrefix: string
     highlightedVerb: string
     headlineSuffix: string
-    body: string
+    body: string | ReactNode
     /** SVG illustration concept (PABLO / decodED). A step declares
      *  EITHER this OR `video`. */
     illustrationConcept?: string
@@ -353,6 +356,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
                 <a
                   className="product-hero-cta product-hero-cta--secondary"
                   href={config.hero.secondaryCtaHref}
+                  {...externalLinkProps(config.hero.secondaryCtaHref)}
                 >
                   {config.hero.secondaryCtaLabel}
                 </a>
@@ -411,6 +415,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
           <LetsShowHeadline
             leadingText={config.letsShow.leadingText}
             trailingText={config.letsShow.trailingText}
+            logoWord={config.letsShow.logoWord}
           />
           {/* Scroll reminder. Lives INSIDE the pinned inner so on desktop it
               sits at the foot of the held "Let's show you" viewport (not the
@@ -639,9 +644,11 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
 function LetsShowHeadline({
   leadingText,
   trailingText,
+  logoWord,
 }: {
   leadingText: string
   trailingText: string
+  logoWord?: { word: string; node: ReactNode }
 }) {
   const ref = useRef<HTMLHeadingElement | null>(null)
   const [revealed, setRevealed] = useState(false)
@@ -678,12 +685,17 @@ function LetsShowHeadline({
       }
     >
       {words.map((word, i) => (
-        <span key={`${word}-${i}`} className="lets-show-word">
+        <span
+          key={`${word}-${i}`}
+          className={
+            'lets-show-word' + (logoWord && word === logoWord.word ? ' lets-show-word--logo' : '')
+          }
+        >
           <span
             className="lets-show-word-inner"
             style={{ '--word-delay': `${i * 110}ms` } as CSSProperties}
           >
-            {word}
+            {logoWord && word === logoWord.word ? logoWord.node : word}
           </span>
         </span>
       ))}

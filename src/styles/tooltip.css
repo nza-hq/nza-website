@@ -60,11 +60,11 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* decodED palette: cream card, deep-green text, hairline green
+  /* decodED palette: white card, deep-green text, hairline green
      border. Reads as the site, not a system tooltip. */
-  background: #FAF5EB;
-  color: #0F5D43;
-  border: 1px solid rgba(15, 93, 67, 0.22);
+  background: #FFFFFF;
+  color: #235546;
+  border: 1px solid rgba(35, 85, 70, 0.22);
   border-radius: 10px;
   padding: 16px 18px;
   width: max-content;
@@ -101,9 +101,9 @@
   width: 11px;
   height: 11px;
   transform: translateX(-50%) rotate(45deg);
-  background: #FAF5EB;
-  border-left: 1px solid rgba(15, 93, 67, 0.22);
-  border-top: 1px solid rgba(15, 93, 67, 0.22);
+  background: #FFFFFF;
+  border-left: 1px solid rgba(35, 85, 70, 0.22);
+  border-top: 1px solid rgba(35, 85, 70, 0.22);
   border-top-left-radius: 2px;
 }
 
@@ -122,9 +122,9 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   /* decodED orange - the only navigation out of the popover. */
-  color: #E8743C;
+  color: #E28F2C;
   text-decoration: none;
-  border-bottom: 1px solid rgba(232, 116, 60, 0.4);
+  border-bottom: 1px solid rgba(226, 143, 44, 0.4);
   padding-bottom: 2px;
   align-self: flex-start;
   transition: color 200ms ease, border-color 200ms ease;

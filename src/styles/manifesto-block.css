@@ -171,7 +171,7 @@
    colour changes. Scoped to the decodED manifesto so PABLO / NZ:AI
    keep the coral fingerprint. */
 .manifesto-block--decoded .manifesto-block-headline em {
-  color: #E8743C;
+  color: #E28F2C;
 }
 
 /* NZ:AI override: the emphasis renders in NZ:AI's dark navy rather than the
@@ -189,13 +189,6 @@
    navy at the body's Light 300 reads faint on the teal. */
 .manifesto-block--nzai .manifesto-brand {
   color: #0A1628;
-  font-weight: 500;
-}
-
-/* The product name inside the decodED manifesto body, in the orange of the
-   headline emphasis, matching the NZ:AI treatment. */
-.manifesto-block--decoded .manifesto-brand {
-  color: #E8743C;
   font-weight: 500;
 }
 
@@ -330,7 +323,7 @@
 }
 
 .manifesto-block--decoded::before {
-  background: #0F5D43;
+  background: #235546;
 }
 
 .manifesto-block--nzai::before {
