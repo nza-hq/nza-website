@@ -1,5 +1,9 @@
 # STATUS.md
 
+## 15 Nov 2026 (night) - decodED unlocked (Linzie)
+
+- /decoded is live: the `?preview=1` gate and noindex are gone, the nav "Our solutions" menu links it (above "Coming soon", now PABLO only), the homepage card shows Explore, and the SEO entry is indexed with a real description.
+
 ## 15 Nov 2026 (evening) - decodED copy round 4 (Linzie)
 
 - New page copy from Linzie: manifesto "Climate action, in everyone's hands.", the six step bodies and headlines (understood, brought to life, in motion, shared), tiers 01 and 03, and the closing line.

@@ -1,34 +1,12 @@
-import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { ProductPage } from '../components/product/ProductPage'
-import { ProductComingSoon } from './ProductComingSoon'
 import { decodedConfig } from '../data/products/decodedConfig'
 
 /**
- * /decoded - held back as "coming soon". The `?preview=1` flag renders the
- * full ProductPage so the page can be reviewed before launch (the same
- * unlisted preview /nz-ai and /pablo use). Nothing on the site links to it,
- * and while it is showing the page sets `noindex, nofollow`. Plain /decoded,
- * the nav and the products screen are unchanged.
- *
- * At launch, delete the flag and render `<ProductPage config={decodedConfig} />`
- * unconditionally.
+ * /decoded - live (unlocked by Linzie, 15 Nov 2026). The `?preview=1` gate and
+ * its `noindex, nofollow` tag were removed at launch, as for /nz-ai: the full
+ * page renders for everyone and is linked from the nav and the homepage
+ * "Our solutions" cards. `?preview=1` links still work (the flag is ignored).
  */
 export function DecodedPage() {
-  const [params] = useSearchParams()
-  const preview = params.get('preview') === '1'
-
-  useEffect(() => {
-    if (!preview) return
-    const meta = document.createElement('meta')
-    meta.name = 'robots'
-    meta.content = 'noindex, nofollow'
-    document.head.appendChild(meta)
-    return () => {
-      document.head.removeChild(meta)
-    }
-  }, [preview])
-
-  if (preview) return <ProductPage config={decodedConfig} />
-  return <ProductComingSoon name="decodED" micro="/DECODED" />
+  return <ProductPage config={decodedConfig} />
 }

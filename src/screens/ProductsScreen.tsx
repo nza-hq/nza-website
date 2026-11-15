@@ -87,7 +87,8 @@ const PRODUCTS: Product[] = [
     id: 'decoded',
     name: 'decodED',
     href: '/decoded',
-    ready: false,
+    /* Live - unlocked 15 Nov 2026 (Linzie). */
+    ready: true,
     logoSrc: '/assets/logos/decoded-logo.svg',
     alt: 'decodED',
     descriptor: 'Climate action for education.',

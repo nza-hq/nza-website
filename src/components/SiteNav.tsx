@@ -139,10 +139,11 @@ export function SiteNav() {
                 {/* Dropdown order (Chris): NZ:AI / PABLO / decodED. The
                     internal key `openMenu === 'products'` stays for code
                     clarity - only the visible order changes.
-                    NZ:AI is live (launched 21 Oct 2026, Chris) and links to
-                    /nz-ai. PABLO + decodED are still held, so - like About
-                    us - they're shown under "Coming soon" but not clickable;
-                    restore their Links (/pablo, /decoded) when they go live. */}
+                    NZ:AI (21 Oct 2026, Chris) and decodED (15 Nov 2026,
+                    Linzie) are live and link to their pages. PABLO is still
+                    held, so - like About us - it's shown under "Coming soon"
+                    but not clickable; restore its Link (/pablo) when it goes
+                    live. */}
                 {openMenu === 'products' && (
                   <div className="site-nav-dropdown" role="menu">
                     <Link
@@ -157,6 +158,18 @@ export function SiteNav() {
                       />
                       NZ:AI
                     </Link>
+                    <Link
+                      to="/decoded"
+                      className="site-nav-dropdown-item"
+                      role="menuitem"
+                      onClick={() => setOpenMenu(null)}
+                    >
+                      <span
+                        className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
+                        aria-hidden="true"
+                      />
+                      decodED
+                    </Link>
                     <span className="site-nav-dropdown-soon">Coming soon</span>
                     <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
                       <span
@@ -164,13 +177,6 @@ export function SiteNav() {
                         aria-hidden="true"
                       />
                       PABLO
-                    </span>
-                    <span className="site-nav-dropdown-item site-nav-dropdown-item--soon" aria-disabled="true">
-                      <span
-                        className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
-                        aria-hidden="true"
-                      />
-                      decodED
                     </span>
                   </div>
                 )}
@@ -278,8 +284,8 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
             <span className="site-nav-mobile-section-chevron" aria-hidden="true" />
           </button>
           {/* Mobile order matches desktop: NZ:AI / PABLO / decodED.
-              NZ:AI is live and links to /nz-ai; PABLO + decodED are still
-              "Coming soon" - shown but not clickable, like About us (Chris). */}
+              NZ:AI and decodED are live and link to their pages; PABLO is
+              still "Coming soon" - shown but not clickable, like About us. */}
           <div className="site-nav-mobile-section-body">
             <Link
               to="/nz-ai"
@@ -293,6 +299,18 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
               />
               NZ:AI
             </Link>
+            <Link
+              to="/decoded"
+              className="site-nav-mobile-link"
+              onClick={onClose}
+              tabIndex={expanded === 'products' ? 0 : -1}
+            >
+              <span
+                className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
+                aria-hidden="true"
+              />
+              decodED
+            </Link>
             <span className="site-nav-dropdown-soon">Coming soon</span>
             <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
               <span
@@ -300,13 +318,6 @@ function MobileMenuOverlay({ onClose }: { onClose: () => void }) {
                 aria-hidden="true"
               />
               PABLO
-            </span>
-            <span className="site-nav-mobile-link site-nav-mobile-link--soon" aria-disabled="true">
-              <span
-                className="site-nav-dropdown-swatch site-nav-dropdown-swatch--decoded"
-                aria-hidden="true"
-              />
-              decodED
             </span>
           </div>
         </section>
