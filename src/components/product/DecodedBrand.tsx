@@ -1,12 +1,13 @@
 /**
- * decodED brand marks for running copy (Linzie, 15 Nov 2026: "anywhere we
- * use the word decodED, use the logo, or switch the colour at least").
+ * decodED brand marks. Linzie, 15 Nov 2026: only two places carry them;
+ * everywhere else decodED is plain body text.
  *
- * - <DecodedWord /> sets the name in the logo's own two colours ("decod" in
- *   deep green, "ED" in orange) so it reads as the brand inside a sentence.
- * - <DecodedLogoInline /> drops the real logo into a headline, sized to sit
- *   on the text's baseline with its letters the height of the type around it
- *   (see .brand-logo-inline in product-page.css).
+ * - <DecodedWord /> sets the name in the logo's own two colours, used only in
+ *   the manifesto ("Good data, in the right hands").
+ * - <DecodedLogoInline /> drops the real logo into the "Let's show you how
+ *   decodED works" headline, sitting on the text's baseline with its
+ *   lowercase letters the height of the type around it (see
+ *   .brand-logo-inline in product-page.css).
  */
 export function DecodedWord() {
   return (

@@ -2859,29 +2859,30 @@
 }
 /* On a dark surface (the manifesto's green, a featured card) the green half
    would vanish, so it turns white; ED stays orange. */
-.manifesto-block .brand-word,
-.going-further-card.is-featured .brand-word {
+.manifesto-block .brand-word {
   color: #FFFFFF;
 }
 
-/* The real logo inside a headline. The tight SVG (viewBox cropped to the
-   ink) is 102 units tall; its letters' ascender is 58.6 of those, so a
-   height of 1.24em makes the letters about the cap height of the type and
-   the image's bottom edge is the letters' baseline. The negative top margin
-   keeps the mortarboard from pushing the line taller. */
+/* The real logo inside a headline, sized so its lowercase letters match the
+   headline's (Linzie, 15 Nov 2026). The tight SVG is 102 units tall; the
+   round letters of "decod" span 42.9 of them (99.0 to 141.9), and Stolzl's
+   "o" spans 0.58em, so the image is 0.58 x 102 / 42.9 = 1.38em tall. The
+   letters' baseline sits 1.4 units above the image's bottom edge, so the
+   image drops 1.4 / 102 x 1.38 = 0.02em below the text baseline. The negative
+   top margin keeps the mortarboard from pushing the line taller. */
 .brand-logo-inline {
   display: inline-block;
-  height: 1.24em;
+  height: 1.38em;
   width: auto;
-  vertical-align: baseline;
-  margin-top: -0.42em;
+  vertical-align: -0.02em;
+  margin-top: -0.56em;
 }
 /* The Let's Show word wrappers clip (overflow: hidden) for the rise-in, so
    give the logo's wrapper headroom for the mortarboard without moving its
    text line: padding in, the same margin out. */
 .product-lets-show-headline .lets-show-word--logo {
-  padding-top: 0.42em;
-  margin-top: -0.42em;
+  padding-top: 0.56em;
+  margin-top: -0.56em;
 }
 /* On a phone the headline wraps onto two lines and the mortarboard would
    touch the line above, so the decodED headline gets more leading there. */

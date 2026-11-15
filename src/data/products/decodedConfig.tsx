@@ -63,7 +63,7 @@ export const decodedConfig: ProductPageConfig = {
     tagline: 'Find your school. Start its climate action plan.',
     oneLiner: (
       <>
-        <DecodedWord /> builds a 3D digital twin of your site from public data,
+        decodED builds a 3D digital twin of your site from public data,
         in under a minute. From there the whole school can see its carbon, its
         climate risks and its nature, build its climate action plan together,
         and take it into the classroom. Free to explore.
@@ -151,7 +151,7 @@ export const decodedConfig: ProductPageConfig = {
       headlineSuffix: ' in 3D.',
       body: (
         <>
-          Search for your school by name and <DecodedWord /> builds its digital
+          Search for your school by name and decodED builds its digital
           twin from public records: building footprints, LiDAR heights, energy
           certificates, flood and climate data. In under a minute the site rises
           from the map, ready to explore building by building.
@@ -171,7 +171,7 @@ export const decodedConfig: ProductPageConfig = {
       headlineSuffix: '.',
       body: (
         <>
-          <DecodedWord /> estimates the school's footprint from its energy
+          decodED estimates the school's footprint from its energy
           certificates, spending and travel, then shows where it comes from and
           where it is heading to 2050. Swap any estimate for the school's own
           readings and every figure follows.
@@ -238,9 +238,8 @@ export const decodedConfig: ProductPageConfig = {
     headline: 'Start free. Plan with Pro. Go further with NZA.',
     intro: (
       <p>
-        Anyone can explore their school with <DecodedWord /> for free.{' '}
-        <DecodedWord /> Pro is a small yearly price that opens the full tool to
-        build and run the climate action plan with the whole school. And when
+        Anyone can explore their school with decodED for free. decodED Pro is a
+        small yearly price that opens the full tool to build and run the climate action plan with the whole school. And when
         the plan needs more, NZA works in partnership with the school,
         alongside its sustainability lead.
       </p>
