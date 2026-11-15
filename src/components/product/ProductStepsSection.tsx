@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductIcon } from './ProductIcons'
 import { ProductIllustration } from './ProductIllustrations'
@@ -37,7 +37,7 @@ export type StepData = {
   headlinePrefix: string
   highlightedVerb: string
   headlineSuffix: string
-  body: string
+  body: string | ReactNode
   /** SVG illustration concept (PABLO / decodED). A step declares EITHER
    *  this OR `video` - the visual slot renders whichever is present. */
   illustrationConcept?: string

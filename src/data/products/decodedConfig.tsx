@@ -1,5 +1,6 @@
 import type { ProductPageConfig } from '../../components/product/ProductPage'
 import { Tooltip } from '../../components/Tooltip'
+import { DecodedLogoInline, DecodedWord } from '../../components/product/DecodedBrand'
 
 /* DfE Sustainability and Climate Change Strategy (2022) source URL +
    tooltip summary for the inline "climate action plan" link in the
@@ -15,8 +16,10 @@ const DFE_TOOLTIP_BODY =
    the hero and the closer both read this constant. */
 const APP_URL = 'https://decoded.netzeroadvisory.uk'
 
-/* "Book a call" - the site's contact route, tagged with the product. */
-const BOOK_A_CALL_URL = '/contact?product=decoded'
+/* "Book a call" - decodED's own Microsoft Bookings page (Linzie, 15 Nov 2026).
+   ProductPage opens http(s) CTAs in a new tab. */
+const BOOK_A_CALL_URL =
+  'https://bookings.cloud.microsoft/book/decodED1@thenza.co.uk/?ismsaljsauthenabled'
 
 const VIDEO_BASE = '/videos/decoded'
 
@@ -37,15 +40,17 @@ export const decodedConfig: ProductPageConfig = {
   contextClass: 'context-decoded',
   isLight: true,
 
+  /* Matched to the decodED app itself (Linzie, 15 Nov 2026: the cream was too
+     strong; "make it match decodED"): an off-white page, the app's own light
+     warm grey (#F5F4F1) for the showcase surface, and the logo's green
+     (#235546) and orange (#E28F2C). */
   palette: {
-    canvas: '#F3EFE3',
-    cream: '#FAF5EB',
-    /* Body / large type uses deep green; the orange accent drives verb
-       highlights + CTAs. */
-    accent: '#0F5D43',
-    accentLight: '#E8743C',
-    canvasElevated: 'rgba(15, 93, 67, 0.04)',
-    stepVerbColour: '#E8743C',
+    canvas: '#FBFBF9',
+    cream: '#F5F4F1',
+    accent: '#235546',
+    accentLight: '#E28F2C',
+    canvasElevated: 'rgba(35, 85, 70, 0.04)',
+    stepVerbColour: '#E28F2C',
   },
 
   /* Hero: the app's own landing line, so the web page and the app say the
@@ -56,8 +61,14 @@ export const decodedConfig: ProductPageConfig = {
     name: 'decodED',
     logoSrc: '/assets/logos/decoded-logo.svg',
     tagline: 'Find your school. Start its climate action plan.',
-    oneLiner:
-      'decodED builds a 3D digital twin of your site from public data, in under a minute. From there the whole school can see its carbon, its climate risks and its nature, build its climate action plan together, and take it into the classroom. Free to explore.',
+    oneLiner: (
+      <>
+        <DecodedWord /> builds a 3D digital twin of your site from public data,
+        in under a minute. From there the whole school can see its carbon, its
+        climate risks and its nature, build its climate action plan together,
+        and take it into the classroom. Free to explore.
+      </>
+    ),
     ctaLabel: 'Find your school',
     ctaHref: APP_URL,
     secondaryCtaLabel: 'Book a call',
@@ -109,7 +120,7 @@ export const decodedConfig: ProductPageConfig = {
         , covering carbon, a changing climate, nature, and climate education
         and green careers. Most have one person carrying it. Where do they
         start? What does the school already know? Who else can help?{' '}
-        <span className="manifesto-brand">decodED</span> answers the first
+        <DecodedWord /> answers the first
         question in under a minute, with a digital twin built from public data.
         Then it puts the figures in the hands of everyone with a part to play,
         from the estates team to teachers, pupils and parents, so the plan
@@ -126,6 +137,8 @@ export const decodedConfig: ProductPageConfig = {
     pillLabel: '',
     pillHref: APP_URL,
     trailingText: 'decodED works',
+    /* "decodED" in this headline is drawn as the logo (Linzie, 15 Nov 2026). */
+    logoWord: { word: 'decodED', node: <DecodedLogoInline /> },
   },
 
   /* Five steps, one per lens, in the order of a first visit to the app.
@@ -136,8 +149,14 @@ export const decodedConfig: ProductPageConfig = {
       headlinePrefix: 'Your school, ',
       highlightedVerb: 'built',
       headlineSuffix: ' in 3D.',
-      body:
-        'Search for your school by name and decodED builds its digital twin from public records: building footprints, LiDAR heights, energy certificates, flood and climate data. In under a minute the site rises from the map, ready to explore building by building.',
+      body: (
+        <>
+          Search for your school by name and <DecodedWord /> builds its digital
+          twin from public records: building footprints, LiDAR heights, energy
+          certificates, flood and climate data. In under a minute the site rises
+          from the map, ready to explore building by building.
+        </>
+      ),
       video: {
         mp4: `${VIDEO_BASE}/01-twin-built.mp4`,
         webm: `${VIDEO_BASE}/01-twin-built.webm`,
@@ -150,8 +169,14 @@ export const decodedConfig: ProductPageConfig = {
       headlinePrefix: 'Your carbon, ',
       highlightedVerb: 'counted',
       headlineSuffix: '.',
-      body:
-        "decodED estimates the school's footprint from its energy certificates, spending and travel, then shows where it comes from and where it is heading to 2050. Swap any estimate for the school's own readings and every figure follows.",
+      body: (
+        <>
+          <DecodedWord /> estimates the school's footprint from its energy
+          certificates, spending and travel, then shows where it comes from and
+          where it is heading to 2050. Swap any estimate for the school's own
+          readings and every figure follows.
+        </>
+      ),
       video: {
         mp4: `${VIDEO_BASE}/02-carbon-counted.mp4`,
         webm: `${VIDEO_BASE}/02-carbon-counted.webm`,
@@ -203,45 +228,55 @@ export const decodedConfig: ProductPageConfig = {
     },
   ],
 
-  /* "Going further with NZA": free to explore, Pro priced per school by
-     pupil numbers, and NZA's specialists. Prices match the app's own
-     pricing table (nza-decoded public/help.html, ex VAT). Only the lowest
-     price is shown: "starting from £500 per school" (Linzie, 14 Nov 2026). */
+  /* Three steps in (Linzie, 15 Nov 2026): explore for free, build the plan
+     with Pro for a small price, then take it further in partnership with
+     NZA alongside the school's sustainability lead. Only the lowest price is
+     shown ("starting from £500 per school"); it matches the app's own table
+     (nza-decoded public/help.html, ex VAT). */
   goingFurther: {
-    microLabel: 'GOING FURTHER WITH NZA',
-    headline: 'Explore for free. Take it further with decodED Pro.',
-    intro:
-      'Anyone can find a school and explore its twin for free. decodED Pro opens everything else: the school\'s own figures, every lens in full, the plan and the classroom, for everyone at the school.',
+    microLabel: 'THREE STEPS IN',
+    headline: 'Start free. Plan with Pro. Go further with NZA.',
+    intro: (
+      <p>
+        Anyone can explore their school with <DecodedWord /> for free.{' '}
+        <DecodedWord /> Pro is a small yearly price that opens the full tool to
+        build and run the climate action plan with the whole school. And when
+        the plan needs more, NZA works in partnership with the school,
+        alongside its sustainability lead.
+      </p>
+    ),
     cards: [
       {
-        title: 'Priced to be within reach',
+        title: 'Explore for free',
+        tag: 'Free',
         body: (
           <p>
-            One price per school, set by pupil numbers and kept as low as
-            possible, starting from £500 per school. As many people at the
-            school as you like, at no extra cost.
+            Find your school and explore its digital twin, its carbon footprint
+            and where it is heading to 2050. Nothing to pay and no account
+            needed.
           </p>
         ),
       },
       {
-        title: 'A twin that keeps growing',
+        title: 'Build your climate action plan with Pro',
+        tag: 'From £500 per school',
         body: (
           <p>
-            Add meters and sensors to the same twin, and live data takes the
-            place of estimates. The model becomes a tool the school uses every
-            week: warmer classrooms in January, cooler ones in June, and waste
-            found before the invoice does.
+            Add the school's own figures, open every lens in full, and build the
+            plan with targets, owners, dates and lessons. One price per school,
+            set by pupil numbers, with as many people as you like.
           </p>
         ),
       },
       {
-        title: 'Specialist expertise',
+        title: 'Take it further with NZA',
+        tag: 'Partnership',
+        featured: true,
         body: (
           <p>
             NZA's decarbonisation, climate and biodiversity specialists work
-            alongside your sustainability lead, estates team, teachers and
-            pupils. Detailed assessments and real engineering, when the plan
-            needs more than the tool.
+            alongside your sustainability lead and estates team: meters and
+            sensors on the same twin, detailed assessments and real engineering.
           </p>
         ),
       },

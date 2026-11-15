@@ -30,10 +30,10 @@
    throughout (not the deep navy used by PABLO + NZ:AI on cream),
    with the orange accent reserved for verb highlights and CTAs. */
 .product-page.is-light {
-  --product-text-on-canvas: #0F5D43;
-  --product-text-muted-on-canvas: rgba(15, 93, 67, 0.72);
-  --product-text-on-cream: #0F5D43;
-  --product-text-muted-on-cream: rgba(15, 93, 67, 0.72);
+  --product-text-on-canvas: #235546;
+  --product-text-muted-on-canvas: rgba(35, 85, 70, 0.72);
+  --product-text-on-cream: #235546;
+  --product-text-muted-on-cream: rgba(35, 85, 70, 0.72);
 }
 
 /* =========================================================================
@@ -196,14 +196,14 @@
 }
 /* Light variant - solid fill at rest, deeper on hover */
 .is-light .product-hero-cta {
-  background: #E8743C;
-  border-color: #E8743C;
+  background: #E28F2C;
+  border-color: #E28F2C;
   color: #FFFFFF;
 }
 .is-light .product-hero-cta:hover,
 .is-light .product-hero-cta:focus-visible {
-  background: #C95E2C;
-  border-color: #C95E2C;
+  background: #C27620;
+  border-color: #C27620;
   color: #FFFFFF;
 }
 
@@ -400,7 +400,7 @@
 }
 .is-light .browser-frame-chrome {
   background: rgba(255, 250, 240, 0.5);
-  border-bottom-color: rgba(15, 93, 67, 0.15);
+  border-bottom-color: rgba(35, 85, 70, 0.15);
 }
 .browser-frame-dots {
   display: flex;
@@ -818,14 +818,14 @@
 /* Light variant - solid orange fill for decodED (matches the rest of
    the page's CTA pattern). */
 .is-light .product-lets-show-pill {
-  background: #E8743C;
-  border-color: #E8743C;
+  background: #E28F2C;
+  border-color: #E28F2C;
   color: #FFFFFF;
 }
 .is-light .product-lets-show-pill:hover,
 .is-light .product-lets-show-pill:focus-visible {
-  background: #C95E2C;
-  border-color: #C95E2C;
+  background: #C27620;
+  border-color: #C27620;
   color: #FFFFFF;
 }
 
@@ -1085,10 +1085,10 @@
   outline: none;
 }
 .is-light .product-steps-request-pill {
-  background: #E8743C;
+  background: #E28F2C;
   box-shadow: 0 12px 28px -8px rgba(232, 116, 60, 0.5);
 }
-.is-light .product-steps-request-pill:hover { background: #C95E2C; }
+.is-light .product-steps-request-pill:hover { background: #C27620; }
 @media (max-width: 1023px) {
   /* Hidden on mobile - the frame is hidden too. The standalone CTA
      in the "Let's show you" section above handles conversion. */
@@ -1987,14 +1987,14 @@
   outline: none;
 }
 .is-light .product-closer-cta {
-  background: #E8743C;
-  border-color: #E8743C;
+  background: #E28F2C;
+  border-color: #E28F2C;
   color: #FFFFFF;
 }
 .is-light .product-closer-cta:hover,
 .is-light .product-closer-cta:focus-visible {
-  background: #C95E2C;
-  border-color: #C95E2C;
+  background: #C27620;
+  border-color: #C27620;
   color: #FFFFFF;
 }
 
@@ -2842,5 +2842,51 @@
   }
   .pablo-tab-pill:hover {
     transform: none;
+  }
+}
+
+/* =========================================================================
+   decodED BRAND MARKS IN COPY (DecodedBrand.tsx, 15 Nov 2026)
+   ========================================================================= */
+/* The name in running text, in the logo's own two colours. */
+.brand-word {
+  color: #235546;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.brand-word-ed {
+  color: #E28F2C;
+}
+/* On a dark surface (the manifesto's green, a featured card) the green half
+   would vanish, so it turns white; ED stays orange. */
+.manifesto-block .brand-word,
+.going-further-card.is-featured .brand-word {
+  color: #FFFFFF;
+}
+
+/* The real logo inside a headline. The tight SVG (viewBox cropped to the
+   ink) is 102 units tall; its letters' ascender is 58.6 of those, so a
+   height of 1.24em makes the letters about the cap height of the type and
+   the image's bottom edge is the letters' baseline. The negative top margin
+   keeps the mortarboard from pushing the line taller. */
+.brand-logo-inline {
+  display: inline-block;
+  height: 1.24em;
+  width: auto;
+  vertical-align: baseline;
+  margin-top: -0.42em;
+}
+/* The Let's Show word wrappers clip (overflow: hidden) for the rise-in, so
+   give the logo's wrapper headroom for the mortarboard without moving its
+   text line: padding in, the same margin out. */
+.product-lets-show-headline .lets-show-word--logo {
+  padding-top: 0.42em;
+  margin-top: -0.42em;
+}
+/* On a phone the headline wraps onto two lines and the mortarboard would
+   touch the line above, so the decodED headline gets more leading there. */
+@media (max-width: 599px) {
+  .product-lets-show-headline:has(.lets-show-word--logo) {
+    line-height: 1.5;
   }
 }

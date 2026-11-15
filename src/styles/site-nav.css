@@ -242,7 +242,7 @@
 body.context-navy    { background: var(--ink-navy); }
 body.context-pablo   { background: #1F0F2E; }
 body.context-nzai    { background: #0A1628; }
-body.context-decoded { background: #F3EFE3; }
+body.context-decoded { background: #FBFBF9; }
 
 /* =========================================================================
    CONTEXT VARIANTS - background + logo recolour per body.context-*
@@ -294,26 +294,26 @@ body.context-nzai .site-nav {
 
 /* decodED context - deep green mark/net/zero, orange advisory */
 body.context-decoded .site-nav {
-  background: rgba(243, 239, 227, 0.92);
-  border-bottom-color: rgba(15, 93, 67, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom-color: rgba(35, 85, 70, 0.12);
 }
 body.context-decoded #nza-logo-mark,
 body.context-decoded #nza-logo-net,
 body.context-decoded #nza-logo-zero {
-  fill: #0F5D43;
+  fill: #235546;
 }
 body.context-decoded #nza-logo-advisory {
-  fill: #E8743C;
+  fill: #E28F2C;
 }
 body.context-decoded .site-nav-link,
 body.context-decoded .site-nav-trigger {
-  color: #0F5D43;
+  color: #235546;
 }
 body.context-decoded .site-nav-link:hover,
 body.context-decoded .site-nav-trigger:hover,
 body.context-decoded .site-nav-link:focus-visible,
 body.context-decoded .site-nav-trigger:focus-visible {
-  color: #E8743C;
+  color: #E28F2C;
 }
 
 /* =========================================================================
@@ -366,15 +366,15 @@ body.context-cream .site-nav-cta:focus-visible {
 
 /* decodED context - solid-filled orange */
 body.context-decoded .site-nav-cta {
-  background: #E8743C;
-  border-color: #E8743C;
+  background: #E28F2C;
+  border-color: #E28F2C;
   color: #FFFFFF;
   padding: 10px 23px;
 }
 body.context-decoded .site-nav-cta:hover,
 body.context-decoded .site-nav-cta:focus-visible {
-  background: #C95E2C;
-  border-color: #C95E2C;
+  background: #C27620;
+  border-color: #C27620;
   color: #FFFFFF;
 }
 
@@ -562,7 +562,7 @@ body.context-decoded .site-nav-cta:focus-visible {
   background: #2EC4A8;
 }
 .site-nav-dropdown-swatch--decoded {
-  background: #0F5D43;
+  background: #235546;
 }
 
 /* =========================================================================
@@ -608,7 +608,7 @@ body.context-cream .nza-logo-mark-only-svg #nza-logo-mark-mobile {
   fill: var(--ink-navy);
 }
 body.context-decoded .nza-logo-mark-only-svg #nza-logo-mark-mobile {
-  fill: #0F5D43;
+  fill: #235546;
 }
 
 /* OVERLAY */
@@ -815,16 +815,16 @@ body.context-decoded .nza-logo-mark-only-svg #nza-logo-mark-mobile {
   margin: 0;
 }
 
-/* decodED stub - cream-warm bg, deep-green headline, orange micro. */
+/* decodED stub - off-white bg (matches the app), deep-green headline, orange micro. */
 .stub-page--decoded {
-  background: #F3EFE3;
-  color: #0F5D43;
+  background: #FBFBF9;
+  color: #235546;
 }
 .stub-page--decoded .stub-page-micro {
-  color: rgba(232, 116, 60, 0.7); /* orange at 70% */
+  color: rgba(226, 143, 44, 0.8); /* orange at 80% */
 }
 .stub-page--decoded .stub-page-headline {
-  color: #0F5D43;
+  color: #235546;
 }
 
 /* About + Clients stubs - share a cream NZA treatment. */
@@ -943,8 +943,8 @@ body.context-cream .site-footer {
   color: var(--ink-navy);
 }
 body.context-decoded .site-footer {
-  background: #F3EFE3;
-  color: #0F5D43;
+  background: #FBFBF9;
+  color: #235546;
 }
 .site-footer-inner {
   width: 100%;

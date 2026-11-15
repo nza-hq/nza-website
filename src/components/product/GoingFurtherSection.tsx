@@ -21,8 +21,12 @@ import { MaskReveal } from '../MaskReveal'
  */
 
 export interface GoingFurtherCard {
-  /** Title of the card. e.g. "Estate data management". */
-  title: string
+  /** Title of the card. e.g. "Explore for free". */
+  title: string | ReactNode
+  /** Optional short tag under the title (e.g. a price). */
+  tag?: string
+  /** Optional emphasis: the card renders on the product's accent colour. */
+  featured?: boolean
   /** Body paragraph. ReactNode to support inline emphasis (e.g.
    *  the bold "PABLO" mention in Card 02). */
   body: ReactNode
@@ -61,25 +65,35 @@ export function GoingFurtherSection({
           {typeof intro === 'string' ? <p>{intro}</p> : intro}
         </MaskReveal>
 
-        <div className="going-further-cards">
+        {/* Three steps. Each card is a 4-row subgrid (number, title, tag,
+            body) so the rows line up across the cards on desktop. */}
+        <ol className="going-further-cards">
           {cards.map((card, i) => (
-            <MaskReveal
+            /* A plain <li>, not MaskReveal: MaskReveal wraps its children
+               in an inner span, which would hide the four rows from the
+               subgrid, and its overflow clip would cut the card shadow. */
+            <li
               key={i}
-              as="article"
-              className="going-further-card"
-              delay={450 + i * 150}
+              className={'going-further-card' + (card.featured ? ' is-featured' : '')}
             >
-              <p className="going-further-card-number">
+              <span className="going-further-card-number" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}
-              </p>
+              </span>
               <h3 className="going-further-card-title">{card.title}</h3>
+              <p className="going-further-card-tag">{card.tag ?? ''}</p>
               <div className="going-further-card-body">{card.body}</div>
-            </MaskReveal>
+            </li>
           ))}
-        </div>
+        </ol>
 
         <MaskReveal as="div" delay={900}>
-          <a className="going-further-cta" href={ctaHref}>
+          <a
+            className="going-further-cta"
+            href={ctaHref}
+            {...(/^https?:\/\//.test(ctaHref)
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
+          >
             {ctaText}
             <span className="going-further-cta-arrow" aria-hidden="true">
               →

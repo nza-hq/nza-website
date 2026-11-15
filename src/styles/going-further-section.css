@@ -8,12 +8,12 @@
 
 .going-further-section {
   position: relative;
-  /* Decoded's canvas-warm `#F3EFE3` is set on .product-page; the
+  /* Decoded's off-white `#FBFBF9` is set on .product-page; the
      section inherits it. The cards are lifted on top using a
      slightly lighter cream surface so they read as actionable
      panels. */
   padding: clamp(96px, 12vw, 168px) clamp(24px, 5vw, 96px);
-  color: #1B1B1B;
+  color: var(--product-accent, #235546);
 }
 
 .going-further-inner {
@@ -27,7 +27,7 @@
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--product-accent, #0F5D43);
+  color: var(--product-accent, #235546);
   margin: 0 0 clamp(20px, 2.4vw, 32px) 0;
 }
 
@@ -39,6 +39,7 @@
   letter-spacing: -0.01em;
   margin: 0 0 clamp(20px, 2.4vw, 32px) 0;
   max-width: 22ch;
+  color: var(--product-accent, #235546);
 }
 
 .going-further-headline em {
@@ -53,7 +54,7 @@
   font-family: 'Inter', system-ui, sans-serif;
   font-size: clamp(16px, 1.2vw, 18px);
   line-height: 1.6;
-  color: rgba(27, 27, 27, 0.78);
+  color: rgba(35, 85, 70, 0.82);
   max-width: 64ch;
   margin: 0 0 clamp(48px, 6vw, 80px) 0;
 }
@@ -62,74 +63,109 @@
   margin: 0;
 }
 
-/* ---------- card grid ---------- */
+/* ---------- card grid ----------
+   Redesigned 15 Nov 2026 (Linzie: "a space for the number, a space for the
+   title, a space for the body", aligned across the cards). Each card is a
+   subgrid over four shared rows - number, title, tag, body - so the titles
+   and bodies start on the same line in every card on desktop. */
 
 .going-further-cards {
+  list-style: none;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  margin-bottom: clamp(48px, 5vw, 64px);
+  gap: 16px;
+  margin: 0 0 clamp(48px, 5vw, 64px) 0;
 }
 
 @media (min-width: 800px) {
   .going-further-cards {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 20px;
+    row-gap: 0;
   }
 }
 
 .going-further-card {
-  /* Light surface against the decodED canvas-warm. Hairline border
-     in the accent green at low opacity gives the card a defined edge
-     without competing with the page accent. */
   background: #FFFFFF;
-  border: 1px solid rgba(15, 93, 67, 0.12);
-  border-radius: 12px;
-  padding: clamp(28px, 3vw, 36px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  /* Thin coral rule at top per the site convention used elsewhere
-     (browser frames, hero visual). One-line accent without coral
-     becoming a surface. */
-  position: relative;
+  border: 1px solid rgba(35, 85, 70, 0.14);
+  border-radius: 16px;
+  padding: clamp(28px, 2.6vw, 36px);
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+  box-shadow: 0 1px 2px rgba(35, 85, 70, 0.04), 0 12px 32px -18px rgba(35, 85, 70, 0.18);
 }
-
-.going-further-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 16px;
-  right: 16px;
-  height: 1px;
-  background: var(--coral, #F75A55);
-  opacity: 0.7;
+@media (min-width: 800px) {
+  .going-further-card {
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+  }
 }
 
 .going-further-card-number {
-  font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 11px;
+  font-family: 'Stolzl', system-ui, sans-serif;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  color: var(--product-accent, #0F5D43);
-  margin: 0;
+  font-size: clamp(40px, 3.4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--product-accent-light, #E28F2C);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(35, 85, 70, 0.14);
 }
 
 .going-further-card-title {
   font-family: 'Stolzl', system-ui, sans-serif;
   font-weight: 500;
-  font-size: clamp(20px, 1.8vw, 24px);
-  line-height: 1.16;
+  font-size: clamp(20px, 1.7vw, 24px);
+  line-height: 1.2;
   letter-spacing: -0.005em;
   margin: 0;
-  color: #1B1B1B;
+  color: var(--product-accent, #235546);
+}
+
+.going-further-card-tag {
+  margin: 10px 0 0;
+  min-height: 0;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--product-accent-light, #E28F2C);
+}
+.going-further-card-tag:empty {
+  margin: 0;
 }
 
 .going-further-card-body {
+  margin-top: 16px;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 15px;
-  line-height: 1.55;
-  color: rgba(27, 27, 27, 0.72);
+  line-height: 1.6;
+  color: rgba(35, 85, 70, 0.82);
+}
+.going-further-card-body p {
+  margin: 0;
+  color: inherit;
+}
+
+/* The partnership step sits on decodED's deep green so the third step
+   reads as the fullest one. */
+.going-further-card.is-featured {
+  background: var(--product-accent, #235546);
+  border-color: var(--product-accent, #235546);
+}
+.going-further-card.is-featured .going-further-card-number {
+  border-bottom-color: rgba(255, 255, 255, 0.22);
+}
+.going-further-card.is-featured .going-further-card-title {
+  color: #FFFFFF;
+}
+.going-further-card.is-featured .going-further-card-body {
+  color: rgba(255, 255, 255, 0.86);
 }
 
 /* Bold "PABLO" mention inside card 02 - per brief, "should be its
@@ -151,7 +187,7 @@
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--product-accent, #0F5D43);
+  color: var(--product-accent, #235546);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 4px;
