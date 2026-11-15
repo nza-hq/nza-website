@@ -57,9 +57,11 @@ export function GoingFurtherSection({
       data-screen-label="Going further with NZA"
     >
       <div className="going-further-inner">
-        <MaskReveal as="p" className="going-further-micro" delay={0}>
-          {microLabel}
-        </MaskReveal>
+        {microLabel && (
+          <MaskReveal as="p" className="going-further-micro" delay={0}>
+            {microLabel}
+          </MaskReveal>
+        )}
         <MaskReveal as="h2" className="going-further-headline" delay={150}>
           {headline}
         </MaskReveal>
