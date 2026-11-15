@@ -1210,6 +1210,10 @@
   /* over-fill a hair so the element edge sits outside the frame's clip */
   transform: scale(1.015);
 }
+/* A clip played by hand keeps its controls fully inside the rounded frame. */
+.product-step-video--on-request {
+  transform: none;
+}
 
 /* INLINE ILLUSTRATION - mobile only (shared frame is hidden).
    Sits beneath each step's body paragraph so the user sees the
