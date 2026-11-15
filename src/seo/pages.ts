@@ -49,6 +49,13 @@ export const SEO_PAGES: SeoPage[] = [
     index: true,
   },
   {
+    path: '/decoded',
+    title: 'decodED | Climate action for education | NZA',
+    description:
+      'decodED builds a 3D digital twin of your school from public data in under a minute, then helps everyone build its climate action plan: carbon, climate risks and nature. Free to explore.',
+    index: true,
+  },
+  {
     path: '/approach',
     title: 'Approach | NZA Net Zero Advisory',
     description:
@@ -57,7 +64,6 @@ export const SEO_PAGES: SeoPage[] = [
   },
   // Stubs and coming-soon pages: reachable, but kept out of search until real.
   { path: '/pablo', title: 'PABLO | NZA Net Zero Advisory', description: 'PABLO, an energy analytics platform from NZA. Coming soon.', index: false },
-  { path: '/decoded', title: 'decodED | NZA Net Zero Advisory', description: 'decodED, from NZA. Coming soon.', index: false },
   { path: '/about', title: 'About | NZA Net Zero Advisory', description: 'About NZA (Net Zero Advisory).', index: false },
   { path: '/clients', title: 'Clients | NZA Net Zero Advisory', description: 'Organisations NZA works with.', index: false },
   { path: '/contact', title: 'Contact | NZA Net Zero Advisory', description: 'Contact NZA (Net Zero Advisory).', index: false },
