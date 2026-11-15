@@ -40,8 +40,10 @@ public/videos/decoded/06-story-classroom.mp4  + .webm + -poster.jpg
   in, "Yes, build it", the build sped up, then the finished twin held for the last 2.5 s.
 - **02 Your carbon, counted.** Finham Primary School (142700), a small site, live. The emissions
   table with a short scroll, the flow chart (Sankey) with Travel picked, then To 2050 by theme.
-- **03 Your climate risks, mapped.** Eton College (110158), live, detail card hidden. Heavy rain on
-  the site, the Thames floodplain in the 1 km view, then Heat, Hot ground, Wildfire and Cold in turn.
+- **03 Your climate risks, mapped.** Eton College (110158), live, detail card hidden (re-recorded
+  15 Nov, `?v=3`). Heavy rain on and off over the 3D site, then on the 1 km map Rivers and sea on, off
+  and on again. River flooding draws nothing on the 3D site view (its card says 0 %), so it is shown on
+  the map; the hazards are pick-one, so "off" is the Overview view, joined by crossfades.
 - **04 Your nature, found.** Chelmer Valley High School (137260), live, 2D. The 1 km ring with the
   wildlife records popping in, the ring out to 3 km and again, then Connecting nature.
 - **05 Your plan, made.** Finham Park, local main, an invented plan (21 actions, 9 people and groups).
