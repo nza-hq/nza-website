@@ -71,8 +71,8 @@ export const decodedConfig: ProductPageConfig = {
     ),
     ctaLabel: 'Find your school',
     ctaHref: APP_URL,
-    secondaryCtaLabel: 'Book a discovery call',
-    secondaryCtaHref: BOOK_A_CALL_URL,
+    /* One button at the top, straight to the app; the discovery call is at the
+       end only (Linzie, 15 Nov 2026). */
     /* Fresh 1600x1000 captures of the live app on Finham Park (14 Nov 2026). */
     screens: [
       {
