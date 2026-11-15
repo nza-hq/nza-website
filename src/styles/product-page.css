@@ -1054,6 +1054,34 @@
   background-color: #F7F6F3;
 }
 
+/* decodED: the clips sit on the app's own deep green rather than cream
+   (Linzie, 15 Nov 2026: "the background behind the video looks dreadful
+   because of that horrible cream ... maybe the orange and the green"), with
+   the dot texture in decodED orange. The app's landing screen is this green,
+   so the first frame of each clip melts into the panel. */
+[data-product="decoded"] .product-steps-frame {
+  background-color: #235546;
+  background-image: radial-gradient(
+    circle,
+    rgba(226, 143, 44, 0.28) 0.9px,
+    transparent 1.3px
+  );
+  border-color: #235546;
+  box-shadow: 0 30px 60px -30px rgba(35, 85, 70, 0.45);
+}
+@media (max-width: 1023px) {
+  [data-product="decoded"] .product-step-inline-illustration {
+    background-color: #235546;
+    background-image: radial-gradient(
+      circle,
+      rgba(226, 143, 44, 0.28) 0.9px,
+      transparent 1.3px
+    );
+    background-size: 24px 24px;
+    border-color: #235546;
+  }
+}
+
 /* REQUEST DEMO PILL pinned at the top-right of the shared frame.
    Stays visible the whole time the user is in the four-step
    section (the frame is sticky, so the pill rides along). */

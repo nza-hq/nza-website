@@ -1,14 +1,14 @@
 # decodED showcase videos - recording spec
 
-The `/decoded` page's five steps each play a short clip of the real decodED app in the
-pinned frame. All five are recorded on **Finham Park School, Coventry (URN 136963)**, so the
-page tells one school's story (Linzie, 14 Nov 2026).
+The `/decoded` page's six steps each play a short clip of the real decodED app in the
+pinned frame, on a decodED-green panel.
 
-**Status:** all five are real recordings of the live site on Finham Park (14 Nov 2026), replacing
-the placeholder cards. Pro was a stand-in in the browser only (no account written); the plan's people
-are roles, not names. The recording rig (Playwright screencast frames, then ffmpeg) lives outside this
-repo, in `nza-hq/_clips/decoded-rig/` on Chris's PC. If a clip is re-recorded at a filename that has
-already shipped, add a `?v=` bump in `decodedConfig.tsx` (as `nzaiConfig.tsx` does).
+**Status:** all six re-recorded overnight 15 Nov 2026 to Linzie's brief, each on the school that shows
+its point best. Pro was a stand-in in the recording browser only; every call to Supabase was blocked, so
+no account was written. The plan in 05 is invented. 01-04 replaced files that had already shipped, so
+`decodedConfig.tsx` asks for them with `?v=2`; bump it again on the next re-record. The recording rig
+(Playwright, then ffmpeg) lives outside this repo, in `nza-hq/_clips/decoded-rig/` on Chris's PC
+(`rec2.mjs`, `cut2.sh`, `segs.sh`, `makeplan.mts`).
 
 ## Asset spec (same as NZ:AI)
 
@@ -26,25 +26,28 @@ already shipped, add a `?v=` bump in `decodedConfig.tsx` (as `nzaiConfig.tsx` do
 ## Filenames
 
 ```
-public/videos/decoded/01-twin-built.mp4      + .webm + -poster.jpg
-public/videos/decoded/02-carbon-counted.mp4  + .webm + -poster.jpg
-public/videos/decoded/03-risks-mapped.mp4    + .webm + -poster.jpg
-public/videos/decoded/04-nature-found.mp4    + .webm + -poster.jpg
-public/videos/decoded/05-plan-shared.mp4     + .webm + -poster.jpg
+public/videos/decoded/01-twin-built.mp4       + .webm + -poster.jpg
+public/videos/decoded/02-carbon-counted.mp4   + .webm + -poster.jpg
+public/videos/decoded/03-risks-mapped.mp4     + .webm + -poster.jpg
+public/videos/decoded/04-nature-found.mp4     + .webm + -poster.jpg
+public/videos/decoded/05-plan-made.mp4        + .webm + -poster.jpg
+public/videos/decoded/06-story-classroom.mp4  + .webm + -poster.jpg
 ```
 
-## Shot list (all on Finham Park, signed in as Pro so nothing shows a lock)
+## Shot list (15 Nov 2026)
 
-- **01 Your school, built in 3D.** Landing: type "Finham Park", pick it, the map flies in,
-  the wipe reveals the site, the buildings grow. End on one building tapped and its passport open.
-- **02 Your carbon, counted.** Data, Carbon lens: the footprint grouped by topic, then To 2050
-  drawing its line. End on the To 2050 chart.
-- **03 Your climate risks, mapped.** Twin, Climate lens: the flood map washes over the site and
-  the roads that flood nearby, then the risk list. End on the flood map with the list beside it.
-- **04 Your nature, found.** Twin, Nature lens: habitats painted on the site, then the camera
-  pulls out to nature nearby. End on the wider view.
-- **05 Your plan, shared.** Plan: targets and "Where to start", then the actions board with
-  owners and dates. End on the board.
+- **01 Your school, built in 3D.** Finham Park School (136963), live. Type the name, pick it, zoom
+  in, "Yes, build it", the build sped up, then the finished twin held for the last 2.5 s.
+- **02 Your carbon, counted.** Finham Primary School (142700), a small site, live. The emissions
+  table with a short scroll, the flow chart (Sankey) with Travel picked, then To 2050 by theme.
+- **03 Your climate risks, mapped.** Eton College (110158), live, detail card hidden. Heavy rain on
+  the site, the Thames floodplain in the 1 km view, then Heat, Hot ground, Wildfire and Cold in turn.
+- **04 Your nature, found.** Chelmer Valley High School (137260), live, 2D. The 1 km ring with the
+  wildlife records popping in, the ring out to 3 km and again, then Connecting nature.
+- **05 Your plan, made.** Finham Park, local main, an invented plan (21 actions, 9 people and groups).
+  Overview, Carbon, All actions as list, board and timeline, then People.
+- **06 Your story, told.** Finham Park, live. "From the planet to your school": the globe, the world's
+  renewables, the UK in figures and at night, Coventry, then down to the school's buildings.
 
 Dress at capture time only (big legible type, no personal names in any owner field); the app
 itself is untouched. The 10 Nov Bristol Grammar School screen recording in the nza-decoded repo
