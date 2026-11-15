@@ -10,6 +10,9 @@ Preview: https://netzeroadvisory.uk/decoded?preview=1 (plain `/decoded` still "C
 - "Going further" is now three steps: 01 Explore for free, 02 Build your climate action plan with Pro (from £500 per
   school), 03 Take it further with NZA (featured, green). Cards redesigned on a subgrid so number, title, tag and body
   line up across all three. Headline and intro green, not dark.
+- Later the same day (Linzie): the logo appears only in the Let's Show headline, enlarged to 1.38em so its lowercase
+  matches the headline's lowercase on the same baseline; the coloured decodED word appears only in the manifesto.
+  Everywhere else, decodED is plain body text.
 - Every Book a call goes to decodED's Microsoft Bookings page (new tab).
 - Next: Linzie to review; decide where "Find your school" points (interim https://decoded.netzeroadvisory.uk); then
   unhide `/decoded`.
