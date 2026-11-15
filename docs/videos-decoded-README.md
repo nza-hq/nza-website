@@ -37,19 +37,23 @@ public/videos/decoded/06-story-classroom.mp4  + .webm + -poster.jpg
 
 ## Shot list (15 Nov 2026)
 
-- **01 Your school, built in 3D.** Finham Park School (136963), live. Type the name, pick it, zoom
-  in, "Yes, build it", the build sped up, then the finished twin held for the last 2.5 s.
+- **01 Your school, built in 3D.** Finham Park School (136963), live, real speed (re-recorded 15 Nov
+  evening, `?v=5`). Type the name, pick it, the fly-in at the app's own pace (about 2 s of street-map
+  loading cut), the site boundary drawn, "Yes, build it", the green and grey land-cover wash, the tip into
+  3D with buildings and trees rising, then the finished twin with Orbit on.
 - **02 Your carbon, counted.** Finham Primary School (142700), a small site, live. The emissions
   table with a short scroll, the flow chart (Sankey) with Travel picked, then To 2050 by theme.
-- **03 Your climate risks, mapped.** Eton College (110158), live, 3D only (re-recorded 15 Nov after
-  decodED PR 698, `?v=5`). The app's Orbit on throughout, passport closed: Rivers and sea on and off,
-  Heavy rain on and off, then Rivers and sea on to the end. One real-time take, no cuts.
-- **04 Your nature, found.** Chelmer Valley High School (137260), live, 2D. The 1 km ring with the
-  wildlife records popping in, the ring out to 3 km and again, then Connecting nature.
+- **03 Your climate risks, mapped.** Eton College (110158), live, 3D only (`?v=6`). Orbit on throughout,
+  passport closed: Rivers and sea on and off, Heat on and off, then Wildfire on to the end. One
+  real-time take, no cuts.
+- **04 Your nature, found.** Brockenhurst College, New Forest (130690), live, 2D (`?v=5`; picked over
+  Hartpury and Stowe for the most wildlife). The 1 km ring with the wildlife records popping in, the
+  ring out to 3 km and again, then Connecting nature (its load cut).
 - **05 Your plan, made.** Finham Park, local main, an invented plan (21 actions, 9 people and groups).
   Overview, Carbon, All actions as list, board and timeline, then People.
-- **06 Your story, told.** Finham Park, live. "From the planet to your school": the globe, the world's
-  renewables, the UK in figures and at night, Coventry, then down to the school's buildings.
+- **06 Your story, told.** St Peter's School, York (121724), live (`?v=5`; Westminster was tried but its
+  city card shows a missing temperature). "From the planet to your school": the globe, the world's
+  renewables, the UK in figures and at night, York, then down to the school's buildings.
 
 Dress at capture time only (big legible type, no personal names in any owner field); the app
 itself is untouched. The 10 Nov Bristol Grammar School screen recording in the nza-decoded repo

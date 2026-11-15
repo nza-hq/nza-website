@@ -159,11 +159,11 @@ export const decodedConfig: ProductPageConfig = {
         </>
       ),
       video: {
-        mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=4`,
-        webm: `${VIDEO_BASE}/01-twin-built.webm?v=4`,
-        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg?v=4`,
+        mp4: `${VIDEO_BASE}/01-twin-built.mp4?v=5`,
+        webm: `${VIDEO_BASE}/01-twin-built.webm?v=5`,
+        poster: `${VIDEO_BASE}/01-twin-built-poster.jpg?v=5`,
         alwaysPlay: true,
-        alt: 'Finham Park typed into the search. The map flies to the school and its site is built in 3D, sped up.',
+        alt: 'Finham Park typed into the search. The map flies in to the school, its site boundary is drawn and washed green and grey, then it tips into 3D as the buildings and trees rise, and the finished twin turns.',
       },
     },
     {
@@ -195,11 +195,11 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
       video: {
-        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=5`,
-        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=5`,
-        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=5`,
+        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=6`,
+        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=6`,
+        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=6`,
         alwaysPlay: true,
-        alt: 'Eton College in 3D, the camera slowly orbiting: river and sea flooding switched on and off over the site, then surface water from heavy rain on and off, then river flooding on again.',
+        alt: 'Eton College in 3D, the camera slowly orbiting: river and sea flooding switched on and off over the site, then heat, then wildfire risk.',
       },
     },
     {
@@ -210,11 +210,11 @@ export const decodedConfig: ProductPageConfig = {
       body:
         'See the habitats on the school site, and the nature reserves and species records in and around it. Add sightings and surveys, find where a hedge, a pond or more trees would make the biggest difference, and connect the site to the nature beyond its fence.',
       video: {
-        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=4`,
-        webm: `${VIDEO_BASE}/04-nature-found.webm?v=4`,
-        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=4`,
+        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=5`,
+        webm: `${VIDEO_BASE}/04-nature-found.webm?v=5`,
+        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=5`,
         alwaysPlay: true,
-        alt: 'A school site in 2D with a 1 km ring, nature records popping up as dots, then the ring widening and more appearing.',
+        alt: 'Brockenhurst College in the New Forest in 2D with a 1 km ring, wildlife records popping up as dots, then the ring widening to 3 km and more appearing, then connecting habitats shaded green.',
       },
     },
     {
@@ -240,11 +240,11 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Take the school's climate action into the classroom: its story from the planet down to its own buildings, lessons built on the school's own figures, and a pupil travel survey.",
       video: {
-        mp4: `${VIDEO_BASE}/06-story-classroom.mp4?v=4`,
-        webm: `${VIDEO_BASE}/06-story-classroom.webm?v=4`,
-        poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg?v=4`,
+        mp4: `${VIDEO_BASE}/06-story-classroom.mp4?v=5`,
+        webm: `${VIDEO_BASE}/06-story-classroom.webm?v=5`,
+        poster: `${VIDEO_BASE}/06-story-classroom-poster.jpg?v=5`,
         alwaysPlay: true,
-        alt: "The school's story: the Earth turning as the world's renewables grow, the UK at night, then down through Coventry to the school's buildings.",
+        alt: "The school's story: the Earth turning as the world's renewables grow, the UK at night, then down through York to St Peter's School's buildings.",
       },
     },
   ],
