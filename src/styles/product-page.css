@@ -1053,6 +1053,22 @@
 [data-product="nzai"] .product-steps-frame {
   background-color: #F7F6F3;
 }
+/* decodED: the clips sit on the house green, not the cream (Linzie, 15 Nov 2026: "the background behind the video
+   looks dreadful because of that horrible cream ... maybe the orange and the green"). Deep green with a soft orange
+   glow in the bottom-right corner and a lighter green one top-left; the dot texture kept, in white, barely there. */
+[data-product="decoded"] .product-steps-frame {
+  background-color: #123A30;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.07) 0.8px, transparent 1.2px),
+    radial-gradient(55% 45% at 92% 104%, rgba(236, 140, 40, 0.75), rgba(236, 140, 40, 0.25) 45%, transparent 75%),
+    radial-gradient(90% 70% at 0% 0%, rgba(53, 120, 98, 0.55), transparent 60%);
+  background-size: 24px 24px, 100% 100%, 100% 100%;
+  border-color: color-mix(in oklab, #E28F2C 40%, transparent);
+  box-shadow: 0 30px 60px -30px rgba(18, 58, 48, 0.45);
+}
+[data-product="decoded"] .product-step-video-frame {
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.45);
+}
 
 /* REQUEST DEMO PILL pinned at the top-right of the shared frame.
    Stays visible the whole time the user is in the four-step
