@@ -196,11 +196,11 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "See the habitats on your site and the reserves and wildlife records around it. Add your own sightings and surveys, plan how to build with nature, bring wildlife back to your grounds and connect them to the nature beyond the school gates.",
       video: {
-        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=5`,
-        webm: `${VIDEO_BASE}/04-nature-found.webm?v=5`,
-        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=5`,
+        mp4: `${VIDEO_BASE}/04-nature-found.mp4?v=6`,
+        webm: `${VIDEO_BASE}/04-nature-found.webm?v=6`,
+        poster: `${VIDEO_BASE}/04-nature-found-poster.jpg?v=6`,
         alwaysPlay: true,
-        alt: 'Brockenhurst College in the New Forest in 2D with a 1 km ring, wildlife records popping up as dots, then the ring widening to 3 km and more appearing, then connecting habitats shaded green.',
+        alt: 'Brockenhurst College in the New Forest in 2D with a 1 km ring, wildlife records popping up as dots and a chart of species groups beside the map, birds picked so their records turn orange, then the ring widening to 3 km and more appearing, then connecting habitats shaded green.',
       },
     },
     {
