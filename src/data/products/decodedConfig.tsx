@@ -195,11 +195,11 @@ export const decodedConfig: ProductPageConfig = {
       body:
         "Flooding, heat, drought and storms, shown on the school's own site, now and as the climate changes. Add what staff already know, from the playground that floods to the classroom that overheats, and it becomes a climate risk assessment.",
       video: {
-        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=2`,
-        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=2`,
-        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=2`,
+        mp4: `${VIDEO_BASE}/03-risks-mapped.mp4?v=3`,
+        webm: `${VIDEO_BASE}/03-risks-mapped.webm?v=3`,
+        poster: `${VIDEO_BASE}/03-risks-mapped-poster.jpg?v=3`,
         alwaysPlay: true,
-        alt: 'Eton College in 3D: heavy rain on its site, the Thames floodplain around it, then heat, hot ground, wildfire and cold coloured across the site in turn.',
+        alt: 'Eton College: surface water from heavy rain switched on and off over the site in 3D, then on the map around it the Thames floodplain switched on and off, covering almost the whole site.',
       },
     },
     {
